@@ -1,5 +1,11 @@
 {
-  "include": ["src/global.d.ts", "src/**/*.ts", "tests/**/*.ts"],
+  "include": [
+    "src/global.d.ts",
+    "src/**/*.ts",
+    "tests/**/*.ts",
+    "demo/**/*.ts",
+    "demo/**/*.vue"
+  ],
   "exclude": ["dist", "node_modules", "vue-demi"],
   "compilerOptions": {
     "baseUrl": ".",
