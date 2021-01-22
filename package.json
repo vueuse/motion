@@ -36,7 +36,8 @@
   ],
   "dependencies": {
     "popmotion": "^9.1.0",
-    "vue-demi": "^0.5.3"
+    "vue-demi": "^0.5.3",
+    "vue": "*"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-beta.1",
@@ -57,11 +58,13 @@
     "rollup-plugin-typescript2": "^0.29.0",
     "ts-jest": "^26.4.4",
     "typescript": "^4.1.3",
-    "vue": "^3.0.4",
+    "vue": "^3.0.5",
     "yorkie": "^2.0.0",
-    "@vitejs/plugin-vue": "^1.0.4",
+    "@vitejs/plugin-vue": "^1.1.0",
     "@vue/compiler-sfc": "^3.0.5",
-    "vite": "^2.0.0-beta.34"
+    "vite": "^2.0.0-beta.35",
+    "@vuedx/typecheck": "^0.6.0",
+    "@vuedx/typescript-plugin-vue": "^0.6.0"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
