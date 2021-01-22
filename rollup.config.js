@@ -1,10 +1,10 @@
 // @ts-nocheck - Disable TypeScript checks here
+import commonjs from '@rollup/plugin-commonjs'
+import resolve from '@rollup/plugin-node-resolve'
+import replace from '@rollup/plugin-replace'
+import pascalcase from 'pascalcase'
 import path from 'path'
 import ts from 'rollup-plugin-typescript2'
-import replace from '@rollup/plugin-replace'
-import resolve from '@rollup/plugin-node-resolve'
-import commonjs from '@rollup/plugin-commonjs'
-import pascalcase from 'pascalcase'
 
 const pkg = require('./package.json')
 const name = pkg.name
@@ -82,7 +82,7 @@ const createConfig = (format, output, plugins = []) => {
         declaration: shouldEmitDeclarations,
         declarationMap: shouldEmitDeclarations,
       },
-      exclude: ['tests'],
+      exclude: ['tests', 'demo'],
     },
   })
 
