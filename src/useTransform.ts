@@ -1,6 +1,6 @@
 import { MaybeRef } from '@vueuse/shared'
 import { ref, watch } from 'vue-demi'
-import { reactiveTransform } from './utils/transform'
+import { reactiveTransform } from './reactiveTransform'
 
 export const useTransform = (
   target: MaybeRef<HTMLElement | null | undefined>,
