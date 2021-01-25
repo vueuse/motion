@@ -1,12 +1,14 @@
 import { MaybeRef } from '@vueuse/shared'
 import { reactive, ref, watch } from 'vue'
+import { CSSProperties } from './types'
 
 const isValidStyleEntry = ([key, value]: string[]) =>
   // @ts-expect-error
   key && key !== '' && value && value !== '' && isNaN(key)
 
 export const useStyle = (target: MaybeRef<HTMLElement | null | undefined>) => {
-  const style = reactive<CSSStyleDeclaration>({} as CSSStyleDeclaration)
+  const style = reactive<CSSProperties>({})
+
   const targetRef = ref(target)
 
   watch(targetRef, (newValue) => {
