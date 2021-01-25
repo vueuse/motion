@@ -1,32 +1,38 @@
 <template>
   <div :style="{ padding: '100px' }">
-    <div ref="popRef" :style="{ position: 'relative', backgroundColor: 'red' }">
+    <div
+      ref="popRef"
+      :style="{
+        position: 'relative',
+        backgroundColor: 'blue',
+        color: 'white',
+        padding: '40px',
+        borderRadius: '1rem',
+      }"
+    >
       Hello
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { useStyle } from '@lib'
-import { animate } from 'popmotion'
-import { onMounted, ref } from 'vue'
+import { useMotion } from '@lib'
+import { ref } from 'vue'
 
 const popRef = ref<HTMLElement>()
 
-const { style } = useStyle(popRef)
-
-onMounted(() => {
-  animate({
-    from: -100,
-    to: 0,
-    type: 'spring',
-    onUpdate: (latest) => (style.bottom = `${latest}px`),
-  })
-
-  animate({
-    from: 0,
-    to: 1,
-    onUpdate: (latest) => (style.opacity = `${latest}`),
-  })
+useMotion(popRef, {
+  initial: {
+    translateY: 200,
+    opacity: 0,
+  },
+  enter: {
+    translateY: -100,
+    opacity: 1,
+    spring: {
+      stiffness: 300,
+      damping: 50,
+    },
+  },
 })
 </script>
