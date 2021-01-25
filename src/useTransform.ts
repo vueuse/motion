@@ -1,34 +1,21 @@
-import { computed, reactive } from 'vue-demi'
-import { TransformProperties } from './types'
+import { MaybeRef } from '@vueuse/shared'
+import { ref, watch } from 'vue-demi'
+import { reactiveTransform } from './utils/transform'
 
 export const useTransform = (
-  props: TransformProperties,
-  enableHardwareAcceleration: boolean = true,
+  target: MaybeRef<HTMLElement | null | undefined>,
 ) => {
-  const state = reactive({ ...props })
+  const targetRef = ref(target)
 
-  const transform = computed(() => {
-    let result = ''
+  const { state, result } = reactiveTransform()
 
-    let transformHasZ = false
+  watch(result, (newValue) => {
+    if (!targetRef || !targetRef.value || !newValue) return
 
-    for (const [key, value] of Object.entries(state)) {
-      result += `${key}(${value}) `
-
-      if (key === 'z') transformHasZ = true
-    }
-
-    if (!transformHasZ && enableHardwareAcceleration) {
-      result += 'translateZ(0)'
-    } else {
-      result = result.trim()
-    }
-
-    return result
+    targetRef.value.style['transform'] = newValue
   })
 
   return {
-    state,
-    transform,
+    transform: state,
   }
 }
