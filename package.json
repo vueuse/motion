@@ -36,6 +36,7 @@
   ],
   "dependencies": {
     "@vueuse/shared": "^4.0.10",
+    "csstype": "^3.0.6",
     "popmotion": "^9.1.0",
     "vue": "*",
     "vue-demi": "^0.6.0"
