@@ -1,3 +1,9 @@
+import { Properties as CSSTypes } from 'csstype'
+import { SpringOptions } from 'popmotion'
+
+export interface CSSProperties
+  extends Omit<CSSTypes<string | number>, 'rotate' | 'scale'> {}
+
 export interface TransformProperties {
   x?: string | number
   y?: string | number
@@ -21,4 +27,16 @@ export interface TransformProperties {
   originZ?: string | number
   perspective?: string | number
   transformPerspective?: string | number
+}
+
+export interface MotionProperties extends CSSProperties, TransformProperties {}
+
+export interface Variant extends MotionProperties {
+  spring?: Omit<SpringOptions, 'from' | 'to' | 'transition'>
+}
+
+export type VariantNames = 'initial' | 'enter' | 'exit'
+
+export type MotionVariants = {
+  [key: string]: Variant
 }
