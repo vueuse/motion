@@ -7,12 +7,12 @@ export const useTransform = (
 ) => {
   const targetRef = ref(target)
 
-  const { state, result } = reactiveTransform()
+  const { state, transform } = reactiveTransform()
 
-  watch(result, (newValue) => {
+  watch(transform, (newValue) => {
     if (!targetRef || !targetRef.value || !newValue) return
 
-    targetRef.value.style['transform'] = newValue
+    targetRef.value.style.transform = newValue
   })
 
   return {
