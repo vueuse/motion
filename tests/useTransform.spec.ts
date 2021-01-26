@@ -1,51 +1,47 @@
-import { useTransform } from '../src/useTransform'
+import { mount } from '@vue/test-utils'
+import { nextTick, ref } from 'vue'
+import { useTransform } from '../src'
+
+const TestComponent = {
+  template: '<div>Hello world</div>',
+}
+
+const getElementRef = () => {
+  const c = mount(TestComponent)
+
+  return ref<HTMLElement>(c.element as HTMLElement)
+}
+
 describe('useTransform', () => {
-  it('generate transform from transformProperties', () => {
-    const { transform } = useTransform(
-      {
-        rotateX: '90deg',
-      },
-      false,
-    )
+  it('accepts an element', () => {
+    const element = getElementRef()
 
-    expect(transform.value).toBe('rotateX(90deg)')
+    const { transform } = useTransform(element)
+
+    expect(transform).toBeDefined()
   })
 
-  it('generate a reactive transform string', () => {
-    const { transform, state } = useTransform(
-      {
-        rotateX: '90deg',
-      },
-      false,
-    )
+  it('mutates style properties', () => {
+    const element = getElementRef()
 
-    expect(transform.value).toBe('rotateX(90deg)')
+    const { transform } = useTransform(element)
 
-    state.rotateX = '120deg'
+    transform.scale = 1.2
 
-    expect(transform.value).toBe('rotateX(120deg)')
+    expect(transform.scale).toBe(1.2)
   })
 
-  it('concatenate the transform string correctly', () => {
-    const { transform } = useTransform(
-      {
-        rotateX: '90deg',
-        translateY: '120px',
-      },
-      false,
+  it('mutates element properties', async () => {
+    const element = getElementRef()
+
+    const { transform } = useTransform(element)
+
+    transform.translateY = '120px'
+
+    await nextTick()
+
+    expect(element.value.style.transform).toBe(
+      'translateY(120px) translateZ(0)',
     )
-
-    expect(transform.value).toBe('rotateX(90deg) translateY(120px)')
-  })
-
-  it('add the translateZ when hardware acceleration enabled', () => {
-    const { transform } = useTransform(
-      {
-        rotateX: '90deg',
-      },
-      true, // it is true by default
-    )
-
-    expect(transform.value).toBe('rotateX(90deg) translateZ(0)')
   })
 })
