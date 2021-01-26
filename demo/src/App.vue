@@ -1,18 +1,9 @@
 <template>
   <div :style="{ padding: '100px' }">
-    <div
-      ref="popRef"
-      :style="{
-        position: 'relative',
-        backgroundColor: 'blue',
-        color: 'white',
-        padding: '40px',
-        borderRadius: '1rem',
-      }"
-    >
-      Hello
-    </div>
+    <div class="popRef" ref="popRef">Hello</div>
   </div>
+
+  <button @click="toggleVariant">Hello</button>
 </template>
 
 <script lang="ts" setup>
@@ -21,18 +12,37 @@ import { ref } from 'vue'
 
 const popRef = ref<HTMLElement>()
 
-useMotion(popRef, {
+const variantRef = ref('enter')
+
+const toggleVariant = () => {
+  if (variantRef.value === 'enter') {
+    set('initial')
+    variantRef.value = 'initial'
+  } else {
+    set('enter')
+    variantRef.value = 'enter'
+  }
+}
+
+const { set } = useMotion(popRef, {
   initial: {
-    translateY: 200,
-    opacity: 0,
+    backgroundColor: '#64b7d8',
+    translateY: 500,
+    opacity: 0.25,
   },
   enter: {
-    translateY: -100,
+    backgroundColor: '#6424d4',
+    translateY: 0,
     opacity: 1,
-    spring: {
-      stiffness: 300,
-      damping: 50,
-    },
   },
 })
 </script>
+
+<style lang="postcss">
+.popRef {
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 4px 4px 16px rgba(0, 0, 0, 0.5);
+  color: white;
+}
+</style>
