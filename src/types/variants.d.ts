@@ -1,7 +1,11 @@
-import { SpringOptions } from 'popmotion'
-
 export interface PropertiesKeys {
   [key: string]: string | number | undefined | any
+}
+
+export interface SVGPathProperties {
+  pathLength?: number
+  pathOffset?: number
+  pathSpacing?: number
 }
 
 export interface StyleProperties extends PropertiesKeys {
@@ -87,12 +91,14 @@ export interface TransformProperties extends PropertiesKeys {
   transformPerspective?: string | number
 }
 
+export interface TransitionProperties {}
+
 export interface MotionProperties
   extends StyleProperties,
     TransformProperties {}
 
 export interface Variant extends MotionProperties {
-  spring?: Omit<SpringOptions, 'from' | 'to' | 'transition'>
+  transition: TransitionProperties
 }
 
 export type MotionVariants = {
