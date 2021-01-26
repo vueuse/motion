@@ -1,52 +1,19 @@
 import { MaybeRef } from '@vueuse/shared'
-import { reactive, ref, watch } from 'vue'
-import { CSSProperties } from './types'
-
-type StyleEntryProps = [key: string, value: string | undefined | number]
-
-const isValidStyleEntry = ([key, value]: StyleEntryProps) =>
-  // @ts-expect-error
-  key && key !== '' && value && value !== '' && isNaN(key)
+import { ref, watch } from 'vue'
+import { reactiveStyle } from './reactiveStyle'
 
 export const useStyle = (target: MaybeRef<HTMLElement | null | undefined>) => {
-  const style = reactive<CSSProperties>({})
-
   const targetRef = ref(target)
 
-  watch(
-    targetRef,
-    (newValue) => {
-      if (!newValue) return
+  const { state, style } = reactiveStyle()
 
-      Object.entries(newValue.style).forEach(([key, value]) => {
-        if (!isValidStyleEntry([key, value])) return
+  watch(style, (newValue) => {
+    if (!targetRef || !targetRef.value || !newValue) return
 
-        // @ts-expect-error
-        style[key] = value
-      })
-    },
-    {
-      immediate: true,
-    },
-  )
+    Object.assign(targetRef.value.style, newValue)
+  })
 
-  watch(
-    style,
-    (newValue) => {
-      if (!targetRef || !targetRef.value || !targetRef.value.style) return
-
-      for (const [key, value] of Object.entries(newValue)) {
-        if (!isValidStyleEntry([key, value])) return
-
-        // @ts-expect-error
-        targetRef.value.style[key] = value
-      }
-    },
-    {
-      immediate: true,
-      deep: true,
-    },
-  )
-
-  return { style }
+  return {
+    style: state,
+  }
 }
