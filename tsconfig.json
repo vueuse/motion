@@ -1,6 +1,6 @@
 {
   "include": [
-    "src/global.d.ts",
+    "src/types/global.d.ts",
     "src/**/*.ts",
     "tests/**/*.ts",
     "demo/**/*.ts",
