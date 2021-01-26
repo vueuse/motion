@@ -7,15 +7,19 @@ export const useMotionVariants = (
 ) => {
   const variantsRef = ref(variants)
 
-  const currentVariantName = ref<string>('initial')
+  const currentVariantName = ref<string | undefined>('initial')
 
   const currentVariant = computed<Variant | undefined>(() => {
     if (
       !variantsRef ||
       !variantsRef.value ||
+      !currentVariantName ||
+      !currentVariantName.value ||
       !variantsRef.value[currentVariantName.value]
     )
       return undefined
+
+    console.log('>', currentVariantName.value)
 
     return variantsRef.value[currentVariantName.value]
   })
@@ -39,6 +43,7 @@ export const useMotionVariants = (
 
   return {
     currentVariant,
+    currentVariantName,
     set,
   }
 }
