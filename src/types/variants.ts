@@ -1,3 +1,5 @@
+import { TransitionProperties } from './transitions'
+
 export interface PropertiesKeys {
   [key: string]: string | number | undefined | any
 }
@@ -91,14 +93,8 @@ export interface TransformProperties extends PropertiesKeys {
   transformPerspective?: string | number
 }
 
-export interface TransitionProperties {}
-
-export interface MotionProperties
-  extends StyleProperties,
-    TransformProperties {}
-
-export interface Variant extends MotionProperties {
-  transition: TransitionProperties
+export interface Variant extends StyleProperties, TransformProperties {
+  transition?: TransitionProperties
 }
 
 export type MotionVariants = {
