@@ -1,6 +1,6 @@
 import { MaybeRef } from '@vueuse/shared'
 import { computed, onBeforeMount, onBeforeUnmount, onMounted, ref } from 'vue'
-import { MotionVariants, Variant } from './types'
+import { MotionVariants, Variant } from './types/variants'
 
 export const useMotionVariants = (
   variants: MaybeRef<MotionVariants | null | undefined> = {},

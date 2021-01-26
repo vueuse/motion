@@ -1,5 +1,5 @@
 import { ComputedRef, watch } from 'vue'
-import { StyleProperties, TransformProperties, Variant } from './types'
+import { StyleProperties, TransformProperties, Variant } from './types/variants'
 
 export const useMotionControls = (
   transform: TransformProperties,
@@ -8,10 +8,11 @@ export const useMotionControls = (
 ) => {
   const currentMotions: (() => void)[] = []
 
-  watch(currentVariant, (newVal: Variant) => {
+  watch(currentVariant, (newVal: Variant | undefined) => {
     stop()
 
-    // Run animations
+    // Current variant is undefined, just stop the current motions
+    if (!newVal) return
   })
 
   const stop = () => currentMotions.forEach((stop) => stop())
