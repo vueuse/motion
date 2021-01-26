@@ -1,33 +1,33 @@
 import { reactiveTransform } from '../src/reactiveTransform'
 describe('reactiveTransform', () => {
   it('generate transform from transformProperties', () => {
-    const { result } = reactiveTransform(
+    const { transform } = reactiveTransform(
       {
         rotateX: '90deg',
       },
       false,
     )
 
-    expect(result.value).toBe('rotateX(90deg)')
+    expect(transform.value).toBe('rotateX(90deg)')
   })
 
   it('generate a reactive transform string', () => {
-    const { result, state } = reactiveTransform(
+    const { transform, state } = reactiveTransform(
       {
         rotateX: '90deg',
       },
       false,
     )
 
-    expect(result.value).toBe('rotateX(90deg)')
+    expect(transform.value).toBe('rotateX(90deg)')
 
     state.rotateX = '120deg'
 
-    expect(result.value).toBe('rotateX(120deg)')
+    expect(transform.value).toBe('rotateX(120deg)')
   })
 
   it('concatenate the transform string correctly', () => {
-    const { result } = reactiveTransform(
+    const { transform } = reactiveTransform(
       {
         rotateX: '90deg',
         translateY: '120px',
@@ -35,17 +35,17 @@ describe('reactiveTransform', () => {
       false,
     )
 
-    expect(result.value).toBe('rotateX(90deg) translateY(120px)')
+    expect(transform.value).toBe('rotateX(90deg) translateY(120px)')
   })
 
   it('add the translateZ when hardware acceleration enabled', () => {
-    const { result } = reactiveTransform(
+    const { transform } = reactiveTransform(
       {
         rotateX: '90deg',
       },
       true, // it is true by default
     )
 
-    expect(result.value).toBe('rotateX(90deg) translateZ(0)')
+    expect(transform.value).toBe('rotateX(90deg) translateZ(0)')
   })
 })
