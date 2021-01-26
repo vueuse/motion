@@ -1,5 +1,6 @@
 import { TransformProperties } from 'src/types'
 import { computed, reactive } from 'vue-demi'
+import { getValueAsType, getValueType } from './utils/style'
 
 const translateAlias: { [key: string]: string } = {
   x: 'translateX',
@@ -19,7 +20,9 @@ export const reactiveTransform = (
     let transformHasZ = false
 
     for (const [key, value] of Object.entries(state)) {
-      result += `${translateAlias[key] || key}(${value}) `
+      const valueType = getValueType(key)
+      const valueAsType = getValueAsType(value, valueType)
+      result += `${translateAlias[key] || key}(${valueAsType}) `
 
       if (key === 'z') transformHasZ = true
     }
