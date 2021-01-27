@@ -26,6 +26,7 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "noImplicitReturns": true,
+    "suppressImplicitAnyIndexErrors": true,
     "strict": true,
     "isolatedModules": false,
 
