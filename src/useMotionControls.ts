@@ -20,23 +20,36 @@ export const useMotionControls = (
   const { push, stop } = useMotionTransitions()
 
   const apply = (variant: Variant) => {
+    // Get transition data from variant, or use default one
     const transition: TransitionProperties =
       variant.transition || defaultTransition
 
-    delete variant.transition
-
     for (const [key, value] of Object.entries(variant)) {
+      if (key === 'transition') return
+
       const isTransform = isTransformProp(key)
 
       if (isTransform) {
+        if (transform[key] === undefined || transform[key] === null) {
+          // This transform property is undefined, set it without using transitions
+          transform[key] = value
+        }
+
+        // Push the transition to motion transitions
         push(transition, {
-          from: transform[key] || 0,
+          from: transform[key],
           to: value,
           onUpdate: (latest) => (transform[key] = latest),
         })
       } else {
+        if (style[key] === undefined || style[key] === null) {
+          // This styling property is undefined, set it without using transitions
+          style[key] = value
+        }
+
+        // Push the transition to motion transitions
         push(transition, {
-          from: style[key] || 0,
+          from: style[key],
           to: value,
           onUpdate: (latest) => (style[key] = latest),
         })
@@ -44,6 +57,7 @@ export const useMotionControls = (
     }
   }
 
+  // Watch for variant changes and apply the new one
   watch(
     currentVariant,
     (newVal: Variant | undefined) => {
