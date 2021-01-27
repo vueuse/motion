@@ -1,3 +1,4 @@
+export { plugin } from './plugin'
 export { reactiveStyle } from './reactiveStyle'
 export { reactiveTransform } from './reactiveTransform'
 export { useMotion } from './useMotion'
