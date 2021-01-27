@@ -4,7 +4,7 @@ export type TransitionProperties = Exclude<
   AnimationOptions<number | number[] | string | string[]>,
   'from' | 'to' | 'onComplete' | 'onPlay' | 'onRepeat' | 'onStop' | 'onUpdate'
 > & {
-  instant?: boolean
+  delay?: number
 }
 
 export type TransitionValues = {
