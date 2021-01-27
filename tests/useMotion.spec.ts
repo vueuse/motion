@@ -16,8 +16,9 @@ describe('useMotion', () => {
   it('accepts an element', () => {
     const element = getElementRef()
 
-    const { set } = useMotion(element)
+    const { set, stop } = useMotion(element)
 
     expect(set).toBeDefined()
+    expect(stop).toBeDefined()
   })
 })
