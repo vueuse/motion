@@ -13,12 +13,20 @@ export function useMotionTransitions() {
   }
 
   const push = (transition: TransitionProperties, values: TransitionValues) => {
-    const { stop: stopAnimation } = animate({
-      ...transition,
-      ...values,
-    })
+    const pushTransition = () => {
+      const { stop: stopAnimation } = animate({
+        ...transition,
+        ...values,
+      })
 
-    transitions.value.push(stopAnimation)
+      transitions.value.push(stopAnimation)
+    }
+
+    if (transition.delay) {
+      setTimeout(pushTransition, transition.delay)
+    } else {
+      pushTransition()
+    }
   }
 
   return { transitions, stop, push }
