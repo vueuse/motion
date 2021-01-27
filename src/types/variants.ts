@@ -1,17 +1,25 @@
+import {
+  ObsoleteProperties,
+  VendorLonghandProperties,
+  VendorShorthandProperties,
+} from 'csstype'
 import { CSSProperties } from 'vue'
 import { TransitionProperties } from './transitions'
 
-export interface PropertiesKeys {
+export type PropertiesKeys = {
   [key: string]: string | number | undefined | any
 }
 
-export interface SVGPathProperties {
+export type SVGPathProperties = {
   pathLength?: number
   pathOffset?: number
   pathSpacing?: number
 }
 
-export interface TransformProperties extends PropertiesKeys {
+/**
+ * Transform properties
+ */
+export type TransformProperties = {
   x?: string | number
   y?: string | number
   z?: string | number
@@ -36,12 +44,32 @@ export interface TransformProperties extends PropertiesKeys {
   transformPerspective?: string | number
 }
 
-export interface StyleProperties
-  extends Omit<CSSProperties, keyof TransformProperties> {}
+/**
+ * Relevant styling properties
+ */
+export type StyleProperties = Omit<
+  CSSProperties,
+  | keyof TransformProperties
+  | keyof VendorLonghandProperties
+  | keyof VendorShorthandProperties
+  | keyof ObsoleteProperties
+  | 'transform'
+  | 'transformBox'
+  | 'transformOrigin'
+  | 'transformStyle'
+>
 
-export interface Variant extends StyleProperties, TransformProperties {
+/**
+ * Available properties for useMotion variants
+ */
+export type MotionProperties = StyleProperties & TransformProperties
+
+/**
+ * Variant
+ */
+export type Variant = {
   transition?: TransitionProperties
-}
+} & MotionProperties
 
 export type MotionVariants = {
   initial?: Variant
