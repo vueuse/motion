@@ -2,7 +2,7 @@ import { animate } from 'popmotion'
 import { ref } from 'vue'
 import { TransitionProperties, TransitionValues } from './types/transitions'
 
-export const useMotionTransitions = () => {
+export function useMotionTransitions() {
   const transitions = ref<(() => void)[]>([])
 
   const stop = () => {

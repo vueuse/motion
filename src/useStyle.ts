@@ -3,7 +3,7 @@ import { ref, watch } from 'vue'
 import { reactiveStyle } from './reactiveStyle'
 import { valueTypes } from './utils/style'
 
-export const useStyle = (target: MaybeRef<HTMLElement | null | undefined>) => {
+export function useStyle(target: MaybeRef<HTMLElement | null | undefined>) {
   const targetRef = ref(target)
 
   const { state, style } = reactiveStyle()

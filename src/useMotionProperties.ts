@@ -3,9 +3,9 @@ import { ref } from 'vue'
 import { useStyle } from './useStyle'
 import { useTransform } from './useTransform'
 
-export const useMotionProperties = (
+export function useMotionProperties(
   target: MaybeRef<HTMLElement | null | undefined>,
-) => {
+) {
   const targetRef = ref(target)
 
   const { style } = useStyle(targetRef)

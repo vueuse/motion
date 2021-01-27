@@ -12,11 +12,11 @@ const defaultTransition: TransitionProperties = {
   restSpeed: 10,
 }
 
-export const useMotionControls = (
+export function useMotionControls(
   transform: TransformProperties,
   style: StyleProperties,
   currentVariant: ComputedRef<Variant | undefined>,
-) => {
+) {
   const { push, stop } = useMotionTransitions()
 
   const apply = (variant: Variant) => {

@@ -2,7 +2,7 @@ import { computed, reactive } from 'vue'
 import { StyleProperties } from './types/variants'
 import { getValueAsType, getValueType } from './utils/style'
 
-export const reactiveStyle = (props: StyleProperties = {}) => {
+export function reactiveStyle(props: StyleProperties = {}) {
   const state = reactive<StyleProperties>({
     ...props,
   })

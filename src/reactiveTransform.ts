@@ -8,10 +8,10 @@ const translateAlias: { [key: string]: string } = {
   z: 'translateZ',
 }
 
-export const reactiveTransform = (
+export function reactiveTransform(
   props: TransformProperties = {},
   enableHardwareAcceleration: boolean = true,
-) => {
+) {
   const state = reactive<TransformProperties>({ ...props })
 
   const transform = computed<string>(() => {

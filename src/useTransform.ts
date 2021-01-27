@@ -2,9 +2,7 @@ import { MaybeRef } from '@vueuse/shared'
 import { ref, watch } from 'vue-demi'
 import { reactiveTransform } from './reactiveTransform'
 
-export const useTransform = (
-  target: MaybeRef<HTMLElement | null | undefined>,
-) => {
+export function useTransform(target: MaybeRef<HTMLElement | null | undefined>) {
   const targetRef = ref(target)
 
   const { state, transform } = reactiveTransform()
