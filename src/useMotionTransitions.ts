@@ -1,12 +1,15 @@
 import { animate } from 'popmotion'
+import { ref } from 'vue'
 import { TransitionProperties, TransitionValues } from './types/transitions'
 
 export const useMotionTransitions = () => {
-  let transitions: (() => void)[] = []
+  const transitions = ref<(() => void)[]>([])
 
   const stop = () => {
-    transitions.forEach((stop) => stop())
-    transitions = []
+    if (transitions.value && transitions.value.length > 0) {
+      transitions.value.forEach((stop) => stop())
+      transitions.value = []
+    }
   }
 
   const push = (transition: TransitionProperties, values: TransitionValues) => {
@@ -15,8 +18,8 @@ export const useMotionTransitions = () => {
       ...values,
     })
 
-    transitions.push(stopAnimation)
+    transitions.value.push(stopAnimation)
   }
 
-  return { stop, push }
+  return { transitions, stop, push }
 }
