@@ -7,7 +7,7 @@ export const useMotionVariants = (
 ) => {
   const variantsRef = ref(variants)
 
-  const currentVariantName = ref<string | undefined>('initial')
+  const currentVariantName = ref<string>()
 
   const currentVariant = computed<Variant | undefined>(() => {
     if (
@@ -18,8 +18,6 @@ export const useMotionVariants = (
       !variantsRef.value[currentVariantName.value]
     )
       return undefined
-
-    console.log('>', currentVariantName.value)
 
     return variantsRef.value[currentVariantName.value]
   })
@@ -32,12 +30,15 @@ export const useMotionVariants = (
     currentVariantName.value = variant
   }
 
+  // Set initial before the element is mounted
   if (variantsRef && variantsRef.value && variantsRef.value.initial)
     onBeforeMount(() => set('initial'))
 
+  // Set enter animation, once the element is mounted
   if (variantsRef && variantsRef.value && variantsRef.value.enter)
     onMounted(() => set('enter'))
 
+  // Set the leave animation, before the element is unmounted
   if (variantsRef && variantsRef.value && variantsRef.value.leave)
     onBeforeUnmount(() => set('leave'))
 
