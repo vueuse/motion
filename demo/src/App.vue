@@ -25,35 +25,52 @@
   </div>
 </template>
 
-<script lang="ts" setup>
-import { useMotion } from '@lib'
-import { MotionVariants } from 'src/types/variants'
-import { ref } from 'vue'
+<script lang="ts">
+import { MotionVariants, useMotion } from '@lib'
+import { defineComponent, ref } from 'vue'
 
-const defaultAnimation: MotionVariants = {
-  initial: {
-    y: -100,
-    scale: 0,
-    opacity: 0,
+export default defineComponent({
+  setup() {
+    const defaultAnimation = (index: number): MotionVariants => ({
+      initial: {
+        y: -100,
+        scale: 0,
+        opacity: 0,
+      },
+      enter: {
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        transition: {
+          delay: index * 250,
+          type: 'spring',
+        },
+      },
+    })
+
+    const title = ref<HTMLElement>()
+    const github = ref<HTMLElement>()
+    const credits = ref<HTMLElement>()
+
+    const { name: titleVariant } = useMotion(title, defaultAnimation(0))
+
+    const { name: githubVariant } = useMotion(github, defaultAnimation(1))
+
+    const { name: creditsVariant } = useMotion(credits, defaultAnimation(2))
+
+    console.log({
+      titleVariant,
+      githubVariant,
+      creditsVariant,
+    })
+
+    return {
+      title,
+      github,
+      credits,
+    }
   },
-  enter: {
-    y: 0,
-    scale: 1,
-    opacity: 1,
-  },
-}
-
-const title = ref<HTMLElement>()
-const github = ref<HTMLElement>()
-const credits = ref<HTMLElement>()
-
-const { name: titleVariant } = useMotion(title, defaultAnimation)
-
-const { name: githubVariant } = useMotion(github, defaultAnimation)
-
-const { name: creditsVariant } = useMotion(credits, defaultAnimation)
-
-console.log({ titleVariant, githubVariant, creditsVariant })
+})
 </script>
 
 <style lang="postcss" scoped>
