@@ -9,6 +9,7 @@ export const useTransform = (
 
   const { state, transform } = reactiveTransform()
 
+  // Sync reactive transform to element
   watch(transform, (newValue) => {
     if (!targetRef || !targetRef.value || !newValue) return
 
