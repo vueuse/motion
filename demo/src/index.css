@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  @apply h-full;
+}
+
+body {
+  @apply text-white flex items-center justify-center bg-gradient-to-b from-green-600 to-green-900 bg-cover bg-fixed overflow-y-scroll;
+}
+
+#app {
+  @apply w-full md:w-8/12 xl:w-1/2 p-6;
+}
+
+/* PrismJS theme fix */
+.token.operator,
+.token.entity,
+.token.url,
+.language-css .token.string,
+.style .token.string {
+  background: none;
+}
+
+pre[class*='language-'] {
+  margin: 0;
+  border-radius: 0;
+  @apply rounded-b-xl text-sm;
+}
