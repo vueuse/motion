@@ -1,6 +1,8 @@
 export { plugin } from './plugin'
 export { reactiveStyle } from './reactiveStyle'
 export { reactiveTransform } from './reactiveTransform'
+export * from './types/transitions'
+export * from './types/variants'
 export { useMotion } from './useMotion'
 export { useMotionControls } from './useMotionControls'
 export { useMotionProperties } from './useMotionProperties'
