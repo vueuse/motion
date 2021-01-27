@@ -11,7 +11,7 @@ import {
 
 const int = { ...number, transform: Math.round }
 
-const valueTypes: { [key: string]: ValueType } = {
+export const valueTypes: { [key: string]: ValueType } = {
   // Color props
   color,
   backgroundColor: color,
