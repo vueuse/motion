@@ -57,6 +57,7 @@ export type StyleProperties = Omit<
   | 'transformBox'
   | 'transformOrigin'
   | 'transformStyle'
+  | 'transition'
 >
 
 /**
