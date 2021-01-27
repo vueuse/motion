@@ -1,7 +1,7 @@
 import { AnimationOptions } from 'popmotion'
 
 export type TransitionProperties = Exclude<
-  AnimationOptions<number | number[]>,
+  AnimationOptions<number | number[] | string | string[]>,
   'from' | 'to' | 'onComplete' | 'onPlay' | 'onRepeat' | 'onStop' | 'onUpdate'
 > & {
   instant?: boolean
