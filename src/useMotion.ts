@@ -11,10 +11,13 @@ export const useMotion = (
 ) => {
   const targetRef = ref(target)
 
-  const { style, transform } = useMotionProperties(targetRef)
-
+  // Variants manager
   const { set, currentVariant } = useMotionVariants(variants)
 
+  // Reactive styling and transform
+  const { style, transform } = useMotionProperties(targetRef)
+
+  // Motion controls, synchronized with styling and variants
   const { stop } = useMotionControls(transform, style, currentVariant)
 
   return {
