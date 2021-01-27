@@ -36,7 +36,7 @@
     "removeComments": false,
     "jsx": "preserve",
     "lib": ["esnext", "dom"],
-    "types": ["node", "jest", "vite/client"],
+    "types": ["node", "jest", "vite/client", "prismjs"],
     "plugins": [
       {
         "name": "@vuedx/typescript-plugin-vue"

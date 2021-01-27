@@ -35,6 +35,7 @@
     "README.md"
   ],
   "dependencies": {
+    "@types/prismjs": "^1.16.2",
     "@vueuse/shared": "^4.0.10",
     "csstype": "^3.0.6",
     "popmotion": "^9.1.0",
@@ -62,6 +63,7 @@
     "pascalcase": "^1.0.0",
     "postcss": "^8.2.4",
     "prettier": "^2.2.1",
+    "prismjs": "^1.23.0",
     "rollup": "^2.38.0",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.29.0",
