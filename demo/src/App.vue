@@ -27,9 +27,10 @@
 
 <script lang="ts" setup>
 import { useMotion } from '@lib'
+import { MotionVariants } from 'src/types/variants'
 import { ref } from 'vue'
 
-const defaultAnimation = {
+const defaultAnimation: MotionVariants = {
   initial: {
     y: -100,
     scale: 0,
@@ -48,13 +49,9 @@ const credits = ref<HTMLElement>()
 
 const { name: titleVariant } = useMotion(title, defaultAnimation)
 
-const { name: githubVariant } = useMotion(github, {
-  ...defaultAnimation,
-})
+const { name: githubVariant } = useMotion(github, defaultAnimation)
 
-const { name: creditsVariant } = useMotion(credits, {
-  ...defaultAnimation,
-})
+const { name: creditsVariant } = useMotion(credits, defaultAnimation)
 
 console.log({ titleVariant, githubVariant, creditsVariant })
 </script>
