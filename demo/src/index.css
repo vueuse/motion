@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  @apply text-white flex items-center justify-center bg-gradient-to-b from-green-600 to-green-900 bg-cover bg-fixed overflow-y-scroll;
+  @apply text-white flex items-center justify-center bg-gradient-to-b from-violet-600 to-violet-900 bg-cover bg-fixed overflow-y-scroll;
 }
 
 #app {
