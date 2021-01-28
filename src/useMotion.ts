@@ -5,16 +5,27 @@ import { useMotionControls } from './useMotionControls'
 import { useMotionProperties } from './useMotionProperties'
 import { useMotionVariants } from './useMotionVariants'
 
+export type UseMotionOptions = {
+  lifeCycleHooks?: boolean
+}
+
 export function useMotion<T extends MotionVariants>(
   target: MaybeRef<HTMLElement | null | undefined>,
   variants: MaybeRef<T> = {} as MaybeRef<T>,
+  options: UseMotionOptions = {
+    lifeCycleHooks: true,
+  },
 ) {
   // Base references
   const variantsRef = ref(variants) as Ref<T>
   const targetRef = ref(target)
 
   // Variants manager
-  const { name, state: currentVariant } = useMotionVariants(variantsRef)
+  const { variant, state: currentVariant } = useMotionVariants<T>(
+    variantsRef,
+    'initial',
+    options,
+  )
 
   // Reactive styling and transform
   const { style, transform } = useMotionProperties(targetRef)
@@ -23,7 +34,7 @@ export function useMotion<T extends MotionVariants>(
   const { stop } = useMotionControls(transform, style, currentVariant)
 
   return {
-    name,
+    variant,
     stop,
   }
 }
