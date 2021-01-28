@@ -16,9 +16,9 @@ describe('useMotion', () => {
   it('accepts an element', () => {
     const element = getElementRef()
 
-    const { name, stop } = useMotion(element)
+    const { variant, stop } = useMotion(element)
 
-    expect(name).toBeDefined()
+    expect(variant).toBeDefined()
     expect(stop).toBeDefined()
   })
 })
