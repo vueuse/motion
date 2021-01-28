@@ -6,6 +6,8 @@
       </h1>
     </div>
 
+    <test />
+
     <div class="flex flex-col items-center justify-center">
       <a
         ref="github"
@@ -28,8 +30,10 @@
 <script lang="ts">
 import { MotionVariants, useMotion } from '@lib'
 import { defineComponent, ref } from 'vue'
+import Test from './examples/Test.vue'
 
 export default defineComponent({
+  components: { Test },
   setup() {
     const defaultAnimation = (index: number): MotionVariants => ({
       initial: {
@@ -57,12 +61,6 @@ export default defineComponent({
     const { name: githubVariant } = useMotion(github, defaultAnimation(1))
 
     const { name: creditsVariant } = useMotion(credits, defaultAnimation(2))
-
-    console.log({
-      titleVariant,
-      githubVariant,
-      creditsVariant,
-    })
 
     return {
       title,
