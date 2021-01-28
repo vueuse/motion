@@ -8,32 +8,40 @@ import {
   ref,
 } from 'vue'
 import { MotionVariants, Variant } from './types/variants'
+import { UseMotionOptions } from './useMotion'
 
 export function useMotionVariants<T extends MotionVariants>(
   variants: MaybeRef<T> = {} as MaybeRef<T>,
   initial: MaybeRef<keyof T> = 'initial',
+  options: UseMotionOptions = {
+    lifeCycleHooks: true,
+  },
 ) {
   const variantsRef = ref(variants) as Ref<T>
 
-  const name = ref(initial) as Ref<keyof T>
+  const variant = ref(initial) as Ref<keyof T>
 
   const state = computed<Variant | undefined>(() => {
-    if (!name.value) return undefined
+    if (!variant.value) return undefined
 
-    return variantsRef.value[name.value]
+    return variantsRef.value[variant.value]
   })
 
-  // Set initial before the element is mounted
-  if (variantsRef.value.initial) onBeforeMount(() => (name.value = 'initial'))
+  if (options.lifeCycleHooks) {
+    // Set initial before the element is mounted
+    if (variantsRef.value.initial)
+      onBeforeMount(() => (variant.value = 'initial'))
 
-  // Set enter animation, once the element is mounted
-  if (variantsRef.value.enter) onMounted(() => (name.value = 'enter'))
+    // Set enter animation, once the element is mounted
+    if (variantsRef.value.enter) onMounted(() => (variant.value = 'enter'))
 
-  // Set the leave animation, before the element is unmounted
-  if (variantsRef.value.leave) onBeforeUnmount(() => (name.value = 'leave'))
+    // Set the leave animation, before the element is unmounted
+    if (variantsRef.value.leave)
+      onBeforeUnmount(() => (variant.value = 'leave'))
+  }
 
   return {
     state,
-    name,
+    variant,
   }
 }
