@@ -23,7 +23,9 @@
             class="feature"
           >
             <h2 class="title" v-if="feature.title">{{ feature.title }}</h2>
-            <p class="details" v-if="feature.details">{{ feature.details }}</p>
+            <p class="details" v-if="feature.details">
+              {{ feature.details }}
+            </p>
           </section>
         </div>
       </div>
@@ -31,24 +33,34 @@
   </div>
 </template>
 
-<script setup lang="ts">
-const features = [
-  {
-    title: 'Declarative animations',
-    details:
-      'Write animations right from your <template>, control it from your <script>.',
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  setup() {
+    const features = [
+      {
+        title: 'Declarative animations',
+        details:
+          'Write animations right from your <template>, control it from your <script>.',
+      },
+      {
+        title: 'Fast',
+        details:
+          'Animations are powered by popmotion, the same engine behind the famous Framer Motion library.',
+      },
+      {
+        title: 'Compatible',
+        details:
+          'Written with Composition API, this package is compatible with Vue 2, 3 and Nuxt (SSR).',
+      },
+    ]
+
+    return {
+      features,
+    }
   },
-  {
-    title: 'Fast',
-    details:
-      'Animations are powered by popmotion, the same engine behind the famous Framer Motion library.',
-  },
-  {
-    title: 'Compatible',
-    details:
-      'Written with Composition API, this package is compatible with Vue 2, 3 and Nuxt (SSR).',
-  },
-]
+})
 </script>
 
 <style scoped>
