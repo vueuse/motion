@@ -3,10 +3,10 @@
     "src/types/global.d.ts",
     "src/**/*.ts",
     "tests/**/*.ts",
-    "demo/**/*.ts",
-    "demo/**/*.d.ts",
-    "demo/**/*.tsx",
-    "demo/**/*.vue"
+    "docs/**/*.ts",
+    "docs/**/*.d.ts",
+    "docs/**/*.tsx",
+    "docs/**/*.vue"
   ],
   "exclude": ["dist", "node_modules", "vue-demi"],
   "compilerOptions": {
@@ -36,7 +36,7 @@
     "removeComments": false,
     "jsx": "preserve",
     "lib": ["esnext", "dom"],
-    "types": ["node", "jest", "vite/client", "prismjs"],
+    "types": ["node", "jest"],
     "plugins": [
       {
         "name": "@vuedx/typescript-plugin-vue"
