@@ -58,8 +58,6 @@ export function directive(): Directive {
       const variants = getVariantsRef(node)
       const motion = getMotionRef(binding, node)
 
-      console.log({ variants, motion })
-
       if (variants.value && variants.value['initial']) {
         motion.variant.value = 'initial'
       }
