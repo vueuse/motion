@@ -6,7 +6,11 @@
     "docs/**/*.ts",
     "docs/**/*.d.ts",
     "docs/**/*.tsx",
-    "docs/**/*.vue"
+    "docs/**/*.vue",
+    "demo/**/*.ts",
+    "demo/**/*.d.ts",
+    "demo/**/*.tsx",
+    "demo/**/*.vue"
   ],
   "exclude": ["dist", "node_modules", "vue-demi"],
   "compilerOptions": {
