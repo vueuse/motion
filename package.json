@@ -37,8 +37,6 @@
   ],
   "dependencies": {
     "popmotion": "^9.1.0",
-    "csstype": "^3.0.6",
-    "style-value-types": "^4.0.1",
     "@vueuse/shared": "^4.0.10",
     "vue-demi": "^0.6.0",
     "vue": "*"
@@ -66,7 +64,9 @@
     "yorkie": "^2.0.0",
     "vitepress": "^0.11.5",
     "@vuedx/typecheck": "^0.6.0",
-    "@vuedx/typescript-plugin-vue": "^0.6.0"
+    "@vuedx/typescript-plugin-vue": "^0.6.0",
+    "csstype": "^3.0.6",
+    "style-value-types": "^4.0.1"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
