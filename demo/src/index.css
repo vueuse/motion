@@ -26,5 +26,5 @@ body {
 pre[class*='language-'] {
   margin: 0;
   border-radius: 0;
-  @apply rounded-b-xl text-sm;
+  @apply text-sm rounded-3xl;
 }
