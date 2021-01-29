@@ -1,6 +1,6 @@
 import { Directive, ref } from 'vue'
-import { useMotion } from '../'
 import { MotionVariants } from '../types/variants'
+import { useMotion } from '../useMotion'
 
 const directivePropsKeys = ['initial', 'enter', 'leave']
 
@@ -31,55 +31,52 @@ const getVariantsRef = (node: any) => {
   return variantsRef
 }
 
-export function directive(): Directive {
-  return {
-    created(el, binding, node) {
-      if (!node || !node.props || !node.props.ref) {
-        throw new Error(
-          'You need to specify a ref on the element when using v-motion.',
-        )
+export const directive: Directive = {
+  created(el, binding, node) {
+    if (!node || !node.props || !node.props.ref) {
+      throw new Error(
+        'You need to specify a ref on the element when using v-motion.',
+      )
+    }
+
+    const targetRef = ref<HTMLElement>(el)
+
+    const motionRef = useMotion(targetRef, getVariantsRef(node), {
+      lifeCycleHooks: false,
+    })
+
+    if (binding && binding.instance) {
+      if (!binding.instance.$motions) {
+        binding.instance.$motions = {}
       }
 
-      const targetRef = ref<HTMLElement>(el)
+      binding.instance.$motions[node.props.ref.toString()] = motionRef
+    }
+  },
+  beforeMount(el, binding, node) {
+    const variants = getVariantsRef(node)
+    const motion = getMotionRef(binding, node)
 
-      const motionRef = useMotion(targetRef, getVariantsRef(node), {
-        lifeCycleHooks: false,
-      })
+    if (variants.value && variants.value['initial']) {
+      motion.variant.value = 'initial'
+    }
+  },
+  mounted(el, binding, node) {
+    const variants = getVariantsRef(node)
+    const motion = getMotionRef(binding, node)
 
-      if (binding && binding.instance) {
-        if (!binding.instance.$motions) {
-          binding.instance.$motions = {}
-        }
+    if (variants.value && variants.value['enter']) {
+      motion.variant.value = 'enter'
+    }
+  },
+  beforeUnmount(el, binding, node) {
+    const variants = getVariantsRef(node)
+    const motion = getMotionRef(binding, node)
 
-        binding.instance.$motions[node.props.ref.toString()] = motionRef
-      }
-    },
-    beforeMount(el, binding, node) {
-      const variants = getVariantsRef(node)
-      const motion = getMotionRef(binding, node)
-
-      if (variants.value && variants.value['initial']) {
-        motion.variant.value = 'initial'
-      }
-    },
-    mounted(el, binding, node) {
-      const variants = getVariantsRef(node)
-      const motion = getMotionRef(binding, node)
-
-      if (variants.value && variants.value['enter']) {
-        motion.variant.value = 'enter'
-      }
-    },
-    beforeUnmount(el, binding, node) {
-      const variants = getVariantsRef(node)
-      const motion = getMotionRef(binding, node)
-
-      if (variants.value && variants.value['leave']) {
-        motion.variant.value = 'leave'
-      }
-    },
-    unmounted() {},
-  }
+    if (variants.value && variants.value['leave']) {
+      motion.variant.value = 'leave'
+    }
+  },
 }
 
 export default directive
