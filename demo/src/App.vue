@@ -6,6 +6,8 @@
       </h1>
     </div>
 
+    <Editor />
+
     <div class="flex flex-col items-center justify-center">
       <a
         ref="github"
@@ -29,6 +31,7 @@
 import type { MotionVariants } from '@lib'
 import { useMotion } from '@lib'
 import { ref } from 'vue'
+import Editor from './components/Editor.vue'
 
 const defaultAnimation = (index: number): MotionVariants => ({
   initial: {
@@ -47,13 +50,13 @@ const defaultAnimation = (index: number): MotionVariants => ({
   },
 })
 
-const title = ref<HTMLElement>()
-const github = ref<HTMLElement>()
-const credits = ref<HTMLElement>()
+ref: title = ref<HTMLElement>()
+ref: github = ref<HTMLElement>()
+ref: credits = ref<HTMLElement>()
 
-useMotion(title, defaultAnimation(0))
-useMotion(github, defaultAnimation(1))
-useMotion(credits, defaultAnimation(2))
+useMotion($title, defaultAnimation(0))
+useMotion($github, defaultAnimation(1))
+useMotion($credits, defaultAnimation(2))
 </script>
 
 <style lang="postcss" scoped>
