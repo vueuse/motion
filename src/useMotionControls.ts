@@ -37,8 +37,10 @@ export function useMotionControls(
    */
   const apply = (variant: Variant) => {
     // Get transition data from variant, or use default one
-    const transition: TransitionProperties =
-      variant.transition || defaultTransition
+    const transition: TransitionProperties = {
+      ...defaultTransition,
+      ...variant.transition,
+    }
 
     for (const [key, value] of Object.entries(variant)) {
       if (key === 'transition') return
