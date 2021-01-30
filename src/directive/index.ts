@@ -2,16 +2,12 @@ import { Directive, ref } from 'vue'
 import { MotionVariants } from '../types/variants'
 import { useMotion } from '../useMotion'
 
-const directivePropsKeys = ['initial', 'enter', 'leave']
+const directivePropsKeys = ['initial', 'enter', 'leave', 'visible']
 
 const getMotionRef = (binding: any, node: any) => {
-  if (!node || !node.props || !node.props.ref) {
-    throw new Error(
-      'You need to specify a ref on the element when using v-motion.',
-    )
-  }
+  const refName: string = binding.value
 
-  return binding.instance.$motions[node.props.ref.toString()]
+  return binding.instance.$motions[refName]
 }
 
 const getVariantsRef = (node: any) => {
@@ -33,16 +29,13 @@ const getVariantsRef = (node: any) => {
 
 export const directive: Directive = {
   created(el, binding, node) {
-    if (!node || !node.props || !node.props.ref) {
-      throw new Error(
-        'You need to specify a ref on the element when using v-motion.',
-      )
-    }
+    const refName: string = binding.value
 
     const targetRef = ref<HTMLElement>(el)
 
     const motionRef = useMotion(targetRef, getVariantsRef(node), {
       lifeCycleHooks: false,
+      visibilityHooks: true,
     })
 
     if (binding && binding.instance) {
@@ -50,7 +43,7 @@ export const directive: Directive = {
         binding.instance.$motions = {}
       }
 
-      binding.instance.$motions[node.props.ref.toString()] = motionRef
+      binding.instance.$motions[refName] = motionRef
     }
   },
   beforeMount(el, binding, node) {
