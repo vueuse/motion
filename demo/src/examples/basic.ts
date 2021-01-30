@@ -11,6 +11,6 @@ export default `
       y: 0,
       opacity: 1,
     }"
-  >
+  />
 </template>
 `
