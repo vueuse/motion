@@ -6,10 +6,16 @@ import {
 import { CSSProperties } from 'vue'
 import { TransitionProperties } from './transitions'
 
+/**
+ * Permissive properties keys
+ */
 export type PropertiesKeys = {
   [key: string]: string | number | undefined | any
 }
 
+/**
+ * SVG Supported properties
+ */
 export type SVGPathProperties = {
   pathLength?: number
   pathOffset?: number
@@ -72,9 +78,17 @@ export type Variant = {
   transition?: TransitionProperties
 } & MotionProperties
 
+/**
+ * Motion variants object
+ */
 export type MotionVariants = {
+  // Initial variant
   initial?: Variant
+  // Lifecycle hooks variants
   enter?: Variant
   leave?: Variant
+  // Intersection observer variants
+  visible?: Variant
+  // Custom variants
   [key: string]: Variant | undefined
 }
