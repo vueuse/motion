@@ -3,9 +3,16 @@ import { ref, watch } from 'vue'
 import { reactiveStyle } from './reactiveStyle'
 import { valueTypes } from './utils/style'
 
+/**
+ * A Composable giving access to a StyleProperties object, and binding the generated style object to a target.
+ *
+ * @param target
+ */
 export function useStyle(target: MaybeRef<HTMLElement | null | undefined>) {
+  // Target element ref
   const targetRef = ref(target)
 
+  // Create a reactive style object
   const { state, style } = reactiveStyle()
 
   // Sync existing style from supplied element
@@ -14,6 +21,7 @@ export function useStyle(target: MaybeRef<HTMLElement | null | undefined>) {
     (newVal: HTMLElement | null | undefined) => {
       if (!newVal || !newVal.style) return
 
+      // Loop on style keys
       for (const key of Object.keys(valueTypes)) {
         if (
           newVal.style[key] === undefined ||
@@ -22,6 +30,7 @@ export function useStyle(target: MaybeRef<HTMLElement | null | undefined>) {
         )
           continue
 
+        // Append a defined key to the local StyleProperties state object
         state[key] = newVal.style[key]
       }
     },
@@ -36,6 +45,7 @@ export function useStyle(target: MaybeRef<HTMLElement | null | undefined>) {
     (newValue) => {
       if (!targetRef || !targetRef.value || !newValue) return
 
+      // Append the state object to the target style properties
       Object.assign(targetRef.value.style, newValue)
     },
     {
