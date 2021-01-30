@@ -4,6 +4,9 @@ import { StyleProperties, TransformProperties, Variant } from './types/variants'
 import { useMotionTransitions } from './useMotionTransitions'
 import { isTransformProp } from './utils/transform'
 
+/**
+ * Default transition.
+ */
 const defaultTransition: TransitionProperties = {
   type: 'spring',
   stiffness: 500,
@@ -12,13 +15,26 @@ const defaultTransition: TransitionProperties = {
   restSpeed: 10,
 }
 
+/**
+ * A Composable handling motion controls, pushing resolved variant to useMotionTransitions manager.
+ *
+ * @param transform
+ * @param style
+ * @param currentVariant
+ */
 export function useMotionControls(
   transform: TransformProperties,
   style: StyleProperties,
   currentVariant: ComputedRef<Variant | undefined>,
 ) {
+  // Motion transitions instance
   const { push, stop } = useMotionTransitions()
 
+  /**
+   * Apply a variant declaration and execute the resolved transitions.
+   *
+   * @param variant
+   */
   const apply = (variant: Variant) => {
     // Get transition data from variant, or use default one
     const transition: TransitionProperties =
