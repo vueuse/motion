@@ -39,6 +39,7 @@
     "README.md"
   ],
   "dependencies": {
+    "@vueuse/core": "^4.0.11",
     "@vueuse/shared": "^4.0.11",
     "popmotion": "^9.1.0",
     "vue": "*",
@@ -66,6 +67,7 @@
     "pascalcase": "^1.0.0",
     "postcss": "^8.2.4",
     "prettier": "^2.2.1",
+    "prismjs": "^1.22.0",
     "rollup": "^2.38.1",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.29.0",
@@ -73,7 +75,6 @@
     "tailwindcss": "^2.0.2",
     "ts-jest": "^26.5.0",
     "typescript": "^4.1.3",
-    "prismjs": "^1.22.0",
     "vite": "^2.0.0-beta.58",
     "vitepress": "^0.11.5",
     "vue": "^3.0.5",

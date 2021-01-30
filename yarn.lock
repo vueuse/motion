@@ -1186,7 +1186,15 @@
     vscode-languageserver-textdocument "^1.0.1"
     vscode-uri "^2.1.2"
 
-"@vueuse/shared@^4.0.11":
+"@vueuse/core@^4.0.11":
+  version "4.0.11"
+  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-4.0.11.tgz#783c824d18296f82a2c28756e67b129b22a3e9f3"
+  integrity sha512-wvfcSqMZLo0568T2rIIS4QtCAQsNz+vuoqCLgwuVxoBMr9WrMJWJEkdIxoH5+hj/YXSWYFvwTQdBto4a5S1Iuw==
+  dependencies:
+    "@vueuse/shared" "4.0.11"
+    vue-demi latest
+
+"@vueuse/shared@4.0.11", "@vueuse/shared@^4.0.11":
   version "4.0.11"
   resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-4.0.11.tgz#3188b6a9854b7db68c53a8eb3fcbb9a8adbf087b"
   integrity sha512-r6Hm35lsByliKtIr6/fuqo+kpbb6324nGEgu0KLMApeLfOutQKXYEAuGD81cnXAPKTHunRO0dNH8+GGRp5uPxg==
