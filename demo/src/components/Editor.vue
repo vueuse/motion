@@ -12,7 +12,7 @@
       scale: 1,
       opacity: 1,
       transition: {
-        delay: 400,
+        delay: 200,
       },
     }"
   >
@@ -27,7 +27,7 @@
           y: 0,
           opacity: 1,
           transition: {
-            delay: 500,
+            delay: 300,
           },
         }"
         class="flex-1"
@@ -45,7 +45,7 @@
             y: 0,
             opacity: 1,
             transition: {
-              delay: 600,
+              delay: 400,
             },
           }"
           class="w-24 h-24 bg-indigo-500 shadow-lg rounded-3xl"

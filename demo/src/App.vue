@@ -33,29 +33,31 @@ import { useMotion } from '@lib'
 import { ref } from 'vue'
 import Editor from './components/Editor.vue'
 
-const defaultAnimation = (index: number): MotionVariants => ({
-  initial: {
-    y: 100,
-    scale: 0.8,
-    opacity: 0.25,
-  },
-  enter: {
-    y: 0,
-    scale: 1,
-    opacity: 1,
-    transition: {
-      delay: index * 100,
+const defaultAnimation = (delay: number): MotionVariants => {
+  return {
+    initial: {
+      y: 100,
+      scale: 0.8,
+      opacity: 0,
     },
-  },
-})
+    enter: {
+      y: 0,
+      scale: 1,
+      opacity: 1,
+      transition: {
+        delay,
+      },
+    },
+  }
+}
 
 ref: title = ref<HTMLElement>()
 ref: github = ref<HTMLElement>()
 ref: credits = ref<HTMLElement>()
 
-useMotion($title, defaultAnimation(0))
-useMotion($github, defaultAnimation(1))
-useMotion($credits, defaultAnimation(2))
+useMotion($title, defaultAnimation(100))
+useMotion($github, defaultAnimation(500))
+useMotion($credits, defaultAnimation(600))
 </script>
 
 <style lang="postcss" scoped>
