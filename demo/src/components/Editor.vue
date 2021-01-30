@@ -27,7 +27,6 @@
           y: 0,
           opacity: 1,
           transition: {
-            type: 'spring',
             delay: 500,
           },
         }"
@@ -46,7 +45,6 @@
             y: 0,
             opacity: 1,
             transition: {
-              type: 'spring',
               delay: 600,
             },
           }"

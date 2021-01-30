@@ -4,10 +4,9 @@
       <div class="container">
         <div class="features">
           <section
-            v-motion
+            v-motion="`feature_${index}`"
             v-for="(feature, index) in features"
             :key="index"
-            :ref="`feature_${index}`"
             :initial="{
               y: 200,
               opacity: 0,
@@ -16,7 +15,6 @@
               y: 0,
               opacity: 1,
               transition: {
-                type: 'spring',
                 delay: 100 * index,
               },
             }"

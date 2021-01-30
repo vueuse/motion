@@ -45,7 +45,6 @@ const defaultAnimation = (index: number): MotionVariants => ({
     opacity: 1,
     transition: {
       delay: index * 100,
-      type: 'spring',
     },
   },
 })
