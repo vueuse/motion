@@ -37,14 +37,14 @@ const defaultAnimation = (index: number): MotionVariants => ({
   initial: {
     y: -100,
     scale: 0,
-    opacity: 0,
+    opacity: 0.25,
   },
   enter: {
     y: 0,
     scale: 1,
     opacity: 1,
     transition: {
-      delay: index * 250,
+      delay: index * 100,
       type: 'spring',
     },
   },
