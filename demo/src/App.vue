@@ -10,14 +10,14 @@
 
     <div class="flex flex-col items-center justify-center">
       <a
+        class="mt-12 mb-6"
         ref="github"
         href="https://github.com/Tahul/vue-use-motion"
-        class="mt-12 mb-6"
       >
         ↩️&nbsp;&nbsp;Bring me back to GitHub
       </a>
 
-      <p ref="credits" class="mb-6 text-center">
+      <p class="mb-6 text-center" ref="credits">
         This package has been written by
         <a href="https://twitter.com/yaeeelglx" target="_blank">
           Yaël Guilloux
