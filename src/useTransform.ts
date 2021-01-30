@@ -18,20 +18,14 @@ export function useTransform(target: MaybeRef<HTMLElement | null | undefined>) {
   const { state, transform } = reactiveTransform()
 
   // Cache transform until the element is alive and we can bind to it
-  watch(
-    targetRef,
-    (newValue) => {
-      if (!newValue) return
+  watch(targetRef, (newValue) => {
+    if (!newValue) return
 
-      if (_cache && _cache.value) {
-        // If cache is present, init the target with the current cached value
-        newValue.style.transform = _cache.value
-      }
-    },
-    {
-      immediate: true,
-    },
-  )
+    if (_cache && _cache.value) {
+      // If cache is present, init the target with the current cached value
+      newValue.style.transform = _cache.value
+    }
+  })
 
   // Sync reactive transform to element
   watch(
