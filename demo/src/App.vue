@@ -35,8 +35,8 @@ import Editor from './components/Editor.vue'
 
 const defaultAnimation = (index: number): MotionVariants => ({
   initial: {
-    y: -100,
-    scale: 0,
+    y: 100,
+    scale: 0.8,
     opacity: 0.25,
   },
   enter: {
