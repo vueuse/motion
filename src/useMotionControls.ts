@@ -9,8 +9,8 @@ import { isTransformProp } from './utils/transform'
  */
 const defaultTransition: TransitionProperties = {
   type: 'spring',
-  stiffness: 500,
-  damping: 25,
+  stiffness: 300,
+  damping: 20,
   restDelta: 0.5,
   restSpeed: 10,
 }
