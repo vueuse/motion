@@ -19,6 +19,7 @@ declare module '@vue/runtime-dom' {
     initial?: Variant
     enter?: Variant
     leave?: Variant
+    visible?: Variant
   }
 }
 
