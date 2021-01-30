@@ -1,8 +1,7 @@
 export default `
 <template>
   <div
-    v-motion
-    ref="block"
+    v-motion="'block'"
     :initial="{
       y: 200,
       opacity: 0.25,
