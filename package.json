@@ -30,7 +30,8 @@
     "build:docs": "vitepress build docs",
     "serve:docs": "vitepress serve docs",
     "dev:demo": "vite",
-    "build:demo": "vite build"
+    "build:demo": "vite build",
+    "serve:demo": "vite serve demo/dist"
   },
   "files": [
     "dist/**/*",
