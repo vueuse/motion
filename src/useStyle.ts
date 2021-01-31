@@ -1,4 +1,4 @@
-import { MaybeRef } from '@vueuse/shared'
+import { MaybeRef, tryOnUnmounted } from '@vueuse/shared'
 import { ref, watch } from 'vue'
 import { reactiveStyle } from './reactiveStyle'
 import { StyleProperties } from './types/variants'
@@ -20,30 +20,33 @@ export function useStyle(target: MaybeRef<HTMLElement | null | undefined>) {
   const { state, style } = reactiveStyle()
 
   // Sync existing style from supplied element
-  watch(targetRef, (newVal: HTMLElement | null | undefined) => {
-    if (!newVal) return
+  const stopInitWatch = watch(
+    targetRef,
+    (newVal: HTMLElement | null | undefined) => {
+      if (!newVal) return
 
-    // Loop on style keys
-    for (const key of Object.keys(valueTypes)) {
-      if (
-        newVal.style[key] === undefined ||
-        newVal.style[key] === null ||
-        newVal.style[key] === ''
-      )
-        continue
+      // Loop on style keys
+      for (const key of Object.keys(valueTypes)) {
+        if (
+          newVal.style[key] === undefined ||
+          newVal.style[key] === null ||
+          newVal.style[key] === ''
+        )
+          continue
 
-      // Append a defined key to the local StyleProperties state object
-      state[key] = newVal.style[key]
-    }
+        // Append a defined key to the local StyleProperties state object
+        state[key] = newVal.style[key]
+      }
 
-    if (_cache && _cache.value) {
-      // If cache is present, init the target with the current cached value
-      Object.assign(newVal.style, _cache.value)
-    }
-  })
+      if (_cache && _cache.value) {
+        // If cache is present, init the target with the current cached value
+        Object.assign(newVal.style, _cache.value)
+      }
+    },
+  )
 
   // Sync reactive style to element
-  watch(
+  const stopSyncWatch = watch(
     style,
     (newValue) => {
       if (!targetRef || !targetRef.value) {
@@ -59,6 +62,12 @@ export function useStyle(target: MaybeRef<HTMLElement | null | undefined>) {
       immediate: true,
     },
   )
+
+  // Stop watchers on unmount
+  tryOnUnmounted(() => {
+    stopInitWatch()
+    stopSyncWatch()
+  })
 
   return {
     style: state,
