@@ -2,6 +2,7 @@ import {
   alpha,
   color,
   degrees,
+  filter,
   number,
   progressPercentage,
   px,
@@ -9,9 +10,27 @@ import {
   ValueType,
 } from 'style-value-types'
 
-const int = { ...number, transform: Math.round }
+interface ValueTypeMap {
+  [key: string]: ValueType
+}
 
-export const valueTypes: { [key: string]: ValueType } = {
+/**
+ * ValueType for "auto"
+ */
+export const auto: ValueType = {
+  test: (v: any) => v === 'auto',
+  parse: (v) => v,
+}
+
+/**
+ * ValueType for ints
+ */
+const int = {
+  ...number,
+  transform: Math.round,
+}
+
+export const valueTypes: ValueTypeMap = {
   // Color props
   color,
   backgroundColor: color,
@@ -80,6 +99,7 @@ export const valueTypes: { [key: string]: ValueType } = {
   y: px,
   z: px,
   perspective: px,
+  transformPerspective: px,
   opacity: alpha,
   originX: progressPercentage,
   originY: progressPercentage,
@@ -87,6 +107,8 @@ export const valueTypes: { [key: string]: ValueType } = {
 
   // Misc
   zIndex: int,
+  filter,
+  WebkitFilter: filter,
 
   // SVG
   fillOpacity: alpha,
