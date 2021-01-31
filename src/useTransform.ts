@@ -1,4 +1,4 @@
-import { MaybeRef } from '@vueuse/shared'
+import { MaybeRef, tryOnUnmounted } from '@vueuse/shared'
 import { ref, watch } from 'vue-demi'
 import { reactiveTransform } from './reactiveTransform'
 
@@ -18,7 +18,7 @@ export function useTransform(target: MaybeRef<HTMLElement | null | undefined>) {
   const { state, transform } = reactiveTransform()
 
   // Cache transform until the element is alive and we can bind to it
-  watch(targetRef, (newValue) => {
+  const stopInitWatch = watch(targetRef, (newValue) => {
     if (!newValue) return
 
     if (_cache && _cache.value) {
@@ -28,7 +28,7 @@ export function useTransform(target: MaybeRef<HTMLElement | null | undefined>) {
   })
 
   // Sync reactive transform to element
-  watch(
+  const stopSyncWatch = watch(
     transform,
     (newValue) => {
       if (!targetRef || !targetRef.value) {
@@ -44,6 +44,12 @@ export function useTransform(target: MaybeRef<HTMLElement | null | undefined>) {
       immediate: true,
     },
   )
+
+  // Stop watchers on unmount
+  tryOnUnmounted(() => {
+    stopInitWatch()
+    stopSyncWatch()
+  })
 
   return {
     transform: state,
