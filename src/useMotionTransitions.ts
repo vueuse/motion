@@ -1,6 +1,7 @@
-import { animate } from 'popmotion'
 import { ref } from 'vue'
-import { TransitionProperties, TransitionValues } from './types/transitions'
+import { ResolvedValueTarget, Transition } from './types/transitions'
+import { MotionProperties } from './types/variants'
+import { getAnimation } from './utils/transition'
 
 /**
  * A Composable holding all the ongoing transitions in a local reference.
@@ -28,22 +29,20 @@ export function useMotionTransitions() {
    * @param transition
    * @param values
    */
-  const push = (transition: TransitionProperties, values: TransitionValues) => {
-    // Little closure to start the transition
-    const pushTransition = () => {
-      const { stop: stopAnimation } = animate({
-        ...transition,
-        ...values,
-      })
+  const push = (
+    key: string,
+    value: ResolvedValueTarget,
+    target: MotionProperties,
+    transition: Transition,
+  ) => {
+    const from = target[key]
 
-      transitions.value.push(stopAnimation)
-    }
+    const animation = getAnimation(key, value, target, transition, from)
 
-    // Handle transition delay
     if (transition.delay) {
-      setTimeout(pushTransition, transition.delay)
+      setTimeout(animation, transition.delay)
     } else {
-      pushTransition()
+      animation()
     }
   }
 
