@@ -1,6 +1,7 @@
-import { useIntersectionObserver } from '@vueuse/core'
 import { MaybeRef } from '@vueuse/shared'
-import { onBeforeMount, onBeforeUnmount, onMounted, Ref, ref } from 'vue'
+import { Ref, ref } from 'vue'
+import { registerLifeCycleHooks } from './features/lifeCycleHooks'
+import { registerVisibilityHooks } from './features/visibilityHooks'
 import { MotionVariants } from './types/variants'
 import { UseMotionOptions } from './useMotion'
 
@@ -30,33 +31,26 @@ export function useMotionFeatures<T extends MotionVariants>(
   // Local helper to update the variant
   const set = (name: keyof T) => (variant.value = name)
 
+  // Local helper to revert to the initial state
+  const revert = () => {
+    if (variantsRef.value) {
+      if (variantsRef.value.visible) {
+        set('visible')
+      } else if (variantsRef.value.enter) {
+        set('enter')
+      } else if (variantsRef.value.initial) {
+        set('initial')
+      }
+    }
+  }
+
   // Lifecycle hooks bindings
-  if (
-    options.lifeCycleHooks &&
-    variantsRef.value &&
-    (variantsRef.value.enter || variantsRef.value.leave)
-  ) {
-    // Set initial before the element is mounted
-    if (variantsRef.value.initial) onBeforeMount(() => set('initial'))
-
-    // Set enter animation, once the element is mounted
-    if (variantsRef.value.enter) onMounted(() => set('enter'))
-
-    // Set the leave animation, before the element is unmounted
-    if (variantsRef.value.leave) onBeforeUnmount(() => set('leave'))
+  if (options.lifeCycleHooks) {
+    registerLifeCycleHooks(targetRef, variantsRef, set)
   }
 
   // Visibility hooks
-  if (
-    options.visibilityHooks &&
-    variantsRef.value &&
-    variantsRef.value.visible
-  ) {
-    // Bind intersection observer on target
-    useIntersectionObserver(targetRef, ([{ isIntersecting }]) => {
-      if (isIntersecting) {
-        set('visible')
-      } else if (variantsRef.value.initial) set('initial')
-    })
+  if (options.visibilityHooks) {
+    registerVisibilityHooks(targetRef, variantsRef, set, revert)
   }
 }
