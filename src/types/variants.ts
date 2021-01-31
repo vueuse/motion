@@ -1,10 +1,5 @@
-import {
-  ObsoleteProperties,
-  VendorLonghandProperties,
-  VendorShorthandProperties,
-} from 'csstype'
-import { CSSProperties } from 'vue'
-import { TransitionProperties } from './transitions'
+import { CSSProperties, SVGAttributes } from 'vue'
+import { Transition } from './transitions'
 
 /**
  * Permissive properties keys
@@ -53,29 +48,33 @@ export type TransformProperties = {
 /**
  * Relevant styling properties
  */
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 export type StyleProperties = Omit<
   CSSProperties,
-  | keyof TransformProperties
-  | keyof VendorLonghandProperties
-  | keyof VendorShorthandProperties
-  | keyof ObsoleteProperties
+  | 'transition'
+  | 'rotate'
+  | 'scale'
+  | 'perspective'
   | 'transform'
   | 'transformBox'
   | 'transformOrigin'
   | 'transformStyle'
-  | 'transition'
 >
 
 /**
  * Available properties for useMotion variants
  */
-export type MotionProperties = StyleProperties & TransformProperties
+export type MotionProperties =
+  | StyleProperties
+  | SVGAttributes
+  | TransformProperties
+  | SVGPathProperties
 
 /**
  * Variant
  */
 export type Variant = {
-  transition?: TransitionProperties
+  transition?: Transition
 } & MotionProperties
 
 /**
