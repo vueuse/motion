@@ -39,10 +39,18 @@ export function useMotionTransitions() {
 
     const animation = getAnimation(key, value, target, transition, from)
 
+    const pushAnimation = () => {
+      const { stop } = animation()
+
+      transitions.value.push(stop)
+    }
+
     if (transition.delay) {
-      setTimeout(animation, transition.delay)
+      setTimeout(() => {
+        pushAnimation()
+      }, transition.delay)
     } else {
-      animation()
+      pushAnimation()
     }
   }
 
