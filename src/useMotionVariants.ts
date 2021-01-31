@@ -11,13 +11,12 @@ import { MotionVariants, Variant } from './types/variants'
  */
 export function useMotionVariants<T extends MotionVariants>(
   variants: MaybeRef<T> = {} as MaybeRef<T>,
-  initial: MaybeRef<keyof T> = 'initial',
 ) {
   // Variants as ref
   const variantsRef = ref(variants) as Ref<T>
 
   // Current variant string
-  const variant = ref(initial) as Ref<keyof T>
+  const variant = ref() as Ref<keyof T>
 
   // Current variant state
   const state = computed<Variant | undefined>(() => {
