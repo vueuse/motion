@@ -4,12 +4,6 @@ import { useMotion } from '../useMotion'
 
 const directivePropsKeys = ['initial', 'enter', 'leave', 'visible']
 
-const getMotionRef = (binding: any, node: any) => {
-  const refName: string = binding.value
-
-  return binding.instance.$motions[refName]
-}
-
 const getVariantsRef = (node: any) => {
   const variantsRef = ref<MotionVariants>({})
 
@@ -33,10 +27,7 @@ export const directive: Directive = {
 
     const targetRef = ref<HTMLElement>(el)
 
-    const motionRef = useMotion(targetRef, getVariantsRef(node), {
-      lifeCycleHooks: false,
-      visibilityHooks: true,
-    })
+    const motionRef = useMotion(targetRef, getVariantsRef(node))
 
     if (binding && binding.instance) {
       if (!binding.instance.$motions) {
@@ -44,30 +35,6 @@ export const directive: Directive = {
       }
 
       binding.instance.$motions[refName] = motionRef
-    }
-  },
-  beforeMount(el, binding, node) {
-    const variants = getVariantsRef(node)
-    const motion = getMotionRef(binding, node)
-
-    if (variants.value && variants.value['initial']) {
-      motion.variant.value = 'initial'
-    }
-  },
-  mounted(el, binding, node) {
-    const variants = getVariantsRef(node)
-    const motion = getMotionRef(binding, node)
-
-    if (variants.value && variants.value['enter']) {
-      motion.variant.value = 'enter'
-    }
-  },
-  beforeUnmount(el, binding, node) {
-    const variants = getVariantsRef(node)
-    const motion = getMotionRef(binding, node)
-
-    if (variants.value && variants.value['leave']) {
-      motion.variant.value = 'leave'
     }
   },
 }
