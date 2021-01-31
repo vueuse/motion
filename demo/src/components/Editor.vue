@@ -36,6 +36,7 @@
       </div>
       <div class="flex items-center justify-center flex-1">
         <div
+          v-if="visible"
           v-motion="'demo'"
           :initial="{
             y: 100,
@@ -52,10 +53,24 @@
         />
       </div>
     </div>
+
+    <button class="p-4 bg-blue-400 rounded-lg" @click="replay">Replay</button>
   </div>
 </template>
 
 <script setup="props" lang="ts">
+import { useToggle } from '@vueuse/core'
+import { nextTick } from 'vue'
 import CodeBlock from '../components/CodeBlock.vue'
 import basic from '../examples/basic'
+
+const [visible, toggleVisible] = useToggle(true)
+
+const replay = () => {
+  toggleVisible()
+
+  nextTick(() => {
+    toggleVisible()
+  })
+}
 </script>
