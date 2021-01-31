@@ -33,10 +33,7 @@ export function useMotion<T extends MotionVariants>(
   const targetRef = ref(target)
 
   // Variants manager
-  const { variant, state: currentVariant } = useMotionVariants<T>(
-    variantsRef,
-    'initial',
-  )
+  const { variant, state: currentVariant } = useMotionVariants<T>(variantsRef)
 
   // Reactive styling and transform
   const { style, transform } = useMotionProperties(targetRef)
