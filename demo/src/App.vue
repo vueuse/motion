@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import type { MotionVariants } from '@lib'
+import type { MotionVariants, TargetType } from '@lib'
 import { useMotion } from '@lib'
 import { ref } from 'vue'
 import Editor from './components/Editor.vue'
@@ -51,9 +51,9 @@ const defaultAnimation = (delay: number): MotionVariants => {
   }
 }
 
-ref: title = ref<HTMLElement>()
-ref: github = ref<HTMLElement>()
-ref: credits = ref<HTMLElement>()
+ref: title = ref<TargetType>()
+ref: github = ref<TargetType>()
+ref: credits = ref<TargetType>()
 
 useMotion($title, defaultAnimation(100))
 useMotion($github, defaultAnimation(500))
