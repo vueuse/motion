@@ -1,9 +1,8 @@
 export default `
-<template>
   <div
-    v-motion="'block'"
+    v-motion
     :initial="{
-      y: 200,
+      y: 100,
       opacity: 0.25,
     }"
     :enter="{
@@ -12,5 +11,4 @@ export default `
       opacity: 1,
     }"
   />
-</template>
 `
