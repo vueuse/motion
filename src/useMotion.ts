@@ -1,6 +1,6 @@
 import { MaybeRef } from '@vueuse/shared'
 import { Ref, ref } from 'vue'
-import { TargetType } from './types/instance'
+import { MotionInstance, TargetType } from './types/instance'
 import { MotionVariants } from './types/variants'
 import { useMotionControls } from './useMotionControls'
 import { useMotionFeatures } from './useMotionFeatures'
@@ -45,7 +45,7 @@ export function useMotion<T extends MotionVariants>(
   // Motion controls, synchronized with styling and variants
   const { stop, apply } = useMotionControls(transform, style, currentVariant)
 
-  const instance = {
+  const instance: MotionInstance<T> = {
     variant,
     apply,
     stop,
