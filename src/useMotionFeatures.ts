@@ -2,6 +2,7 @@ import { MaybeRef } from '@vueuse/shared'
 import { Ref, ref } from 'vue'
 import { registerLifeCycleHooks } from './features/lifeCycleHooks'
 import { registerVisibilityHooks } from './features/visibilityHooks'
+import { TargetType } from './types/instance'
 import { MotionVariants } from './types/variants'
 import { UseMotionOptions } from './useMotion'
 
@@ -16,7 +17,7 @@ import { UseMotionOptions } from './useMotion'
  * @param options
  */
 export function useMotionFeatures<T extends MotionVariants>(
-  target: MaybeRef<HTMLElement | null | undefined>,
+  target: MaybeRef<TargetType>,
   variant: Ref<keyof T>,
   variants: MaybeRef<T> = {} as MaybeRef<T>,
   options: UseMotionOptions = {
