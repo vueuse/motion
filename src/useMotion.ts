@@ -42,10 +42,11 @@ export function useMotion<T extends MotionVariants>(
   useMotionFeatures(targetRef, variant, variants, options)
 
   // Motion controls, synchronized with styling and variants
-  const { stop } = useMotionControls(transform, style, currentVariant)
+  const { stop, apply } = useMotionControls(transform, style, currentVariant)
 
   return {
     variant,
+    apply,
     stop,
   }
 }
