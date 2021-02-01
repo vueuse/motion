@@ -1,5 +1,6 @@
 import { MaybeRef } from '@vueuse/shared'
 import { Ref, ref } from 'vue'
+import { TargetType } from './types/instance'
 import { MotionVariants } from './types/variants'
 import { useMotionControls } from './useMotionControls'
 import { useMotionFeatures } from './useMotionFeatures'
@@ -21,7 +22,7 @@ export type UseMotionOptions = {
  * @param options
  */
 export function useMotion<T extends MotionVariants>(
-  target: MaybeRef<HTMLElement | null | undefined>,
+  target: MaybeRef<TargetType>,
   variants: MaybeRef<T> = {} as MaybeRef<T>,
   options: UseMotionOptions = {
     lifeCycleHooks: true,
@@ -44,9 +45,11 @@ export function useMotion<T extends MotionVariants>(
   // Motion controls, synchronized with styling and variants
   const { stop, apply } = useMotionControls(transform, style, currentVariant)
 
-  return {
+  const instance = {
     variant,
     apply,
     stop,
   }
+
+  return instance
 }
