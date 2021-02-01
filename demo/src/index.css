@@ -15,16 +15,32 @@ body {
 }
 
 /* PrismJS theme fix */
-.token.operator,
-.token.entity,
-.token.url,
-.language-css .token.string,
-.style .token.string {
-  background: none;
-}
-
 pre[class*='language-'] {
   margin: 0;
   border-radius: 0;
-  @apply text-sm rounded-3xl;
+  box-shadow: none;
+}
+
+:root {
+  --prism-scheme: dark;
+  --prism-foreground: #d4cfbf;
+  --prism-background: theme('colors.gray.800');
+  --prism-comment: #758575;
+  --prism-string: #ce9178;
+  --prism-literal: #4fb09d;
+  --prism-keyword: #4d9375;
+  --prism-function: #c2c275;
+  --prism-deleted: #a14f55;
+  --prism-class: #5ebaa8;
+  --prism-builtin: #cb7676;
+  --prism-property: #dd8e6e;
+  --prism-namespace: #c96880;
+  --prism-punctuation: #d4d4d4;
+  --prism-decorator: #bd8f8f;
+  --prism-regex: #ab5e3f;
+  --prism-json-property: #6b8b9e;
+  --prism-line-number: #888888;
+  --prism-line-number-gutter: #eeeeee;
+  --prism-line-highlight-background: #444444;
+  --prism-selection-background: #444444;
 }
