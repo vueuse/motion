@@ -4528,6 +4528,11 @@ pretty-hrtime@^1.0.3:
   resolved "https://registry.yarnpkg.com/pretty-hrtime/-/pretty-hrtime-1.0.3.tgz#b7e3ea42435a4c9b2759d99e0f201eb195802ee1"
   integrity sha1-t+PqQkNaTJsnWdmeDyAesZWALuE=
 
+prism-theme-vars@^0.1.4:
+  version "0.1.4"
+  resolved "https://registry.yarnpkg.com/prism-theme-vars/-/prism-theme-vars-0.1.4.tgz#7f0a563dc70c4ef5f70fe2ede198d5e6912c4bdd"
+  integrity sha512-Hu2fmxd1J4gJdgzRf+/VHeDXiLpyJN0fp7cOdcN7+S92fGnF5PXol3d4/zXLQkaYc6ZAO0MW/Vqq5qssU/X52g==
+
 prismjs@^1.20.0, prismjs@^1.22.0:
   version "1.23.0"
   resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.23.0.tgz#d3b3967f7d72440690497652a9d40ff046067f33"
