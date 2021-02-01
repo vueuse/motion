@@ -22,8 +22,7 @@ export const directive: Directive<HTMLElement | SVGElement> = {
 
     const motionRef = useMotion(el, variantsRef)
 
-    if (node.props && node.props.ref)
-      motionState[node.props.ref as string] = motionRef
+    if (binding.value) motionState[binding.value] = motionRef
   },
 }
 

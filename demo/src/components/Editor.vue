@@ -20,8 +20,7 @@
       <div class="flex items-center justify-center flex-1">
         <div v-if="visible">
           <div
-            v-motion
-            ref="test"
+            v-motion="'test'"
             :initial="{
               x: 0,
               y: 100,
