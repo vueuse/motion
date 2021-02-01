@@ -9,7 +9,7 @@ const getVariantsRef = (node: any) => {
 
   variantsRef.value = directivePropsKeys.reduce<MotionVariants>(
     (prev, curr) => {
-      if (node && node.props && node.props[curr]) {
+      if (node.props && node.props[curr]) {
         prev[curr] = node.props[curr]
       }
 
