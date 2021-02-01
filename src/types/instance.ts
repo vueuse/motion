@@ -1,10 +1,16 @@
-import { useMotion } from '@lib/useMotion'
+import { Ref } from 'vue'
 import { MotionVariants, Variant } from './variants'
 
 export type TargetType = HTMLElement | SVGElement | null | undefined
 
-export type MotionInstanceBindings = {
-  [key: string]: ReturnType<typeof useMotion>
+export type MotionInstance<T = MotionVariants> = {
+  variant: Ref<keyof T>
+  apply: (variant: Variant) => void
+  stop: () => void
+}
+
+export type MotionInstanceBindings<T = MotionVariants> = {
+  [key: string]: MotionInstance<T>
 }
 
 declare module '@vue/runtime-core' {
