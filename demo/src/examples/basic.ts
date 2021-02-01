@@ -8,6 +8,7 @@ export default `
     }"
     :enter="{
       y: 0,
+      x: 0,
       opacity: 1,
     }"
   />
