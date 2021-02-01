@@ -71,6 +71,7 @@ export function useMotionControls(
   })
 
   return {
+    apply,
     stop,
   }
 }
