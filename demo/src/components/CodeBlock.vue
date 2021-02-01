@@ -6,11 +6,11 @@
 </pre>
 </template>
 
-<script setup="props" lang="ts">
-import { onMounted, ref, nextTick, defineProps } from 'vue'
+<script setup lang="ts">
+import { ref, nextTick, defineProps, watch } from 'vue'
 import Prism from 'prismjs'
 
-const { language, codeText } = defineProps({
+const props = defineProps({
   language: {
     type: String,
     default: 'javascript',
@@ -31,14 +31,14 @@ const preRender = (codeContent: string) => {
 }
 
 const render = () => {
-  if (!Prism.languages[language]) {
-    require(`prismjs/components/prism-${language}`)
+  if (!Prism.languages[props.language]) {
+    require(`prismjs/components/prism-${props.language}`)
   }
 
   nextTick(() => {
     if (!code) return
 
-    const codeContent = codeText || code.innerText
+    const codeContent = props.codeText || code.innerText
 
     code.textContent = preRender(codeContent)
 
@@ -46,8 +46,14 @@ const render = () => {
   })
 }
 
-// Hooks
-onMounted(() => {
-  render()
-})
+watch(
+  props,
+  () => {
+    render()
+  },
+  {
+    immediate: true,
+    deep: true,
+  },
+)
 </script>
