@@ -1,5 +1,6 @@
 import { MaybeRef } from '@vueuse/shared'
 import { ref } from 'vue'
+import { TargetType } from './types/instance'
 import { useStyle } from './useStyle'
 import { useTransform } from './useTransform'
 
@@ -8,9 +9,7 @@ import { useTransform } from './useTransform'
  *
  * @param target
  */
-export function useMotionProperties(
-  target: MaybeRef<HTMLElement | null | undefined>,
-) {
+export function useMotionProperties(target: MaybeRef<TargetType>) {
   // Target element ref
   const targetRef = ref(target)
 
