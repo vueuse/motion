@@ -1,41 +1,29 @@
+import { motionState } from '@lib/features/state'
 import { Directive, ref } from 'vue'
 import { MotionVariants } from '../types/variants'
 import { useMotion } from '../useMotion'
 
 const directivePropsKeys = ['initial', 'enter', 'leave', 'visible']
 
-const getVariantsRef = (node: any) => {
-  const variantsRef = ref<MotionVariants>({})
-
-  variantsRef.value = directivePropsKeys.reduce<MotionVariants>(
-    (prev, curr) => {
-      if (node.props && node.props[curr]) {
-        prev[curr] = node.props[curr]
-      }
-
-      return prev
-    },
-    {},
-  )
-
-  return variantsRef
-}
-
-export const directive: Directive = {
+export const directive: Directive<HTMLElement | SVGElement> = {
   created(el, binding, node) {
-    const refName: string = binding.value
+    const variantsRef = ref<MotionVariants>({})
 
-    const targetRef = ref<HTMLElement>(el)
+    variantsRef.value = directivePropsKeys.reduce<MotionVariants>(
+      (prev, curr) => {
+        if (node.props && node.props[curr]) {
+          prev[curr] = node.props[curr]
+        }
 
-    const motionRef = useMotion(targetRef, getVariantsRef(node))
+        return prev
+      },
+      {},
+    )
 
-    if (binding && binding.instance) {
-      if (!binding.instance.$motions) {
-        binding.instance.$motions = {}
-      }
+    const motionRef = useMotion(el, variantsRef)
 
-      binding.instance.$motions[refName] = motionRef
-    }
+    if (node.props && node.props.ref)
+      motionState[node.props.ref as string] = motionRef
   },
 }
 
