@@ -1,6 +1,5 @@
 import { MotionPlugin } from '@lib'
-import 'prismjs/themes/prism-okaidia.css'
-import 'prismjs/themes/prism.css'
+import 'prism-theme-vars/base.css'
 import { createApp } from 'vue'
 import App from './App.vue'
 import './index.css'
