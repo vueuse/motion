@@ -1,13 +1,14 @@
 import { MaybeRef, tryOnUnmounted } from '@vueuse/shared'
 import { ref, watch } from 'vue-demi'
 import { reactiveTransform } from './reactiveTransform'
+import { TargetType } from './types/instance'
 
 /**
  * A Composable giving access to a TransformProperties object, and binding the generated transform string to a target.
  *
  * @param target
  */
-export function useTransform(target: MaybeRef<HTMLElement | null | undefined>) {
+export function useTransform(target: MaybeRef<TargetType>) {
   // Target element ref
   const targetRef = ref(target)
 
