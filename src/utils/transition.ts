@@ -190,5 +190,5 @@ export function getAnimation(
     return { stop: () => {} }
   }
 
-  return origin ? start : set
+  return origin !== undefined ? start : set
 }
