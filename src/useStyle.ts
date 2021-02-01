@@ -1,6 +1,7 @@
 import { MaybeRef, tryOnUnmounted } from '@vueuse/shared'
 import { ref, watch } from 'vue'
 import { reactiveStyle } from './reactiveStyle'
+import { TargetType } from './types/instance'
 import { StyleProperties } from './types/variants'
 import { valueTypes } from './utils/style'
 
@@ -9,7 +10,7 @@ import { valueTypes } from './utils/style'
  *
  * @param target
  */
-export function useStyle(target: MaybeRef<HTMLElement | null | undefined>) {
+export function useStyle(target: MaybeRef<TargetType>) {
   // Target element ref
   const targetRef = ref(target)
 
@@ -20,30 +21,27 @@ export function useStyle(target: MaybeRef<HTMLElement | null | undefined>) {
   const { state, style } = reactiveStyle()
 
   // Sync existing style from supplied element
-  const stopInitWatch = watch(
-    targetRef,
-    (newVal: HTMLElement | null | undefined) => {
-      if (!newVal) return
+  const stopInitWatch = watch(targetRef, (newVal) => {
+    if (!newVal) return
 
-      // Loop on style keys
-      for (const key of Object.keys(valueTypes)) {
-        if (
-          newVal.style[key] === undefined ||
-          newVal.style[key] === null ||
-          newVal.style[key] === ''
-        )
-          continue
+    // Loop on style keys
+    for (const key of Object.keys(valueTypes)) {
+      if (
+        newVal.style[key] === undefined ||
+        newVal.style[key] === null ||
+        newVal.style[key] === ''
+      )
+        continue
 
-        // Append a defined key to the local StyleProperties state object
-        state[key] = newVal.style[key]
-      }
+      // Append a defined key to the local StyleProperties state object
+      state[key] = newVal.style[key]
+    }
 
-      if (_cache && _cache.value) {
-        // If cache is present, init the target with the current cached value
-        Object.assign(newVal.style, _cache.value)
-      }
-    },
-  )
+    if (_cache && _cache.value) {
+      // If cache is present, init the target with the current cached value
+      Object.assign(newVal.style, _cache.value)
+    }
+  })
 
   // Sync reactive style to element
   const stopSyncWatch = watch(
