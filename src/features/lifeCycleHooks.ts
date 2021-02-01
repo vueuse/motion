@@ -1,9 +1,10 @@
+import { TargetType } from '@lib/types/instance'
 import { MotionVariants } from '@lib/types/variants'
 import { MaybeRef, tryOnUnmounted } from '@vueuse/core'
 import { nextTick, Ref, ref, watch } from 'vue'
 
 export function registerLifeCycleHooks<T extends MotionVariants>(
-  target: MaybeRef<HTMLElement | null | undefined>,
+  target: MaybeRef<TargetType>,
   variants: MaybeRef<T> = {} as MaybeRef<T>,
   set: (name: keyof T) => void,
 ) {
