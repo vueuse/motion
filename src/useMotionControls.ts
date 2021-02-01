@@ -33,6 +33,8 @@ export function useMotionControls(
   const apply = (variant: Variant) => {
     const transition = variant.transition
 
+    stop()
+
     for (const key in variant) {
       if (key === 'transition') continue
 
