@@ -17,10 +17,7 @@ export function registerLifeCycleHooks<T extends MotionVariants>(
     targetRef,
     () => {
       // Lifecycle hooks bindings
-      if (
-        variantsRef.value &&
-        (variantsRef.value.enter || variantsRef.value.leave)
-      ) {
+      if (variantsRef.value && variantsRef.value.enter) {
         // Set initial before the element is mounted
         if (variantsRef.value.initial) set('initial')
 
