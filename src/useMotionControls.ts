@@ -1,14 +1,11 @@
-import { tryOnUnmounted } from '@vueuse/core'
-import { ComputedRef, watch } from 'vue'
-import {
-  MotionProperties,
-  StyleProperties,
-  TransformProperties,
-  Variant,
-} from './types/variants'
-import { useMotionTransitions } from './useMotionTransitions'
+import { ResolvedValueTarget, Transition } from './types/transitions'
+import { MotionProperties, Variant } from './types/variants'
 import { getDefaultTransition } from './utils/defaults'
-import { isTransformProp } from './utils/transform'
+
+export type MotionControls = {
+  apply: (variant: Variant) => void
+  stop: () => void
+}
 
 /**
  * A Composable handling motion controls, pushing resolved variant to useMotionTransitions manager.
@@ -18,59 +15,44 @@ import { isTransformProp } from './utils/transform'
  * @param currentVariant
  */
 export function useMotionControls(
-  transform: TransformProperties,
-  style: StyleProperties,
-  currentVariant: ComputedRef<Variant | undefined>,
-) {
-  // Motion transitions instance
-  const { push, stop } = useMotionTransitions()
-
+  motionProperties: MotionProperties,
+  push: (
+    key: string,
+    value: ResolvedValueTarget,
+    target: MotionProperties,
+    transition: Transition,
+  ) => void,
+  stop: () => void,
+): MotionControls {
   /**
    * Apply a variant declaration and execute the resolved transitions.
    *
    * @param variant
    */
   const apply = (variant: Variant) => {
-    const transition = variant.transition
+    // Skip empty variants
+    if (Object.keys(variant).length === 0) return
 
+    // Stop current transitions
     stop()
 
+    // Get transition data
+    const { transition } = variant
+
+    // Loop on each motion properties keys
     for (const key in variant) {
       if (key === 'transition') continue
 
       const value = variant[key]
 
-      const target = isTransformProp(key) ? transform : style
-
       push(
         key as keyof MotionProperties,
         value,
-        target,
+        motionProperties,
         transition || getDefaultTransition(key, value),
       )
     }
   }
-
-  // Watch for variant changes and apply the new one
-  const stopVariantWatch = watch(
-    currentVariant,
-    (newVal: Variant | undefined) => {
-      stop()
-
-      // Current variant is undefined, just stop the current motions
-      if (!newVal) return
-
-      apply(newVal)
-    },
-    {
-      immediate: true,
-    },
-  )
-
-  // Stop watchers on unmount
-  tryOnUnmounted(() => {
-    stopVariantWatch()
-  })
 
   return {
     apply,
