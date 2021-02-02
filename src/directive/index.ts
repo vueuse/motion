@@ -3,7 +3,15 @@ import { Directive, ref } from 'vue'
 import { MotionVariants } from '../types/variants'
 import { useMotion } from '../useMotion'
 
-const directivePropsKeys = ['initial', 'enter', 'leave', 'visible']
+const directivePropsKeys = [
+  'initial',
+  'enter',
+  'leave',
+  'visible',
+  'hovered',
+  'tapped',
+  'focused',
+]
 
 export const directive: Directive<HTMLElement | SVGElement> = {
   created(el, binding, node) {
