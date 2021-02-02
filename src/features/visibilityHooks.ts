@@ -7,7 +7,6 @@ export function registerVisibilityHooks<T extends MotionVariants>(
   target: MaybeRef<TargetType>,
   variants: MaybeRef<T> = {} as MaybeRef<T>,
   set: (name: keyof T) => void,
-  revert: () => void,
 ) {
   // Local target ref
   const targetRef = ref(target)
@@ -31,7 +30,7 @@ export function registerVisibilityHooks<T extends MotionVariants>(
         ([{ isIntersecting }]) => {
           if (isIntersecting) {
             set('visible')
-          } else revert()
+          } else set('initial')
         },
       )
 
