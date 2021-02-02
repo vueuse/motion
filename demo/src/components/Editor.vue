@@ -17,13 +17,12 @@
       <div class="flex-1">
         <code-block :code-text="codeText" language="javascript" />
       </div>
-      <div class="flex items-center justify-center flex-1">
+      <div v-if="visible" class="flex items-center justify-center flex-1">
         <div
-          v-if="visible"
           v-motion="'test'"
           :initial="{
             x: 0,
-            y: 100,
+            y: 200,
             opacity: 0,
             rotate: 0,
           }"
@@ -32,12 +31,26 @@
             x: 0,
             rotate: 0,
             opacity: 1,
+            scale: 1,
             transition: {
-              delay: 400,
               type: 'spring',
             },
           }"
-          class="w-24 h-24 bg-indigo-500 border-8 border-indigo-400 shadow-xl rounded-3xl"
+          :hovered="{
+            scale: 1.2,
+            transition: {
+              type: 'spring',
+              mass: 2,
+            },
+          }"
+          :tapped="{
+            scale: 0.8,
+            transition: {
+              type: 'spring',
+              mass: 2,
+            },
+          }"
+          class="w-24 h-24 bg-indigo-500 border-8 border-indigo-400 shadow-xl cursor-pointer rounded-3xl"
         />
       </div>
     </div>
@@ -50,7 +63,7 @@
     </div>
 
     <div>
-      <input type="range" max="180" min="0" v-model="input" step="1" />
+      <input type="range" max="360" min="0" v-model="input" step="1" />
     </div>
   </div>
 </template>
@@ -69,7 +82,7 @@ const replay = () => {
 
   input.value = '0'
 
-  nextTick(() => toggleVisible())
+  nextTick(toggleVisible)
 }
 
 const motions = useMotions()
@@ -86,6 +99,7 @@ watch(input, (newVal) => {
       rotate: newVal,
       transition: {
         type: 'spring',
+        stiffness: 220,
       },
     })
   }
