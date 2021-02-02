@@ -88,6 +88,10 @@ export type MotionVariants = {
   leave?: Variant
   // Intersection observer variants
   visible?: Variant
+  // Event listeners variants
+  hovered?: Variant
+  tapped?: Variant
+  focused?: Variant
   // Custom variants
   [key: string]: Variant | undefined
 }
