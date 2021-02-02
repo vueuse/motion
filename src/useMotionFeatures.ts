@@ -1,10 +1,13 @@
 import { MaybeRef } from '@vueuse/shared'
-import { Ref, ref } from 'vue'
+import { ComputedRef, Ref, ref } from 'vue'
+import { registerEventListeners } from './features/eventListeners'
 import { registerLifeCycleHooks } from './features/lifeCycleHooks'
+import { registerVariantsSync } from './features/syncVariants'
 import { registerVisibilityHooks } from './features/visibilityHooks'
 import { TargetType } from './types/instance'
-import { MotionVariants } from './types/variants'
+import { MotionVariants, Variant } from './types/variants'
 import { UseMotionOptions } from './useMotion'
+import { MotionControls } from './useMotionControls'
 
 /**
  * A Composable executing resolved variants features from variants declarations.
@@ -20,9 +23,13 @@ export function useMotionFeatures<T extends MotionVariants>(
   target: MaybeRef<TargetType>,
   variant: Ref<keyof T>,
   variants: MaybeRef<T> = {} as MaybeRef<T>,
+  currentVariant: ComputedRef<Variant | undefined>,
+  controls: MotionControls,
   options: UseMotionOptions = {
+    syncVariants: true,
     lifeCycleHooks: true,
     visibilityHooks: true,
+    eventListeners: true,
   },
 ) {
   // Local variants ref
@@ -32,26 +39,22 @@ export function useMotionFeatures<T extends MotionVariants>(
   // Local helper to update the variant
   const set = (name: keyof T) => (variant.value = name)
 
-  // Local helper to revert to the initial state
-  const revert = () => {
-    if (variantsRef.value) {
-      if (variantsRef.value.visible) {
-        set('visible')
-      } else if (variantsRef.value.enter) {
-        set('enter')
-      } else if (variantsRef.value.initial) {
-        set('initial')
-      }
-    }
-  }
-
   // Lifecycle hooks bindings
   if (options.lifeCycleHooks) {
     registerLifeCycleHooks(targetRef, variantsRef, set)
   }
 
+  if (options.syncVariants) {
+    registerVariantsSync(currentVariant, controls)
+  }
+
   // Visibility hooks
   if (options.visibilityHooks) {
-    registerVisibilityHooks(targetRef, variantsRef, set, revert)
+    registerVisibilityHooks(targetRef, variantsRef, set)
+  }
+
+  // Event listeners
+  if (options.eventListeners) {
+    registerEventListeners(targetRef, variants, currentVariant, controls.apply)
   }
 }
