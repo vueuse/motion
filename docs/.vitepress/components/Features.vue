@@ -11,9 +11,11 @@
               class="feature"
             >
               <h2 class="title" v-if="feature.title">{{ feature.title }}</h2>
-              <p class="details" v-if="feature.details">
-                {{ feature.details }}
-              </p>
+              <p
+                class="details"
+                v-if="feature.details"
+                v-html="feature.details"
+              />
             </section>
           </div>
         </div>
@@ -32,17 +34,17 @@ export default defineComponent({
       {
         title: 'Declarative animations',
         details:
-          'Write animations right from your <template>, control it from your <script>.',
+          'Write <b>animations</b> right from your <b>template</b>, control it from your <b>script</b>.',
       },
       {
         title: 'Fast',
         details:
-          'Animations are powered by popmotion, the same engine behind the famous Framer Motion library.',
+          'Powered by <a href="http://popmotion.io"><b>Popmotion</b></a>, the same engine behind the famous <b>Framer Motion</b>.',
       },
       {
         title: 'Compatible',
         details:
-          'Written with Composition API, this package is compatible with Vue 2, 3 and Nuxt (SSR).',
+          'Written with <b>Composition API</b>, this package is compatible with <b>Vue 2</b>, <b>3</b> and <b>Nuxt</b> 💚',
       },
     ]
 
