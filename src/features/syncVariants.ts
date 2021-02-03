@@ -13,8 +13,6 @@ export function registerVariantsSync(
     (newVal: Variant | undefined, oldVal: Variant | undefined) => {
       if (newVal === oldVal) return
 
-      stop()
-
       // Current variant is undefined, just stop the current motions
       if (!newVal) return
 
