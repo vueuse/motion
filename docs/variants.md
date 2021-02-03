@@ -162,6 +162,10 @@ You can create your **own variants** and **apply** them using the **motion contr
     :variants="{
       custom: {
         scale: 2,
+        transition: {
+            type: "spring",
+            stiffness: 100
+        }
       },
     }"
   />
