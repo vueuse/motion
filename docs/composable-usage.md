@@ -2,4 +2,41 @@
 
 **vueuse/motion** is written using Composition API.
 
-The composable usage of this package allows you to create animations from the `setup` hook of your components.
+The **composable usage** of this **package** allows you to create **animations** from the `setup` hook of your **components**.
+
+## Your first useMotion
+
+useMotion is the **core composable** of this **package**.
+
+It is a method that takes **three parameters**.
+
+The **first** parameter is the `target`.
+
+The **target** can be **HTML** or **SVG** elements, or **references** to these types.
+
+The **second** parameter are the `variants`.
+
+The [**variants definitions**](/variants) are described in a specific page.
+
+```vue
+<script setup>
+import { useMotion } from '@vueuse/motion'
+
+const target = ref<HTMLElement>()
+
+const motionControls = useMotion(target, {
+    initial: {
+        opacity: 0,
+        y: 100
+    },
+    enter: {
+        opacity: 1,
+        y: 0
+    }
+})
+</script>
+```
+
+Once called, the **useMotion** composable will **return** an instance of [Motion controls](/motion-controls).
+
+By using these **motion controls**, you will be able to **animate** the **element** with **ease**.
