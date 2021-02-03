@@ -1,7 +1,7 @@
 import { useMotionTransitions } from '../src'
-import { TransitionProperties } from '../src/types/transitions'
+import { Transition } from '../src/types/transitions'
 
-const defaultTransition: TransitionProperties = {
+const defaultTransition: Transition = {
   type: 'spring',
   stiffness: 500,
   damping: 25,
@@ -13,10 +13,7 @@ describe('useMotionTransitions', () => {
   it('accepts a transitions', () => {
     const { push, transitions } = useMotionTransitions()
 
-    push(defaultTransition, {
-      from: 0,
-      to: 1,
-    })
+    push('x', 0, {}, defaultTransition)
 
     expect(transitions.value.length).toBe(1)
   })
@@ -24,25 +21,10 @@ describe('useMotionTransitions', () => {
   it('clears transitions on stop', async () => {
     const { push, transitions, stop } = useMotionTransitions()
 
-    push(defaultTransition, {
-      from: 0,
-      to: 1,
-    })
-
-    push(defaultTransition, {
-      from: 0,
-      to: 1,
-    })
-
-    push(defaultTransition, {
-      from: 0,
-      to: 1,
-    })
-
-    push(defaultTransition, {
-      from: 0,
-      to: 1,
-    })
+    push('x', 0, {}, defaultTransition)
+    push('x', 0, {}, defaultTransition)
+    push('x', 0, {}, defaultTransition)
+    push('x', 0, {}, defaultTransition)
 
     expect(transitions.value.length).toBe(4)
 
