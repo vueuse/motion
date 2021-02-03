@@ -22,9 +22,16 @@ declare module '@vue/runtime-core' {
 declare module '@vue/runtime-dom' {
   interface HTMLAttributes {
     variants?: MotionVariants
+    // Initial variant
     initial?: Variant
+    // Lifecycle hooks variants
     enter?: Variant
     leave?: Variant
+    // Intersection observer variants
     visible?: Variant
+    // Event listeners variants
+    hovered?: Variant
+    tapped?: Variant
+    focused?: Variant
   }
 }

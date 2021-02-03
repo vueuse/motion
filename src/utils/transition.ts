@@ -1,10 +1,4 @@
 import {
-  PermissiveTransitionDefinition,
-  ResolvedValueTarget,
-  Transition,
-} from '@lib/types/transitions'
-import { MotionProperties } from '@lib/types/variants'
-import {
   animate,
   AnimationOptions,
   anticipate,
@@ -24,7 +18,13 @@ import {
   Easing,
   linear,
 } from 'popmotion'
-import { StopAnimation } from '../types/transitions'
+import {
+  PermissiveTransitionDefinition,
+  ResolvedValueTarget,
+  StopAnimation,
+  Transition,
+} from '../types/transitions'
+import { MotionProperties } from '../types/variants'
 import { getDefaultTransition } from './defaults'
 
 // Easing map from popmotion

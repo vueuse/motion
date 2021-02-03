@@ -1,7 +1,7 @@
 import { Variant } from '@lib/types/variants'
 import { MotionControls } from '@lib/useMotionControls'
 import { tryOnUnmounted } from '@vueuse/core'
-import { ComputedRef, watch } from 'vue'
+import { ComputedRef, watch } from 'vue-demi'
 
 export function registerVariantsSync(
   currentVariant: ComputedRef<Variant | undefined>,

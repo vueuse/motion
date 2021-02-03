@@ -1,5 +1,5 @@
 import { MaybeRef } from '@vueuse/shared'
-import { ComputedRef, Ref, ref } from 'vue'
+import { ComputedRef, Ref, ref } from 'vue-demi'
 import { registerEventListeners } from './features/eventListeners'
 import { registerLifeCycleHooks } from './features/lifeCycleHooks'
 import { registerVariantsSync } from './features/syncVariants'

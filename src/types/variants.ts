@@ -1,4 +1,4 @@
-import { CSSProperties, SVGAttributes } from 'vue'
+import { CSSProperties, SVGAttributes } from 'vue-demi'
 import { Transition } from './transitions'
 
 /**

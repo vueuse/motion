@@ -1,5 +1,5 @@
 import { MaybeRef, tryOnUnmounted } from '@vueuse/shared'
-import { ref, watch } from 'vue'
+import { ref, watch } from 'vue-demi'
 import { reactiveStyle } from './reactiveStyle'
 import { TargetType } from './types/instance'
 import { StyleProperties } from './types/variants'

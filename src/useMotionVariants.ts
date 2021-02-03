@@ -1,5 +1,5 @@
 import { MaybeRef } from '@vueuse/shared'
-import { computed, Ref, ref } from 'vue'
+import { computed, Ref, ref } from 'vue-demi'
 import { MotionVariants, Variant } from './types/variants'
 
 /**

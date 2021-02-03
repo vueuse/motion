@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref } from 'vue-demi'
 import { ResolvedValueTarget, Transition } from './types/transitions'
 import { MotionProperties } from './types/variants'
 import { getAnimation } from './utils/transition'

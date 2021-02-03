@@ -1,5 +1,5 @@
 import { MaybeRef } from '@vueuse/shared'
-import { Ref, ref } from 'vue'
+import { Ref, ref } from 'vue-demi'
 import { MotionInstance, TargetType } from './types/instance'
 import { MotionVariants } from './types/variants'
 import { useMotionControls } from './useMotionControls'

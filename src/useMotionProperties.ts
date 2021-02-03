@@ -1,5 +1,5 @@
 import { MaybeRef } from '@vueuse/shared'
-import { reactive, ref, watch } from 'vue'
+import { reactive, ref, watch } from 'vue-demi'
 import { TargetType } from './types/instance'
 import { MotionProperties } from './types/variants'
 import { useStyle } from './useStyle'
