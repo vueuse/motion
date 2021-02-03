@@ -136,3 +136,9 @@ export default defineComponent({
   padding-top: 0.25rem;
 }
 </style>
+
+<style lang="postcss">
+footer .container {
+  border: 0 !important;
+}
+</style>
