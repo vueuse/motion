@@ -2,7 +2,28 @@
 
 Variants represent an **animatable state** for your element.
 
-They are composed of any [motion properties](/motion-properties) and a [transition declaration](/transitions).
+They are composed of any [motion properties](/motion-properties) and an optional [transition declaration](/transitions).
+
+```vue
+<div
+  v-motion
+  :initial="{
+    opacity: 0,
+    y: 100,
+  }"
+  :enter="{
+    opacity: 1,
+    y: 0,
+    transition: {
+      type: 'spring',
+      stiffness: '100',
+      delay: 100,
+    },
+  }"
+/>
+```
+
+##### _This element will fade in smoothly after 100ms._ ☝️
 
 ## Initial variant
 
@@ -120,8 +141,8 @@ A **regular focus** event listener.
   :initial="{
     scale: 1,
   }"
-  :hovered="{
-    scale: 1.2,
+  :focused="{
+    scale: 1.1,
   }"
 />
 ```
@@ -154,21 +175,8 @@ You can create your **own variants** and **apply** them using the **motion contr
 
 ```vue
 <template>
-  <div
-    v-motion="'customElement'"
-    :initial="{
-      scale: 1,
-    }"
-    :variants="{
-      custom: {
-        scale: 2,
-        transition: {
-            type: "spring",
-            stiffness: 100
-        }
-      },
-    }"
-  />
+  <div v-motion="'customElement'" :initial="{ scale: 1, }" :variants="{ custom:
+  { scale: 2, transition: { type: "spring", stiffness: 100 } }, }" />
 </template>
 
 <script setup>
