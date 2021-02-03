@@ -38,11 +38,23 @@ module.exports = {
             text: 'Installation',
             link: '/installation',
           },
+          {
+            text: 'Roadmap',
+            link: '/roadmap',
+          },
         ],
       },
       {
         text: 'Features',
         children: [
+          {
+            text: 'Composable usage',
+            link: '/composable-usage',
+          },
+          {
+            text: 'Directive usage',
+            link: '/directive-usage',
+          },
           {
             text: 'Motion properties',
             link: '/motion-properties',
@@ -56,12 +68,8 @@ module.exports = {
             link: '/variants',
           },
           {
-            text: 'Composable usage',
-            link: '/composable-usage',
-          },
-          {
-            text: 'Directive usage',
-            link: '/directive-usage',
+            text: 'Motion controls',
+            link: '/motion-controls',
           },
         ],
       },
