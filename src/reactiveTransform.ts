@@ -1,5 +1,5 @@
-import { TransformProperties } from 'src/types/variants'
 import { computed, reactive } from 'vue-demi'
+import { TransformProperties } from './types/variants'
 import { getValueAsType, getValueType } from './utils/style'
 
 /**
