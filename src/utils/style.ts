@@ -116,8 +116,19 @@ export const valueTypes: ValueTypeMap = {
   numOctaves: int,
 }
 
+/**
+ * Return the value type for a key.
+ *
+ * @param key
+ */
 export const getValueType = (key: string) => valueTypes[key]
 
+/**
+ * Transform the value using its value type, or return the value.
+ *
+ * @param value
+ * @param type
+ */
 export const getValueAsType = (value: any, type?: ValueType) => {
   return type && typeof value === 'number' && type.transform
     ? type.transform(value)
