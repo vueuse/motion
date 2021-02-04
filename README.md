@@ -9,9 +9,9 @@ A **Vue Composable** to put your **components** in **motion**.
 - 🎮 **Declarative** API.
 - 🤟 Vue **2** & **3** support using [**vue-demi**](https://github.com/antfu/vue-demi).
 
-[🌍 Documentation](https://vue-use-motion.netlify.app)
+[🌍 **Documentation**](https://vue-use-motion.netlify.app)
 
-This repository is still **experimental**, the API might be subject to changes.
+This repository is still **experimental**, the **API** might be subject to **changes**.
 
 Last update: **04/02/2021**
 
@@ -77,8 +77,10 @@ If you want to know more about how to **control** your declared **variants**, co
 
 ## Credits
 
-This package is heavily inspired by [Framer Motion](https://www.framer.com/motion/).
+This package is **heavily** inspired by [Framer Motion](https://www.framer.com/motion/).
 
-I would also like to thank [antfu](https://github.com/antfu) and [patak](https://twitter.com/patak_js) for their kind help!
+I would also like to **thank** [**antfu**](https://github.com/antfu) and [**patak**](https://twitter.com/patak_js) for their kind help!
 
-If you like this package, consider following me on [GitHub](https://github.com/Tahul) and on [Twitter](https://twitter.com/yaeeelglx).
+If you **like** this package, consider **following me** on [**GitHub**](https://github.com/Tahul) and on [**Twitter**](https://twitter.com/yaeeelglx).
+
+👋
