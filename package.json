@@ -1,17 +1,21 @@
 {
-  "name": "vue-composable-starter",
-  "version": "1.0.0",
-  "description": "🪝🪝 The next big hook",
-  "repository": "https://github.com/Tahul/vue-composable-starter",
+  "name": "@vueuse/motion",
+  "version": "1.0.0-beta.1",
+  "description": "🤹 A Vue Composable that puts your components in motion.",
+  "repository": "https://github.com/vueuse/motion",
   "bugs": {
-    "url": "https://github.com/Tahul/vue-composable-starter/issues"
+    "url": "https://github.com/vueuse/motion/issues"
   },
-  "homepage": "https://github.com/Tahul/vue-composable-starter#readme",
+  "homepage": "https://github.com/vueuse/motion#readme",
   "author": "Yaël GUILLOUX <yael.guilloux@gmail.com>",
   "license": "MIT",
   "keywords": [
     "vue",
-    "hook"
+    "hook",
+    "motion",
+    "animation",
+    "v-motion",
+    "popmotion-vue"
   ],
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm-bundler.js",
