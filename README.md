@@ -77,7 +77,7 @@ If you want to know more about how to **control** your declared **variants**, co
 
 ## Credits
 
-This package is **heavily** inspired by [Framer Motion](https://www.framer.com/motion/).
+This package is **heavily** inspired by [**Framer Motion**](https://www.framer.com/motion/).
 
 I would also like to **thank** [**antfu**](https://github.com/antfu) and [**patak**](https://twitter.com/patak_js) for their kind help!
 
