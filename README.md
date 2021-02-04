@@ -2,17 +2,83 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ab1db459-8420-4bc6-9fac-2bc247fa2385/deploy-status)](https://app.netlify.com/sites/vue-use-motion/deploys)
 
-A Vue Composable to put your components in motion.
+A **Vue Composable** to put your **components** in **motion**.
 
-- 🧩 TypeScript by default.
-- 🏎 Smooth animations based on [popmotion](https://popmotion.io/).
-- 🎮 Declarative and programmatic API.
-- 🤟 Vue 2 & 3 support using [vue-demi](https://github.com/antfu/vue-demi).
+- 🧩 Written in **TypeScript**.
+- 🏎 **Smooth animations** based on [**Popmotion**](https://popmotion.io/).
+- 🎮 **Declarative** API.
+- 🤟 Vue **2** & **3** support using [**vue-demi**](https://github.com/antfu/vue-demi).
 
----
+[🌍 Documentation](https://vue-use-motion.netlify.app)
 
-This repository is still **experimental**. I'm currently writing the documentation.
+This repository is still **experimental**, the API might be subject to changes.
 
-You can watch it evolving from the [demo](https://vue-use-motion.netlify.app).
+Last update: **04/02/2021**
 
-Follow me on [Twitter](https://twitter.com/yaeeelglx) for updates. 🙌
+## Quick start
+
+Let's **get started** quick by **installing** the **package** and adding the **plugin**.
+
+From your **terminal**:
+
+```bash
+yarn add @vueuse/motion
+```
+
+In your **Vue** app **entry** file:
+
+```javascript
+import { createApp } from 'vue'
+import { MotionPlugin } from '@vueuse/motion'
+import App from './App.vue'
+
+const app = createApp(App)
+
+app.use(MotionPlugin)
+
+app.mount('#app')
+```
+
+You can now **animate** any of your **component**, **HTML** or **SVG** elements using `v-motion`.
+
+```vue
+<template>
+<div
+  v-motion="'smoothestDiv'"
+  :initial="{
+    opacity: 0,
+    y: 100,
+  }"
+  :enter="{
+    opacity: 1,
+    y: 0,
+  }"
+/>
+</template>
+
+<script setup>
+import { useMotions } from '@vueuse/motion'
+
+// Get access to motion controls using useMotions
+const { smoothestDiv } = useMotions()
+
+// From smoothest div to biggest div real quick 😎
+smoothestDiv.apply({ scale: 4 })
+</script>
+```
+
+If you want to know more about what **properties** you can **animate**, consider taking a look at [**Motion Properties**](https://vue-use-motion.netlify.app/motion-properties).
+
+If you want to know more about how to **create** your own **animations** styles, consider taking a look at [**Transition Properties**](https://vue-use-motion.netlify.app/transition-properties).
+
+If you want to know more about what are **variants** and how you can **use** them, consider taking a look at [**Variants**](https://vue-use-motion.netlify.app/variants).
+
+If you want to know more about how to **control** your declared **variants**, consider taking a look at [**Motion Controls**](https://vue-use-motion.netlify.app/motion-controls).
+
+## Credits
+
+This package is heavily inspired by [Framer Motion](https://www.framer.com/motion/).
+
+I would also like to thank [antfu](https://github.com/antfu) and [patak](https://twitter.com/patak_js) for their kind help!
+
+If you like this package, consider following me on [GitHub](https://github.com/Tahul) and on [Twitter](https://twitter.com/yaeeelglx).
