@@ -175,8 +175,16 @@ You can create your **own variants** and **apply** them using the **motion contr
 
 ```vue
 <template>
-  <div v-motion="'customElement'" :initial="{ scale: 1, }" :variants="{ custom:
-  { scale: 2, transition: { type: "spring", stiffness: 100 } }, }" />
+  <div 
+    v-motion="'customElement'"
+    :initial="{ scale: 1, }"
+    :variants="{
+      custom: { 
+        scale: 2,
+        transition: { type: "spring", stiffness: 100 }
+      }
+    }" 
+  />
 </template>
 
 <script setup>
