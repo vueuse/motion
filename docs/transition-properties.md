@@ -1,4 +1,4 @@
-# Transition properties
+# Transition Properties
 
 Transition properties are represented by an **object** containing all **transition parameters** of a variant.
 
@@ -57,7 +57,7 @@ Three parameters are available:
 
 ##### _Zboing!._ ☝️
 
-## Transition types
+## Transition Types
 
 Two types of **animations** are supported.
 

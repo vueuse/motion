@@ -1,4 +1,4 @@
-# Quick start
+# Quick Start
 
 Let's **get started** quick by **installing** the **package** and adding the **plugin**.
 

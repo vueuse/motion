@@ -25,7 +25,7 @@ They are composed of any [motion properties](/motion-properties) and an optional
 
 ##### _This element will fade in smoothly after 100ms._ ☝️
 
-## Initial variant
+## Initial Variant
 
 The **initial** variant represent the **base state** of the focused element.
 
@@ -45,7 +45,7 @@ It is **recommended** to **include** a base state for **every parameter** that y
 
 ##### _This element will be hidden, and 100px above of its original position._ ☝️
 
-## Lifecycle variants
+## Lifecycle Variants
 
 ### Enter
 
@@ -73,7 +73,7 @@ You can use it to **trigger** an animation when the element **appears**, transit
 
 _This feature is currently work in progress._ 👷‍♂️
 
-## Visibility variants
+## Visibility Variants
 
 ### Visible
 
@@ -97,7 +97,7 @@ When the element leaves, the [**initial**](#initial-variant) variant will be app
 
 ##### _This element will fade in smoothly each times it enters the viewport._ ☝️
 
-## Events variants
+## Events Variants
 
 Variants can also be used to **interact** with the **element** using **event listeners**.
 

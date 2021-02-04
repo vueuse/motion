@@ -10,11 +10,11 @@ Please note that if you are using **Vue 2** or **Nuxt**, you need to install the
 
 The required packages can be found [here for Vue](https://github.com/vuejs/composition-api), and [here for Nuxt](https://composition-api.nuxtjs.org/).
 
-## Plugin installation
+## Plugin Installation
 
 If you are planning on using the **directives** (`v-motion`) from this **package**, you might want to add the **plugin** to your **Vue instance**.
 
-### Global installation
+### Global Installation
 
 You can add the **support** for `v-motion` **globally**, by installing the **plugin**.
 
@@ -28,7 +28,7 @@ app.use(MotionPlugin)
 app.mount('#app')
 ```
 
-### Component installation
+### Component Installation
 
 If you want to import the **directive code** only from **components** that uses it, **import** the **directive** and install it at **component level**.
 

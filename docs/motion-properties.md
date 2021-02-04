@@ -1,4 +1,4 @@
-# Motion properties
+# Motion Properties
 
 Motion properties are represented by an **object** containing all the **animatable properties** of an **element**.
 
@@ -20,7 +20,7 @@ The **default unit** of the vast majority of attributes will be **resolved** and
 
 ##### _An example of motion properties_ ☝️
 
-## Style properties
+## Style Properties
 
 Style properties are used to **decompose** a regular `style` CSS **string** into individual **object keys**.
 
@@ -39,7 +39,7 @@ Some keys are **forbidden** (`transition`, `rotate`, `scale`...) as they are now
 
 ##### _An example of style properties_ ☝️
 
-## Transform properties
+## Transform Properties
 
 Transform properties are used to **decompose** a regular `transform` CSS **string** into individual **object keys**.
 

@@ -1,4 +1,4 @@
-# Directive usage
+# Directive Usage
 
 **vueuse/motion** allows you to write your animations right **from the template** of your components **without** having to wrap the target elements in any **wrapper** component.
 

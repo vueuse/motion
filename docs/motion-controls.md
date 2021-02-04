@@ -1,4 +1,4 @@
-# Motion controls
+# Motion Controls
 
 Motion controls are the **object** exposed when **binding** to a target **element**.
 

@@ -1,4 +1,4 @@
-# Composable usage
+# Composable Usage
 
 **vueuse/motion** is written using Composition API.
 
