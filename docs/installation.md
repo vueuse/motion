@@ -16,7 +16,7 @@ If you are planning on using the **directives** (`v-motion`) from this **package
 
 ### Global installation
 
-You can add the support for `v-motion` globally, by installing the plugin.
+You can add the **support** for `v-motion` **globally**, by installing the **plugin**.
 
 ```javascript
 import { MotionPlugin } from '@vueuse/motion'
