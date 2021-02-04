@@ -15,7 +15,8 @@ export function registerEventListeners<T extends MotionVariants>(
   // State
   const hovered = ref(false)
   const tapped = ref(false)
-  const focused = ref(false)
+  // const focused = ref(false)
+  // TODO: implement focused
 
   const computedProperties = computed(() => {
     const result = {}
