@@ -56,4 +56,4 @@ If you want to know more about how to **create** your own **animations** styles,
 
 If you want to know more about what are **variants** and how you can **use** them, consider taking a look at [**Variants**](/variants).
 
-If you want to know more about how to **control** your declared **variants**, consider takiing a look at [**Motion Controls**](/motion-controls).
+If you want to know more about how to **control** your declared **variants**, consider taking a look at [**Motion Controls**](/motion-controls).
