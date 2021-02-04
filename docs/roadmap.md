@@ -11,6 +11,7 @@ The **roadmap** includes:
 - **Per property transition definition**
 - **Better orchestration features**
 - **Context-aware elements, to enable animations between childrens**
+- **Make the binding with Vue transition component easier**
 - **More default variants**
 - **v-layout**
 - **Making a playground to create animations with ease**
