@@ -39,6 +39,10 @@ module.exports = {
             link: '/installation',
           },
           {
+            text: 'Quick Start',
+            link: '/quick-start',
+          },
+          {
             text: 'Roadmap',
             link: '/roadmap',
           },
@@ -48,19 +52,19 @@ module.exports = {
         text: 'Features',
         children: [
           {
-            text: 'Composable usage',
+            text: 'Composable Usage',
             link: '/composable-usage',
           },
           {
-            text: 'Directive usage',
+            text: 'Directive Usage',
             link: '/directive-usage',
           },
           {
-            text: 'Motion properties',
+            text: 'Motion Properties',
             link: '/motion-properties',
           },
           {
-            text: 'Transition properties',
+            text: 'Transition Properties',
             link: '/transition-properties',
           },
           {
@@ -68,7 +72,7 @@ module.exports = {
             link: '/variants',
           },
           {
-            text: 'Motion controls',
+            text: 'Motion Controls',
             link: '/motion-controls',
           },
         ],
