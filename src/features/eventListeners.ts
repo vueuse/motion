@@ -16,8 +16,7 @@ export function registerEventListeners<T extends MotionVariants>({
   // State
   const hovered = ref(false)
   const tapped = ref(false)
-  // const focused = ref(false)
-  // TODO: implement focused
+  const focused = ref(false)
 
   const computedProperties = computed(() => {
     const result = {}
@@ -30,9 +29,13 @@ export function registerEventListeners<T extends MotionVariants>({
     if (tapped.value && variants.value.tapped)
       Object.assign(result, variants.value.tapped)
 
+    if (focused.value && variants.value.focused)
+      Object.assign(result, variants.value.focused)
+
     return result
   })
 
+  // Hovered
   if (variants.value.hovered) {
     useEventListener(target.value as EventTarget, 'mouseenter', () => {
       hovered.value = true
@@ -49,6 +52,7 @@ export function registerEventListeners<T extends MotionVariants>({
     })
   }
 
+  // Tapped
   if (variants.value.tapped) {
     // Mouse
     if (supportsMouseEvents()) {
@@ -84,6 +88,18 @@ export function registerEventListeners<T extends MotionVariants>({
     }
   }
 
+  // Focused
+  if (variants.value.focused) {
+    useEventListener(target.value as EventTarget, 'focus', () => {
+      focused.value = true
+    })
+
+    useEventListener(target.value as EventTarget, 'blur', () => {
+      focused.value = false
+    })
+  }
+
+  // Watch local computed variant, apply it dynamically
   watch(computedProperties, () => {
     apply(computedProperties.value)
   })
