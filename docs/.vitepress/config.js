@@ -109,12 +109,12 @@ module.exports = {
             link: '/api/use-motion-features',
           },
           {
-            text: 'useStyle',
-            link: '/api/use-style',
+            text: 'useElementStyle',
+            link: '/api/use-element-style',
           },
           {
-            text: 'useTransform',
-            link: '/api/use-transform',
+            text: 'useElementTransform',
+            link: '/api/use-element-transform',
           },
         ],
       },
