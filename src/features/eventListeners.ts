@@ -1,6 +1,11 @@
 import { useEventListener } from '@vueuse/core'
 import { computed, ref, watch } from 'vue-demi'
-import { MotionVariants, MotionInstance } from '../types'
+import { MotionInstance, MotionVariants } from '../types'
+import {
+  supportsMouseEvents,
+  supportsPointerEvents,
+  supportsTouchEvents,
+} from '../utils/events'
 
 export function registerEventListeners<T extends MotionVariants>({
   target,
@@ -45,21 +50,38 @@ export function registerEventListeners<T extends MotionVariants>({
   }
 
   if (variants.value.tapped) {
-    useEventListener(target.value as EventTarget, 'mousedown', () => {
-      tapped.value = true
-    })
+    // Mouse
+    if (supportsMouseEvents()) {
+      useEventListener(target.value as EventTarget, 'mousedown', () => {
+        tapped.value = true
+      })
 
-    useEventListener(target.value as EventTarget, 'pointerdown', () => {
-      tapped.value = true
-    })
+      useEventListener(target.value as EventTarget, 'mouseup', () => {
+        tapped.value = false
+      })
+    }
 
-    useEventListener(target.value as EventTarget, 'pointerup', () => {
-      tapped.value = false
-    })
+    // Pointer
+    if (supportsPointerEvents()) {
+      useEventListener(target.value as EventTarget, 'pointerdown', () => {
+        tapped.value = true
+      })
 
-    useEventListener(target.value as EventTarget, 'mouseup', () => {
-      tapped.value = false
-    })
+      useEventListener(target.value as EventTarget, 'pointerup', () => {
+        tapped.value = false
+      })
+    }
+
+    // Touch
+    if (supportsTouchEvents()) {
+      useEventListener(target.value as EventTarget, 'touchstart', () => {
+        tapped.value = true
+      })
+
+      useEventListener(target.value as EventTarget, 'touchend', () => {
+        tapped.value = false
+      })
+    }
   }
 
   watch(computedProperties, () => {
