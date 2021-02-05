@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { nextTick, ref } from 'vue'
+import { nextTick, ref } from 'vue-demi'
 import { useStyle } from '../src'
 
 const TestComponent = {

@@ -1,7 +1,7 @@
 import { MaybeRef, useEventListener } from '@vueuse/core'
 import { computed, ComputedRef, Ref, ref, watch } from 'vue-demi'
-import { TargetType } from '../types/instance'
-import { MotionVariants, Variant } from '../types/variants'
+import { TargetType } from '../types'
+import { MotionVariants, Variant } from '../types'
 
 export function registerEventListeners<T extends MotionVariants>(
   target: MaybeRef<TargetType>,

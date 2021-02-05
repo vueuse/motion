@@ -1,6 +1,6 @@
-import { MaybeRef } from '@vueuse/shared'
+import { MaybeRef } from '@vueuse/core'
 import { computed, Ref, ref } from 'vue-demi'
-import { MotionVariants, Variant } from './types/variants'
+import { MotionVariants, Variant } from './types'
 
 /**
  * A Composable handling variants selection and features.

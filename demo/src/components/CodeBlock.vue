@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, nextTick, defineProps, watch } from 'vue'
+import { ref, nextTick, defineProps, watch } from 'vue-demi'
 import Prism from 'prismjs'
 
 const props = defineProps({

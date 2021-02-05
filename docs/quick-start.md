@@ -11,7 +11,7 @@ yarn add @vueuse/motion
 In your **Vue** app **entry** file:
 
 ```javascript
-import { createApp } from 'vue'
+import { createApp } from 'vue-demi'
 import { MotionPlugin } from '@vueuse/motion'
 import App from './App.vue'
 

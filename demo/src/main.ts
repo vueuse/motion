@@ -1,6 +1,6 @@
 import { MotionPlugin } from '@lib'
 import 'prism-theme-vars/base.css'
-import { createApp } from 'vue'
+import { createApp } from 'vue-demi'
 import App from './App.vue'
 import './index.css'
 

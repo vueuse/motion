@@ -23,8 +23,8 @@ import {
   ResolvedValueTarget,
   StopAnimation,
   Transition,
-} from '../types/transitions'
-import { MotionProperties } from '../types/variants'
+} from '../types'
+import { MotionProperties } from '../types'
 import { getDefaultTransition } from './defaults'
 
 // Easing map from popmotion

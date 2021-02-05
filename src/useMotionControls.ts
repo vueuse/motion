@@ -1,5 +1,5 @@
-import { ResolvedValueTarget, Transition } from './types/transitions'
-import { MotionProperties, Variant } from './types/variants'
+import { ResolvedValueTarget, Transition } from './types'
+import { MotionProperties, Variant } from './types'
 import { getDefaultTransition } from './utils/defaults'
 
 export type MotionControls = {

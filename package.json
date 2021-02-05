@@ -21,7 +21,7 @@
   "module": "dist/index.esm-bundler.js",
   "unpkg": "dist/index.global.js",
   "jsdelivr": "dist/index.global.js",
-  "types": "dist/src/index.d.ts",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "dev": "rollup -w -c rollup.config.js",
@@ -44,10 +44,8 @@
   ],
   "dependencies": {
     "@vueuse/core": "^4.0.12",
-    "@vueuse/shared": "^4.0.12",
     "popmotion": "^9.1.0",
-    "vue": "*",
-    "vue-demi": "^0.6.0"
+    "vue-demi": "latest"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.1",
@@ -74,6 +72,7 @@
     "prism-theme-vars": "^0.1.4",
     "prismjs": "^1.23.0",
     "rollup": "^2.38.4",
+    "rollup-plugin-dts": "^2.0.1",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.29.0",
     "style-value-types": "^4.0.1",

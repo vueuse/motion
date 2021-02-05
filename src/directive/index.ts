@@ -1,6 +1,6 @@
 import { Directive, ref } from 'vue-demi'
 import { motionState } from '../features/state'
-import { MotionVariants } from '../types/variants'
+import { MotionVariants } from '../types'
 import { useMotion } from '../useMotion'
 
 const directivePropsKeys = [

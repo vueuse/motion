@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { useMotion } from '../../../src'
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref } from 'vue-demi'
 
 export default defineComponent({
   setup() {

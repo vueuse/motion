@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { ref } from 'vue'
+import { ref } from 'vue-demi'
 import { useMotion } from '../src'
 
 const TestComponent = {

@@ -30,7 +30,7 @@
 <script setup lang="ts">
 import type { MotionVariants, TargetType } from '@lib'
 import { useMotion } from '@lib'
-import { ref } from 'vue'
+import { ref } from 'vue-demi'
 import Editor from './components/Editor.vue'
 
 const defaultAnimation = (delay: number): MotionVariants => {

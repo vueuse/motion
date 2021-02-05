@@ -1,6 +1,6 @@
 import { ref } from 'vue-demi'
-import { ResolvedValueTarget, Transition } from './types/transitions'
-import { MotionProperties } from './types/variants'
+import { ResolvedValueTarget, Transition } from './types'
+import { MotionProperties } from './types'
 import { getAnimation } from './utils/transition'
 
 /**

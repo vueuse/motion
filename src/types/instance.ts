@@ -1,4 +1,4 @@
-import { Ref } from 'vue'
+import { Ref } from 'vue-demi'
 import { MotionVariants, Variant } from './variants'
 
 export type TargetType = HTMLElement | SVGElement | null | undefined

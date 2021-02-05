@@ -71,7 +71,7 @@
 <script setup="props" lang="ts">
 import { useMotions } from '@lib/useMotions'
 import { useToggle } from '@vueuse/core'
-import { computed, nextTick, ref, watch } from 'vue'
+import { computed, nextTick, ref, watch } from 'vue-demi'
 import CodeBlock from '../components/CodeBlock.vue'
 import basic from '../examples/basic'
 

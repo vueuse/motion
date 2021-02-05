@@ -1,5 +1,5 @@
 import { computed, reactive } from 'vue-demi'
-import { StyleProperties } from './types/variants'
+import { StyleProperties } from './types'
 import { getValueAsType, getValueType } from './utils/style'
 
 /**

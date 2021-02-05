@@ -1,7 +1,7 @@
-import { MaybeRef, tryOnUnmounted } from '@vueuse/shared'
+import { MaybeRef, tryOnUnmounted } from '@vueuse/core'
 import { ref, watch } from 'vue-demi'
 import { reactiveTransform } from './reactiveTransform'
-import { TargetType } from './types/instance'
+import { TargetType } from './types'
 
 /**
  * A Composable giving access to a TransformProperties object, and binding the generated transform string to a target.
