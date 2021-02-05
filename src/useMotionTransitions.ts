@@ -1,7 +1,6 @@
-import { Ref, ref } from 'vue-demi'
 import { Fn } from '@vueuse/core'
-import { ResolvedValueTarget, Transition } from './types'
-import { MotionProperties } from './types'
+import { Ref, ref } from 'vue-demi'
+import { MotionProperties, ResolvedValueTarget, Transition } from './types'
 import { getAnimation } from './utils/transition'
 
 export interface MotionTransitions {

@@ -1,7 +1,6 @@
 import { MaybeRef } from '@vueuse/core'
 import { reactive, ref, watch } from 'vue-demi'
-import { MotionTarget } from './types'
-import { MotionProperties } from './types'
+import { MotionProperties, MotionTarget } from './types'
 import { useElementStyle } from './useElementStyle'
 import { useElementTransform } from './useElementTransform'
 import { isTransformProp } from './utils/transform'

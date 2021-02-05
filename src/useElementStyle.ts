@@ -1,8 +1,7 @@
 import { MaybeRef } from '@vueuse/core'
 import { ref, watch } from 'vue-demi'
 import { reactiveStyle } from './reactiveStyle'
-import { MotionTarget } from './types'
-import { StyleProperties } from './types'
+import { MotionTarget, StyleProperties } from './types'
 import { valueTypes } from './utils/style'
 
 /**

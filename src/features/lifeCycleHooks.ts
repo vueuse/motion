@@ -1,5 +1,5 @@
 import { nextTick, watch } from 'vue-demi'
-import { MotionVariants, MotionInstance } from '../types'
+import { MotionInstance, MotionVariants } from '../types'
 
 export function registerLifeCycleHooks<T extends MotionVariants>({
   target,

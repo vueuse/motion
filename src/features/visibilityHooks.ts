@@ -1,5 +1,5 @@
 import { useIntersectionObserver } from '@vueuse/core'
-import { MotionVariants, MotionInstance } from '../types'
+import { MotionInstance, MotionVariants } from '../types'
 
 export function registerVisibilityHooks<T extends MotionVariants>({
   target,

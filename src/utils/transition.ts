@@ -19,12 +19,12 @@ import {
   linear,
 } from 'popmotion'
 import {
+  MotionProperties,
   PermissiveTransitionDefinition,
   ResolvedValueTarget,
   StopAnimation,
   Transition,
 } from '../types'
-import { MotionProperties } from '../types'
 import { getDefaultTransition } from './defaults'
 
 // Easing map from popmotion
