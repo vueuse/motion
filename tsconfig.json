@@ -12,7 +12,7 @@
     "demo/**/*.tsx",
     "demo/**/*.vue"
   ],
-  "exclude": ["dist", "node_modules", "vue-demi"],
+  "exclude": ["dist", "node_modules"],
   "compilerOptions": {
     "baseUrl": ".",
     "rootDir": ".",

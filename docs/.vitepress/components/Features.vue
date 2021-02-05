@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts">
-import { useMotion } from '../../../src'
+import { useMotion } from '@vueuse/motion'
 import { defineComponent, ref } from 'vue-demi'
 
 export default defineComponent({

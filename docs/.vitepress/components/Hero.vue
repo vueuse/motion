@@ -1,7 +1,7 @@
 <template>
   <header class="home-hero">
     <h1 ref="header" id="main-title" class="title">
-      <span>vueuse</span>
+      <span>@vueuse</span>
       <span>/</span>
       <span>motion</span>
     </h1>
@@ -24,7 +24,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue-demi'
 import NavLink from 'vitepress/dist/client/theme-default/components/NavLink.vue'
-import { useMotion } from '../../../src'
+import { useMotion } from '@vueuse/motion'
 
 const header = ref<HTMLElement>()
 const description = ref<HTMLElement>()

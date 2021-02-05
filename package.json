@@ -59,6 +59,7 @@
     "@types/prismjs": "^1.16.2",
     "@vitejs/plugin-vue": "^1.1.4",
     "@vue/compiler-sfc": "^3.0.5",
+    "@vue/server-renderer": "^3.0.5",
     "@vue/test-utils": "^2.0.0-beta.13",
     "@vuedx/typecheck": "^0.6.3",
     "@vuedx/typescript-plugin-vue": "^0.6.3",

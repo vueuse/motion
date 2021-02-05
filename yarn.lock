@@ -1199,7 +1199,7 @@
     "@vueuse/shared" "4.0.12"
     vue-demi latest
 
-"@vueuse/shared@4.0.12", "@vueuse/shared@^4.0.12":
+"@vueuse/shared@4.0.12":
   version "4.0.12"
   resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-4.0.12.tgz#fe42215a0cc60afcda2dcbfbdd73a4dd780647ec"
   integrity sha512-t5Amxc3BIwi+M2mI0iy9yHKe5plYJUMbxpIBuMDR953J5s12ewRe3s8MLvQdlhAiNN8FTh9CBKU+mfdNgbWauw==
@@ -5695,7 +5695,7 @@ vscode-web-custom-data@^0.3.2:
   resolved "https://registry.yarnpkg.com/vscode-web-custom-data/-/vscode-web-custom-data-0.3.3.tgz#9e1f2388c718d6f190038a19d144834a436b876f"
   integrity sha512-orMjjj1r4efP5ocODYZm3orpANakRBsxPZPDoD5UIrFOPKDFtMJQLp6PIH1rb3AYVRD1iYXMhDQoC6tZ+DrigA==
 
-vue-demi@^0.6.0, vue-demi@latest:
+vue-demi@latest:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.6.0.tgz#e314282f704cb449119b9fd002cbbc0e39f591fe"
   integrity sha512-8GEJa0mHJpYJeGeq5fD1pJct2kfdl30PHfmL1NaJ97mgKPyKojlIRt/3inGBK4Y0ylCI6T5vOo3chwpqDOq/Hw==

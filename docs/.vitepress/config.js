@@ -4,7 +4,7 @@
  * @type {import('vitepress').UserConfig}
  */
 module.exports = {
-  title: 'vueuse/motion',
+  title: '@vueuse/motion',
   description: '🤹 A Vue Composable that put your components in motion.',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico', type: 'image/png' }],
