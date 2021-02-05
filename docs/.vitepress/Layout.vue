@@ -10,7 +10,7 @@
         <slot name="sidebar-bottom" />
       </template>
     </SideBar>
-    
+
     <div class="sidebar-mask" @click="toggleSidebar(false)" />
 
     <Content v-if="isCustomLayout" />
@@ -44,7 +44,7 @@ import {
   useRoute,
   useSiteData,
   usePageData,
-  useSiteDataByRoute
+  useSiteDataByRoute,
 } from 'vitepress'
 import type { DefaultTheme } from 'vitepress/dist/client/theme-default/config.js'
 
@@ -53,7 +53,7 @@ import NavBar from 'vitepress/dist/client/theme-default/components/NavBar.vue'
 import SideBar from 'vitepress/dist/client/theme-default/components/SideBar.vue'
 import Page from 'vitepress/dist/client/theme-default/components/Page.vue'
 
-const Home = defineAsyncComponent(() => import('vitepress/dist/client/theme-default/components/Home.vue'))
+const Home = defineAsyncComponent(() => import('./components/Home.vue'))
 
 // Generic State
 const route = useRoute()
@@ -113,8 +113,8 @@ const pageClasses = computed(() => {
     {
       'no-navbar': !showNavbar.value,
       'sidebar-open': openSideBar.value,
-      'no-sidebar': !showSidebar.value
-    }
+      'no-sidebar': !showSidebar.value,
+    },
   ]
 })
 </script>
