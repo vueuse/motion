@@ -47,7 +47,7 @@ export function useStyle(target: MaybeRef<TargetType>) {
   const stopSyncWatch = watch(
     style,
     (newValue) => {
-      if (!targetRef || !targetRef.value) {
+      if (!targetRef || !targetRef.value || !targetRef.value.style) {
         // Add the current value to the cache so it is set on target creation
         _cache.value = newValue
         return

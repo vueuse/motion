@@ -32,7 +32,7 @@ export function useTransform(target: MaybeRef<TargetType>) {
   const stopSyncWatch = watch(
     transform,
     (newValue) => {
-      if (!targetRef || !targetRef.value) {
+      if (!targetRef || !targetRef.value || !targetRef.value.style) {
         // Add the current value to the cache so it is set on target creation
         _cache.value = newValue
         return
