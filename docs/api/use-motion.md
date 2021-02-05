@@ -22,32 +22,11 @@ Target must be an element (**SVG** / **HTML**), or a reference to an element.
 
 If the target **reference** is **updated**, the **current** variant will be **applied** to the new **element**.
 
-```typescript
-const target = ref<HTMLElement>()
-
-const motionControls = useMotion(target)
-```
-
 - `variants`
 
 **Variants** must be an **object** or an object **reference**.
 
 Keys are **variants** names, values are [**variants declarations**](/variants).
-
-```typescript
-const target = ref<HTMLElement>()
-
-const variants: MotionVariants = ref({
-    initial: {
-        opacity: 0
-    },
-    enter: {
-        opacity: 1
-    }
-})
-
-const motionControls = useMotion(target, variants)
-```
 
 - `options`
 
@@ -60,17 +39,41 @@ Options is an **object**, supporting **4** parameters:
 
 You should **not** be **pushed** to use those **options**, as if you are **not declaring** the related **variants**, they will **not** be **registered** anyway.
 
+## Exposed
+
+- `target`
+
+Target is a **reference** to the **element** you passed as a **parameter**.
+
+- `variant`
+
+Variant is a **string** reference, from [**useMotionVariants**](/api/use-motion-variants).
+
+- `variants`
+
+Variants is a **reference** to the **variants** you passed as a **parameter**.
+
+- `state`
+
+State is a **computed reference** to the **current** variant **applied** to your **element**.
+
+- `...controls`
+
+Spread object from [**motion controls**](/api/use-motion-controls) exposed functions.
+
+## Example
+
 ```typescript
 const target = ref<HTMLElement>()
 
-const variants: MotionVariants = ref({
-    initial: {
-        opacity: 0
-    },
-    enter: {
-        opacity: 1
-    }
+const variants = ref<MotionVariants>({
+  initial: {
+    opacity: 0,
+  },
+  enter: {
+    opacity: 1,
+  },
 })
 
-const motionControls = useMotion(target, variants)
+const motionInstance = useMotion(target, variants)
 ```
