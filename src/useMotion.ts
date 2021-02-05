@@ -1,11 +1,10 @@
 import { MaybeRef } from '@vueuse/core'
 import { Ref, ref } from 'vue-demi'
-import { MotionInstance, TargetType } from './types'
+import { MotionInstance, MotionTarget } from './types'
 import { MotionVariants } from './types'
 import { useMotionControls } from './useMotionControls'
 import { useMotionFeatures } from './useMotionFeatures'
 import { useMotionProperties } from './useMotionProperties'
-import { useMotionTransitions } from './useMotionTransitions'
 import { useMotionVariants } from './useMotionVariants'
 
 export type UseMotionOptions = {
@@ -25,46 +24,33 @@ export type UseMotionOptions = {
  * @param options
  */
 export function useMotion<T extends MotionVariants>(
-  target: MaybeRef<TargetType>,
+  target: MaybeRef<MotionTarget>,
   variants: MaybeRef<T> = {} as MaybeRef<T>,
-  options: UseMotionOptions = {
-    syncVariants: true,
-    lifeCycleHooks: true,
-    visibilityHooks: true,
-    eventListeners: true,
-  },
+  options?: UseMotionOptions,
 ) {
   // Base references
   const variantsRef = ref(variants) as Ref<T>
   const targetRef = ref(target)
 
-  // Motion transitions instance
-  const { push, stop } = useMotionTransitions()
-
   // Reactive styling and transform
   const { motionProperties } = useMotionProperties(targetRef)
 
   // Variants manager
-  const { variant, state: currentVariant } = useMotionVariants<T>(variantsRef)
+  const { variant, state } = useMotionVariants<T>(variantsRef)
 
   // Motion controls, synchronized with styling and variants
-  const controls = useMotionControls(motionProperties, push, stop)
-
-  // Bind features
-  useMotionFeatures(
-    targetRef,
-    variant,
-    variants,
-    currentVariant,
-    controls,
-    options,
-  )
+  const controls = useMotionControls(motionProperties)
 
   const instance: MotionInstance<T> = {
+    target: targetRef,
     variant,
+    variants: variantsRef,
+    state,
     ...controls,
-    stop,
   }
+
+  // Bind features
+  useMotionFeatures(instance, options)
 
   return instance
 }

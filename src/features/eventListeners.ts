@@ -1,16 +1,13 @@
-import { MaybeRef, useEventListener } from '@vueuse/core'
-import { computed, ComputedRef, Ref, ref, watch } from 'vue-demi'
-import { TargetType, MotionVariants, Variant } from '../types'
+import { useEventListener } from '@vueuse/core'
+import { computed, ref, watch } from 'vue-demi'
+import { MotionVariants, MotionInstance } from '../types'
 
-export function registerEventListeners<T extends MotionVariants>(
-  target: MaybeRef<TargetType>,
-  variants: MaybeRef<T> = {} as MaybeRef<T>,
-  currentVariant: ComputedRef<Variant | undefined>,
-  apply: (variant: Variant) => void,
-) {
-  // Local refs
-  const targetRef = ref(target)
-  const variantsRef = ref(variants) as Ref<T>
+export function registerEventListeners<T extends MotionVariants>({
+  target,
+  state,
+  variants,
+  apply,
+}: MotionInstance<T>) {
   // State
   const hovered = ref(false)
   const tapped = ref(false)
@@ -20,47 +17,47 @@ export function registerEventListeners<T extends MotionVariants>(
   const computedProperties = computed(() => {
     const result = {}
 
-    Object.assign(result, currentVariant.value)
+    Object.assign(result, state.value)
 
-    if (hovered.value && variantsRef.value.hovered)
-      Object.assign(result, variantsRef.value.hovered)
+    if (hovered.value && variants.value.hovered)
+      Object.assign(result, variants.value.hovered)
 
-    if (tapped.value && variantsRef.value.tapped)
-      Object.assign(result, variantsRef.value.tapped)
+    if (tapped.value && variants.value.tapped)
+      Object.assign(result, variants.value.tapped)
 
     return result
   })
 
-  if (variantsRef.value.hovered) {
-    useEventListener(targetRef.value as EventTarget, 'mouseenter', () => {
+  if (variants.value.hovered) {
+    useEventListener(target.value as EventTarget, 'mouseenter', () => {
       hovered.value = true
     })
 
-    useEventListener(targetRef.value as EventTarget, 'mouseleave', () => {
+    useEventListener(target.value as EventTarget, 'mouseleave', () => {
       hovered.value = false
       tapped.value = false
     })
 
-    useEventListener(targetRef.value as EventTarget, 'mouseout', () => {
+    useEventListener(target.value as EventTarget, 'mouseout', () => {
       hovered.value = false
       tapped.value = false
     })
   }
 
-  if (variantsRef.value.tapped) {
-    useEventListener(targetRef.value as EventTarget, 'mousedown', () => {
+  if (variants.value.tapped) {
+    useEventListener(target.value as EventTarget, 'mousedown', () => {
       tapped.value = true
     })
 
-    useEventListener(targetRef.value as EventTarget, 'pointerdown', () => {
+    useEventListener(target.value as EventTarget, 'pointerdown', () => {
       tapped.value = true
     })
 
-    useEventListener(targetRef.value as EventTarget, 'pointerup', () => {
+    useEventListener(target.value as EventTarget, 'pointerup', () => {
       tapped.value = false
     })
 
-    useEventListener(targetRef.value as EventTarget, 'mouseup', () => {
+    useEventListener(target.value as EventTarget, 'mouseup', () => {
       tapped.value = false
     })
   }

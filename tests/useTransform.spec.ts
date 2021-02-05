@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { nextTick, ref } from 'vue-demi'
-import { useTransform } from '../src'
+import { useElementTransform } from '../src'
 
 const TestComponent = {
   template: '<div>Hello world</div>',
@@ -16,7 +16,7 @@ describe('useTransform', () => {
   it('accepts an element', () => {
     const element = getElementRef()
 
-    const { transform } = useTransform(element)
+    const { transform } = useElementTransform(element)
 
     expect(transform).toBeDefined()
   })
@@ -24,7 +24,7 @@ describe('useTransform', () => {
   it('mutates style properties', () => {
     const element = getElementRef()
 
-    const { transform } = useTransform(element)
+    const { transform } = useElementTransform(element)
 
     transform.scale = 1.2
 
@@ -34,7 +34,7 @@ describe('useTransform', () => {
   it('mutates element properties', async () => {
     const element = getElementRef()
 
-    const { transform } = useTransform(element)
+    const { transform } = useElementTransform(element)
 
     transform.translateY = '120px'
 

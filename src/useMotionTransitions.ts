@@ -1,27 +1,14 @@
-import { ref } from 'vue-demi'
+import { Ref, ref } from 'vue-demi'
+import { Fn } from '@vueuse/core'
 import { ResolvedValueTarget, Transition } from './types'
 import { MotionProperties } from './types'
 import { getAnimation } from './utils/transition'
 
-/**
- * A Composable holding all the ongoing transitions in a local reference.
- */
-export function useMotionTransitions() {
-  // Local transitions reference
-  const transitions = ref<(() => void)[]>([])
-
+export interface MotionTransitions {
   /**
    * Stop all the ongoing transitions for the current element.
    */
-  const stop = () => {
-    // Check if there is ongoing transitions
-    if (transitions.value && transitions.value.length > 0) {
-      // Stop each transitions
-      transitions.value.forEach((stop) => stop())
-      // Reset value
-      transitions.value = []
-    }
-  }
+  stop: Fn
 
   /**
    * Start a transition, push it to the `transitions` array.
@@ -29,6 +16,35 @@ export function useMotionTransitions() {
    * @param transition
    * @param values
    */
+  push: (
+    key: string,
+    value: ResolvedValueTarget,
+    target: MotionProperties,
+    transition: Transition,
+  ) => void
+
+  /**
+   * @internal Local transitions reference
+   */
+  transitions: Ref<Fn[]>
+}
+
+/**
+ * A Composable holding all the ongoing transitions in a local reference.
+ */
+export function useMotionTransitions(): MotionTransitions {
+  const transitions = ref<Fn[]>([])
+
+  const stop = () => {
+    // Check if there is ongoing transitions
+    if (transitions.value?.length) {
+      // Stop each transitions
+      transitions.value.forEach((stop) => stop())
+      // Reset value
+      transitions.value = []
+    }
+  }
+
   const push = (
     key: string,
     value: ResolvedValueTarget,
@@ -46,9 +62,7 @@ export function useMotionTransitions() {
     }
 
     if (transition.delay) {
-      setTimeout(() => {
-        pushAnimation()
-      }, transition.delay)
+      setTimeout(pushAnimation, transition.delay)
     } else {
       pushAnimation()
     }

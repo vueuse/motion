@@ -1,12 +1,14 @@
 import { Ref } from 'vue-demi'
+import { MotionControls } from '../useMotionControls'
 import { MotionVariants, Variant } from './variants'
 
-export type TargetType = HTMLElement | SVGElement | null | undefined
+export type MotionTarget = HTMLElement | SVGElement | null | undefined
 
-export type MotionInstance<T = MotionVariants> = {
+export interface MotionInstance<T = MotionVariants> extends MotionControls {
+  target: Ref<MotionTarget>
+  variants: Ref<T>
   variant: Ref<keyof T>
-  apply: (variant: Variant) => void
-  stop: () => void
+  state: Ref<Variant | undefined>
 }
 
 export type MotionInstanceBindings<T = MotionVariants> = {
