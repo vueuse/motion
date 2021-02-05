@@ -1,5 +1,4 @@
 import { ComputedRef, watch } from 'vue-demi'
-import { tryOnUnmounted } from '@vueuse/core'
 import { Variant } from '../types'
 import { MotionControls } from '../useMotionControls'
 
@@ -8,7 +7,7 @@ export function registerVariantsSync(
   { apply }: MotionControls,
 ) {
   // Watch for variant changes and apply the new one
-  const stopVariantWatch = watch(
+  const stop = watch(
     currentVariant,
     (newVal: Variant | undefined, oldVal: Variant | undefined) => {
       if (newVal === oldVal) return
@@ -23,8 +22,5 @@ export function registerVariantsSync(
     },
   )
 
-  // Stop watchers on unmount
-  tryOnUnmounted(() => {
-    stopVariantWatch()
-  })
+  return { stop }
 }
