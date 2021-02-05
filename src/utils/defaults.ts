@@ -51,9 +51,9 @@ const defaultTransitions = {
   scaleX: overDampedSpring,
   scaleY: overDampedSpring,
   scale: overDampedSpring,
-  opacity: linearTween,
   backgroundColor: linearTween,
   color: linearTween,
+  opacity: overDampedSpring,
   default: overDampedSpring,
 }
 
