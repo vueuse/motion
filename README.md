@@ -1,5 +1,7 @@
 # 🤹 vue-use-motion
 
+[![npm](https://img.shields.io/npm/v/@vueuse/motion.svg)](https://www.npmjs.com/package/@vueuse/motion)
+[![npm](https://img.shields.io/npm/dm/@vueuse/motion.svg)](https://npm-stat.com/charts.html?package=@vueuse/motion)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ab1db459-8420-4bc6-9fac-2bc247fa2385/deploy-status)](https://app.netlify.com/sites/vue-use-motion/deploys)
 
 A **Vue Composable** to put your **components** in **motion**.
@@ -13,7 +15,7 @@ A **Vue Composable** to put your **components** in **motion**.
 
 This repository is still **experimental**, the **API** might be subject to **changes**.
 
-Last update: **04/02/2021**
+Last update: **05/02/2021**
 
 ## Quick start
 
@@ -43,17 +45,17 @@ You can now **animate** any of your **component**, **HTML** or **SVG** elements 
 
 ```vue
 <template>
-<div
-  v-motion="'smoothestDiv'"
-  :initial="{
-    opacity: 0,
-    y: 100,
-  }"
-  :enter="{
-    opacity: 1,
-    y: 0,
-  }"
-/>
+  <div
+    v-motion="'smoothestDiv'"
+    :initial="{
+      opacity: 0,
+      y: 100,
+    }"
+    :enter="{
+      opacity: 1,
+      y: 0,
+    }"
+  />
 </template>
 
 <script setup>
