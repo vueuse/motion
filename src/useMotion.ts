@@ -27,19 +27,11 @@ export type UseMotionOptions = {
 export function useMotion<T extends MotionVariants>(
   target: MaybeRef<TargetType>,
   variants: MaybeRef<T> = {} as MaybeRef<T>,
-  options: UseMotionOptions = {
-    syncVariants: true,
-    lifeCycleHooks: true,
-    visibilityHooks: true,
-    eventListeners: true,
-  },
+  options?: UseMotionOptions,
 ) {
   // Base references
   const variantsRef = ref(variants) as Ref<T>
   const targetRef = ref(target)
-
-  // Motion transitions instance
-  const transitions = useMotionTransitions()
 
   // Reactive styling and transform
   const { motionProperties } = useMotionProperties(targetRef)
@@ -48,7 +40,7 @@ export function useMotion<T extends MotionVariants>(
   const { variant, state } = useMotionVariants<T>(variantsRef)
 
   // Motion controls, synchronized with styling and variants
-  const controls = useMotionControls(motionProperties, transitions)
+  const controls = useMotionControls(motionProperties)
 
   const instance: MotionInstance<T> = {
     target: targetRef,
