@@ -12,7 +12,7 @@ const getElementRef = () => {
   return ref<HTMLElement>(c.element as HTMLElement)
 }
 
-describe('useStyle', () => {
+describe('useElementStyle', () => {
   it('accepts an element', () => {
     const element = getElementRef()
 
