@@ -1,6 +1,6 @@
 # useElementStyle
 
-useElementStyle is the **composable** used to **sync** a reactive **object** to a **target** element **CSS styling**.
+useElementStyle is used to **sync** a reactive **object** to a **target** element **CSS styling**.
 
 It uses [**reactiveStyle**](/api/reactive-style) and bind it to a **target**.
 

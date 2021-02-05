@@ -1,6 +1,6 @@
 # useElementTransform
 
-useElementTransform is the **composable** used to **sync** a reactive **object** to a **target** element **CSS transform**.
+useElementTransform is used to **sync** a reactive **object** to a **target** element **CSS transform**.
 
 It uses [**reactiveTransform**](/api/reactive-transform) and bind it to a **target**.
 
