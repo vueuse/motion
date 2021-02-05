@@ -1,7 +1,7 @@
 import { MaybeRef } from '@vueuse/core'
 import { ref, watch } from 'vue-demi'
 import { reactiveStyle } from './reactiveStyle'
-import { TargetType } from './types'
+import { MotionTarget } from './types'
 import { StyleProperties } from './types'
 import { valueTypes } from './utils/style'
 
@@ -10,7 +10,7 @@ import { valueTypes } from './utils/style'
  *
  * @param target
  */
-export function useElementStyle(target: MaybeRef<TargetType>) {
+export function useElementStyle(target: MaybeRef<MotionTarget>) {
   // Target element ref
   const targetRef = ref(target)
 

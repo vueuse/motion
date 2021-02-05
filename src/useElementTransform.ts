@@ -1,14 +1,14 @@
 import { MaybeRef } from '@vueuse/core'
 import { ref, watch } from 'vue-demi'
 import { reactiveTransform } from './reactiveTransform'
-import { TargetType } from './types'
+import { MotionTarget } from './types'
 
 /**
  * A Composable giving access to a TransformProperties object, and binding the generated transform string to a target.
  *
  * @param target
  */
-export function useElementTransform(target: MaybeRef<TargetType>) {
+export function useElementTransform(target: MaybeRef<MotionTarget>) {
   // Target element ref
   const targetRef = ref(target)
 

@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import type { MotionVariants, TargetType } from '@vueuse/motion'
+import type { MotionVariants, MotionTarget } from '@vueuse/motion'
 import { useMotion } from '@vueuse/motion'
 import { ref } from 'vue-demi'
 import Editor from './components/Editor.vue'
@@ -51,9 +51,9 @@ const defaultAnimation = (delay: number): MotionVariants => {
   }
 }
 
-ref: title = ref<TargetType>()
-ref: github = ref<TargetType>()
-ref: credits = ref<TargetType>()
+ref: title = ref<MotionTarget>()
+ref: github = ref<MotionTarget>()
+ref: credits = ref<MotionTarget>()
 
 useMotion($title, defaultAnimation(100))
 useMotion($github, defaultAnimation(500))

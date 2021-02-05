@@ -1,11 +1,10 @@
 import { MaybeRef } from '@vueuse/core'
 import { Ref, ref } from 'vue-demi'
-import { MotionInstance, TargetType } from './types'
+import { MotionInstance, MotionTarget } from './types'
 import { MotionVariants } from './types'
 import { useMotionControls } from './useMotionControls'
 import { useMotionFeatures } from './useMotionFeatures'
 import { useMotionProperties } from './useMotionProperties'
-import { useMotionTransitions } from './useMotionTransitions'
 import { useMotionVariants } from './useMotionVariants'
 
 export type UseMotionOptions = {
@@ -25,7 +24,7 @@ export type UseMotionOptions = {
  * @param options
  */
 export function useMotion<T extends MotionVariants>(
-  target: MaybeRef<TargetType>,
+  target: MaybeRef<MotionTarget>,
   variants: MaybeRef<T> = {} as MaybeRef<T>,
   options?: UseMotionOptions,
 ) {
