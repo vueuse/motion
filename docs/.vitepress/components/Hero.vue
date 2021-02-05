@@ -9,14 +9,16 @@
       🤹 A Vue Composable that put your components in motion.
     </p>
 
-    <div ref="introduction" class="action">
-      <NavLink :item="{ link: '/introduction', text: 'Get Started' }" />
-    </div>
+    <div class="actions">
+      <div ref="introduction" class="action">
+        <NavLink :item="{ link: '/introduction', text: 'Get Started' }" />
+      </div>
 
-    <div ref="sources" class="action alt">
-      <NavLink
-        :item="{ link: 'https://github.com/vueuse/motion', text: 'Sources' }"
-      />
+      <div ref="sources" class="action alt">
+        <NavLink
+          :item="{ link: 'https://github.com/vueuse/motion', text: 'Sources' }"
+        />
+      </div>
     </div>
   </header>
 </template>
@@ -132,25 +134,44 @@ useMotion(sources, {
   font-size: 1.2rem;
   color: var(--c-text-light);
 }
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 @media (min-width: 420px) {
   .description {
     line-height: 1.2;
     font-size: 1.6rem;
   }
 }
+
+.action.alt {
+  margin-left: 1.5rem;
+}
+
 .action {
   margin-top: 1.5rem;
   display: inline-block;
 }
-.action.alt {
-  margin-left: 1.5rem;
-}
+
 @media (min-width: 420px) {
   .action {
     margin-top: 2rem;
     display: inline-block;
   }
 }
+
+@media (max-width: 420px) {
+  .action.alt {
+    margin-left: 0;
+    width: 100%;
+  }
+}
+
 .action :deep(.item) {
   display: inline-block;
   border-radius: 6px;
