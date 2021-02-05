@@ -1,19 +1,40 @@
-import { ref } from 'vue-demi'
+import { Ref, ref } from 'vue-demi'
 import { Fn } from '@vueuse/core'
 import { ResolvedValueTarget, Transition } from './types'
 import { MotionProperties } from './types'
 import { getAnimation } from './utils/transition'
 
-/**
- * A Composable holding all the ongoing transitions in a local reference.
- */
-export function useMotionTransitions() {
-  // Local transitions reference
-  const transitions = ref<Fn[]>([])
-
+export interface MotionTransitions {
   /**
    * Stop all the ongoing transitions for the current element.
    */
+  stop: Fn
+
+  /**
+   * Start a transition, push it to the `transitions` array.
+   *
+   * @param transition
+   * @param values
+   */
+  push: (
+    key: string,
+    value: ResolvedValueTarget,
+    target: MotionProperties,
+    transition: Transition,
+  ) => void
+
+  /**
+   * @internal Local transitions reference
+   */
+  transitions: Ref<Fn[]>
+}
+
+/**
+ * A Composable holding all the ongoing transitions in a local reference.
+ */
+export function useMotionTransitions(): MotionTransitions {
+  const transitions = ref<Fn[]>([])
+
   const stop = () => {
     // Check if there is ongoing transitions
     if (transitions.value?.length) {
@@ -24,12 +45,6 @@ export function useMotionTransitions() {
     }
   }
 
-  /**
-   * Start a transition, push it to the `transitions` array.
-   *
-   * @param transition
-   * @param values
-   */
   const push = (
     key: string,
     value: ResolvedValueTarget,

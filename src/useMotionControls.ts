@@ -1,10 +1,19 @@
-import { ResolvedValueTarget, Transition } from './types'
+import { Fn } from '@vueuse/core'
 import { MotionProperties, Variant } from './types'
+import { MotionTransitions } from './useMotionTransitions'
 import { getDefaultTransition } from './utils/defaults'
 
 export type MotionControls = {
+  /**
+   * Apply a variant declaration and execute the resolved transitions.
+   *
+   * @param variant
+   */
   apply: (variant: Variant) => void
-  stop: () => void
+  /**
+   * Stop all the ongoing transitions for the current element.
+   */
+  stopTransitions: Fn
 }
 
 /**
@@ -16,19 +25,8 @@ export type MotionControls = {
  */
 export function useMotionControls(
   motionProperties: MotionProperties,
-  push: (
-    key: string,
-    value: ResolvedValueTarget,
-    target: MotionProperties,
-    transition: Transition,
-  ) => void,
-  stop: () => void,
+  { push, stop }: MotionTransitions,
 ): MotionControls {
-  /**
-   * Apply a variant declaration and execute the resolved transitions.
-   *
-   * @param variant
-   */
   const apply = (variant: Variant) => {
     // Skip empty variants
     if (Object.keys(variant).length === 0) return
@@ -56,6 +54,6 @@ export function useMotionControls(
 
   return {
     apply,
-    stop,
+    stopTransitions: stop,
   }
 }

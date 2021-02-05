@@ -1,24 +1,18 @@
-import { MaybeRef } from '@vueuse/core'
-import { nextTick, Ref, ref, watch } from 'vue-demi'
-import { TargetType, MotionVariants } from '../types'
+import { nextTick, watch } from 'vue-demi'
+import { MotionVariants, MotionInstance } from '../types'
 
-export function registerLifeCycleHooks<T extends MotionVariants>(
-  target: MaybeRef<TargetType>,
-  variants: MaybeRef<T> = {} as MaybeRef<T>,
-  variant: Ref<keyof T>,
-) {
-  // Local target ref
-  const targetRef = ref(target)
-  // Variants as ref
-  const variantsRef = ref(variants) as Ref<T>
-
+export function registerLifeCycleHooks<T extends MotionVariants>({
+  target,
+  variants,
+  variant,
+}: MotionInstance<T>) {
   const stop = watch(
-    targetRef,
+    target,
     () => {
       // Lifecycle hooks bindings
-      if (variantsRef.value?.enter) {
+      if (variants.value?.enter) {
         // Set initial before the element is mounted
-        if (variantsRef.value.initial) variant.value = 'initial'
+        if (variants.value.initial) variant.value = 'initial'
 
         // Set enter animation, once the element is mounted
         nextTick(() => (variant.value = 'enter'))

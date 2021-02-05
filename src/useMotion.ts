@@ -39,32 +39,27 @@ export function useMotion<T extends MotionVariants>(
   const targetRef = ref(target)
 
   // Motion transitions instance
-  const { push, stop } = useMotionTransitions()
+  const transitions = useMotionTransitions()
 
   // Reactive styling and transform
   const { motionProperties } = useMotionProperties(targetRef)
 
   // Variants manager
-  const { variant, state: currentVariant } = useMotionVariants<T>(variantsRef)
+  const { variant, state } = useMotionVariants<T>(variantsRef)
 
   // Motion controls, synchronized with styling and variants
-  const controls = useMotionControls(motionProperties, push, stop)
-
-  // Bind features
-  useMotionFeatures(
-    targetRef,
-    variant,
-    variants,
-    currentVariant,
-    controls,
-    options,
-  )
+  const controls = useMotionControls(motionProperties, transitions)
 
   const instance: MotionInstance<T> = {
+    target: targetRef,
     variant,
+    variants: variantsRef,
+    state,
     ...controls,
-    stop,
   }
+
+  // Bind features
+  useMotionFeatures(instance, options)
 
   return instance
 }

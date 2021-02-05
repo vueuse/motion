@@ -1,21 +1,15 @@
-import { ComputedRef, watch } from 'vue-demi'
-import { Variant } from '../types'
-import { MotionControls } from '../useMotionControls'
+import { watch } from 'vue-demi'
+import { MotionInstance, MotionVariants } from '../types'
 
-export function registerVariantsSync(
-  currentVariant: ComputedRef<Variant | undefined>,
-  { apply }: MotionControls,
-) {
+export function registerVariantsSync<T extends MotionVariants>({
+  state,
+  apply,
+}: MotionInstance<T>) {
   // Watch for variant changes and apply the new one
   const stop = watch(
-    currentVariant,
-    (newVal: Variant | undefined, oldVal: Variant | undefined) => {
-      if (newVal === oldVal) return
-
-      // Current variant is undefined, just stop the current motions
-      if (!newVal) return
-
-      apply(newVal)
+    state,
+    (newVal) => {
+      if (newVal) apply(newVal)
     },
     {
       immediate: true,
