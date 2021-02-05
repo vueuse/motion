@@ -36,12 +36,9 @@ export function useMotionFeatures<T extends MotionVariants>(
   const targetRef = ref(target)
   const variantsRef = ref(variants) as Ref<T>
 
-  // Local helper to update the variant
-  const set = (name: keyof T) => (variant.value = name)
-
   // Lifecycle hooks bindings
   if (options.lifeCycleHooks) {
-    registerLifeCycleHooks(targetRef, variantsRef, set)
+    registerLifeCycleHooks(targetRef, variantsRef, variant)
   }
 
   if (options.syncVariants) {
@@ -50,7 +47,7 @@ export function useMotionFeatures<T extends MotionVariants>(
 
   // Visibility hooks
   if (options.visibilityHooks) {
-    registerVisibilityHooks(targetRef, variantsRef, set)
+    registerVisibilityHooks(targetRef, variantsRef, variant)
   }
 
   // Event listeners

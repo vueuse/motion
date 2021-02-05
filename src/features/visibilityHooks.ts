@@ -1,11 +1,11 @@
 import { MaybeRef, useIntersectionObserver } from '@vueuse/core'
-import { ref } from 'vue-demi'
+import { Ref, ref } from 'vue-demi'
 import { TargetType, MotionVariants } from '../types'
 
 export function registerVisibilityHooks<T extends MotionVariants>(
   target: MaybeRef<TargetType>,
   variants: MaybeRef<T> = {} as MaybeRef<T>,
-  set: (name: keyof T) => void,
+  variant: Ref<keyof T>,
 ) {
   // Local target ref
   const targetRef = ref(target)
@@ -18,9 +18,9 @@ export function registerVisibilityHooks<T extends MotionVariants>(
     ([{ isIntersecting }]) => {
       if (variantsRef.value?.visible) {
         if (isIntersecting) {
-          set('visible')
+          variant.value = 'visible'
         } else {
-          set('initial')
+          variant.value = 'initial'
         }
       }
     },
