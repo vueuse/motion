@@ -69,10 +69,10 @@
 </template>
 
 <script setup="props" lang="ts">
-import { useMotions } from '@lib/useMotions'
+import { useMotions } from '@vueuse/motion'
 import { useToggle } from '@vueuse/core'
 import { computed, nextTick, ref, watch } from 'vue-demi'
-import CodeBlock from '../components/CodeBlock.vue'
+import CodeBlock from './CodeBlock.vue'
 import basic from '../examples/basic'
 
 const [visible, toggleVisible] = useToggle(true)

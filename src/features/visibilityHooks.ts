@@ -1,7 +1,6 @@
 import { MaybeRef, tryOnUnmounted, useIntersectionObserver } from '@vueuse/core'
 import { ref, watch } from 'vue-demi'
-import { TargetType } from '../types'
-import { MotionVariants } from '../types'
+import { TargetType, MotionVariants } from '../types'
 
 export function registerVisibilityHooks<T extends MotionVariants>(
   target: MaybeRef<TargetType>,

@@ -47,8 +47,8 @@
       }
     ],
     "paths": {
-      "@lib": ["./src"],
-      "@lib/*": ["./src/*"]
+      "@vueuse/motion": ["./src/index.ts"],
+      "@vueuse/motion/*": ["./src/*"]
     }
   }
 }

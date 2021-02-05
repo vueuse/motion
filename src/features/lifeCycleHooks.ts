@@ -1,7 +1,6 @@
-import { TargetType } from '@lib/types/instance'
 import { MaybeRef, tryOnUnmounted } from '@vueuse/core'
 import { nextTick, Ref, ref, watch } from 'vue-demi'
-import { MotionVariants } from '../types'
+import { TargetType, MotionVariants } from '../types'
 
 export function registerLifeCycleHooks<T extends MotionVariants>(
   target: MaybeRef<TargetType>,

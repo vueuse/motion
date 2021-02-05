@@ -28,8 +28,8 @@
 </template>
 
 <script setup lang="ts">
-import type { MotionVariants, TargetType } from '@lib'
-import { useMotion } from '@lib'
+import type { MotionVariants, TargetType } from '@vueuse/motion'
+import { useMotion } from '@vueuse/motion'
 import { ref } from 'vue-demi'
 import Editor from './components/Editor.vue'
 
