@@ -1,4 +1,4 @@
-import { MaybeRef, tryOnUnmounted } from '@vueuse/core'
+import { MaybeRef } from '@vueuse/core'
 import { ref, watch } from 'vue-demi'
 import { reactiveStyle } from './reactiveStyle'
 import { TargetType } from './types'
@@ -15,31 +15,26 @@ export function useElementStyle(target: MaybeRef<TargetType>) {
   const targetRef = ref(target)
 
   // Transform cache available before the element is mounted
-  const _cache = ref<StyleProperties>()
+  let _cache: StyleProperties | undefined
 
   // Create a reactive style object
   const { state, style } = reactiveStyle()
 
   // Sync existing style from supplied element
-  const stopInitWatch = watch(targetRef, (newVal) => {
-    if (!newVal) return
+  const stopInitWatch = watch(targetRef, (el) => {
+    if (!el) return
 
     // Loop on style keys
     for (const key of Object.keys(valueTypes)) {
-      if (
-        newVal.style[key] === undefined ||
-        newVal.style[key] === null ||
-        newVal.style[key] === ''
-      )
-        continue
+      if (el.style[key] == null || el.style[key] === '') continue
 
       // Append a defined key to the local StyleProperties state object
-      state[key] = newVal.style[key]
+      state[key] = el.style[key]
     }
 
-    if (_cache && _cache.value) {
+    if (_cache) {
       // If cache is present, init the target with the current cached value
-      Object.assign(newVal.style, _cache.value)
+      Object.assign(el.style, _cache)
     }
   })
 
@@ -47,9 +42,9 @@ export function useElementStyle(target: MaybeRef<TargetType>) {
   const stopSyncWatch = watch(
     style,
     (newValue) => {
-      if (!targetRef || !targetRef.value || !targetRef.value.style) {
+      if (!targetRef.value?.style) {
         // Add the current value to the cache so it is set on target creation
-        _cache.value = newValue
+        _cache = newValue
         return
       }
 
@@ -62,12 +57,13 @@ export function useElementStyle(target: MaybeRef<TargetType>) {
   )
 
   // Stop watchers on unmount
-  tryOnUnmounted(() => {
+  const stop = () => {
     stopInitWatch()
     stopSyncWatch()
-  })
+  }
 
   return {
     style: state,
+    stop,
   }
 }
