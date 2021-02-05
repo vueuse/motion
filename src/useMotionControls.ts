@@ -1,6 +1,6 @@
 import { Fn } from '@vueuse/core'
 import { MotionProperties, Variant } from './types'
-import { MotionTransitions } from './useMotionTransitions'
+import { MotionTransitions, useMotionTransitions } from './useMotionTransitions'
 import { getDefaultTransition } from './utils/defaults'
 
 export type MotionControls = {
@@ -25,7 +25,7 @@ export type MotionControls = {
  */
 export function useMotionControls(
   motionProperties: MotionProperties,
-  { push, stop }: MotionTransitions,
+  { push, stop }: MotionTransitions = useMotionTransitions(),
 ): MotionControls {
   const apply = (variant: Variant) => {
     // Skip empty variants
