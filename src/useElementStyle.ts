@@ -10,7 +10,7 @@ import { valueTypes } from './utils/style'
  *
  * @param target
  */
-export function useStyle(target: MaybeRef<TargetType>) {
+export function useElementStyle(target: MaybeRef<TargetType>) {
   // Target element ref
   const targetRef = ref(target)
 

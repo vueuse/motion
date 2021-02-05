@@ -8,7 +8,7 @@ import { TargetType } from './types'
  *
  * @param target
  */
-export function useTransform(target: MaybeRef<TargetType>) {
+export function useElementTransform(target: MaybeRef<TargetType>) {
   // Target element ref
   const targetRef = ref(target)
 

@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { nextTick, ref } from 'vue-demi'
-import { useStyle } from '../src'
+import { useElementStyle } from '../src'
 
 const TestComponent = {
   template: '<div>Hello world</div>',
@@ -16,7 +16,7 @@ describe('useStyle', () => {
   it('accepts an element', () => {
     const element = getElementRef()
 
-    const { style } = useStyle(element)
+    const { style } = useElementStyle(element)
 
     expect(style).toBeDefined()
   })
@@ -24,7 +24,7 @@ describe('useStyle', () => {
   it('mutates style properties', () => {
     const element = getElementRef()
 
-    const { style } = useStyle(element)
+    const { style } = useElementStyle(element)
 
     style.backgroundColor = 'blue'
 
@@ -34,7 +34,7 @@ describe('useStyle', () => {
   it('mutates element properties', async () => {
     const element = getElementRef()
 
-    const { style } = useStyle(element)
+    const { style } = useElementStyle(element)
 
     style.backgroundColor = 'blue'
 
