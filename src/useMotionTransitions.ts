@@ -1,4 +1,5 @@
 import { ref } from 'vue-demi'
+import { Fn } from '@vueuse/core'
 import { ResolvedValueTarget, Transition } from './types'
 import { MotionProperties } from './types'
 import { getAnimation } from './utils/transition'
@@ -8,14 +9,14 @@ import { getAnimation } from './utils/transition'
  */
 export function useMotionTransitions() {
   // Local transitions reference
-  const transitions = ref<(() => void)[]>([])
+  const transitions = ref<Fn[]>([])
 
   /**
    * Stop all the ongoing transitions for the current element.
    */
   const stop = () => {
     // Check if there is ongoing transitions
-    if (transitions.value && transitions.value.length > 0) {
+    if (transitions.value?.length) {
       // Stop each transitions
       transitions.value.forEach((stop) => stop())
       // Reset value
@@ -46,9 +47,7 @@ export function useMotionTransitions() {
     }
 
     if (transition.delay) {
-      setTimeout(() => {
-        pushAnimation()
-      }, transition.delay)
+      setTimeout(pushAnimation, transition.delay)
     } else {
       pushAnimation()
     }
