@@ -1,7 +1,7 @@
 {
   "name": "@vueuse/motion",
   "version": "1.0.0-beta.2",
-  "description": "🤹 A Vue Composable that puts your components in motion.",
+  "description": "🤹 A Vue Composable that puts your components in motion",
   "repository": "https://github.com/vueuse/motion",
   "bugs": {
     "url": "https://github.com/vueuse/motion/issues"
