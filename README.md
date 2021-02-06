@@ -15,9 +15,9 @@ A **Vue Composable** to put your **components** in **motion**.
 
 This repository is still **experimental**, the **API** might be subject to **changes**.
 
-Last update: **05/02/2021**
+Last update: **06/02/2021**
 
-## Quick start
+## Quick Start
 
 Let's **get started** quick by **installing** the **package** and adding the **plugin**.
 
