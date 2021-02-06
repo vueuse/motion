@@ -10,7 +10,10 @@
               :ref="`feature_${index}`"
               class="feature"
             >
-              <h2 class="title" v-if="feature.title">{{ feature.title }}</h2>
+              <h2 class="title" v-if="feature.title">
+                <span role="img">{{ feature.icon }}</span>
+                {{ feature.title }}
+              </h2>
               <p
                 class="details"
                 v-if="feature.details"
@@ -32,19 +35,22 @@ export default defineComponent({
   setup() {
     const features = [
       {
+        icon: '🕹',
         title: 'Declarative animations',
         details:
-          'Write <b>animations</b> right from your <b>template</b>, control it from your <b>script</b>.',
+          'Write <b>animations</b> right from your <b>template</b> or <b>config</b> control them from your <b>script</b>.',
       },
       {
-        title: 'Fast',
+        icon: '🏎',
+        title: 'Fast and lightweight',
         details:
-          'Powered by <a href="http://popmotion.io"><b>Popmotion</b></a>, the same engine behind the famous <b>Framer Motion</b>.',
+          '<b>Animations</b> powered by <a href="http://popmotion.io"><b>Popmotion</b></a>. <b>Bundle</b> size <b><10kb</b> gzipped.',
       },
       {
-        title: 'Compatible',
+        icon: '💚',
+        title: 'Plug and play',
         details:
-          'Written with <b>Composition API</b>, this package is compatible with <b>Vue 2</b>, <b>3</b> and <b>Nuxt</b> 💚',
+          'Compatible with <b>Vue 2</b>, <b>3</b> and <b>Nuxt</b>. Start with <b>defaults</b>, write <b>yours</b> with <b>ease</b>.',
       },
     ]
 
