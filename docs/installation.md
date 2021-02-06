@@ -28,6 +28,35 @@ app.use(MotionPlugin)
 app.mount('#app')
 ```
 
+### Custom Directives
+
+You can add **custom** directives that will be **prefixed** by `v-motion` right from the **plugin** config.
+
+```javascript
+import { MotionPlugin } from '@vueuse/motion'
+
+const app = createApp(App)
+
+app.use(MotionPlugin, {
+  'pop-in': {
+    initial: {
+      scale: 0,
+      opacity: 0,
+    },
+    visible: {
+      scale: 1,
+      opacity: 1,
+    },
+  },
+})
+
+app.mount('#app')
+```
+
+With the code **above**, you will have **access** to `v-motion-pop-in` **globally** on any **element** or **component** of the **app**.
+
+Take a look at the [**variant definition**](/variants) page if you want to learn more about it.
+
 ### Component Installation
 
 If you want to import the **directive code** only from **components** that uses it, **import** the **directive** and install it at **component level**.
