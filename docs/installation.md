@@ -37,7 +37,7 @@ import { directive as motion } from '@vueuse/motion'
 
 export default {
   directives: {
-    motion,
+    motion: motion(),
   },
 }
 ```
