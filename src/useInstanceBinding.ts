@@ -1,9 +1,6 @@
 import { motionState } from './features/state'
-import { useMotion } from './useMotion'
+import { MotionInstance } from './types'
 
-export function useInstanceBinding(
-  key: string,
-  ref: ReturnType<typeof useMotion>,
-) {
+export function useInstanceBinding(key: string, ref: MotionInstance) {
   motionState[key] = ref
 }
