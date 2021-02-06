@@ -6,7 +6,8 @@
       <span>motion</span>
     </h1>
     <p ref="description" class="description">
-      🤹 A Vue Composable that put your components in motion.
+      🤹 A <b>Vue Composable</b> that put your <b>components</b> in
+      <b>motion</b>
     </p>
 
     <div class="actions">
@@ -128,8 +129,7 @@ useMotion(sources, {
   }
 }
 .description {
-  margin: 0;
-  margin-top: 0.25rem;
+  margin-top: 1.5rem;
   line-height: 1.3;
   font-size: 1.2rem;
   color: var(--c-text-light);
