@@ -13,11 +13,13 @@ const directivePropsKeys = [
   'focused',
 ]
 
-export const directive: Directive<HTMLElement | SVGElement> = {
+export const directive = (
+  variants?: MotionVariants,
+): Directive<HTMLElement | SVGElement> => ({
   created(el, binding, node) {
-    const variantsRef = ref<MotionVariants>({})
+    const variantsRef = ref<MotionVariants>(variants || {})
 
-    if (node && node.props) {
+    if (node && node.props && !variants) {
       if (node.props['variants']) {
         // If variant are passed through a single object reference, use it.
         variantsRef.value = node.props['variants']
@@ -41,6 +43,6 @@ export const directive: Directive<HTMLElement | SVGElement> = {
     // Set the global state reference if the name is set through v-motion="`value`"
     if (binding.value) motionState[binding.value] = motionRef
   },
-}
+})
 
 export default directive
