@@ -1,5 +1,5 @@
-import DefaultTheme from 'vitepress/dist/client/theme-default'
 import { MotionPlugin } from '@vueuse/motion'
+import DefaultTheme from 'vitepress/dist/client/theme-default'
 import Features from '../components/Features.vue'
 import Hero from '../components/Hero.vue'
 import Layout from '../Layout.vue'
