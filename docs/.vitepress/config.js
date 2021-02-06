@@ -5,7 +5,7 @@
  */
 module.exports = {
   title: '@vueuse/motion',
-  description: '🤹 A Vue Composable that put your components in motion.',
+  description: '🤹 Vue Composables putting your components in motion',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico', type: 'image/png' }],
     ['meta', { name: 'author', content: 'Anthony Fu' }],
@@ -15,7 +15,7 @@ module.exports = {
       'meta',
       {
         property: 'og:description',
-        content: '🤹 A Vue Composable that put your components in motion.',
+        content: '🤹 Vue Composables putting your components in motion',
       },
     ],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
