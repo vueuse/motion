@@ -4,7 +4,7 @@
 [![npm](https://img.shields.io/npm/dm/@vueuse/motion.svg)](https://npm-stat.com/charts.html?package=@vueuse/motion)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ab1db459-8420-4bc6-9fac-2bc247fa2385/deploy-status)](https://app.netlify.com/sites/vue-use-motion/deploys)
 
-A **Vue Composable** to put your **components** in **motion**.
+**Vue Composables** putting your **components** in **motion**
 
 - 🧩 Written in **TypeScript**.
 - 🏎 **Smooth animations** based on [**Popmotion**](https://popmotion.io/).

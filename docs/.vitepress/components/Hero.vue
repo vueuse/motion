@@ -6,7 +6,7 @@
       <span>motion</span>
     </h1>
     <p ref="description" class="description">
-      🤹 A <b>Vue Composable</b> that put your <b>components</b> in
+      🤹 <b>Vue Composables</b> putting your <b>components</b> in
       <b>motion</b>
     </p>
 
