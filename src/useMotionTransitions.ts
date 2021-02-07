@@ -12,7 +12,7 @@ export interface MotionTransitions {
   /**
    * Stop ongoing transitions for the current element.
    */
-  stop: (key?: keyof MotionProperties[] | keyof MotionProperties) => void
+  stop: (keys?: string | string[]) => void
 
   /**
    * Start a transition, push it to the `transitions` array.
@@ -39,19 +39,19 @@ export interface MotionTransitions {
 export function useMotionTransitions(): MotionTransitions {
   const transitions = ref<TransitionMap>({})
 
-  const stop = (key?: keyof MotionProperties[] | keyof MotionProperties) => {
+  const stop = (keys?: string | string[]) => {
     const { value } = transitions
 
     // Check if keys argument is defined
-    if (key) {
-      if (isArray(key)) {
+    if (keys) {
+      if (isArray(keys)) {
         // If keys are an array, loop on specified keys and stop them
-        key.forEach((key) => {
+        keys.forEach((key) => {
           if (value[key]) value[key]()
         })
       } else {
         // If keys are a string, stop the specified one
-        if (value[key]) value[key]()
+        if (value[keys]) value[keys]()
       }
     } else {
       // No keys specified, stop all animations
