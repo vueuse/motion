@@ -31,9 +31,6 @@ export function useMotionControls(
     // Skip empty variants
     if (Object.keys(variant).length === 0) return
 
-    // Stop current transitions
-    stop()
-
     // Get transition data
     const { transition } = variant
 
