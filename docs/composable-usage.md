@@ -8,7 +8,7 @@ The **composable usage** of this **package** allows you to create **animations**
 
 useMotion is the **core composable** of this **package**.
 
-It is a method that takes **three parameters**.
+It is a function that takes **three parameters**.
 
 The **first** parameter is the `target`.
 

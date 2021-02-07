@@ -46,7 +46,7 @@ const customEvent = () => {
 
 ## Apply
 
-Apply is a **method** that lets you **animate** to a **variant** definition, **without changing** the current **variant**.
+Apply is a **function** that lets you **animate** to a **variant** definition, **without changing** the current **variant**.
 
 This is useful when used with **event listeners**, or any **temporary** modification to the **motion** properties of the **element**.
 
@@ -83,7 +83,13 @@ const customEvent = () => {
 
 ## Stop
 
-Stop is a **method** that lets you **stop** all the **ongoing** animations for a specific **element**.
+Stop is a **function** that lets you **stop** ongoing **animations** for a specific **element**.
+
+Calling it **without** argument will be stopping **all** the **animations**.
+
+Calling it with an **array** of [**motion properties**](/motion-properties) keys will stop **every** specified **key**.
+
+Calling it with a **single** motion property key will stop the specified **key**.
 
 ```vue
 <script setup>
