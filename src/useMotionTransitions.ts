@@ -2,12 +2,17 @@ import { Fn } from '@vueuse/core'
 import { Ref, ref } from 'vue-demi'
 import { MotionProperties, ResolvedValueTarget, Transition } from './types'
 import { getAnimation } from './utils/transition'
+const { isArray } = Array
+
+type TransitionMap = {
+  [key in keyof MotionProperties]: Fn
+}
 
 export interface MotionTransitions {
   /**
-   * Stop all the ongoing transitions for the current element.
+   * Stop ongoing transitions for the current element.
    */
-  stop: Fn
+  stop: (key?: keyof MotionProperties[] | keyof MotionProperties) => void
 
   /**
    * Start a transition, push it to the `transitions` array.
@@ -25,22 +30,32 @@ export interface MotionTransitions {
   /**
    * @internal Local transitions reference
    */
-  transitions: Ref<Fn[]>
+  transitions: Ref<TransitionMap>
 }
 
 /**
  * A Composable holding all the ongoing transitions in a local reference.
  */
 export function useMotionTransitions(): MotionTransitions {
-  const transitions = ref<Fn[]>([])
+  const transitions = ref<TransitionMap>({})
 
-  const stop = () => {
-    // Check if there is ongoing transitions
-    if (transitions.value?.length) {
-      // Stop each transitions
-      transitions.value.forEach((stop) => stop())
-      // Reset value
-      transitions.value = []
+  const stop = (key?: keyof MotionProperties[] | keyof MotionProperties) => {
+    const { value } = transitions
+
+    // Check if keys argument is defined
+    if (key) {
+      if (isArray(key)) {
+        // If keys are an array, loop on specified keys and stop them
+        key.forEach((key) => {
+          if (value[key]) value[key]()
+        })
+      } else {
+        // If keys are a string, stop the specified one
+        if (value[key]) value[key]()
+      }
+    } else {
+      // No keys specified, stop all animations
+      Object.values<Fn>(value).forEach((stop) => stop())
     }
   }
 
@@ -50,16 +65,28 @@ export function useMotionTransitions(): MotionTransitions {
     target: MotionProperties,
     transition: Transition,
   ) => {
+    // Stop the current animation if it exists
+    if (transitions.value[key]) transitions.value[key]()
+
+    // Get the `from` key from target
     const from = target[key]
 
+    // Create animation
     const animation = getAnimation(key, value, target, transition, from)
 
+    // Animation push closure
     const pushAnimation = () => {
       const { stop } = animation()
 
-      transitions.value.push(stop)
+      // Create self-deleting stop function
+      transitions.value[key] = () => {
+        stop()
+
+        delete transitions.value[key]
+      }
     }
 
+    // Apply delay or push transition right away
     if (transition.delay) {
       setTimeout(pushAnimation, transition.delay)
     } else {
