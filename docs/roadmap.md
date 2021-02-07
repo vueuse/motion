@@ -6,7 +6,7 @@ As I think it is still more than **usable** in its current **state**, I'm **rele
 
 The **roadmap** includes:
 
-- **Finishing to document the whole API**
+- ✔ **Finishing to document the whole API**
 - **Finishing to write the test suite for each composable**
 - **Per property transition definition**
 - **Better orchestration features**
