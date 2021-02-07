@@ -10,11 +10,15 @@ It exposes `push` and `stop` which are both **functions**.
 
 Push function **run** and **add** a transition to the current useMotionTransitions **instance**.
 
-- `stop()`
+- `stop(keys | key | undefined)`
 
-Stop function **reset** the current transition **instance** by looping on all current animations and **stopping** them all.
+Stop is a **function** that lets you **stop** ongoing **animations** for a specific **element**.
 
-Once each **animation** has been **stopped**, it resets the current animations array.
+Calling it **without** argument will be stopping **all** the **animations**.
+
+Calling it with an **array** of [**motion properties**](/motion-properties) keys will stop **every** specified **key**.
+
+Calling it with a **single** motion property key will stop the specified **key**.
 
 ## Example
 
