@@ -6,11 +6,11 @@
 
 **Vue Composables** putting your **components** in **motion**
 
-[🧩] Written in **TypeScript**.
-[🏎] **Smooth animations** based on [**Popmotion**](https://popmotion.io/).
-[🎮] **Declarative** API.
-[🤟] Vue **2** & **3** support using [**vue-demi**](https://github.com/antfu/vue-demi).
-[🏋️‍♀️] Lightweight with **<15kb** bundle size
+- 🧩 Written in **TypeScript**.
+- 🏎 **Smooth animations** based on [**Popmotion**](https://popmotion.io/).
+- 🎮 **Declarative** API.
+- 🤟 Vue **2** & **3** support using [**vue-demi**](https://github.com/antfu/vue-demi).
+- 🏋️‍♀️ Lightweight with **<15kb** bundle size
 
 [🌍 **Documentation**](https://vue-use-motion.netlify.app)
 
