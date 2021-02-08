@@ -11,7 +11,7 @@ yarn add @vueuse/motion
 In your **Vue** app **entry** file:
 
 ```javascript
-import { createApp } from 'vue-demi'
+import { createApp } from 'vue'
 import { MotionPlugin } from '@vueuse/motion'
 import App from './App.vue'
 
@@ -26,17 +26,17 @@ You can now **animate** any of your **component**, **HTML** or **SVG** elements 
 
 ```vue
 <template>
-<div
-  v-motion="'smoothestDiv'"
-  :initial="{
-    opacity: 0,
-    y: 100,
-  }"
-  :enter="{
-    opacity: 1,
-    y: 0,
-  }"
-/>
+  <div
+    v-motion="'smoothestDiv'"
+    :initial="{
+      opacity: 0,
+      y: 100,
+    }"
+    :enter="{
+      opacity: 1,
+      y: 0,
+    }"
+  />
 </template>
 
 <script setup>
