@@ -158,6 +158,19 @@ export function isTransitionDefined({
 }
 
 /**
+ * Get the transition definition for the current value.
+ *
+ * First search for transition nested definition (key or default),
+ * then fallback on the main transition definition itself.
+ *
+ * @param transition
+ * @param key
+ */
+export function getValueTransition(transition: Transition, key: string) {
+  return transition[key] || transition['default'] || transition
+}
+
+/**
  * Get the animation function populated with variant values.
  */
 export function getAnimation(
@@ -167,17 +180,25 @@ export function getAnimation(
   transition: Transition,
   origin?: ResolvedValueTarget,
 ) {
+  // Get key transition or fallback values
+  const valueTransition = getValueTransition(transition, key)
+
+  /**
+   * Start the animation.
+   */
   function start(): StopAnimation {
     const options = {
       from: origin,
       to: value,
       onUpdate: (v: number) => {
         target[key as string] = v
+
+        if (valueTransition.onUpdate) valueTransition.onUpdate(v)
       },
     }
 
     const animationOptions = getPopmotionAnimationOptions(
-      transition,
+      valueTransition,
       options,
       key,
     )
@@ -185,10 +206,14 @@ export function getAnimation(
     return animate(animationOptions)
   }
 
+  /**
+   * Set value without transition.
+   */
   function set(): StopAnimation {
     target[key] = value
     return { stop: () => {} }
   }
 
+  // Return `start` or `set` depending on `origin`
   return origin !== undefined ? start : set
 }
