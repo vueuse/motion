@@ -56,8 +56,8 @@ ref: github = ref<MotionTarget>()
 ref: credits = ref<MotionTarget>()
 
 useMotion($title, defaultAnimation(100))
-useMotion($github, defaultAnimation(500))
-useMotion($credits, defaultAnimation(600))
+useMotion($github, defaultAnimation(200))
+useMotion($credits, defaultAnimation(300))
 </script>
 
 <style lang="postcss" scoped>
