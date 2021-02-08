@@ -74,24 +74,14 @@ export function useMotionTransitions(): MotionTransitions {
     // Create animation
     const animation = getAnimation(key, value, target, transition, from)
 
-    // Animation push closure
-    const pushAnimation = () => {
-      const { stop } = animation()
+    const { stop } = animation()
 
-      // Create self-deleting stop function
-      transitions.value[key] = () => {
-        stop()
+    // Create self-deleting stop function
+    transitions.value[key] = () => {
+      stop()
 
-        // Delete key from local transitions
-        delete transitions.value[key]
-      }
-    }
-
-    // Apply delay or push transition right away
-    if (transition.delay) {
-      setTimeout(pushAnimation, transition.delay)
-    } else {
-      pushAnimation()
+      // Delete key from local transitions
+      delete transitions.value[key]
     }
   }
 
