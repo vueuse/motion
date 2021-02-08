@@ -44,7 +44,7 @@ export default defineComponent({
         icon: '🏎',
         title: 'Fast and lightweight',
         details:
-          '<b>Animations</b> powered by <a href="http://popmotion.io"><b>Popmotion</b></a>. <b>Bundle</b> size <b><10kb</b> gzipped.',
+          '<b>Animations</b> powered by <a href="http://popmotion.io"><b>Popmotion</b></a>. <b>Bundle</b> size <b><15kb</b> gzipped.',
       },
       {
         icon: '💚',
