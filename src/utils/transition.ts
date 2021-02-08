@@ -90,19 +90,23 @@ export function hydrateKeyframes(options: PermissiveTransitionDefinition) {
 export function convertTransitionToAnimationOptions<T>({
   ease,
   times,
+  delay,
   ...transition
 }: PermissiveTransitionDefinition): AnimationOptions<T> {
   const options: AnimationOptions<T> = { ...transition }
 
   if (times) options['offset'] = times
 
-  /**
-   * Map easing names to Popmotion's easing functions
-   */
+  // Map easing names to Popmotion's easing functions
   if (ease) {
     options['ease'] = isEasingArray(ease)
       ? ease.map(easingDefinitionToFunction)
       : easingDefinitionToFunction(ease)
+  }
+
+  // Map delay to elapsed from Popmotion
+  if (delay) {
+    options['elapsed'] = -delay
   }
 
   return options
@@ -110,6 +114,7 @@ export function convertTransitionToAnimationOptions<T>({
 
 /**
  * Get PopMotion animation options from Transition definition
+ *
  * @param transition
  * @param options
  * @param key
@@ -125,9 +130,7 @@ export function getPopmotionAnimationOptions(
 
   hydrateKeyframes(options)
 
-  /**
-   * Get a default transition if none is determined to be defined.
-   */
+  // Get a default transition if none is determined to be defined.
   if (!isTransitionDefined(transition)) {
     transition = {
       ...transition,
