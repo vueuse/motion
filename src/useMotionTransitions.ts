@@ -82,6 +82,7 @@ export function useMotionTransitions(): MotionTransitions {
       transitions.value[key] = () => {
         stop()
 
+        // Delete key from local transitions
         delete transitions.value[key]
       }
     }
