@@ -6,9 +6,9 @@ Install `@vueuse/motion` using your **package manager** of choice.
 yarn add @vueuse/motion
 ```
 
-Please note that if you are using **Vue 2** or **Nuxt**, you need to install the [Composition API](https://v3.vuejs.org/guide/composition-api-introduction.html).
+Please note that if you are using **Vue 2** or **Nuxt**, you need to install the [**Composition API**](https://v3.vuejs.org/guide/composition-api-introduction.html).
 
-The required packages can be found [here for Vue](https://github.com/vuejs/composition-api), and [here for Nuxt](https://composition-api.nuxtjs.org/).
+The **required** packages can be found [**here for Vue 2**](https://github.com/vuejs/composition-api), and [**here for Nuxt**](https://composition-api.nuxtjs.org/).
 
 ## Plugin Installation
 
