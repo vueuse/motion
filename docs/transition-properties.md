@@ -114,3 +114,35 @@ Supported easing names:
 - **circIn**, **circOut**, **circInOut**
 - **backIn**, **backOut**, **backInOut**
 - **anticipate**
+
+## Per-key transition definition
+
+Transition properties supports **per-key** transition **definition**.
+
+It allows you to create **complex animations** without using the `apply` **function**.
+
+To do so, you have to define **key-specific** transition **inside** your transition **definition**.
+
+```vue
+<div
+  v-motion
+  :initial="{
+    y: 100,
+    opacity: 0,
+  }"
+  :enter="{
+    y: 0,
+    opacity: 1,
+    transition: {
+      y: {
+        delay: 1600,
+      },
+      opacity: {
+        duration: 1600,
+      },
+    },
+  }"
+/>
+```
+
+##### _The `y` transition will start when the `opacity` one is over._ ☝️
