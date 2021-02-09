@@ -15,21 +15,21 @@ describe('useMotionTransitions', () => {
 
     push('x', 0, {}, defaultTransition)
 
-    expect(transitions.value.length).toBe(1)
+    expect(Object.values(transitions.value).length).toBe(1)
   })
 
   it('clears transitions on stop', async () => {
     const { push, transitions, stop } = useMotionTransitions()
 
     push('x', 0, {}, defaultTransition)
-    push('x', 0, {}, defaultTransition)
-    push('x', 0, {}, defaultTransition)
-    push('x', 0, {}, defaultTransition)
+    push('y', 0, {}, defaultTransition)
+    push('opacity', 0, {}, defaultTransition)
+    push('height', 0, {}, defaultTransition)
 
-    expect(transitions.value.length).toBe(4)
+    expect(Object.values(transitions.value).length).toBe(4)
 
     stop()
 
-    expect(transitions.value.length).toBe(0)
+    expect(Object.values(transitions.value).length).toBe(0)
   })
 })
