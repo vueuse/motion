@@ -1,5 +1,7 @@
 import { MotionVariants } from '../types'
 
+// Roll from left
+
 export const rollLeft: MotionVariants = {
   initial: {
     x: 100,
@@ -25,6 +27,8 @@ export const rollVisibleLeft: MotionVariants = {
     opacity: 1,
   },
 }
+
+// Roll from right
 
 export const rollRight: MotionVariants = {
   initial: {
@@ -52,6 +56,8 @@ export const rollVisibleRight: MotionVariants = {
   },
 }
 
+// Roll from top
+
 export const rollTop: MotionVariants = {
   initial: {
     y: -100,
@@ -77,6 +83,8 @@ export const rollVisibleTop: MotionVariants = {
     opacity: 1,
   },
 }
+
+// Roll from bottom
 
 export const rollBottom: MotionVariants = {
   initial: {
@@ -106,7 +114,11 @@ export const rollVisibleBottom: MotionVariants = {
 
 export default {
   rollLeft,
+  rollVisibleLeft,
   rollRight,
+  rollVisibleRight,
   rollTop,
+  rollVisibleTop,
   rollBottom,
+  rollVisibleBottom,
 }
