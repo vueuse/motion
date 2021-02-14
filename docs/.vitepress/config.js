@@ -52,6 +52,10 @@ module.exports = {
         text: 'Features',
         children: [
           {
+            text: 'Presets',
+            link: '/presets',
+          },
+          {
             text: 'Composable Usage',
             link: '/composable-usage',
           },
