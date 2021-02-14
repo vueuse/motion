@@ -1,5 +1,7 @@
 import { MotionVariants } from '../types'
 
+// Slide from left
+
 export const slideLeft: MotionVariants = {
   initial: {
     x: 100,
@@ -10,6 +12,19 @@ export const slideLeft: MotionVariants = {
     opacity: 1,
   },
 }
+
+export const slideVisibleLeft: MotionVariants = {
+  initial: {
+    x: 100,
+    opacity: 0,
+  },
+  visible: {
+    x: 0,
+    opacity: 1,
+  },
+}
+
+// Slide from right
 
 export const slideRight: MotionVariants = {
   initial: {
@@ -22,6 +37,19 @@ export const slideRight: MotionVariants = {
   },
 }
 
+export const slideVisibleRight: MotionVariants = {
+  initial: {
+    x: -100,
+    opacity: 0,
+  },
+  visible: {
+    x: 0,
+    opacity: 1,
+  },
+}
+
+// Slide from top
+
 export const slideTop: MotionVariants = {
   initial: {
     y: -100,
@@ -32,6 +60,19 @@ export const slideTop: MotionVariants = {
     opacity: 1,
   },
 }
+
+export const slideVisibleTop: MotionVariants = {
+  initial: {
+    y: -100,
+    opacity: 0,
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+}
+
+// Slide from bottom
 
 export const slideBottom: MotionVariants = {
   initial: {
@@ -44,9 +85,24 @@ export const slideBottom: MotionVariants = {
   },
 }
 
+export const slideVisibleBottom: MotionVariants = {
+  initial: {
+    y: 100,
+    opacity: 0,
+  },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+}
+
 export default {
   slideLeft,
+  slideVisibleLeft,
   slideRight,
+  slideVisibleRight,
   slideTop,
+  slideVisibleTop,
   slideBottom,
+  slideVisibleBottom,
 }
