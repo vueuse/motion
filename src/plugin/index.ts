@@ -16,6 +16,17 @@ export const MotionPlugin: Plugin = {
     // Register default `v-motion` directive
     app.directive('motion', directive())
 
+    // Register presets
+    if (!options || (options && !options.excludePresets)) {
+      for (const key in presets) {
+        // Get preset variants
+        const preset = presets[key]
+
+        // Regisrer the preset `v-motion-${key}` directive
+        app.directive(`motion-${slugify(key)}`, directive(preset))
+      }
+    }
+
     // Register plugin-wise directives
     if (options && options.directives) {
       // Loop on options, create a custom directive for each definition
@@ -32,17 +43,6 @@ export const MotionPlugin: Plugin = {
 
         // Register the custom `v-motion-${key}` directive
         app.directive(`motion-${key}`, directive(variants))
-      }
-    }
-
-    // Register presets
-    if (!options || (options && !options.excludePresets)) {
-      for (const key in presets) {
-        // Get preset variants
-        const preset = presets[key]
-
-        // Regisrer the preset `v-motion-${key}` directive
-        app.directive(`motion-${slugify(key)}`, directive(preset))
       }
     }
   },
