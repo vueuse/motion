@@ -36,19 +36,19 @@ export default defineComponent({
     const features = [
       {
         icon: '🕹',
-        title: 'Declarative animations',
+        title: 'Declarative Animations',
         details:
           'Write <b>animations</b> right from your <b>template</b> or <b>config</b> control them from your <b>script</b>.',
       },
       {
         icon: '🏎',
-        title: 'Fast and lightweight',
+        title: 'Fast and Lightweight',
         details:
           '<b>Animations</b> powered by <a href="http://popmotion.io"><b>Popmotion</b></a>. <b>Bundle</b> size <b><15kb</b> gzipped.',
       },
       {
         icon: '💚',
-        title: 'Plug and play',
+        title: 'Plug and Play',
         details:
           'Compatible with <b>Vue 2</b>, <b>3</b> and <b>Nuxt</b>. Start with <b>defaults</b>, write <b>yours</b> with <b>ease</b>.',
       },
