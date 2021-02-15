@@ -11,6 +11,12 @@ export type MotionControls = {
    */
   apply: (variant: Variant) => void
   /**
+   * Apply a variant declaration without transitions.
+   *
+   * @param variant
+   */
+  set: (variant: Variant) => void
+  /**
    * Stop all the ongoing transitions for the current element.
    */
   stopTransitions: Fn
@@ -49,8 +55,13 @@ export function useMotionControls(
     }
   }
 
+  const set = (variant: Variant) => {
+    Object.assign(motionProperties, variant)
+  }
+
   return {
     apply,
+    set,
     stopTransitions: stop,
   }
 }
