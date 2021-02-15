@@ -1,4 +1,5 @@
 export { MotionPlugin } from './plugin'
+export * from './presets'
 export { reactiveStyle } from './reactiveStyle'
 export { reactiveTransform } from './reactiveTransform'
 export * from './types'
