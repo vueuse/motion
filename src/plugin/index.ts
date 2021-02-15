@@ -1,6 +1,6 @@
 import { Plugin } from 'vue-demi'
 import { directive } from '../directive'
-import presets from '../presets'
+import * as presets from '../presets'
 import { MotionVariants } from '../types'
 import slugify from '../utils/slugify'
 
