@@ -1,28 +1,66 @@
 <template>
   <div class="presetsViewer">
-    <div>
-      <h2 v-motion-slide-right>Code 👨‍💻</h2>
-    </div>
-    <div>
-      <h2 v-motion-slide-left>Result 🤹</h2>
-    </div>
+    <preset-section
+      v-for="[key, preset] in Object.entries(presets)"
+      :key="key"
+      :name="key"
+      :preset="preset"
+    />
   </div>
 </template>
 
-<script setup></script>
+<script setup="props" lang="ts">
+import PresetSection from './PresetSection.vue'
+import { ref } from 'vue'
+import { useMotion } from '@vueuse/motion'
+import {
+  fade,
+  fadeVisible,
+  rollBottom,
+  rollLeft,
+  rollRight,
+  rollTop,
+  rollVisibleBottom,
+  rollVisibleLeft,
+  rollVisibleRight,
+  rollVisibleTop,
+  pop,
+  slideBottom,
+  slideLeft,
+  slideRight,
+  slideTop,
+  slideVisibleBottom,
+  slideVisibleLeft,
+  slideVisibleRight,
+  slideVisibleTop,
+} from '@vueuse/motion'
+
+const presets = {
+  fade,
+  fadeVisible,
+  rollBottom,
+  rollLeft,
+  rollRight,
+  rollTop,
+  rollVisibleBottom,
+  rollVisibleLeft,
+  rollVisibleRight,
+  rollVisibleTop,
+  pop,
+  slideBottom,
+  slideLeft,
+  slideRight,
+  slideTop,
+  slideVisibleBottom,
+  slideVisibleLeft,
+  slideVisibleRight,
+  slideVisibleTop,
+}
+</script>
 
 <style>
 .presetsViewer {
-  width: 100%;
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.presetsViewer > div {
-  flex: 1;
-  width: 50%;
-  display: flex;
-  justify-content: center;
+  flex-direction: column;
 }
 </style>
