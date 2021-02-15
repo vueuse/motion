@@ -58,7 +58,7 @@ const presets = {
 }
 </script>
 
-<style>
+<style scoped>
 .presetsViewer {
   display: flex;
   flex-direction: column;

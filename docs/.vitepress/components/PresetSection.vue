@@ -54,7 +54,7 @@ const replay = () => {
 }
 </script>
 
-<style>
+<style scoped>
 .presetSection {
   width: 100%;
   display: flex;
