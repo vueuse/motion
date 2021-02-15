@@ -25,7 +25,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted } from 'vue-demi'
+import { ref, onMounted } from 'vue'
 import NavLink from 'vitepress/dist/client/theme-default/components/NavLink.vue'
 import { useMotion } from '@vueuse/motion'
 

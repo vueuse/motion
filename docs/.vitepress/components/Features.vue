@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import { useMotion } from '@vueuse/motion'
-import { defineComponent, ref } from 'vue-demi'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   setup() {
