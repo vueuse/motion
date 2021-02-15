@@ -1,9 +1,10 @@
+// @ts-nocheck
 import { MotionPlugin } from '@vueuse/motion'
 import DefaultTheme from 'vitepress/dist/client/theme-default'
 import Features from '../components/Features.vue'
 import Hero from '../components/Hero.vue'
+import Layout from '../components/Layout.vue'
 import PresetsViewer from '../components/PresetsViewer.vue'
-import Layout from '../Layout.vue'
 
 export default {
   ...DefaultTheme,
