@@ -1,21 +1,18 @@
 <template>
   <div class="presetSection">
-    <div>
-      <h2>Code 👨‍💻</h2>
+    <h2>
+      {{ `v-motion-${slugify(name)}` }}
 
-      <div class="content">
+      <span @click="replay">Replay</span>
+    </h2>
+    <div class="content">
+      <div class="demoCode">
         <code>
           {{ `
           <div v-motion-${slugify(name)} />
           ` }}
         </code>
       </div>
-    </div>
-    <div>
-      <h2>
-        Result 🤹
-        <span @click="replay">Replay</span>
-      </h2>
 
       <div class="demoContainer">
         <div ref="demoElement" class="demoElement" />
@@ -61,39 +58,37 @@ const replay = () => {
 .presetSection {
   width: 100%;
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.presetSection > div {
-  flex: 1;
-  width: 50%;
-  display: flex;
-  justify-content: center;
   flex-direction: column;
 }
 
-.presetSection > div > h2 {
+h2 {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.presetSection > div > h2 > span {
+h2 > span {
   font-size: 16px;
   cursor: pointer;
   user-select: none;
 }
 
 .content {
-  min-height: 8rem;
+  display: flex;
+}
+
+.demoCode {
+  flex: 1;
+  width: 50%;
 }
 
 .demoContainer {
-  min-height: 8rem;
+  width: 50%;
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  min-height: 8rem;
 }
 
 .demoElement {
