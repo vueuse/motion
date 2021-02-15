@@ -39,13 +39,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, defineAsyncComponent } from 'vue-demi'
-import {
-  useRoute,
-  useSiteData,
-  usePageData,
-  useSiteDataByRoute,
-} from 'vitepress'
+import { ref, computed, watch, defineAsyncComponent } from 'vue'
+import { useRoute, useSiteData, useSiteDataByRoute } from 'vitepress'
 import type { DefaultTheme } from 'vitepress/dist/client/theme-default/config.js'
 
 // Components
@@ -53,14 +48,12 @@ import NavBar from 'vitepress/dist/client/theme-default/components/NavBar.vue'
 import SideBar from 'vitepress/dist/client/theme-default/components/SideBar.vue'
 import Page from 'vitepress/dist/client/theme-default/components/Page.vue'
 
-const Home = defineAsyncComponent(() => import('./components/Home.vue'))
+const Home = defineAsyncComponent(() => import('./Home.vue'))
 
 // Generic State
 const route = useRoute()
 const siteData = useSiteData<DefaultTheme.Config>()
 const siteRouteData = useSiteDataByRoute()
-const theme = computed(() => siteData.value.themeConfig)
-const page = usePageData()
 
 // Custom Layout
 const isCustomLayout = computed(() => !!route.data.frontmatter.customLayout)
