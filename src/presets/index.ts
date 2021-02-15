@@ -1,11 +1,22 @@
-import * as fade from './fade'
-import * as pop from './pop'
-import * as roll from './roll'
-import * as slide from './slide'
-
-export default {
-  ...fade,
-  ...pop,
-  ...roll,
-  ...slide,
-}
+export { fade, fadeVisible } from './fade'
+export { pop } from './pop'
+export {
+  rollBottom,
+  rollLeft,
+  rollRight,
+  rollTop,
+  rollVisibleBottom,
+  rollVisibleLeft,
+  rollVisibleRight,
+  rollVisibleTop,
+} from './roll'
+export {
+  slideBottom,
+  slideLeft,
+  slideRight,
+  slideTop,
+  slideVisibleBottom,
+  slideVisibleLeft,
+  slideVisibleRight,
+  slideVisibleTop,
+} from './slide'
