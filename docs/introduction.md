@@ -13,3 +13,5 @@ If you **liked** this package, please **follow** me on [**Twitter**](https://twi
 <Person />
 
 [**CodeSandbox**](https://codesandbox.io/s/vueusemotion-me1jn?file=/src/components/Person.vue) for this **example**.
+
+Illustration from [**Pebble People**](https://blush.design/fr/collections/pebble-people) by [**Deivid Saenz**](https://blush.design/fr/artists/deivid-saenz).
