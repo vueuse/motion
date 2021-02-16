@@ -2,7 +2,7 @@
 
 Variants represent an **animatable state** for your element.
 
-They are composed of any [motion properties](/motion-properties) and an optional [transition declaration](/transitions).
+They are composed of any [**Motion Properties**](/motion-properties) and an optional [**Transition Declaration**](/transitions).
 
 ```vue
 <div
@@ -175,16 +175,8 @@ You can create your **own variants** and **apply** them using the **motion insta
 
 ```vue
 <template>
-  <div 
-    v-motion="'customElement'"
-    :initial="{ scale: 1, }"
-    :variants="{
-      custom: { 
-        scale: 2,
-        transition: { type: "spring", stiffness: 100 }
-      }
-    }" 
-  />
+  <div v-motion="'customElement'" :initial="{ scale: 1, }" :variants="{ custom:
+  { scale: 2, transition: { type: "spring", stiffness: 100 } } }" />
 </template>
 
 <script setup>

@@ -27,7 +27,7 @@ You can also **pass** your **variants** as an **object** using the `variants` pr
 
 The `variants` prop will be **combined** with all the other **native variants** properties, allowing you to define **only** your **custom** variants from this **object**.
 
-The rest of the variants properties can be found on the [Variants](/variants) page.
+The rest of the variants properties can be found on the [**Variants**](/variants) page.
 
 ```vue
 <template>
