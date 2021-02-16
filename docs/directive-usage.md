@@ -42,7 +42,7 @@ The rest of the variants properties can be found on the [Variants](/variants) pa
 
 ##### _Directives are amazing_ 😍
 
-## Access v-motion controls
+## Access a v-motion instance
 
 When **defined** from **template**, the **target element** might not be **assigned** to a **ref**.
 
@@ -75,4 +75,4 @@ const customEvent = () => {
 </script>
 ```
 
-In the **above** example, the **custom** object will be an **instance** of [**Motion controls**](/motion-controls).
+In the **above** example, the **custom** object will be an **instance** of [**Motion Instance**](/motion-instance).
