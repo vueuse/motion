@@ -4,7 +4,7 @@ import { MotionVariants } from '../types'
 
 export const slideLeft: MotionVariants = {
   initial: {
-    x: 100,
+    x: -200,
     opacity: 0,
   },
   enter: {
@@ -15,7 +15,7 @@ export const slideLeft: MotionVariants = {
 
 export const slideVisibleLeft: MotionVariants = {
   initial: {
-    x: 100,
+    x: -200,
     opacity: 0,
   },
   visible: {
@@ -28,7 +28,7 @@ export const slideVisibleLeft: MotionVariants = {
 
 export const slideRight: MotionVariants = {
   initial: {
-    x: -100,
+    x: 200,
     opacity: 0,
   },
   enter: {
@@ -39,7 +39,7 @@ export const slideRight: MotionVariants = {
 
 export const slideVisibleRight: MotionVariants = {
   initial: {
-    x: -100,
+    x: 200,
     opacity: 0,
   },
   visible: {
@@ -52,7 +52,7 @@ export const slideVisibleRight: MotionVariants = {
 
 export const slideTop: MotionVariants = {
   initial: {
-    y: -100,
+    y: -200,
     opacity: 0,
   },
   enter: {
@@ -63,7 +63,7 @@ export const slideTop: MotionVariants = {
 
 export const slideVisibleTop: MotionVariants = {
   initial: {
-    y: -100,
+    y: -200,
     opacity: 0,
   },
   visible: {
@@ -76,7 +76,7 @@ export const slideVisibleTop: MotionVariants = {
 
 export const slideBottom: MotionVariants = {
   initial: {
-    y: 100,
+    y: 200,
     opacity: 0,
   },
   enter: {
@@ -87,7 +87,7 @@ export const slideBottom: MotionVariants = {
 
 export const slideVisibleBottom: MotionVariants = {
   initial: {
-    y: 100,
+    y: 200,
     opacity: 0,
   },
   visible: {
