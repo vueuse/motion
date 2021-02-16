@@ -45,6 +45,11 @@ export interface Orchestration {
    * Delay the animation by this duration (in seconds). Defaults to `0`.
    */
   delay?: number
+
+  /**
+   * Callback triggered on animation complete.
+   */
+  onComplete?: () => void
 }
 
 export interface Repeat {
