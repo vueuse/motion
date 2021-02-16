@@ -26,7 +26,7 @@ If the target **reference** is **updated**, the **current** variant will be **ap
 
 **Variants** must be an **object** or an object **reference**.
 
-Keys are **variants** names, values are [**variants declarations**](/variants).
+Keys are **variants** names, values are [**Variants Declarations**](/variants).
 
 - `options`
 
@@ -59,7 +59,7 @@ State is a **computed reference** to the **current** variant **applied** to your
 
 - `...controls`
 
-Spread object from [**motion controls**](/api/use-motion-controls) exposed functions.
+Spread object from [**Motion Controls**](/api/use-motion-controls) exposed functions.
 
 ## Example
 
