@@ -182,6 +182,7 @@ export function getAnimation(
   target: MotionProperties,
   transition: Transition,
   origin?: ResolvedValueTarget,
+  onComplete?: () => void,
 ) {
   // Get key transition or fallback values
   const valueTransition = getValueTransition(transition, key)
@@ -197,6 +198,11 @@ export function getAnimation(
         target[key as string] = v
 
         if (valueTransition.onUpdate) valueTransition.onUpdate(v)
+      },
+      onComplete: () => {
+        transition?.onComplete?.()
+
+        onComplete?.()
       },
     }
 
@@ -214,6 +220,9 @@ export function getAnimation(
    */
   function set(): StopAnimation {
     target[key] = value
+
+    transition?.onComplete?.()
+
     return { stop: () => {} }
   }
 
