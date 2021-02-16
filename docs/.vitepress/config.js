@@ -76,8 +76,8 @@ module.exports = {
             link: '/variants',
           },
           {
-            text: 'Motion Controls',
-            link: '/motion-controls',
+            text: 'Motion Instance',
+            link: '/motion-instance',
           },
         ],
       },
