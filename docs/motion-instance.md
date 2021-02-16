@@ -1,6 +1,6 @@
-# Motion Controls
+# Motion Instance
 
-Motion controls are the **object** exposed when **binding** to a target **element**.
+Motion instance are the **object** exposed when **binding** to a target **element**.
 
 It is composed of **three properties**, allowing you to **interact** with the **element**.
 
@@ -17,7 +17,7 @@ By modifying this **variant**, you will trigger a **transition** between the **c
 // Define target.
 const target = ref<HTMLElement>()
 
-// Get the variant from target motion controls.
+// Get the variant from target motion instance.
 const { variant } = useMotion(target, {
     initial: {
         scale: 1,
@@ -55,7 +55,7 @@ This is useful when used with **event listeners**, or any **temporary** modifica
 // Define target.
 const target = ref<HTMLElement>()
 
-// Get the variant from target motion controls.
+// Get the variant from target motion instance.
 const { apply } = useMotion(target, {
     initial: {
         scale: 1,
@@ -96,7 +96,7 @@ Calling it with a **single** motion property key will stop the specified **key**
 // Define target.
 const target = ref<HTMLElement>()
 
-// Get the variant from target motion controls.
+// Get the variant from target motion instance.
 const { stop } = useMotion(target, {
     initial: {
         scale: 1,
