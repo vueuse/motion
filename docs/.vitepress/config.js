@@ -56,12 +56,12 @@ module.exports = {
             link: '/presets',
           },
           {
-            text: 'Composable Usage',
-            link: '/composable-usage',
-          },
-          {
             text: 'Directive Usage',
             link: '/directive-usage',
+          },
+          {
+            text: 'Composable Usage',
+            link: '/composable-usage',
           },
           {
             text: 'Motion Properties',
