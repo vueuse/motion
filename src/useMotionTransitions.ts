@@ -25,6 +25,7 @@ export interface MotionTransitions {
     value: ResolvedValueTarget,
     target: MotionProperties,
     transition: Transition,
+    onComplete: () => void,
   ) => void
 
   /**
@@ -64,6 +65,7 @@ export function useMotionTransitions(): MotionTransitions {
     value: ResolvedValueTarget,
     target: MotionProperties,
     transition: Transition,
+    onComplete?: () => void,
   ) => {
     // Stop the current animation if it exists
     if (transitions.value[key]) transitions.value[key]()
@@ -72,7 +74,14 @@ export function useMotionTransitions(): MotionTransitions {
     const from = target[key]
 
     // Create animation
-    const animation = getAnimation(key, value, target, transition, from)
+    const animation = getAnimation(
+      key,
+      value,
+      target,
+      transition,
+      from,
+      onComplete,
+    )
 
     const { stop } = animation()
 
