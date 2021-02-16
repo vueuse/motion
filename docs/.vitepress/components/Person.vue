@@ -340,13 +340,12 @@ refs.forEach((ref, index) => {
         repeat: Infinity,
         ease: 'easeInOut',
         repeatType: 'mirror',
-        delay: index * 100,
       },
     },
   })
 
   setTimeout(() => {
     variant.value = 'levitate'
-  }, 1000)
+  }, 1000 + 25 * index)
 })
 </script>
