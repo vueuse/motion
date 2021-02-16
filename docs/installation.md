@@ -57,7 +57,7 @@ app.mount('#app')
 
 With the code **above**, you will have **access** to `v-motion-pop-in` **globally** on any **element** or **component** of the **app**.
 
-Take a look at the [**variant definition**](/variants) page if you want to learn more about it.
+Take a look at the [**Variant Definition**](/variants) page if you want to learn more about it.
 
 ### Component Installation
 

@@ -1,12 +1,12 @@
 # useMotionVariants
 
-useMotionVariants is used to handle the [**variants**](/variants) **state** and **selection**.
+useMotionVariants is used to handle the [**Variants**](/variants) **state** and **selection**.
 
 ## Parameters
 
 - `variants`
 
-A [**variants**](/variants#custom-variants) definitions.
+A [**Variants**](/variants#custom-variants) definitions.
 
 ## Exposed
 

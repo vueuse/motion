@@ -16,7 +16,7 @@ Stop is a **function** that lets you **stop** ongoing **animations** for a speci
 
 Calling it **without** argument will be stopping **all** the **animations**.
 
-Calling it with an **array** of [**motion properties**](/motion-properties) keys will stop **every** specified **key**.
+Calling it with an **array** of [**Motion Properties**](/motion-properties) keys will stop **every** specified **key**.
 
 Calling it with a **single** motion property key will stop the specified **key**.
 

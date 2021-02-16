@@ -2,7 +2,7 @@
 
 Motion properties are represented by an **object** containing all the **animatable properties** of an **element**.
 
-They are one of the two parts that compose a [**variant**](/variants), with [**transitions declaration**](/transition-properties).
+They are one of the two parts that compose a [**Variant**](/variants), with [**Transitions Declaration**](/transition-properties).
 
 This object contains both **style** and **transform** properties.
 
@@ -26,9 +26,9 @@ Style properties are used to **decompose** a regular `style` CSS **string** into
 
 The typings are the same as the regular `style` property from **Vue templates**.
 
-All the regular [**CSS style**](https://developer.mozilla.org/fr/docs/Web/CSS/Reference) properties are **supported**.
+All the regular [**CSS Style**](https://developer.mozilla.org/fr/docs/Web/CSS/Reference) properties are **supported**.
 
-Some keys are **forbidden** (`transition`, `rotate`, `scale`...) as they are now reserved for [**transform properties**](#transform-properties).
+Some keys are **forbidden** (`transition`, `rotate`, `scale`...) as they are now reserved for [**Transform Properties**](#transform-properties).
 
 ```javascript
 {
@@ -43,7 +43,7 @@ Some keys are **forbidden** (`transition`, `rotate`, `scale`...) as they are now
 
 Transform properties are used to **decompose** a regular `transform` CSS **string** into individual **object keys**.
 
-All the regular [**CSS transform**](https://developer.mozilla.org/en-US/docs/Web/CSS/transform#syntax) syntax arguments are **supported**.
+All the regular [**CSS Transform**](https://developer.mozilla.org/en-US/docs/Web/CSS/transform#syntax) syntax arguments are **supported**.
 
 As an addition, you can use `x`, `y`, `z` properties, that will be converted to `translateX`, `translateY` and `translateZ`.
 

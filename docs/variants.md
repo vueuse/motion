@@ -51,7 +51,7 @@ It is **recommended** to **include** a base state for **every parameter** that y
 
 The **enter** variant will be applied on the second tick of the element, right after its creation.
 
-You can use it to **trigger** an animation when the element **appears**, transitioning from [**initial**](#initial-variant) variant.
+You can use it to **trigger** an animation when the element **appears**, transitioning from [**Initial**](#initial-variant) variant.
 
 ```vue
 <div
@@ -79,7 +79,7 @@ _This feature is currently work in progress._ 👷‍♂️
 
 The **visible** variant will be applied when the element enters the viewport.
 
-When the element leaves, the [**initial**](#initial-variant) variant will be applied again.
+When the element leaves, the [**Initial**](#initial-variant) variant will be applied again.
 
 ```vue
 <div

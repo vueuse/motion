@@ -16,7 +16,7 @@ If the target **reference** is **updated**, the **current** transform will be **
 
 - `transform`
 
-Transform is the current `target` [**transform properties**](/motion-properties#transform-properties) as a **reactive** object.
+Transform is the current `target` [**Transform Properties**](/motion-properties#transform-properties) as a **reactive** object.
 
 When you **change** a value, it will **update** the **element** transform **property** accordingly.
 

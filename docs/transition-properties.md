@@ -29,7 +29,7 @@ You can specify a **delay** which will be added **every** time the **transition*
 
 ### Repeat
 
-The native [**Popmotion repeat**](https://popmotion.io/#quick-start-animation-animate-options-repeat) feature is supported.
+The native [**Popmotion Repeat**](https://popmotion.io/#quick-start-animation-animate-options-repeat) feature is supported.
 
 Three parameters are available:
 
@@ -61,7 +61,7 @@ Three parameters are available:
 
 Two types of **animations** are supported.
 
-For most the [**common animatable properties**](https://github.com/vueuse/motion/blob/main/src/utils/defaults.ts#L43), it will uses **generated** spring **transitions**.
+For most the [**Common Animatable Properties**](https://github.com/vueuse/motion/blob/main/src/utils/defaults.ts#L43), it will uses **generated** spring **transitions**.
 
 The rest of the properties might be using **keyframes**.
 

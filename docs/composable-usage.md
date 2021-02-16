@@ -16,7 +16,7 @@ The **target** can be **HTML** or **SVG** elements, or **references** to these t
 
 The **second** parameter are the `variants`.
 
-The [**variants definitions**](/variants) are described in a specific page.
+The [**Variants Definitions**](/variants) are described in a specific page.
 
 ```vue
 <script setup>

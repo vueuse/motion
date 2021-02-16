@@ -1,6 +1,6 @@
 # useMotionProperties
 
-useMotionProperties is used to access [**motion properties**](/motion-properties) for a target element.
+useMotionProperties is used to access [**Motion Properties**](/motion-properties) for a target element.
 
 Motion properties are combining [**useElementStyle**](/api/use-element-style) and [**useElementTransform**](/api/use-element-transform).
 
@@ -18,7 +18,7 @@ If the target **reference** is **updated**, the **current** motion properties wi
 
 - `motionProperties`
 
-Motion properties are an object combining [**style properties**](/motion-properties#style-properties) and [**transform properties**](/motion-properties#transform-properties).
+Motion properties are an object combining [**Style Properties**](/motion-properties#style-properties) and [**Transform Properties**](/motion-properties#transform-properties).
 
 Change a **value** and it will be **updated** on the target **element**.
 

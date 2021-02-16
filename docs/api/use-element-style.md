@@ -16,7 +16,7 @@ If the target **reference** is **updated**, the **current** style will be **upda
 
 - `style`
 
-Style is the current `target` [**style properties**](/motion-properties#style-properties) as a **reactive** object.
+Style is the current `target` [**Style Properties**](/motion-properties#style-properties) as a **reactive** object.
 
 When you **change** a value, it will **update** the **element** style **property** accordingly.
 
