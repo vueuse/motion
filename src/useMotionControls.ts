@@ -8,8 +8,9 @@ export type MotionControls = {
    * Apply a variant declaration and execute the resolved transitions.
    *
    * @param variant
+   * @returns Promise<void[]>
    */
-  apply: (variant: Variant) => void
+  apply: (variant: Variant) => Promise<void[]>
   /**
    * Apply a variant declaration without transitions.
    *
@@ -33,12 +34,12 @@ export function useMotionControls(
   motionProperties: MotionProperties,
   { push, stop }: MotionTransitions = useMotionTransitions(),
 ): MotionControls {
-  const apply = (variant: Variant) => {
-    // Skip empty variants
-    if (Object.keys(variant).length === 0) return
-
+  const apply = (variant: Variant): Promise<void[]> => {
     // Get transition data
     const { transition } = variant
+
+    // Local promises list
+    const promises = []
 
     // Loop on each motion properties keys
     for (const key in variant) {
@@ -46,13 +47,20 @@ export function useMotionControls(
 
       const value = variant[key]
 
-      push(
-        key as keyof MotionProperties,
-        value,
-        motionProperties,
-        transition || getDefaultTransition(key, value),
+      promises.push(
+        new Promise<void>((resolve) => {
+          push(
+            key as keyof MotionProperties,
+            value,
+            motionProperties,
+            transition || getDefaultTransition(key, value),
+            resolve,
+          )
+        }),
       )
     }
+
+    return Promise.all(promises)
   }
 
   const set = (variant: Variant) => {
