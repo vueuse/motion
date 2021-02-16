@@ -24,7 +24,7 @@ import { useMotion } from '@vueuse/motion'
 
 const target = ref<HTMLElement>()
 
-const motionControls = useMotion(target, {
+const motionInstance = useMotion(target, {
     initial: {
         opacity: 0,
         y: 100
@@ -37,6 +37,6 @@ const motionControls = useMotion(target, {
 </script>
 ```
 
-Once called, the **useMotion** composable will **return** an instance of [Motion controls](/motion-controls).
+Once called, the **useMotion** composable will **return** an instance of [**Motion Instance**](/motion-instance).
 
-By using these **motion controls**, you will be able to **animate** the **element** with **ease**.
+By using this **motion instance** members, you will be able to **animate** the **element** with **ease**.
