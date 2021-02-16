@@ -62,7 +62,7 @@ You can now **animate** any of your **component**, **HTML** or **SVG** elements 
 <script setup>
 import { useMotions } from '@vueuse/motion'
 
-// Get access to motion controls using useMotions
+// Get access to motion instance using useMotions
 const { smoothestDiv } = useMotions()
 
 // From smoothest div to biggest div real quick 😎
@@ -70,13 +70,13 @@ smoothestDiv.apply({ scale: 4 })
 </script>
 ```
 
-If you want to know more about what **properties** you can **animate**, consider taking a look at [**Motion Properties**](https://vue-use-motion.netlify.app/motion-properties).
+If you want to know more about what **properties** you can **animate**, check out [**Motion Properties**](https://vue-use-motion.netlify.app/motion-properties).
 
-If you want to know more about how to **create** your own **animations** styles, consider taking a look at [**Transition Properties**](https://vue-use-motion.netlify.app/transition-properties).
+If you want to know more about how to **create** your own **animations** styles, check out [**Transition Properties**](https://vue-use-motion.netlify.app/transition-properties).
 
-If you want to know more about what are **variants** and how you can **use** them, consider taking a look at [**Variants**](https://vue-use-motion.netlify.app/variants).
+If you want to know more about what are **variants** and how you can **use** them, check out [**Variants**](https://vue-use-motion.netlify.app/variants).
 
-If you want to know more about how to **control** your declared **variants**, consider taking a look at [**Motion Controls**](https://vue-use-motion.netlify.app/motion-controls).
+If you want to know more about how to **control** your declared **variants**, check out [**Motion Instance**](https://vue-use-motion.netlify.app/motion-instance).
 
 ## Credits
 
