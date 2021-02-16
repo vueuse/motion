@@ -50,10 +50,10 @@ smoothestDiv.apply({ scale: 4 })
 </script>
 ```
 
-If you want to know more about what **properties** you can **animate**, check out [**Motion Properties**](/motion-properties).
+See more about what **properties** you can **animate**, check out [**Motion Properties**](/motion-properties).
 
-If you want to know more about how to **create** your own **animations** styles, check out [**Transition Properties**](/transition-properties).
+See more about how to **create** your own **animations** styles, check out [**Transition Properties**](/transition-properties).
 
-If you want to know more about what are **variants** and how you can **use** them, check out [**Variants**](/variants).
+See more about what are **variants** and how you can **use** them, check out [**Variants**](/variants).
 
-If you want to know more about how to **control** your declared **variants**, check out [**Motion Instance**](/motion-instance).
+See more about how to **control** your declared **variants**, check out [**Motion Instance**](/motion-instance).
