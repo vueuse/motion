@@ -171,7 +171,7 @@ It will **switch** between them **depending** on the user **supported** pointer 
 
 ## Custom variants
 
-You can create your **own variants** and **apply** them using the **motion controls**.
+You can create your **own variants** and **apply** them using the **motion instance**.
 
 ```vue
 <template>
@@ -190,12 +190,12 @@ You can create your **own variants** and **apply** them using the **motion contr
 <script setup>
 import { useMotions } from '@vueuse/motion'
 
-// Access the motion controls using useMotions.
+// Access the motion instance using useMotions.
 const { customElement } = useMotions()
 
 // Dummy custom event function
 const yourCustomEvent = () => {
-  // Edit the variant using the motion controls.
+  // Edit the variant using the motion instance.
   customElement.variant.value = 'custom'
 }
 </script>
