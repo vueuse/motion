@@ -331,6 +331,9 @@ refs.forEach((ref, index) => {
         stiffness: 350,
         damping: 20,
         delay: index * 50,
+        onComplete: () => {
+          variant.value = 'levitate'
+        },
       },
     },
     levitate: {
@@ -343,9 +346,5 @@ refs.forEach((ref, index) => {
       },
     },
   })
-
-  setTimeout(() => {
-    variant.value = 'levitate'
-  }, 1000 + 25 * index)
 })
 </script>
