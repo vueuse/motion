@@ -148,7 +148,7 @@ useMotion(sources, {
 }
 
 .action.alt {
-  margin-left: 1.5rem;
+  margin-left: 3rem;
 }
 
 .action {
