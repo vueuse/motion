@@ -110,7 +110,7 @@ export default defineComponent({
 <style scoped>
 .home-features {
   margin: 0 auto;
-  padding: 2.5rem 0 2.75rem;
+  padding: 2.5rem 0 2.5rem;
   max-width: 960px;
 }
 .home-hero + .home-features {
