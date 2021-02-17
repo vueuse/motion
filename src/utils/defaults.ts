@@ -29,18 +29,19 @@ export const overDampedSpring = (to: SingleTarget) => ({
 export const linearTween = () => ({
   type: 'keyframes',
   ease: 'linear',
-  duration: 0.3,
+  duration: 300,
 })
 
 const keyframes = (values: KeyframesTarget): Partial<Keyframes> => ({
   type: 'keyframes',
-  duration: 0.8,
+  duration: 800,
   values,
 })
 
 type TransitionFactory = (to: ValueTarget) => Partial<PopmotionTransitionProps>
 
 const defaultTransitions = {
+  default: overDampedSpring,
   x: underDampedSpring,
   y: underDampedSpring,
   z: underDampedSpring,
@@ -53,8 +54,7 @@ const defaultTransitions = {
   scale: overDampedSpring,
   backgroundColor: linearTween,
   color: linearTween,
-  opacity: overDampedSpring,
-  default: overDampedSpring,
+  opacity: linearTween,
 }
 
 export const getDefaultTransition = (
