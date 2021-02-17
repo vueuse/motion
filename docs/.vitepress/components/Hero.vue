@@ -6,9 +6,11 @@
       <span>motion</span>
     </h1>
     <p ref="description" class="description">
-      🤹 <b>Vue Composables</b> putting your <b>components</b> in
+      <b>Vue Composables</b> putting your <b>components</b> in
       <b>motion</b>
     </p>
+
+    <Illustration class="illustration" />
 
     <div class="actions">
       <div ref="introduction" class="action">
@@ -27,6 +29,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import NavLink from 'vitepress/dist/client/theme-default/components/NavLink.vue'
+import Illustration from './Illustration.vue'
 import { useMotion } from '@vueuse/motion'
 
 const header = ref<HTMLElement>()
@@ -94,48 +97,43 @@ useMotion(sources, {
   padding: 0 1.5rem;
   text-align: center;
 }
+
 @media (min-width: 420px) {
   .home-hero {
     margin: 3.5rem 0;
   }
 }
+
 @media (min-width: 720px) {
   .home-hero {
     margin: 4rem 0 4.25rem;
   }
 }
-.figure {
-  padding: 0 1.5rem;
-}
-.image {
-  display: block;
-  margin: 0 auto;
-  width: auto;
-  max-width: 100%;
-  max-height: 280px;
-}
+
 .title {
-  margin-top: 1.5rem;
   font-size: 2rem;
 }
+
 @media (min-width: 420px) {
   .title {
     font-size: 3rem;
   }
 }
+
 @media (min-width: 720px) {
   .title {
     margin-top: 2rem;
   }
 }
+
 .description {
-  margin-top: 1.5rem;
-  line-height: 1.3;
   font-size: 1.2rem;
   color: var(--c-text-light);
 }
 
 .actions {
+  margin-top: 8rem;
+  margin-bottom: 8rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -160,7 +158,6 @@ useMotion(sources, {
 
 @media (min-width: 420px) {
   .action {
-    margin-top: 2rem;
     display: inline-block;
   }
 }
@@ -184,15 +181,18 @@ useMotion(sources, {
   border: 2px solid var(--c-brand);
   transition: background-color 0.1s ease;
 }
+
 .action.alt :deep(.item) {
   background-color: #fff;
   color: var(--c-brand);
 }
+
 .action :deep(.item:hover) {
   text-decoration: none;
   color: #ffffff;
   background-color: var(--c-brand-light);
 }
+
 @media (min-width: 420px) {
   .action :deep(.item) {
     padding: 0 24px;
@@ -200,5 +200,15 @@ useMotion(sources, {
     font-size: 1.2rem;
     font-weight: 500;
   }
+}
+
+.illustration {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 0;
+  top: 170px;
+  position: relative;
+  z-index: -1;
 }
 </style>
