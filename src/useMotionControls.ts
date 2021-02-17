@@ -1,5 +1,5 @@
-import { Fn } from '@vueuse/core'
-import { MotionProperties, Variant } from './types'
+import { Fn, isString, MaybeRef } from '@vueuse/core'
+import { MotionProperties, MotionVariants, Variant } from './types'
 import { MotionTransitions, useMotionTransitions } from './useMotionTransitions'
 import { getDefaultTransition } from './utils/defaults'
 
@@ -10,13 +10,13 @@ export type MotionControls = {
    * @param variant
    * @returns Promise<void[]>
    */
-  apply: (variant: Variant) => Promise<void[]>
+  apply: (variant: Variant | string) => Promise<void[]> | undefined
   /**
    * Apply a variant declaration without transitions.
    *
    * @param variant
    */
-  set: (variant: Variant) => void
+  set: (variant: Variant | string) => void
   /**
    * Stop all the ongoing transitions for the current element.
    */
@@ -30,11 +30,21 @@ export type MotionControls = {
  * @param style
  * @param currentVariant
  */
-export function useMotionControls(
+export function useMotionControls<T extends MotionVariants>(
   motionProperties: MotionProperties,
+  variants: MaybeRef<T> = {} as MaybeRef<T>,
   { push, stop }: MotionTransitions = useMotionTransitions(),
 ): MotionControls {
-  const apply = (variant: Variant): Promise<void[]> => {
+  const apply = (variant: Variant | string): Promise<void[]> | undefined => {
+    if (isString(variant)) {
+      if (variants && variants.value && variants.value[variant]) {
+        variant = variants.value[variant] as Variant
+      } else {
+        console.warn(`The variant ${variant} does not exist on this element.`)
+        return
+      }
+    }
+
     // Get transition data
     const { transition } = variant
 
@@ -63,7 +73,16 @@ export function useMotionControls(
     return Promise.all(promises)
   }
 
-  const set = (variant: Variant) => {
+  const set = (variant: Variant | string) => {
+    if (isString(variant)) {
+      if (variants && variants.value && variants.value[variant]) {
+        variant = variants.value[variant] as Variant
+      } else {
+        console.warn(`The variant ${variant} does not exist on this element.`)
+        return
+      }
+    }
+
     Object.assign(motionProperties, variant)
   }
 
