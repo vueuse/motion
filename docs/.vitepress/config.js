@@ -26,6 +26,7 @@ module.exports = {
     ],
   ],
   themeConfig: {
+    repo: 'vueuse/motion',
     sidebar: [
       {
         text: 'Getting Started',
