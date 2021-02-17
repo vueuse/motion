@@ -1,15 +1,8 @@
 import { Plugin } from 'vue-demi'
 import { directive } from '../directive'
 import * as presets from '../presets'
-import { MotionVariants } from '../types'
+import { MotionPluginOptions, MotionVariants } from '../types'
 import slugify from '../utils/slugify'
-
-export interface MotionPluginOptions {
-  directives: {
-    [key: string]: MotionVariants
-  }
-  excludePresets: boolean
-}
 
 export const MotionPlugin: Plugin = {
   install(app, options: MotionPluginOptions) {
