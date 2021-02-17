@@ -1,27 +1,12 @@
-import { Fn, isString, MaybeRef } from '@vueuse/core'
-import { MotionProperties, MotionVariants, Variant } from './types'
+import { isString, MaybeRef } from '@vueuse/core'
+import {
+  MotionControls,
+  MotionProperties,
+  MotionVariants,
+  Variant,
+} from './types'
 import { MotionTransitions, useMotionTransitions } from './useMotionTransitions'
 import { getDefaultTransition } from './utils/defaults'
-
-export type MotionControls = {
-  /**
-   * Apply a variant declaration and execute the resolved transitions.
-   *
-   * @param variant
-   * @returns Promise<void[]>
-   */
-  apply: (variant: Variant | string) => Promise<void[]> | undefined
-  /**
-   * Apply a variant declaration without transitions.
-   *
-   * @param variant
-   */
-  set: (variant: Variant | string) => void
-  /**
-   * Stop all the ongoing transitions for the current element.
-   */
-  stopTransitions: Fn
-}
 
 /**
  * A Composable handling motion controls, pushing resolved variant to useMotionTransitions manager.
