@@ -37,8 +37,8 @@ export function useMotion<T extends MotionVariants>(
   // Variants manager
   const { variant, state } = useMotionVariants<T>(variantsRef)
 
-  // Motion controls, synchronized with styling and variants
-  const controls = useMotionControls(motionProperties)
+  // Motion controls, synchronized with motion properties and variants
+  const controls = useMotionControls(motionProperties, variantsRef)
 
   // Create motion instance
   const instance: MotionInstance<T> = {
