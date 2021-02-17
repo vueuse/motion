@@ -1,5 +1,5 @@
+import { Fn } from '@vueuse/core'
 import { Ref } from 'vue-demi'
-import { MotionControls } from '../useMotionControls'
 import { MotionVariants, Variant } from './variants'
 
 export type MotionTarget = HTMLElement | SVGElement | null | undefined
@@ -9,6 +9,33 @@ export interface MotionInstance<T = MotionVariants> extends MotionControls {
   variants: Ref<T>
   variant: Ref<keyof T>
   state: Ref<Variant | undefined>
+}
+
+export type UseMotionOptions = {
+  syncVariants?: boolean
+  lifeCycleHooks?: boolean
+  visibilityHooks?: boolean
+  eventListeners?: boolean
+}
+
+export type MotionControls = {
+  /**
+   * Apply a variant declaration and execute the resolved transitions.
+   *
+   * @param variant
+   * @returns Promise<void[]>
+   */
+  apply: (variant: Variant | string) => Promise<void[]> | undefined
+  /**
+   * Apply a variant declaration without transitions.
+   *
+   * @param variant
+   */
+  set: (variant: Variant | string) => void
+  /**
+   * Stop all the ongoing transitions for the current element.
+   */
+  stopTransitions: Fn
 }
 
 export type MotionInstanceBindings<T = MotionVariants> = {
