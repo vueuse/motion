@@ -1,11 +1,16 @@
-import path from 'path'
+import { resolve } from 'path'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
   optimizeDeps: {
     exclude: ['vue-demi'],
   },
-  alias: {
-    '@vueuse/motion': path.resolve(__dirname, '../src/index.ts'),
+  resolve: {
+    alias: [
+      {
+        find: '@vueuse/motion',
+        replacement: resolve(__dirname, '../src/index.ts'),
+      },
+    ],
   },
 })

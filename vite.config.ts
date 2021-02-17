@@ -1,5 +1,5 @@
 import vue from '@vitejs/plugin-vue'
-import path from 'path'
+import { resolve } from 'path'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
@@ -8,7 +8,12 @@ export default defineConfig({
     exclude: ['vue-demi'],
   },
   plugins: [vue()],
-  alias: {
-    '@vueuse/motion': path.resolve(__dirname, './src/index.ts'),
+  resolve: {
+    alias: [
+      {
+        find: '@vueuse/motion',
+        replacement: resolve(__dirname, './src/index.ts'),
+      },
+    ],
   },
 })
