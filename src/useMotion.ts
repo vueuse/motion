@@ -1,17 +1,15 @@
 import { MaybeRef } from '@vueuse/core'
 import { Ref, ref } from 'vue-demi'
-import { MotionInstance, MotionTarget, MotionVariants } from './types'
+import {
+  MotionInstance,
+  MotionTarget,
+  MotionVariants,
+  UseMotionOptions,
+} from './types'
 import { useMotionControls } from './useMotionControls'
 import { useMotionFeatures } from './useMotionFeatures'
 import { useMotionProperties } from './useMotionProperties'
 import { useMotionVariants } from './useMotionVariants'
-
-export type UseMotionOptions = {
-  syncVariants?: boolean
-  lifeCycleHooks?: boolean
-  visibilityHooks?: boolean
-  eventListeners?: boolean
-}
 
 /**
  * A Vue Composable that put your components in motion.
