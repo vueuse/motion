@@ -1,5 +1,5 @@
 export { fade, fadeVisible } from './fade'
-export { pop } from './pop'
+export { pop, popVisible } from './pop'
 export {
   rollBottom,
   rollLeft,
