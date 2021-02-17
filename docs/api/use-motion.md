@@ -16,19 +16,19 @@ This composable **imports** every other **composable** and **expose** a **motion
 
 ## Parameters
 
-- `target`
+### `target`
 
 Target must be an element (**SVG** / **HTML**), or a reference to an element.
 
 If the target **reference** is **updated**, the **current** variant will be **applied** to the new **element**.
 
-- `variants`
+### `variants`
 
 **Variants** must be an **object** or an object **reference**.
 
 Keys are **variants** names, values are [**Variants Declarations**](/variants).
 
-- `options`
+### `options`
 
 Options is an **object**, supporting **4** parameters:
 
@@ -41,23 +41,23 @@ You should **not** be **pushed** to use those **options**, as if you are **not d
 
 ## Exposed
 
-- `target`
+### `target`
 
 Target is a **reference** to the **element** you passed as a **parameter**.
 
-- `variant`
+### `variant`
 
 Variant is a **string** reference, from [**useMotionVariants**](/api/use-motion-variants).
 
-- `variants`
+### `variants`
 
 Variants is a **reference** to the **variants** you passed as a **parameter**.
 
-- `state`
+### `state`
 
 State is a **computed reference** to the **current** variant **applied** to your **element**.
 
-- `...controls`
+### `...controls`
 
 Spread object from [**Motion Controls**](/api/use-motion-controls) exposed functions.
 

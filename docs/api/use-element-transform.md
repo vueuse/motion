@@ -6,7 +6,7 @@ It uses [**reactiveTransform**](https://github.com/vueuse/motion/blob/main/src/r
 
 ## Parameters
 
-- `target`
+### `target`
 
 Target must be an element (**SVG** / **HTML**), or a reference to an element.
 
@@ -14,13 +14,13 @@ If the target **reference** is **updated**, the **current** transform will be **
 
 ## Exposed
 
-- `transform`
+### `transform`
 
 Transform is the current `target` [**Transform Properties**](/motion-properties#transform-properties) as a **reactive** object.
 
 When you **change** a value, it will **update** the **element** transform **property** accordingly.
 
-- `stop()`
+### `stop()`
 
 Stop function will **stop** the **watcher** that **sync** the element **transform** with the reactive object.
 

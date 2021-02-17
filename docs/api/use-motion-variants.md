@@ -4,21 +4,21 @@ useMotionVariants is used to handle the [**Variants**](/variants) **state** and 
 
 ## Parameters
 
-- `variants`
+### `variants`
 
-A [**Variants**](/variants#custom-variants) definitions.
+A [**Variants**](/variants#custom-variants) definition.
 
 ## Exposed
 
-- `state`
+### `state`
 
 The **current** variant **data** value as a **computed**.
 
-- `variant`
+### `variant`
 
 A **string** reference that **updates** the state when **changed**.
 
-## Example
+#### Example
 
 ```typescript
 const variants: MotionVariants = {

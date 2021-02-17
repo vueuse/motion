@@ -28,42 +28,6 @@ It also **accepts** a variant **key** from **variants** parameter, that will be 
 
 Apply is a **promise** that will be **resolved** once all the **transitions** resulting from the **variant** you passed are **done**.
 
-#### Example
-
-```typescript
-const target = ref<HTMLElement>()
-
-const { motionProperties } = useMotionProperties(target)
-
-const { apply } = useMotionControls(motionProperties)
-
-apply({
-  opacity: 1,
-  scale: 2,
-})
-```
-
-```typescript
-const target = ref<HTMLElement>()
-
-const { apply } = useMotion(target, {
-  initial: {
-    y: 100,
-    opacity: 0,
-  },
-  custom: {
-    y: 0,
-    opacty: 1,
-  },
-})
-
-const applyCustom = async () => {
-  await apply('custom')
-
-  console.log('Custom applied!')
-}
-```
-
 ### `set(variant)`
 
 Set function will take a [**Variant Definition**](/variants) and **apply** it to the element **without** changing the **current** variant **value**.
@@ -76,12 +40,23 @@ It differs from `apply(variant)` as it will **set** values on target **without**
 
 Stop Transitions function will **stop** all **ongoing** transitions on the **current** [**useMotionTransitions**](/api/use-motion-transitions) instance.
 
+## Example
+
 ```typescript
 const target = ref<HTMLElement>()
 
 const { motionProperties } = useMotionProperties(target)
 
-const { apply, stopTransitions } = useMotionControls(motionProperties)
+const { apply, stopTransitions } = useMotionControls(motionProperties, {
+  initial: {
+    y: 100,
+    opacity: 0,
+  },
+  custom: {
+    y: 0,
+    opacty: 1,
+  },
+})
 
 apply({
   opacity: 1,
@@ -93,4 +68,10 @@ setTimeout(() => {
 
   console.log('Stopped after 200ms!')
 }, 200)
+
+const applyCustom = async () => {
+  await apply('custom')
+
+  console.log('Custom applied!')
+}
 ```

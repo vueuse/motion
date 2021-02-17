@@ -4,11 +4,11 @@ useMotionFeatures is used to **register** features such as **variant sync**, **e
 
 ## Parameters
 
-- `instance`
+### `instance`
 
 A motion instance from [**useMotion**](/api/use-motion) or [**useMotions**](/api/use-motions).
 
-- `options`
+### `options`
 
 The same options object as [**useMotion**](/api/use-motion).
 

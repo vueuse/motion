@@ -8,7 +8,7 @@ Be **careful** about **duplicating** the same **name**, note that the **name** c
 
 ## Exposed
 
-- `{ ...motionControls }`
+### `{ ...motionControls }`
 
 useMotions exposes an **object** in which **keys** are defined from all the **v-motion** for which you defined a name **value**.
 

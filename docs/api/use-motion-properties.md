@@ -8,7 +8,7 @@ It allows to add another **layer** between **variants** and direct element **sty
 
 ## Parameters
 
-- `target`
+### `target`
 
 Target must be an element (**SVG** / **HTML**), or a reference to an element.
 
@@ -16,17 +16,17 @@ If the target **reference** is **updated**, the **current** motion properties wi
 
 ## Exposed
 
-- `motionProperties`
+### `motionProperties`
 
 Motion properties are an object combining [**Style Properties**](/motion-properties#style-properties) and [**Transform Properties**](/motion-properties#transform-properties).
 
 Change a **value** and it will be **updated** on the target **element**.
 
-- `style`
+### `style`
 
 A style property from [**useElementStyle**](/api/use-element-style).
 
-- `transform`
+### `transform`
 
 A style property from [**useElementTransform**](/api/use-element-transform).
 

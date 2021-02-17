@@ -6,11 +6,11 @@ It exposes `push` and `stop` which are both **functions**.
 
 ## Exposed
 
-- `push(key, value, target, transition)`
+### `push(key, value, target, transition)`
 
 Push function **run** and **add** a transition to the current useMotionTransitions **instance**.
 
-- `stop(keys | key | undefined)`
+### `stop(keys | key | undefined)`
 
 Stop is a **function** that lets you **stop** ongoing **animations** for a specific **element**.
 

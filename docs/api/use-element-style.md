@@ -6,7 +6,7 @@ It uses [**reactiveStyle**](https://github.com/vueuse/motion/blob/main/src/react
 
 ## Parameters
 
-- `target`
+### `target`
 
 Target must be an element (**SVG** / **HTML**), or a reference to an element.
 
@@ -14,17 +14,17 @@ If the target **reference** is **updated**, the **current** style will be **upda
 
 ## Exposed
 
-- `style`
+### `style`
 
 Style is the current `target` [**Style Properties**](/motion-properties#style-properties) as a **reactive** object.
 
 When you **change** a value, it will **update** the **element** style **property** accordingly.
 
-- `stop()`
+### `stop()`
 
 Stop function will **stop** the **watcher** that **sync** the element **style** with the reactive object.
 
-## Example
+#### Example
 
 ```typescript
 const target = ref<HTMLElement>()
