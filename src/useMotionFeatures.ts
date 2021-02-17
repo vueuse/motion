@@ -2,8 +2,7 @@ import { registerEventListeners } from './features/eventListeners'
 import { registerLifeCycleHooks } from './features/lifeCycleHooks'
 import { registerVariantsSync } from './features/syncVariants'
 import { registerVisibilityHooks } from './features/visibilityHooks'
-import { MotionInstance, MotionVariants } from './types'
-import { UseMotionOptions } from './useMotion'
+import { MotionInstance, MotionVariants, UseMotionOptions } from './types'
 
 /**
  * A Composable executing resolved variants features from variants declarations.
