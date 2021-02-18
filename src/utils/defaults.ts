@@ -3,6 +3,7 @@ import {
   KeyframesTarget,
   PopmotionTransitionProps,
   SingleTarget,
+  Spring,
   ValueTarget,
 } from '../types'
 
@@ -10,7 +11,7 @@ export const isKeyframesTarget = (v: ValueTarget): v is KeyframesTarget => {
   return Array.isArray(v)
 }
 
-export const underDampedSpring = () => ({
+export const underDampedSpring = (): Partial<Spring> => ({
   type: 'spring',
   stiffness: 500,
   damping: 25,
@@ -18,7 +19,7 @@ export const underDampedSpring = () => ({
   restSpeed: 10,
 })
 
-export const overDampedSpring = (to: SingleTarget) => ({
+export const overDampedSpring = (to: SingleTarget): Partial<Spring> => ({
   type: 'spring',
   stiffness: 550,
   damping: to === 0 ? 100 : 30,
@@ -26,7 +27,7 @@ export const overDampedSpring = (to: SingleTarget) => ({
   restSpeed: 10,
 })
 
-export const linearTween = () => ({
+export const linearTween = (): Partial<Keyframes> => ({
   type: 'keyframes',
   ease: 'linear',
   duration: 300,
