@@ -2,16 +2,15 @@
   <DemoBox :code-text="codeText">
     <template #demoElement>
       <div
-        v-motion="'test'"
+        v-motion="'editor'"
         :initial="{
-          x: 0,
           y: 200,
           opacity: 0,
           rotate: 0,
+          scale: 1,
         }"
         :enter="{
           y: 0,
-          x: 0,
           rotate: 0,
           opacity: 1,
           scale: 1,
@@ -47,8 +46,8 @@ ref: codeText = computed(() => {
 })
 
 watch($input, (newVal) => {
-  if (motions.test) {
-    motions.test.apply({
+  if (motions.editor) {
+    motions.editor.apply({
       rotate: newVal,
     })
   }
