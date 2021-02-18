@@ -41,7 +41,7 @@ export type MotionControls = {
    *
    * @param done
    */
-  leave: (done: () => void) => void
+  leave: (el: any, done: () => void) => void
 }
 
 export type MotionInstanceBindings<T = MotionVariants> = {
