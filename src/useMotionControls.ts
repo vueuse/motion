@@ -1,4 +1,5 @@
-import { isString, MaybeRef } from '@vueuse/core'
+import { isObject, MaybeRef } from '@vueuse/core'
+import { Ref, ref } from 'vue'
 import {
   MotionControls,
   MotionProperties,
@@ -20,24 +21,29 @@ export function useMotionControls<T extends MotionVariants>(
   variants: MaybeRef<T> = {} as MaybeRef<T>,
   { push, stop }: MotionTransitions = useMotionTransitions(),
 ): MotionControls {
-  const apply = (variant: Variant | string): Promise<void[]> | undefined => {
-    if (isString(variant)) {
-      if (variants && variants.value && variants.value[variant]) {
-        variant = variants.value[variant] as Variant
-      } else {
-        console.warn(`The variant ${variant} does not exist on this element.`)
-        return
-      }
+  // Variants as ref
+  const variantsRef = ref(variants) as Ref<T>
+
+  const getVariantFromKey = (variant: keyof T): Variant => {
+    if (!variantsRef || !variantsRef.value || !variantsRef.value[variant]) {
+      throw new Error(`The variant ${variant} does not exist.`)
     }
 
+    return variantsRef.value[variant] as Variant
+  }
+
+  const apply = (variant: Variant | keyof T): Promise<void[]> | undefined => {
+    // Get variant data from parameter
+    let variantData = isObject(variant) ? variant : getVariantFromKey(variant)
+
     // Get transition data
-    const { transition } = variant
+    const { transition } = variantData
 
     // Local promises list
     const promises = []
 
     // Loop on each motion properties keys
-    for (const key in variant) {
+    for (const key in variant as Variant) {
       if (key === 'transition') continue
 
       const value = variant[key]
@@ -58,17 +64,12 @@ export function useMotionControls<T extends MotionVariants>(
     return Promise.all(promises)
   }
 
-  const set = (variant: Variant | string) => {
-    if (isString(variant)) {
-      if (variants && variants.value && variants.value[variant]) {
-        variant = variants.value[variant] as Variant
-      } else {
-        console.warn(`The variant ${variant} does not exist on this element.`)
-        return
-      }
-    }
+  const set = (variant: Variant | keyof T) => {
+    // Get variant data from parameter
+    let variantData = isObject(variant) ? variant : getVariantFromKey(variant)
 
-    Object.assign(motionProperties, variant)
+    // Assign variant data to motion properties
+    Object.assign(motionProperties, variantData)
   }
 
   return {
