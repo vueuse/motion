@@ -72,7 +72,7 @@ export function useMotionControls<T extends MotionVariants>(
     Object.assign(motionProperties, variantData)
   }
 
-  const leave = (el: any, done: () => void) => {
+  const leave = async (done: () => void) => {
     let leaveVariant: Variant | undefined
 
     if (variantsRef && variantsRef.value) {
@@ -90,17 +90,9 @@ export function useMotionControls<T extends MotionVariants>(
       return
     }
 
-    apply({
-      ...leaveVariant,
-      transition: {
-        ...(leaveVariant.transition || {}),
-        onComplete: () => {
-          variantsRef.value.leave?.transition?.onComplete?.()
+    await apply(leaveVariant)
 
-          done()
-        },
-      },
-    })
+    done()
   }
 
   return {
