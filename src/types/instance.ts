@@ -36,6 +36,12 @@ export type MotionControls = {
    * Stop all the ongoing transitions for the current element.
    */
   stopTransitions: Fn
+  /**
+   * Helper to be passed to <transition> leave event.
+   *
+   * @param done
+   */
+  leave: (done: () => void) => void
 }
 
 export type MotionInstanceBindings<T = MotionVariants> = {
