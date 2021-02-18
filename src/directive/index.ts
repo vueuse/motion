@@ -40,7 +40,7 @@ export const directive = (
     // Set the global state reference if the name is set through v-motion="`value`"
     if (binding.value) motionState[binding.value] = motionControls
   },
-  beforeUnmount(_, binding) {
+  unmounted(_, binding) {
     if (binding.value && motionState[binding.value])
       delete motionState[binding.value]
   },
