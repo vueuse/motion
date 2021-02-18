@@ -8,6 +8,8 @@
 
     <Editor />
 
+    <Transitions class="mt-12" />
+
     <div class="flex flex-col items-center justify-center">
       <a
         class="mt-12 mb-6"
@@ -32,6 +34,7 @@ import type { MotionVariants, MotionTarget } from '@vueuse/motion'
 import { useMotion } from '@vueuse/motion'
 import { ref } from 'vue-demi'
 import Editor from './components/Editor.vue'
+import Transitions from './components/Transitions.vue'
 
 const defaultAnimation = (delay: number): MotionVariants => {
   return {
