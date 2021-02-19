@@ -6,17 +6,16 @@
 
 **Vue Composables** putting your **components** in **motion**
 
-- 🧩 Written in **TypeScript**.
-- 🏎 **Smooth animations** based on [**Popmotion**](https://popmotion.io/).
-- 🎮 **Declarative** API.
-- 🤟 Vue **2** & **3** support using [**vue-demi**](https://github.com/antfu/vue-demi).
-- 🏋️‍♀️ Lightweight with **<15kb** bundle size
+- 🏎 **Smooth animations** based on [**Popmotion**](https://popmotion.io/)
+- 🎮 **Declarative** API
+- 🚀 **Plug** & **play** with **10+ presets**
+- 🤟 Vue **2** & **3** support using [**vue-demi**](https://github.com/antfu/vue-demi)
+- ✨ Written in **TypeScript**
+- 🏋️‍♀️ Lightweight with **<20kb** bundle size
 
 [🌍 **Documentation**](https://vue-use-motion.netlify.app)
 
-This repository is still **experimental**, the **API** might be subject to **changes**.
-
-Last update: **17/02/2021**
+[👀 **Demos**](https://vue-use-motion-demo.netlify.app)
 
 ## Quick Start
 
