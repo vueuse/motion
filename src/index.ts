@@ -1,3 +1,4 @@
+export { directive as MotionDirective } from './directive'
 export { MotionPlugin } from './plugin'
 export * from './presets'
 export { reactiveStyle } from './reactiveStyle'
