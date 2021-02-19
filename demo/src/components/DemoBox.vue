@@ -1,17 +1,6 @@
 <template>
   <div
     class="relative w-full p-4 overflow-hidden bg-gray-800 border-4 shadow-2xl rounded-xl border-violet-600"
-    v-motion
-    :initial="{
-      y: 200,
-      scale: 0.9,
-      opacity: 0,
-    }"
-    :enter="{
-      y: 0,
-      scale: 1,
-      opacity: 1,
-    }"
   >
     <div class="flex items-center w-full h-full">
       <div class="flex-1">
@@ -37,19 +26,20 @@
 <script setup="props" lang="ts">
 import { useToggle } from '@vueuse/core'
 import CodeBlock from './CodeBlock.vue'
-import { defineProps, nextTick } from 'vue'
+import { defineProps, nextTick, defineEmit } from 'vue'
 
-const props = defineProps<{
-  onReplay?: () => void
+defineProps<{
   codeText?: string
 }>()
+
+const emit = defineEmit(['replay'])
 
 const [visible, toggleVisible] = useToggle(true)
 
 const replay = () => {
   toggleVisible()
 
-  props?.onReplay?.()
+  emit('replay')
 
   nextTick(toggleVisible)
 }
