@@ -22,7 +22,7 @@ When you **change** a value, it will **update** the **element** style **property
 
 ### `stop()`
 
-Stop function will **stop** the **watcher** that **sync** the element **style** with the reactive object.
+Stop function will **stop** the **watcher** that **syncs** the element **style** with the reactive object.
 
 #### Example
 

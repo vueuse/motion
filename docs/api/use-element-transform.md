@@ -2,7 +2,7 @@
 
 useElementTransform is used to **sync** a reactive **object** to a **target** element **CSS transform**.
 
-It uses [**reactiveTransform**](https://github.com/vueuse/motion/blob/main/src/reactiveTransform.ts) and bind it to a **target**.
+It uses [**reactiveTransform**](https://github.com/vueuse/motion/blob/main/src/reactiveTransform.ts) and binds it to a **target**.
 
 ## Parameters
 
@@ -22,7 +22,7 @@ When you **change** a value, it will **update** the **element** transform **prop
 
 ### `stop()`
 
-Stop function will **stop** the **watcher** that **sync** the element **transform** with the reactive object.
+Stop function will **stop** the **watcher** that **syncs** the element **transform** with the reactive object.
 
 ## Example
 

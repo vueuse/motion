@@ -27,11 +27,11 @@ They are composed of any [**Motion Properties**](/motion-properties) and an opti
 
 ## Initial Variant
 
-The **initial** variant represent the **base state** of the focused element.
+The **initial** variant represents the **base state** of the focused element.
 
 It combines with **:style**, and is applied at the **creation** of the element.
 
-It is **recommended** to **include** a base state for **every parameter** that you are willing to **animate** using subsequent variants.
+It is **recommended** to **include** a base state for **each parameter** that you are willing to **animate** using subsequent variants.
 
 ```vue
 <div

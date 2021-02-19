@@ -1,6 +1,6 @@
 # Motion Instance
 
-Motion instance are the **object** exposed when **binding** to a target **element**.
+Motion instance is the **object** exposed when **binding** to a target **element** using [**v-motion**](/directive-usage) or [**useMotion**](/composable-usage).
 
 It is composed of **three properties**, allowing you to **interact** with the **element**.
 

@@ -1,6 +1,6 @@
 # useMotionControls
 
-useMotionControls is used to **create** motion **controls** from motion **properties** and motions **transitions**.
+useMotionControls is used to **create** motion **controls** from motion **properties** and motion **transitions**.
 
 [**Motion Instance**](/motion-instance) members are **helpers** for you to **interact** with your **element** motion **properties** with ease.
 

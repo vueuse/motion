@@ -33,7 +33,7 @@ The native [**Popmotion Repeat**](https://popmotion.io/#quick-start-animation-an
 
 Three parameters are available:
 
-- `repeat` that is the amount of times the animation will be repeated. Can be set to `Infinity`.
+- `repeat` that is the number of times the animation will be repeated. Can be set to `Infinity`.
 
 - `repeatDelay`, a duration in milliseconds to wait before repeating the animation.
 
@@ -61,7 +61,7 @@ Three parameters are available:
 
 Two types of **animations** are supported.
 
-For most the [**Common Animatable Properties**](https://github.com/vueuse/motion/blob/main/src/utils/defaults.ts#L43), it will uses **generated** spring **transitions**.
+For the most [**Common Animatable Properties**](https://github.com/vueuse/motion/blob/main/src/utils/defaults.ts#L43), it will uses **generated** spring **transitions**.
 
 The rest of the properties might be using **keyframes**.
 
