@@ -14,28 +14,36 @@ The **v-motion** can be **used** as **many times** you want **in** any and **on*
 
 Once put on an element, the **v-motion** will allow you to **write** your **variants** as **props** of this **element**.
 
-The supported **variants names** are the following:
+The supported **variants props** are the following:
 
-- **initial**
-- **enter**
-- **visible**
-- **hovered**
-- **focused**
-- **tapped**
+- **:initial**
+- **:enter**
+- **:visible**
+- **:hovered**
+- **:focused**
+- **:tapped**
 
-You can also **pass** your **variants** as an **object** using the `variants` prop.
+You can also **pass** your **variants** as an **object** using the `:variants` prop.
 
-The `variants` prop will be **combined** with all the other **native variants** properties, allowing you to define **only** your **custom** variants from this **object**.
+The `:variants` prop will be **combined** with all the other **native variants** properties, allowing you to define **only** your **custom** variants from this **object**.
 
 The rest of the variants properties can be found on the [**Variants**](/variants) page.
+
+As a **shorthand**, you can **use** the `:delay` prop, that allows you to **edit** the **delay** from the **element** props.
+
+If you **specified** `visible` or `enter` **variant**, the **delay** will be **applied** to **each** of them.
+
+Otherwise, the **delay** will be **applied** on the `initial` [**variant**](/variants).
 
 ```vue
 <template>
   <div
     v-motion
     :initial="{ opacity: 0, y: 100 }"
-    :enter="{ opacity: 1, y: 0 }"
+    :enter="{ opacity: 1, y: 0, scale: 1 }"
     :variants="{ custom: { scale: 2 } }"
+    :hovered="{ scale: 1.2 }
+    :delay="200"
   />
 </template>
 ```
