@@ -19,4 +19,4 @@ The **roadmap** includes:
 - 👨‍💻 **Context-aware elements, to enable animations between children**
 - ❓ **vueuse/layout**
 - ❓ **vueuse/gestures**
-- ❓ **Making a playground to create animations with ease**
+- ❓ **Making a playground to create animations with a GUI**
