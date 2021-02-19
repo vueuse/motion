@@ -46,7 +46,7 @@ The rest of the variants properties can be found on the [**Variants**](/variants
 
 When **defined** from **template**, the **target element** might not be **assigned** to a **ref**.
 
-As **directives** does not play well with **references**, you can access **motions controls** using [**useMotions**](/api/use-motions).
+You can access **motions controls** using [**useMotions**](/api/use-motions).
 
 If you want to **access** a **v-motion**, you will have to give the **element** a **name** as v-motion value.
 
@@ -76,3 +76,32 @@ const customEvent = () => {
 ```
 
 In the **above** example, the **custom** object will be an **instance** of [**Motion Instance**](/motion-instance).
+
+### Custom Directives
+
+You can add **custom** directives that will be **prefixed** by `v-motion` right from the **plugin** config.
+
+```javascript
+import { MotionPlugin } from '@vueuse/motion'
+
+const app = createApp(App)
+
+app.use(MotionPlugin, {
+  directives: {
+    'pop-in': {
+      initial: {
+        scale: 0,
+        opacity: 0,
+      },
+      visible: {
+        scale: 1,
+        opacity: 1,
+      },
+    },
+  },
+})
+
+app.mount('#app')
+```
+
+With the code **above**, you will have **access** to `v-motion-pop-in` **globally** on any **element** or **component** of the **app**.
