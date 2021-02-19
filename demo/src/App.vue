@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div ref="title" class="flex items-center justify-center">
+    <div class="flex items-center justify-center">
       <h1 class="m-6 text-4xl font-bold cursor-pointer select-none">
         🤹&nbsp;@vueuse/motion
       </h1>
@@ -21,13 +21,12 @@
     <div class="flex flex-col items-center justify-center">
       <a
         class="mt-12 mb-6"
-        ref="github"
         href="https://github.com/Tahul/vue-use-motion"
       >
         ↩️&nbsp;&nbsp;Bring me back to GitHub
       </a>
 
-      <p class="mb-6 text-center" ref="credits">
+      <p class="mb-6 text-center">
         This package has been written by
         <a href="https://twitter.com/yaeeelglx" target="_blank">
           Yaël Guilloux
