@@ -96,14 +96,16 @@ const app = createApp(App)
 
 app.use(MotionPlugin, {
   directives: {
-    'pop-in': {
+    'pop-bottom': {
       initial: {
         scale: 0,
         opacity: 0,
+        y: 100
       },
       visible: {
         scale: 1,
         opacity: 1,
+        y: 0
       },
     },
   },
@@ -112,4 +114,4 @@ app.use(MotionPlugin, {
 app.mount('#app')
 ```
 
-With the code **above**, you will have **access** to `v-motion-pop-in` **globally** on any **element** or **component** of the **app**.
+With the code **above**, you will have **access** to `v-motion-pop-bottom` **globally** on any **element** or **component** of the **app**.
