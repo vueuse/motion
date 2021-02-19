@@ -4,14 +4,19 @@ This package is under **active development**, as it still **misses** some **feat
 
 As I think it is still more than **usable** in its current **state**, I'm **releasing** it.
 
+- ✔ : Done
+- 👨‍💻 : WIP
+- ❓ : Ideas
+
 The **roadmap** includes:
 
-- ✔ **Finishing to document the whole API**
-- **Finishing to write the test suite for each composable**
+- ✔ **Finishing documenting the whole API**
 - ✔ **Per property transition definition**
-- **Better orchestration features**
-- **Context-aware elements, to enable animations between childrens**
-- **Make the binding with Vue transition component easier**
+- ✔ **Better orchestration features**
+- ✔️ **Make the binding with Vue transition component easier**
 - ✔ **More default variants**
-- **v-layout**
-- **Making a playground to create animations with ease (devtool ?)**
+- 👨‍💻 **Finish writing the test suite for each composable**
+- 👨‍💻 **Context-aware elements, to enable animations between children**
+- ❓ **vueuse/layout**
+- ❓ **vueuse/gestures**
+- ❓ **Making a playground to create animations with ease**
