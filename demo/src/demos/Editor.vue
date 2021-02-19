@@ -1,5 +1,5 @@
 <template>
-  <DemoBox :code-text="codeText">
+  <DemoBox :code-text="codeText" @replay="replay">
     <template #demoElement>
       <div
         v-motion="'editor'"
@@ -32,7 +32,7 @@
 </template>
 
 <script setup="props" lang="ts">
-import DemoBox from './DemoBox.vue'
+import DemoBox from '../components/DemoBox.vue'
 import { useMotions } from '@vueuse/motion'
 import { computed, watch } from 'vue'
 import basic from '../examples/basic'
@@ -52,4 +52,8 @@ watch($input, (newVal) => {
     })
   }
 })
+
+const replay = () => {
+  $input.value = '0'
+}
 </script>

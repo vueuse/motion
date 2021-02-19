@@ -33,7 +33,7 @@
 </template>
 
 <script setup="props" lang="ts">
-import DemoBox from './DemoBox.vue'
+import DemoBox from '../components/DemoBox.vue'
 import { useMotions } from '@vueuse/motion'
 import { useToggle } from '@vueuse/core'
 import { computed } from 'vue'
