@@ -1,18 +1,8 @@
-import { isObject } from '@vueuse/core'
 import { Directive, ref } from 'vue-demi'
 import { motionState } from '../features/state'
 import { MotionVariants } from '../types'
 import { useMotion } from '../useMotion'
-
-const directivePropsKeys = [
-  'initial',
-  'enter',
-  'leave',
-  'visible',
-  'hovered',
-  'tapped',
-  'focused',
-]
+import { resolveVariants } from '../utils/directive'
 
 export const directive = (
   variants?: MotionVariants,
@@ -21,27 +11,19 @@ export const directive = (
     // Initialize variants with argument
     const variantsRef = ref<MotionVariants>(variants || {})
 
-    if (node && node.props) {
-      if (node.props['variants'] && isObject(node.props['variants'])) {
-        // If variant are passed through a single object reference, initialize with it
-        variantsRef.value = { ...variantsRef.value, ...node.props['variants'] }
-      }
+    // Resolve variants from node props
+    resolveVariants(node, variantsRef)
 
-      // Loop on directive prop keys, add them to the local variantsRef if defined
-      directivePropsKeys.forEach((key) => {
-        if (node.props && node.props[key] && isObject(node.props[key])) {
-          variantsRef.value[key] = node.props[key]
-        }
-      })
-    }
-
-    const motionControls = useMotion(el, variantsRef)
+    // Create motion instance
+    const motionInstance = useMotion(el, variantsRef)
 
     // Set the global state reference if the name is set through v-motion="`value`"
-    if (binding.value) motionState[binding.value] = motionControls
+    if (binding.value) motionState[binding.value] = motionInstance
   },
   unmounted(_, binding) {
+    // Check if motion state has the current element as reference
     if (binding.value && motionState[binding.value])
+      // Delete the reference from motion state
       delete motionState[binding.value]
   },
 })
