@@ -6,9 +6,17 @@
       </h1>
     </div>
 
-    <Editor />
+    <h1 class="flex items-center justify-center text-3xl font-bold">Delay</h1>
 
-    <Transitions class="mt-12" />
+    <Delay class="mt-6 mb-6" />
+
+    <h1 class="flex items-center justify-center text-3xl font-bold">Editor</h1>
+
+    <Editor class="mt-6 mb-6" />
+
+    <h1 class="flex items-center justify-center text-3xl font-bold">Transitions</h1>
+
+    <Transitions class="mt-6 mb-6" />
 
     <div class="flex flex-col items-center justify-center">
       <a
@@ -30,37 +38,9 @@
 </template>
 
 <script setup lang="ts">
-import type { MotionVariants, MotionTarget } from '@vueuse/motion'
-import { useMotion } from '@vueuse/motion'
-import { ref } from 'vue-demi'
+import Delay from './demos/Delay.vue'
 import Editor from './demos/Editor.vue'
 import Transitions from './demos/Transitions.vue'
-
-const defaultAnimation = (delay: number): MotionVariants => {
-  return {
-    initial: {
-      y: 100,
-      scale: 0.8,
-      opacity: 0,
-    },
-    enter: {
-      y: 0,
-      scale: 1,
-      opacity: 1,
-      transition: {
-        delay,
-      },
-    },
-  }
-}
-
-ref: title = ref<MotionTarget>()
-ref: github = ref<MotionTarget>()
-ref: credits = ref<MotionTarget>()
-
-useMotion($title, defaultAnimation(100))
-useMotion($github, defaultAnimation(200))
-useMotion($credits, defaultAnimation(300))
 </script>
 
 <style lang="postcss" scoped>
