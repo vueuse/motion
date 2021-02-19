@@ -1,6 +1,6 @@
 # Quick Start
 
-Let's **get started** quick by **installing** the **package** and adding the **plugin**.
+Let's **get started** quickly by **installing** the **package** and adding the **plugin**.
 
 From your **terminal**:
 
@@ -50,10 +50,10 @@ smoothestDiv.apply({ scale: 4 })
 </script>
 ```
 
-See more about what **properties** you can **animate**, check out [**Motion Properties**](/motion-properties).
+To see more about what **properties** you can **animate**, check out [**Motion Properties**](/motion-properties).
 
-See more about how to **create** your own **animations** styles, check out [**Transition Properties**](/transition-properties).
+To see more about how to **create** your own **animations** styles, check out [**Transition Properties**](/transition-properties).
 
-See more about what are **variants** and how you can **use** them, check out [**Variants**](/variants).
+To see more about what are **variants** and how you can **use** them, check out [**Variants**](/variants).
 
-See more about how to **control** your declared **variants**, check out [**Motion Instance**](/motion-instance).
+To see more about how to **control** your declared **variants**, check out [**Motion Instance**](/motion-instance).
