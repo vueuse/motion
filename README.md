@@ -9,8 +9,8 @@
 - 🏎 **Smooth animations** based on [**Popmotion**](https://popmotion.io/)
 - 🎮 **Declarative** API
 - 🚀 **Plug** & **play** with **10+ presets**
-- 🤟 Supports Vue **2** & **3** using [**vue-demi**](https://github.com/antfu/vue-demi)
-- 🤩 Supports **Nuxt** using [**nuxt-use-motion**](https://github.com/Tahul/nuxt-use-sound)
+- 🤟 Supports **Vue 2 & 3** using [**vue-demi**](https://github.com/antfu/vue-demi)
+- 💚 Supports **Nuxt** using [**nuxt-use-motion**](https://github.com/Tahul/nuxt-use-sound)
 - ✨ Written in **TypeScript**
 - 🏋️‍♀️ Lightweight with **<20kb** bundle size
 
