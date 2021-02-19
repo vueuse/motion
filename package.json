@@ -48,7 +48,7 @@
     "vue-demi": "latest"
   },
   "peerDependencies": {
-    "@vue/composition-api": "^1.0.0-rc.1",
+    "@vue/composition-api": ">=1.0.0-rc.1",
     "vue": "^2.0.0 || >=3.0.0-rc.0"
   },
   "devDependencies": {
@@ -75,12 +75,12 @@
     "rollup": "^2.39.0",
     "rollup-plugin-dts": "^2.0.1",
     "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.29.0",
+    "rollup-plugin-typescript2": "^0.30.0",
     "style-value-types": "^4.0.1",
     "tailwindcss": "^2.0.3",
     "ts-jest": "^26.5.1",
     "typescript": "^4.1.5",
-    "vite": "^2.0.0",
+    "vite": "^2.0.1",
     "vitepress": "^0.12.2",
     "vue": "^3.0.5",
     "yorkie": "^2.0.0"
