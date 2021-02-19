@@ -4,7 +4,7 @@ This package is under **active development**, as it still **misses** some **feat
 
 As I think it is still more than **usable** in its current **state**, I'm **releasing** it.
 
-- ✔ : Done
+- ✔️ : Done
 - 👨‍💻 : WIP
 - ❓ : Ideas
 
