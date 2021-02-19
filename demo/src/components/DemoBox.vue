@@ -3,7 +3,7 @@
     class="relative w-full p-4 overflow-hidden bg-gray-800 border-4 shadow-2xl rounded-xl border-violet-600"
   >
     <div class="flex items-center w-full h-full">
-      <div class="flex-1">
+      <div v-if="codeText" class="flex-1">
         <code-block :code-text="codeText" language="javascript" />
       </div>
 
@@ -14,7 +14,7 @@
 
     <div class="absolute cursor-pointer select-none top-6 right-8">
       <div class="flex flex-row items-center justify-end">
-        <span class="pl-4" @click="replay">🔃</span>
+        <button class="ml-4" @click="replay">🔃</button>
         <slot name="controls" />
       </div>
     </div>
