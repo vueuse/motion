@@ -1,4 +1,4 @@
-import { Directive, ref } from 'vue-demi'
+import { Directive, DirectiveBinding, ref, VNode } from 'vue-demi'
 import { motionState } from '../features/state'
 import { MotionVariants } from '../types'
 import { useMotion } from '../useMotion'
@@ -6,8 +6,18 @@ import { resolveVariants } from '../utils/directive'
 
 export const directive = (
   variants?: MotionVariants,
-): Directive<HTMLElement | SVGElement> => ({
-  created(el, binding, node) {
+): Directive<HTMLElement | SVGElement> => {
+  const register = (
+    el: HTMLElement | SVGElement,
+    binding: DirectiveBinding,
+    node: VNode<
+      any,
+      HTMLElement | SVGElement,
+      {
+        [key: string]: any
+      }
+    >,
+  ) => {
     // Initialize variants with argument
     const variantsRef = ref<MotionVariants>(variants || {})
 
@@ -19,13 +29,35 @@ export const directive = (
 
     // Set the global state reference if the name is set through v-motion="`value`"
     if (binding.value) motionState[binding.value] = motionInstance
-  },
-  unmounted(_, binding) {
+  }
+
+  const unregister = (
+    el: HTMLElement | SVGElement,
+    binding: DirectiveBinding,
+    node: VNode<
+      any,
+      HTMLElement | SVGElement,
+      {
+        [key: string]: any
+      }
+    >,
+  ) => {
     // Check if motion state has the current element as reference
     if (binding.value && motionState[binding.value])
       // Delete the reference from motion state
       delete motionState[binding.value]
-  },
-})
+  }
+
+  return {
+    // Vue 3 Directive Hooks
+    created: register,
+    unmounted: unregister,
+    // Vue 2 Directive Hooks
+    // For Nuxt & Vue 2 compatibility
+    // @ts-expect-error
+    bind: register,
+    unbind: unregister,
+  }
+}
 
 export default directive
