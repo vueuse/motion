@@ -30,7 +30,7 @@ export const MotionPlugin: Plugin = {
         // Development warning, showing definitions missing `initial` key
         if (!variants.initial && __DEV__) {
           console.warn(
-            `Your variant v-motion-${key} is missing initial variant!`,
+            `Your directive v-motion-${key} is missing initial variant!`,
           )
         }
 
