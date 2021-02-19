@@ -33,8 +33,8 @@
 import type { MotionVariants, MotionTarget } from '@vueuse/motion'
 import { useMotion } from '@vueuse/motion'
 import { ref } from 'vue-demi'
-import Editor from './components/Editor.vue'
-import Transitions from './components/Transitions.vue'
+import Editor from './demos/Editor.vue'
+import Transitions from './demos/Transitions.vue'
 
 const defaultAnimation = (delay: number): MotionVariants => {
   return {
