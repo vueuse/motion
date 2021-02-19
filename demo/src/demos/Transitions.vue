@@ -27,7 +27,7 @@
     </template>
 
     <div>
-      <button @click="toggleShow">Toggle</button>
+      <button class="px-4 py-2 bg-indigo-600 rounded-lg hover:bg-indigo-400" @click="toggleShow">Toggle</button>
     </div>
   </DemoBox>
 </template>
