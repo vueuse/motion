@@ -41,7 +41,7 @@ export function useElementStyle(target: MaybeRef<MotionTarget>) {
   const stopSyncWatch = watch(
     style,
     (newValue) => {
-      if (!targetRef.value?.style) {
+      if (!targetRef.value || !targetRef.value.style) {
         // Add the current value to the cache so it is set on target creation
         _cache = newValue
         return

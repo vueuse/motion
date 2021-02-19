@@ -18,7 +18,7 @@ export function registerVisibilityHooks<T extends MotionVariants>({
       _stopObserver = useIntersectionObserver(
         target,
         ([{ isIntersecting }]) => {
-          if (variants.value?.visible) {
+          if (variants.value && variants.value.visible) {
             if (isIntersecting) {
               variant.value = 'visible'
             } else {

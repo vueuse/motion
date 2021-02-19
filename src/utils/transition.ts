@@ -200,9 +200,9 @@ export function getAnimation(
         if (valueTransition.onUpdate) valueTransition.onUpdate(v)
       },
       onComplete: () => {
-        transition?.onComplete?.()
+        if (transition.onComplete) transition.onComplete()
 
-        onComplete?.()
+        if (onComplete) onComplete()
       },
     }
 
@@ -221,7 +221,7 @@ export function getAnimation(
   function set(): StopAnimation {
     target[key] = value
 
-    transition?.onComplete?.()
+    if (transition.onComplete) transition.onComplete()
 
     return { stop: () => {} }
   }
