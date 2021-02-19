@@ -25,7 +25,7 @@ You can specify a **delay** which will be added **every** time the **transition*
 />
 ```
 
-##### _This animation will be delayed of 1 second._ ☝️
+##### _This animation will be throttled of 1 second._ ☝️
 
 ### Repeat
 

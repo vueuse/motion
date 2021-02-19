@@ -45,7 +45,7 @@ Transform properties are used to **decompose** a regular `transform` CSS **strin
 
 All the regular [**CSS Transform**](https://developer.mozilla.org/en-US/docs/Web/CSS/transform#syntax) syntax arguments are **supported**.
 
-As an addition, you can use `x`, `y`, `z` properties, that will be converted to `translateX`, `translateY` and `translateZ`.
+As an addition, you can use `x`, `y`, `z` properties, that will be converted into `translateX`, `translateY` and `translateZ`.
 
 ```javascript
 {
