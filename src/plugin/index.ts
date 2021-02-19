@@ -15,7 +15,7 @@ export const MotionPlugin: Plugin = {
         // Get preset variants
         const preset = presets[key]
 
-        // Regisrer the preset `v-motion-${key}` directive
+        // Register the preset `v-motion-${key}` directive
         app.directive(`motion-${slugify(key)}`, directive(preset))
       }
     }
