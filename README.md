@@ -1,8 +1,8 @@
-# 🤹 vue-use-motion
+# 🤹 @vueuse/motion
 
 [![npm](https://img.shields.io/npm/v/@vueuse/motion.svg)](https://www.npmjs.com/package/@vueuse/motion)
 [![npm](https://img.shields.io/npm/dm/@vueuse/motion.svg)](https://npm-stat.com/charts.html?package=@vueuse/motion)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/ab1db459-8420-4bc6-9fac-2bc247fa2385/deploy-status)](https://app.netlify.com/sites/vue-use-motion/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ab1db459-8420-4bc6-9fac-2bc247fa2385/deploy-status)](https://app.netlify.com/sites/vueuse-motion/deploys)
 
 **Vue Composables** putting your **components** in **motion**
 
@@ -14,9 +14,9 @@
 - ✨ Written in **TypeScript**
 - 🏋️‍♀️ Lightweight with **<20kb** bundle size
 
-[🌍 **Documentation**](https://vue-use-motion.netlify.app)
+[🌍 **Documentation**](https://vueuse-motion.netlify.app)
 
-[👀 **Demos**](https://vue-use-motion-demo.netlify.app)
+[👀 **Demos**](https://vueuse-motion-demo.netlify.app)
 
 ## Quick Start
 
@@ -70,13 +70,13 @@ smoothestDiv.apply({ scale: 4 })
 </script>
 ```
 
-To see more about what **properties** you can **animate**, check out [**Motion Properties**](https://vue-use-motion.netlify.app/motion-properties).
+To see more about what **properties** you can **animate**, check out [**Motion Properties**](https://vueuse-motion.netlify.app/motion-properties).
 
-To see more about how to **create** your own **animations** styles, check out [**Transition Properties**](https://vue-use-motion.netlify.app/transition-properties).
+To see more about how to **create** your own **animations** styles, check out [**Transition Properties**](https://vueuse-motion.netlify.app/transition-properties).
 
-To see more about what are **variants** and how you can **use** them, check out [**Variants**](https://vue-use-motion.netlify.app/variants).
+To see more about what are **variants** and how you can **use** them, check out [**Variants**](https://vueuse-motion.netlify.app/variants).
 
-To see more about how to **control** your declared **variants**, check out [**Motion Instance**](https://vue-use-motion.netlify.app/motion-instance).
+To see more about how to **control** your declared **variants**, check out [**Motion Instance**](https://vueuse-motion.netlify.app/motion-instance).
 
 ## Credits
 

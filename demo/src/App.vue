@@ -14,15 +14,14 @@
 
     <Editor class="mt-6 mb-6" />
 
-    <h1 class="flex items-center justify-center text-3xl font-bold">Transitions</h1>
+    <h1 class="flex items-center justify-center text-3xl font-bold">
+      Transitions
+    </h1>
 
     <Transitions class="mt-6 mb-6" />
 
     <div class="flex flex-col items-center justify-center">
-      <a
-        class="mt-12 mb-6"
-        href="https://github.com/Tahul/vue-use-motion"
-      >
+      <a class="mt-12 mb-6" href="https://github.com/vueuse/motion">
         ↩️&nbsp;&nbsp;Bring me back to GitHub
       </a>
 
