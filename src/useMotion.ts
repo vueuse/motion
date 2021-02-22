@@ -44,6 +44,7 @@ export function useMotion<T extends MotionVariants>(
     variant,
     variants: variantsRef,
     state,
+    motionProperties,
     ...controls,
   }
 

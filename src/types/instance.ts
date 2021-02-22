@@ -1,6 +1,6 @@
 import { Fn } from '@vueuse/core'
-import { Ref } from 'vue-demi'
-import { MotionVariants, Variant } from './variants'
+import { Ref, UnwrapRef } from 'vue-demi'
+import { MotionProperties, MotionVariants, Variant } from './variants'
 
 export type MotionTarget = HTMLElement | SVGElement | null | undefined
 
@@ -9,6 +9,7 @@ export interface MotionInstance<T = MotionVariants> extends MotionControls {
   variants: Ref<T>
   variant: Ref<keyof T>
   state: Ref<Variant | undefined>
+  motionProperties: UnwrapRef<MotionProperties>
 }
 
 export type UseMotionOptions = {
