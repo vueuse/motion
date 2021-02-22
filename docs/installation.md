@@ -48,7 +48,7 @@ If you are using [**Nuxt**](https://nuxtjs.org/), this **package** has a specifi
 
 It is called [**nuxt-use-motion**](https://github.com/Tahul/nuxt-use-motion).
 
-You **must** have [**@nuxt/composition-api**](https://composition-api.nuxtjs.org/) setup in your **project** in order to make this **work**.
+You **must** have [**@nuxtjs/composition-api**](https://composition-api.nuxtjs.org/) setup in your **project** in order to make this **work**.
 
 Once you **installed** it, just add `nuxt-use-motion` to your project:
 
