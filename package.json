@@ -1,6 +1,6 @@
 {
   "name": "@vueuse/motion",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "🤹 Vue Composables putting your components in motion",
   "repository": "https://github.com/vueuse/motion",
   "bugs": {
@@ -50,7 +50,7 @@
   },
   "peerDependencies": {
     "vue": ">=2.x || >=3.x",
-    "@vue/composition-api": ">=1.0.0-rc.2"
+    "@vue/composition-api": ">=1.x"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.1.0",
