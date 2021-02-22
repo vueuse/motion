@@ -15,7 +15,7 @@ The **roadmap** includes:
 - ✔️ **Better orchestration features**
 - ✔️ **Make the binding with Vue transition component easier**
 - ✔️ **More default variants**
-- ✔️ **[nuxt module](https://github.com/Tahul/nuxt-use-sound)**
+- ✔️ **[Nuxt module](https://github.com/Tahul/nuxt-use-motion)**
 - 👨‍💻 **Finish writing the test suite for each composable**
 - 👨‍💻 **Context-aware elements, to enable animations between children**
 - ❓ **vueuse/layout**
