@@ -1,0 +1,11 @@
+[[redirects]]
+  from = "https://motion.vueuse.js.org/*"
+  to = "https://motion.vueuse.org/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://vueuse-motion.netlify.app/*"
+  to = "https://motion.vueuse.org/:splat"
+  status = 301
+  force = true
