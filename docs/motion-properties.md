@@ -26,7 +26,7 @@ Style properties are used to **decompose** a regular `style` CSS **string** into
 
 The typings are the same as the regular `style` property from **Vue templates**.
 
-All the regular [**CSS Style**](https://developer.mozilla.org/fr/docs/Web/CSS/Reference) properties are **supported**.
+All the regular [**CSS Style**](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference) properties are **supported**.
 
 Some keys are **forbidden** (`transition`, `rotate`, `scale`...) as they are now reserved for [**Transform Properties**](#transform-properties).
 
