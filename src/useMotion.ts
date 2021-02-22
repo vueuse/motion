@@ -14,7 +14,7 @@ import { useMotionVariants } from './useMotionVariants'
 /**
  * A Vue Composable that put your components in motion.
  *
- * @docs https://vueuse-motion.netlify.app
+ * @docs https://motion.vueuse.js.org
  *
  * @param target
  * @param variants

@@ -14,7 +14,7 @@
 - ✨ Written in **TypeScript**
 - 🏋️‍♀️ Lightweight with **<20kb** bundle size
 
-[🌍 **Documentation**](https://vueuse-motion.netlify.app)
+[🌍 **Documentation**](https://motion.vueuse.js.org)
 
 [👀 **Demos**](https://vueuse-motion-demo.netlify.app)
 
@@ -70,13 +70,13 @@ smoothestDiv.apply({ scale: 4 })
 </script>
 ```
 
-To see more about what **properties** you can **animate**, check out [**Motion Properties**](https://vueuse-motion.netlify.app/motion-properties).
+To see more about what **properties** you can **animate**, check out [**Motion Properties**](https://motion.vueuse.js.org/motion-properties).
 
-To see more about how to **create** your own **animations** styles, check out [**Transition Properties**](https://vueuse-motion.netlify.app/transition-properties).
+To see more about how to **create** your own **animations** styles, check out [**Transition Properties**](https://motion.vueuse.js.org/transition-properties).
 
-To see more about what are **variants** and how you can **use** them, check out [**Variants**](https://vueuse-motion.netlify.app/variants).
+To see more about what are **variants** and how you can **use** them, check out [**Variants**](https://motion.vueuse.js.org/variants).
 
-To see more about how to **control** your declared **variants**, check out [**Motion Instance**](https://vueuse-motion.netlify.app/motion-instance).
+To see more about how to **control** your declared **variants**, check out [**Motion Instance**](https://motion.vueuse.js.org/motion-instance).
 
 ## Credits
 
