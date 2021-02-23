@@ -1,4 +1,6 @@
-import { reactive } from 'vue-demi'
+import { createGlobalState } from '@vueuse/core'
 import { MotionInstanceBindings } from '../types'
 
-export const motionState = reactive<MotionInstanceBindings>({})
+export const motionState = createGlobalState<MotionInstanceBindings>(
+  () => ({} as MotionInstanceBindings),
+)()
