@@ -23,20 +23,29 @@ export const resolveVariants = (
   >,
   variantsRef: Ref<MotionVariants>,
 ) => {
-  if (node && node.props) {
-    if (node.props['variants'] && isObject(node.props['variants'])) {
+  // This is done to achieve compat with Vue 2 & 3
+  // node.props = Vue 3 element props location
+  // node.data.attrs = Vue 2 element props location
+  const target = node.props
+    ? node.props // @ts-expect-error
+    : node.data && node.data.attrs // @ts-expect-error
+    ? node.data.attrs
+    : {}
+
+  if (target) {
+    if (target['variants'] && isObject(target['variants'])) {
       // If variant are passed through a single object reference, initialize with it
       variantsRef.value = {
         ...variantsRef.value,
-        ...node.props['variants'],
+        ...target['variants'],
       }
     }
 
     // Loop on directive prop keys, add them to the local variantsRef if defined
     directivePropsKeys.forEach((key) => {
       if (key === 'delay') {
-        if (node.props && node.props[key] && isNumber(node.props[key])) {
-          const delay = node.props[key]
+        if (target && target[key] && isNumber(target[key])) {
+          const delay = target[key]
 
           if (variantsRef && variantsRef.value) {
             if (variantsRef.value.enter) {
@@ -66,8 +75,8 @@ export const resolveVariants = (
         return
       }
 
-      if (node.props && node.props[key] && isObject(node.props[key])) {
-        variantsRef.value[key] = node.props[key]
+      if (target && target[key] && isObject(target[key])) {
+        variantsRef.value[key] = target[key]
       }
     })
   }
