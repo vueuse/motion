@@ -50,7 +50,7 @@
   },
   "peerDependencies": {
     "vue": ">=2.x || >=3.x",
-    "@vue/composition-api": ">=1.x"
+    "@vue/composition-api": ">=1.x || >=1.0.0-rc.x"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.1.0",
