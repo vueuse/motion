@@ -49,8 +49,10 @@
     "vue-demi": "latest"
   },
   "peerDependencies": {
-    "vue": ">=2.x || >=3.x",
-    "@vue/composition-api": ">=1.x || >=1.0.0-rc.x"
+    "vue": ">=2.x || >=3.x"
+  },
+  "optionalDependencies": {
+    "@vue/composition-api": "^1.0.0-rc.2"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.1.0",
