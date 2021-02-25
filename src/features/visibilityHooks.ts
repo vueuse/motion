@@ -1,5 +1,5 @@
 import { noop, useIntersectionObserver } from '@vueuse/core'
-import { watch } from 'vue'
+import { watch } from 'vue-demi'
 import { MotionInstance, MotionVariants } from '../types'
 
 export function registerVisibilityHooks<T extends MotionVariants>({

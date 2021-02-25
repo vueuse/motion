@@ -1,5 +1,5 @@
 import { isObject, MaybeRef } from '@vueuse/core'
-import { Ref, ref } from 'vue'
+import { Ref, ref } from 'vue-demi'
 import {
   MotionControls,
   MotionProperties,

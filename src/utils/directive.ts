@@ -1,5 +1,5 @@
 import { isNumber, isObject } from '@vueuse/core'
-import { Ref, VNode } from 'vue'
+import { Ref, VNode } from 'vue-demi'
 import { MotionVariants } from '../types'
 
 const directivePropsKeys = [
