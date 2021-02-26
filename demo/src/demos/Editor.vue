@@ -48,7 +48,7 @@ ref: codeText = computed(() => {
 watch($input, (newVal) => {
   if (motions.editor) {
     motions.editor.apply({
-      rotate: newVal,
+      rotate: parseInt(newVal),
     })
   }
 })
