@@ -16,16 +16,19 @@ import {
   easeInOut,
   easeOut,
   Easing,
+  inertia,
   linear,
 } from 'popmotion'
+import { complex } from 'style-value-types'
+import { MotionValue, StartAnimation } from '../motionValue'
 import {
-  MotionProperties,
   PermissiveTransitionDefinition,
   ResolvedValueTarget,
   StopAnimation,
   Transition,
 } from '../types'
 import { getDefaultTransition } from './defaults'
+import { getAnimatableNone } from './style'
 
 // Easing map from popmotion
 const easingLookup = {
@@ -68,6 +71,35 @@ export const easingDefinitionToFunction = (definition: Easing) => {
  */
 export const isEasingArray = (ease: any): ease is Easing[] => {
   return Array.isArray(ease) && typeof ease[0] !== 'number'
+}
+
+/**
+ * Check if a value is animatable. Examples:
+ *
+ * ✅: 100, "100px", "#fff"
+ * ❌: "block", "url(2.jpg)"
+ * @param value
+ *
+ * @internal
+ */
+export const isAnimatable = (key: string, value: ResolvedValueTarget) => {
+  // If the list of keys tat might be non-animatable grows, replace with Set
+  if (key === 'zIndex') return false
+
+  // If it's a number or a keyframes array, we can animate it. We might at some point
+  // need to do a deep isAnimatable check of keyframes, or let Popmotion handle this,
+  // but for now lets leave it like this for performance reasons
+  if (typeof value === 'number' || Array.isArray(value)) return true
+
+  if (
+    typeof value === 'string' && // It's animatable if we have a string
+    complex.test(value) && // And it contains numbers and/or colors
+    !value.startsWith('url(') // Unless it starts with "url("
+  ) {
+    return true
+  }
+
+  return false
 }
 
 /**
@@ -178,54 +210,78 @@ export function getValueTransition(transition: Transition, key: string) {
  */
 export function getAnimation(
   key: string,
-  value: ResolvedValueTarget,
-  target: MotionProperties,
+  value: MotionValue,
+  target: ResolvedValueTarget,
   transition: Transition,
-  origin?: ResolvedValueTarget,
   onComplete?: () => void,
-) {
+): StartAnimation {
   // Get key transition or fallback values
   const valueTransition = getValueTransition(transition, key)
+
+  // Get origin
+  let origin = valueTransition.from ?? value.get()
+
+  const isTargetAnimatable = isAnimatable(key, target)
+
+  /**
+   * If we're trying to animate from "none", try and get an animatable version
+   * of the target. This could be improved to work both ways.
+   */
+  if (origin === 'none' && isTargetAnimatable && typeof target === 'string') {
+    origin = getAnimatableNone(key, target)
+  }
+
+  const isOriginAnimatable = isAnimatable(key, origin)
 
   /**
    * Start the animation.
    */
-  function start(): StopAnimation {
+  function start(complete?: () => void): StopAnimation {
     const options = {
       from: origin,
-      to: value,
-      onUpdate: (v: any) => {
-        target[key as string] = v
-
-        if (valueTransition.onUpdate) valueTransition.onUpdate(v)
-      },
-      onComplete: () => {
-        if (transition.onComplete) transition.onComplete()
-
-        if (onComplete) onComplete()
-      },
+      to: target,
+      velocity: value.getVelocity(),
+      onUpdate: (v: Animatable) => value.set(v),
     }
 
-    const animationOptions = getPopmotionAnimationOptions(
-      valueTransition,
-      options,
-      key,
-    )
+    return valueTransition.type === 'inertia' ||
+      valueTransition.type === 'decay'
+      ? inertia({ ...options, ...valueTransition })
+      : animate({
+          ...getPopmotionAnimationOptions(valueTransition, options, key),
+          onUpdate: (v: any) => {
+            options.onUpdate(v)
 
-    return animate(animationOptions)
+            if (valueTransition.onUpdate) valueTransition.onUpdate(v)
+          },
+          onComplete: () => {
+            if (transition.onComplete) transition.onComplete()
+
+            if (onComplete) onComplete()
+
+            if (complete) complete()
+          },
+        })
   }
 
   /**
    * Set value without transition.
    */
-  function set(): StopAnimation {
-    target[key as string] = value
+  function set(complete?: () => void): StopAnimation {
+    value.set(target)
 
     if (transition.onComplete) transition.onComplete()
+
+    if (onComplete) onComplete()
+
+    if (complete) complete()
 
     return { stop: () => {} }
   }
 
-  // Return `start` or `set` depending on `origin`
-  return origin !== undefined ? start : set
+  return !isOriginAnimatable ||
+    !isTargetAnimatable ||
+    valueTransition.type === false
+    ? set
+    : start
 }
