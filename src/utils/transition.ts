@@ -18,6 +18,7 @@ import {
   Easing,
   linear,
 } from 'popmotion'
+import { set as vueSet } from 'vue-demi'
 import {
   MotionProperties,
   PermissiveTransitionDefinition,
@@ -195,7 +196,7 @@ export function getAnimation(
       from: origin,
       to: value,
       onUpdate: (v: number) => {
-        target[key as string] = v
+        vueSet(target, key, v)
 
         if (valueTransition.onUpdate) valueTransition.onUpdate(v)
       },
@@ -219,7 +220,7 @@ export function getAnimation(
    * Set value without transition.
    */
   function set(): StopAnimation {
-    target[key] = value
+    vueSet(target, key, value)
 
     if (transition.onComplete) transition.onComplete()
 
