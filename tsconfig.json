@@ -38,6 +38,7 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "removeComments": false,
+    "strictPropertyInitialization": false,
     "jsx": "preserve",
     "lib": ["esnext", "dom"],
     "types": ["node", "jest"],
