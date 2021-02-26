@@ -1,6 +1,7 @@
 import {
   alpha,
   color,
+  complex,
   degrees,
   filter,
   number,
@@ -133,4 +134,17 @@ export const getValueAsType = (value: any, type?: ValueType) => {
   return type && typeof value === 'number' && type.transform
     ? type.transform(value)
     : value
+}
+
+/**
+ * Get default animatable
+ *
+ * @param key
+ * @param value
+ */
+export function getAnimatableNone(key: string, value: string): any {
+  let defaultValueType = getValueType(key)
+  if (defaultValueType !== filter) defaultValueType = complex
+  // If value is not recognised as animatable, ie "none", create an animatable version origin based on the target
+  return defaultValueType.getAnimatableNone?.(value)
 }
