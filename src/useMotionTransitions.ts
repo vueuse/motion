@@ -1,11 +1,11 @@
-import { Fn } from '@vueuse/core'
 import { Ref, ref } from 'vue-demi'
+import { getMotionValue, MotionValue } from './motionValue'
 import { MotionProperties, ResolvedValueTarget, Transition } from './types'
 import { getAnimation } from './utils/transition'
 const { isArray } = Array
 
-type TransitionMap = {
-  [key in keyof MotionProperties]: Fn
+type MotionValuesMap = {
+  [key in keyof MotionProperties]: MotionValue
 }
 
 export interface MotionTransitions {
@@ -31,32 +31,34 @@ export interface MotionTransitions {
   /**
    * @internal Local transitions reference
    */
-  transitions: Ref<TransitionMap>
+  motionValues: Ref<MotionValuesMap>
 }
 
 /**
  * A Composable holding all the ongoing transitions in a local reference.
  */
 export function useMotionTransitions(): MotionTransitions {
-  const transitions = ref<TransitionMap>({})
+  const motionValues = ref<MotionValuesMap>({})
 
   const stop = (keys?: string | string[]) => {
-    const { value } = transitions
+    const { value } = motionValues
 
     // Check if keys argument is defined
     if (keys) {
       if (isArray(keys)) {
         // If keys are an array, loop on specified keys and stop them
         keys.forEach((key) => {
-          if (value[key]) value[key]()
+          if (value[key]) value[key].stop()
         })
       } else {
         // If keys are a string, stop the specified one
-        if (value[keys]) value[keys]()
+        if (value[keys]) value[keys].stop()
       }
     } else {
       // No keys specified, stop all animations
-      Object.values<Fn>(value).forEach((stop) => stop())
+      Object.values<MotionValue>(value).forEach((motionValue) =>
+        motionValue.stop(),
+      )
     }
   }
 
@@ -64,35 +66,44 @@ export function useMotionTransitions(): MotionTransitions {
     key: string,
     value: ResolvedValueTarget,
     target: MotionProperties,
-    transition: Transition,
+    transition: Transition = {},
     onComplete?: () => void,
   ) => {
-    // Stop the current animation if it exists
-    if (transitions.value[key]) transitions.value[key]()
+    // Init motion value
+    let motionValue: MotionValue = motionValues.value[key]
 
-    // Get the `from` key from target
-    const from = target[key]
+    // Create motion value if it doesn't exist
+    if (!motionValue) {
+      // Get the `from` key from target
+      const from = target[key]
+
+      // Create motion value
+      const _motionValue = getMotionValue(from)
+
+      // Set motion properties mapping
+      _motionValue.onChange((v) => {
+        target[key] = v
+      })
+
+      // Set instance motion value
+      motionValues.value[key] = _motionValue
+
+      // Set local motion value
+      motionValue = _motionValue
+    }
 
     // Create animation
     const animation = getAnimation(
       key,
+      motionValue,
       value,
-      target,
       transition,
-      from,
       onComplete,
     )
 
-    const { stop } = animation()
-
-    // Create self-deleting stop function
-    transitions.value[key] = () => {
-      stop()
-
-      // Delete key from local transitions
-      delete transitions.value[key]
-    }
+    // Start animation
+    motionValue.start(animation)
   }
 
-  return { transitions, stop, push }
+  return { motionValues, stop, push }
 }
