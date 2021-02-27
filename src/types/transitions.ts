@@ -1,3 +1,5 @@
+import { Ref } from 'vue-demi'
+import { MotionValue } from '../motionValue'
 import { MotionProperties } from './variants'
 
 export type ResolvedKeyframesTarget =
@@ -22,8 +24,6 @@ export type ValueTarget = SingleTarget | KeyframesTarget
 export type Props = { [key: string]: any }
 
 export type EasingFunction = (v: number) => number
-
-export type StopAnimation = { stop: () => void }
 
 export type Easing =
   | [number, number, number, number]
@@ -437,4 +437,34 @@ export type TargetResolver = (
 export interface CustomValueType {
   mix: (from: any, to: any) => (p: number) => number | string
   toValue: () => number | string
+}
+
+export type MotionValuesMap = {
+  [key in keyof MotionProperties]: MotionValue
+}
+
+export interface MotionTransitions {
+  /**
+   * Stop ongoing transitions for the current element.
+   */
+  stop: (keys?: string | string[]) => void
+
+  /**
+   * Start a transition, push it to the `transitions` array.
+   *
+   * @param transition
+   * @param values
+   */
+  push: (
+    key: string,
+    value: ResolvedValueTarget,
+    target: MotionProperties,
+    transition: Transition,
+    onComplete?: () => void,
+  ) => void
+
+  /**
+   * @internal Local transitions reference
+   */
+  motionValues: Ref<MotionValuesMap>
 }
