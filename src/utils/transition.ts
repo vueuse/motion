@@ -221,16 +221,16 @@ export function getAnimation(
   // Get origin
   let origin = valueTransition.from ?? value.get()
 
+  // Is target animatable
   const isTargetAnimatable = isAnimatable(key, target)
 
-  /**
-   * If we're trying to animate from "none", try and get an animatable version
-   * of the target. This could be improved to work both ways.
-   */
+  // If we're trying to animate from "none", try and get an animatable version
+  // of the target. This could be improved to work both ways.
   if (origin === 'none' && isTargetAnimatable && typeof target === 'string') {
     origin = getAnimatableNone(key, target)
   }
 
+  // Is origin animatable
   const isOriginAnimatable = isAnimatable(key, origin)
 
   /**
