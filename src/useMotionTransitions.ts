@@ -1,38 +1,14 @@
-import { Ref, ref } from 'vue-demi'
+import { ref } from 'vue-demi'
 import { getMotionValue, MotionValue } from './motionValue'
-import { MotionProperties, ResolvedValueTarget, Transition } from './types'
+import {
+  MotionProperties,
+  MotionTransitions,
+  MotionValuesMap,
+  ResolvedValueTarget,
+  Transition,
+} from './types'
 import { getAnimation } from './utils/transition'
 const { isArray } = Array
-
-type MotionValuesMap = {
-  [key in keyof MotionProperties]: MotionValue
-}
-
-export interface MotionTransitions {
-  /**
-   * Stop ongoing transitions for the current element.
-   */
-  stop: (keys?: string | string[]) => void
-
-  /**
-   * Start a transition, push it to the `transitions` array.
-   *
-   * @param transition
-   * @param values
-   */
-  push: (
-    key: string,
-    value: ResolvedValueTarget,
-    target: MotionProperties,
-    transition: Transition,
-    onComplete?: () => void,
-  ) => void
-
-  /**
-   * @internal Local transitions reference
-   */
-  motionValues: Ref<MotionValuesMap>
-}
 
 /**
  * A Composable holding all the ongoing transitions in a local reference.
@@ -41,29 +17,29 @@ export function useMotionTransitions(): MotionTransitions {
   const motionValues = ref<MotionValuesMap>({})
 
   const stop = (keys?: string | string[]) => {
-    const { value } = motionValues
+    const { value: _motionValues } = motionValues
 
     // Check if keys argument is defined
     if (keys) {
       // Destroy key closure
       const destroyKey = (key: string) => {
-        value[key].stop()
-        value[key].destroy()
-        delete value[key]
+        _motionValues[key].stop()
+        _motionValues[key].destroy()
+        delete _motionValues[key]
       }
 
       if (isArray(keys)) {
         // If `keys` are an array, loop on specified keys and destroy them
         keys.forEach((key) => {
-          if (value[key]) destroyKey(key)
+          if (_motionValues[key]) destroyKey(key)
         })
       } else {
         // If `keys` is a string, destroy the specified one
-        if (value[keys]) destroyKey(keys)
+        if (_motionValues[keys]) destroyKey(keys)
       }
     } else {
       // No keys specified, destroy all animations
-      Object.values<MotionValue>(value).forEach((motionValue) => {
+      Object.values<MotionValue>(_motionValues).forEach((motionValue) => {
         motionValue.stop()
         motionValue.destroy()
       })
