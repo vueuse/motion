@@ -70,7 +70,7 @@ const demoElement = ref<HTMLElement>()
 const { apply, set } = useMotion(demoElement, preset)
 
 const replay = () => {
-  set(preset['initial'])
+  set(preset.initial)
 
   nextTick(() => {
     if (preset.visible) {
