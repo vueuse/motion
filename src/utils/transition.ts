@@ -20,10 +20,11 @@ import {
   linear,
 } from 'popmotion'
 import { complex } from 'style-value-types'
-import { MotionValue, StartAnimation } from '../motionValue'
+import { MotionValue } from '../motionValue'
 import {
   PermissiveTransitionDefinition,
   ResolvedValueTarget,
+  StartAnimation,
   StopAnimation,
   Transition,
 } from '../types'
