@@ -1,4 +1,11 @@
-import { Directive, DirectiveBinding, ref, VNode } from 'vue-demi'
+import {
+  del as __del,
+  Directive,
+  DirectiveBinding,
+  ref,
+  set as __set,
+  VNode,
+} from 'vue-demi'
 import { motionState } from '../features/state'
 import { MotionVariants } from '../types'
 import { useMotion } from '../useMotion'
@@ -28,7 +35,7 @@ export const directive = (
     const motionInstance = useMotion(el, variantsRef)
 
     // Set the global state reference if the name is set through v-motion="`value`"
-    if (binding.value) motionState[binding.value] = motionInstance
+    if (binding.value) __set(motionState, binding.value, motionInstance)
   }
 
   const unregister = (
@@ -44,8 +51,7 @@ export const directive = (
   ) => {
     // Check if motion state has the current element as reference
     if (binding.value && motionState[binding.value])
-      // Delete the reference from motion state
-      delete motionState[binding.value]
+      __del(motionState, binding.value)
   }
 
   return {

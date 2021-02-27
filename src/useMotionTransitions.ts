@@ -1,4 +1,4 @@
-import { ref, set as __set } from 'vue-demi'
+import { del as __del, ref, set as __set } from 'vue-demi'
 import { getMotionValue, MotionValue } from './motionValue'
 import {
   MotionProperties,
@@ -25,7 +25,7 @@ export function useMotionTransitions(): MotionTransitions {
       const destroyKey = (key: string) => {
         _motionValues[key].stop()
         _motionValues[key].destroy()
-        delete _motionValues[key]
+        __del(_motionValues, key)
       }
 
       if (isArray(keys)) {
@@ -73,7 +73,7 @@ export function useMotionTransitions(): MotionTransitions {
       })
 
       // Set instance motion value
-      motionValues.value[key] = _motionValue
+      __set(motionValues, key, _motionValue)
 
       // Set local motion value
       motionValue = _motionValue
@@ -85,7 +85,7 @@ export function useMotionTransitions(): MotionTransitions {
 
       motionValue.destroy()
 
-      delete motionValues.value[key]
+      __del(motionValues, key)
     }
 
     // Create animation
