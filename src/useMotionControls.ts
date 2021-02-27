@@ -3,10 +3,11 @@ import { Ref, ref } from 'vue-demi'
 import {
   MotionControls,
   MotionProperties,
+  MotionTransitions,
   MotionVariants,
   Variant,
 } from './types'
-import { MotionTransitions, useMotionTransitions } from './useMotionTransitions'
+import { useMotionTransitions } from './useMotionTransitions'
 import { getDefaultTransition } from './utils/defaults'
 
 /**
