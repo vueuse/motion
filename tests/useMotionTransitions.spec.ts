@@ -10,26 +10,26 @@ const defaultTransition: Transition = {
 }
 
 describe('useMotionTransitions', () => {
-  it('accepts a transitions', () => {
-    const { push, transitions } = useMotionTransitions()
+  it('creates a motion value', () => {
+    const { push, motionValues } = useMotionTransitions()
 
-    push('x', 0, {}, defaultTransition)
+    push('x', 0, { x: 25 }, defaultTransition)
 
-    expect(Object.values(transitions.value).length).toBe(1)
+    expect(Object.values(motionValues.value).length).toBe(1)
   })
 
-  it('clears transitions on stop', async () => {
-    const { push, transitions, stop } = useMotionTransitions()
+  it('clears motion values on stop', async () => {
+    const { push, motionValues, stop } = useMotionTransitions()
 
-    push('x', 0, {}, defaultTransition)
-    push('y', 0, {}, defaultTransition)
-    push('opacity', 0, {}, defaultTransition)
-    push('height', 0, {}, defaultTransition)
+    push('x', 0, { x: 25 }, defaultTransition)
+    push('y', 0, { y: 25 }, defaultTransition)
+    push('opacity', 0, { opacity: 1 }, defaultTransition)
+    push('height', 0, { height: 25 }, defaultTransition)
 
-    expect(Object.values(transitions.value).length).toBe(4)
+    expect(Object.values(motionValues.value).length).toBe(4)
 
     stop()
 
-    expect(Object.values(transitions.value).length).toBe(0)
+    expect(Object.values(motionValues.value).length).toBe(0)
   })
 })
