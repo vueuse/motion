@@ -1,5 +1,5 @@
 import { MaybeRef } from '@vueuse/core'
-import { ref, watch } from 'vue-demi'
+import { ref, set as __set, watch } from 'vue-demi'
 import { reactiveStyle } from './reactiveStyle'
 import { MotionTarget, StyleProperties } from './types'
 import { valueTypes } from './utils/style'
@@ -28,12 +28,11 @@ export function useElementStyle(target: MaybeRef<MotionTarget>) {
       if (el.style[key] == null || el.style[key] === '') continue
 
       // Append a defined key to the local StyleProperties state object
-      state[key] = el.style[key]
+      __set(state, key, el.style[key])
     }
 
     if (_cache) {
-      // If cache is present, init the target with the current cached value
-      Object.assign(el.style, _cache)
+      for (const key in _cache) __set(el.style, key, _cache[key])
     }
   })
 

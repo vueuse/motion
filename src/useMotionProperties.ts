@@ -1,5 +1,5 @@
 import { MaybeRef } from '@vueuse/core'
-import { reactive, ref, watch } from 'vue-demi'
+import { reactive, ref, set as __set, watch } from 'vue-demi'
 import { MotionProperties, MotionTarget } from './types'
 import { useElementStyle } from './useElementStyle'
 import { useElementTransform } from './useElementTransform'
@@ -32,7 +32,7 @@ export function useMotionProperties(target: MaybeRef<MotionTarget>) {
           continue
         }
 
-        target[key] = newVal[key]
+        __set(target, key, newVal[key])
       }
     },
     {

@@ -1,4 +1,4 @@
-import { ref } from 'vue-demi'
+import { ref, set as __set } from 'vue-demi'
 import { getMotionValue, MotionValue } from './motionValue'
 import {
   MotionProperties,
@@ -69,7 +69,7 @@ export function useMotionTransitions(): MotionTransitions {
 
       // Set motion properties mapping
       _motionValue.onChange((v) => {
-        target[key] = v
+        __set(target, key, v)
       })
 
       // Set instance motion value

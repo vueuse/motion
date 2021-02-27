@@ -1,5 +1,5 @@
 import { isObject, MaybeRef } from '@vueuse/core'
-import { Ref, ref } from 'vue-demi'
+import { Ref, ref, set as __set } from 'vue-demi'
 import {
   MotionControls,
   MotionProperties,
@@ -72,8 +72,14 @@ export function useMotionControls<T extends MotionVariants>(
     // Get variant data from parameter
     let variantData = isObject(variant) ? variant : getVariantFromKey(variant)
 
-    // Assign variant data to motion properties
-    Object.assign(motionProperties, variantData)
+    // Loop on variant keys
+    for (const key in variantData as Variant) {
+      if (key === 'transition') continue
+
+      const value = variant[key]
+
+      __set(motionProperties, key, value)
+    }
   }
 
   const leave = async (done: () => void) => {

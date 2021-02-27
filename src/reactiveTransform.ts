@@ -1,4 +1,4 @@
-import { computed, reactive } from 'vue-demi'
+import { reactive, ref, watch } from 'vue-demi'
 import { TransformProperties } from './types'
 import { getValueAsType, getValueType } from './utils/style'
 
@@ -24,36 +24,44 @@ export function reactiveTransform(
   // Reactive TransformProperties object
   const state = reactive<TransformProperties>({ ...props })
 
-  // Compute TransformProperties object into a valid CSS transform string
-  const transform = computed<string>(() => {
-    // Init result
-    let result = ''
+  const transform = ref('')
 
-    // Init transformHasZ (used for GPU optimization)
-    let transformHasZ = false
+  watch(
+    state,
+    () => {
+      // Init result
+      let result = ''
 
-    // Loop on defined TransformProperties state keys
-    for (const [key, value] of Object.entries(state)) {
-      // Get value type for key
-      const valueType = getValueType(key)
-      // Get value as type for key
-      const valueAsType = getValueAsType(value, valueType)
-      // Append the computed transform key to result string
-      result += `${translateAlias[key] || key}(${valueAsType}) `
-      // Set transformHasZ is already defined in the state
-      if (key === 'z' || key === 'translateZ') transformHasZ = true
-    }
+      // Init transformHasZ (used for GPU optimization)
+      let transformHasZ = false
 
-    if (!transformHasZ && enableHardwareAcceleration) {
-      // Append hardware acceleration property if needed
-      result += 'translateZ(0)'
-    } else {
-      // Trim the last space
-      result = result.trim()
-    }
+      // Loop on defined TransformProperties state keys
+      for (const [key, value] of Object.entries(state)) {
+        // Get value type for key
+        const valueType = getValueType(key)
+        // Get value as type for key
+        const valueAsType = getValueAsType(value, valueType)
+        // Append the computed transform key to result string
+        result += `${translateAlias[key] || key}(${valueAsType}) `
+        // Set transformHasZ is already defined in the state
+        if (key === 'z' || key === 'translateZ') transformHasZ = true
+      }
 
-    return result
-  })
+      if (!transformHasZ && enableHardwareAcceleration) {
+        // Append hardware acceleration property if needed
+        result += 'translateZ(0)'
+      } else {
+        // Trim the last space
+        result = result.trim()
+      }
+
+      transform.value = result
+    },
+    {
+      immediate: true,
+      deep: true,
+    },
+  )
 
   return {
     state,
