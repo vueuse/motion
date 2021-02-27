@@ -65,6 +65,9 @@ export function useMotionControls<T extends MotionVariants>(
   }
 
   const set = (variant: Variant | keyof T) => {
+    // Stop current transitions
+    stop()
+
     // Get variant data from parameter
     let variantData = isObject(variant) ? variant : getVariantFromKey(variant)
 
