@@ -25,7 +25,7 @@ export interface MotionTransitions {
     value: ResolvedValueTarget,
     target: MotionProperties,
     transition: Transition,
-    onComplete: () => void,
+    onComplete?: () => void,
   ) => void
 
   /**
@@ -45,20 +45,31 @@ export function useMotionTransitions(): MotionTransitions {
 
     // Check if keys argument is defined
     if (keys) {
+      // Destroy key closure
+      const destroyKey = (key: string) => {
+        value[key].stop()
+        value[key].destroy()
+        delete value[key]
+      }
+
       if (isArray(keys)) {
-        // If keys are an array, loop on specified keys and stop them
+        // If `keys` are an array, loop on specified keys and destroy them
         keys.forEach((key) => {
-          if (value[key]) value[key].stop()
+          if (value[key]) destroyKey(key)
         })
       } else {
-        // If keys are a string, stop the specified one
-        if (value[keys]) value[keys].stop()
+        // If `keys` is a string, destroy the specified one
+        if (value[keys]) destroyKey(keys)
       }
     } else {
-      // No keys specified, stop all animations
-      Object.values<MotionValue>(value).forEach((motionValue) =>
-        motionValue.stop(),
-      )
+      // No keys specified, destroy all animations
+      Object.values<MotionValue>(value).forEach((motionValue) => {
+        motionValue.stop()
+        motionValue.destroy()
+      })
+
+      // Reset motion values
+      motionValues.value = {}
     }
   }
 
@@ -92,13 +103,22 @@ export function useMotionTransitions(): MotionTransitions {
       motionValue = _motionValue
     }
 
+    // Clear local motion value on animation complete
+    const _onComplete = () => {
+      if (onComplete) onComplete()
+
+      motionValue.destroy()
+
+      delete motionValues.value[key]
+    }
+
     // Create animation
     const animation = getAnimation(
       key,
       motionValue,
       value,
       transition,
-      onComplete,
+      _onComplete,
     )
 
     // Start animation
