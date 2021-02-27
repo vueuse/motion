@@ -1015,6 +1015,11 @@
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-1.1.4.tgz#1dd388519b75439b7733601b55238ca691864796"
   integrity sha512-cUDILd++9jdhdjpuhgJofQqOabOKe+kTWTE2HQY2PBHEUO2fgwTurLE0cJg9UcIo1x4lHfsp+59S9TBCHgTZkw==
 
+"@vitejs/plugin-vue@^1.1.5":
+  version "1.1.5"
+  resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-1.1.5.tgz#fa1e8e5e049c35e213672e33f73fe81706ad5dbe"
+  integrity sha512-4DV8VPYo8/OR1YsnK39QN16xhKENt2XvcmJxqfRtyz75kvbjBYh1zTSHLp7XsXqv4R2I+fOZlbEBvxosMYLcPA==
+
 "@vue/compiler-core@3.0.6", "@vue/compiler-core@^3.0.0", "@vue/compiler-core@^3.0.1", "@vue/compiler-core@^3.0.2":
   version "3.0.6"
   resolved "https://registry.yarnpkg.com/@vue/compiler-core/-/compiler-core-3.0.6.tgz#265bbe0711a81ab4c1344f8294e22e2d08ca167d"
@@ -1063,13 +1068,6 @@
   dependencies:
     "@vue/compiler-dom" "3.0.6"
     "@vue/shared" "3.0.6"
-
-"@vue/composition-api@^1.0.0-rc.2":
-  version "1.0.0-rc.2"
-  resolved "https://registry.yarnpkg.com/@vue/composition-api/-/composition-api-1.0.0-rc.2.tgz#9d90e507cf71634aad51ab878b141c2a4739d523"
-  integrity sha512-R4XEvT+qXiT/lnsLzqhjkR/L/ALuNeeQPZqredpLduGKwZtmt2l5I3kT1W+c/157hrY732eFlsPUGz/q9vFaYg==
-  dependencies:
-    tslib "^2.1.0"
 
 "@vue/reactivity@3.0.6":
   version "3.0.6"
@@ -1222,18 +1220,18 @@
     vscode-languageserver-textdocument "^1.0.1"
     vscode-uri "^2.1.2"
 
-"@vueuse/core@^4.2.2":
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-4.2.2.tgz#ecbba4ba05e0360e9c9079b32e149fac803a1020"
-  integrity sha512-NMU3Vr4eBiNrPzCoUH5ptNj+DETg85Vtww0OJjaQEXobDTH28gzbLJseqCh4m3NYR92C5qlXRnzhSvWOoR/uLg==
+"@vueuse/core@^4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-4.3.0.tgz#409d1c8fc0b7fffcf5b5388dfc487762bb936b0c"
+  integrity sha512-PQ3r6wZDCN3pY+UBB5NLQdRfwiasd8MmWppuzpvNE2Sr8T48gmWXDWw3GG4EHMXnuz5EBfQG+U+1TjSaGaK6/w==
   dependencies:
-    "@vueuse/shared" "4.2.2"
+    "@vueuse/shared" "4.3.0"
     vue-demi latest
 
-"@vueuse/shared@4.2.2":
-  version "4.2.2"
-  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-4.2.2.tgz#e52ee278b929f028117c0ca1792b24df462bff80"
-  integrity sha512-yudh4jt0SxaW0i3j2iumI8GTloA8aUpLwGaBw9Xv2rQCdZvOZpXpvpGEz8EsMK793ySs+d5S4/opItlxuzjtSg==
+"@vueuse/shared@4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-4.3.0.tgz#82e05dc2941642814ac6fcbb5f9076c38c052968"
+  integrity sha512-udc1ADIYwizTK/iSfjZQj6+QDFM099oHuX0Sj/yv0NgE9eSODcesV4zO7PtvmJanzw43hCdvtdGBz8miyRkHCQ==
   dependencies:
     vue-demi latest
 
@@ -2258,6 +2256,11 @@ esbuild@^0.8.47:
   version "0.8.52"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.8.52.tgz#6dabf11c517af449a96d66da20dfc204ee7b5294"
   integrity sha512-b5KzFweLLXoXQwdC/e2+Z80c8uo2M5MgP7yQEEebkFw6In4T9CvYcNoM2ElvJt8ByO04zAZUV0fZkXmXoi2s9A==
+
+esbuild@^0.8.52:
+  version "0.8.53"
+  resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.8.53.tgz#b408bb0ca1b29dab13d8bbf7d59f59afe6776e86"
+  integrity sha512-GIaYGdMukH58hu+lf07XWAeESBYFAsz8fXnrylHDCbBXKOSNtFmoYA8PhSeSF+3/qzeJ0VjzV9AkLURo5yfu3g==
 
 escalade@^3.1.1:
   version "3.1.1"
@@ -5456,7 +5459,7 @@ ts-jest@^26.5.2:
     semver "7.x"
     yargs-parser "20.x"
 
-tslib@2.1.0, tslib@^2.1.0:
+tslib@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.1.0.tgz#da60860f1c2ecaa5703ab7d39bc05b6bf988b97a"
   integrity sha512-hcVC3wYEziELGGmEEXue7D75zbwIIVUMWAVbHItGPx0ziyXxrOMQx4rQEVEV45Ut/1IotuEvwqPopzIOkDMf0A==
@@ -5618,12 +5621,24 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vite@^2.0.0-beta.70, vite@^2.0.3:
+vite@^2.0.0-beta.70:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/vite/-/vite-2.0.3.tgz#ea0329295d4da9341e670036e5e7f0bfa30ae2cf"
   integrity sha512-4CUm3FVUHyTSSSK6vHWkj3SVkP+GGNNzwYcFsHOjjc8xQ3BPjJa1JDDmFlYxpxR29ANa+7RWptYPoyHyJ29Nhw==
   dependencies:
     esbuild "^0.8.47"
+    postcss "^8.2.1"
+    resolve "^1.19.0"
+    rollup "^2.38.5"
+  optionalDependencies:
+    fsevents "~2.3.1"
+
+vite@^2.0.4:
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/vite/-/vite-2.0.4.tgz#063532a4139b59a067297d8ebb5960d450907a09"
+  integrity sha512-+PP89D7AKXFE4gps8c5+4eP5yXTh5qCogjdYX7iSsIxbLZAa26JoGSq6OLk0qdb/fqDh7gtJqGiLbG2V6NvkKQ==
+  dependencies:
+    esbuild "^0.8.52"
     postcss "^8.2.1"
     resolve "^1.19.0"
     rollup "^2.38.5"
