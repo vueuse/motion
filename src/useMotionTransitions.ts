@@ -1,4 +1,4 @@
-import { del as __del, ref, set as __set } from 'vue-demi'
+import { del as __del, reactive, set as __set } from 'vue-demi'
 import { getMotionValue, MotionValue } from './motionValue'
 import {
   MotionProperties,
@@ -14,38 +14,36 @@ const { isArray } = Array
  * A Composable holding all the ongoing transitions in a local reference.
  */
 export function useMotionTransitions(): MotionTransitions {
-  const motionValues = ref<MotionValuesMap>({})
+  const motionValues = reactive<MotionValuesMap>({})
 
   const stop = (keys?: string | string[]) => {
-    const { value: _motionValues } = motionValues
-
     // Check if keys argument is defined
     if (keys) {
       // Destroy key closure
       const destroyKey = (key: string) => {
-        _motionValues[key].stop()
-        _motionValues[key].destroy()
-        __del(_motionValues, key)
+        motionValues[key].stop()
+        motionValues[key].destroy()
+        __del(motionValues, key)
       }
 
       if (isArray(keys)) {
         // If `keys` are an array, loop on specified keys and destroy them
         keys.forEach((key) => {
-          if (_motionValues[key]) destroyKey(key)
+          if (motionValues[key]) destroyKey(key)
         })
       } else {
         // If `keys` is a string, destroy the specified one
-        if (_motionValues[keys]) destroyKey(keys)
+        if (motionValues[keys]) destroyKey(keys)
       }
     } else {
       // No keys specified, destroy all animations
-      Object.values<MotionValue>(_motionValues).forEach((motionValue) => {
+      Object.values<MotionValue>(motionValues).forEach((motionValue) => {
         motionValue.stop()
         motionValue.destroy()
       })
 
       // Reset motion values
-      motionValues.value = {}
+      Object.assign(motionValues, {})
     }
   }
 
@@ -57,7 +55,7 @@ export function useMotionTransitions(): MotionTransitions {
     onComplete?: () => void,
   ) => {
     // Init motion value
-    let motionValue: MotionValue = motionValues.value[key]
+    let motionValue: MotionValue = motionValues[key]
 
     // Create motion value if it doesn't exist
     if (!motionValue) {
