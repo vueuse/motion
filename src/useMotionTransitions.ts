@@ -37,13 +37,13 @@ export function useMotionTransitions(): MotionTransitions {
       }
     } else {
       // No keys specified, destroy all animations
-      Object.values<MotionValue>(motionValues).forEach((motionValue) => {
-        motionValue.stop()
-        motionValue.destroy()
-      })
-
-      // Reset motion values
-      Object.assign(motionValues, {})
+      Object.entries<MotionValue>(motionValues).forEach(
+        ([key, motionValue]) => {
+          motionValue.stop()
+          motionValue.destroy()
+          __del(motionValues, key)
+        },
+      )
     }
   }
 
