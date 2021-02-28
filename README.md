@@ -47,7 +47,7 @@ You can now **animate** any of your **component**, **HTML** or **SVG** elements 
 ```vue
 <template>
   <div
-    v-motion="'smoothestDiv'"
+    v-motion
     :initial="{
       opacity: 0,
       y: 100,
@@ -58,17 +58,9 @@ You can now **animate** any of your **component**, **HTML** or **SVG** elements 
     }"
   />
 </template>
-
-<script setup>
-import { useMotions } from '@vueuse/motion'
-
-// Get access to motion instance using useMotions
-const { smoothestDiv } = useMotions()
-
-// From smoothest div to biggest div real quick 😎
-smoothestDiv.apply({ scale: 4 })
-</script>
 ```
+
+To see more about how to use **directives**, check out [**Directive Usage**](/directive-usage).
 
 To see more about what **properties** you can **animate**, check out [**Motion Properties**](https://motion.vueuse.js.org/motion-properties).
 
