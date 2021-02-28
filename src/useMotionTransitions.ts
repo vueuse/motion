@@ -73,7 +73,7 @@ export function useMotionTransitions(): MotionTransitions {
       })
 
       // Set instance motion value
-      __set(motionValues.value, key, _motionValue)
+      __set(motionValues, key, _motionValue)
 
       // Set local motion value
       motionValue = _motionValue
