@@ -220,7 +220,10 @@ export function getAnimation(
   const valueTransition = getValueTransition(transition, key)
 
   // Get origin
-  let origin = valueTransition.from ?? value.get()
+  let origin =
+    valueTransition.from === null || valueTransition.from === undefined
+      ? value.get()
+      : valueTransition.from
 
   // Is target animatable
   const isTargetAnimatable = isAnimatable(key, target)
