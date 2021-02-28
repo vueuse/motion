@@ -9,7 +9,7 @@ module.exports = {
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico', type: 'image/png' }],
     ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
-    ['meta', { name: 'author', content: 'Anthony Fu' }],
+    ['meta', { name: 'author', content: 'Yaël GUILLOUX' }],
     ['meta', { property: 'og:title', content: '@vueuse/motion' }],
     [
       'meta',
