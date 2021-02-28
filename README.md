@@ -60,7 +60,7 @@ You can now **animate** any of your **component**, **HTML** or **SVG** elements 
 </template>
 ```
 
-To see more about how to use **directives**, check out [**Directive Usage**](/directive-usage).
+To see more about how to use **directives**, check out [**Directive Usage**](https://motion.vueuse.js.org/directive-usage).
 
 To see more about what **properties** you can **animate**, check out [**Motion Properties**](https://motion.vueuse.js.org/motion-properties).
 
