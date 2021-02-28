@@ -1,3 +1,4 @@
+import { nextTick } from 'vue'
 import { reactiveTransform } from '../src/reactiveTransform'
 describe('reactiveTransform', () => {
   it('generate transform from transformProperties', () => {
@@ -23,7 +24,7 @@ describe('reactiveTransform', () => {
 
     state.rotateX = 120
 
-    expect(transform.value).toBe('rotateX(120deg)')
+    nextTick(() => expect(transform.value).toBe('rotateX(120deg)'))
   })
 
   it('concatenate the transform string correctly', () => {
