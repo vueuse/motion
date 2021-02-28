@@ -8,9 +8,9 @@ module.exports = {
   description: '🤹 Vue Composables putting your components in motion',
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico', type: 'image/png' }],
+    ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],
     ['meta', { name: 'author', content: 'Anthony Fu' }],
     ['meta', { property: 'og:title', content: '@vueuse/motion' }],
-    ['meta', { property: 'og:image', content: '' }], // TODO: Add banner image
     [
       'meta',
       {
@@ -18,11 +18,17 @@ module.exports = {
         content: '🤹 Vue Composables putting your components in motion',
       },
     ],
-    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    [
+      'meta',
+      {
+        property: 'og:image',
+        content: 'https://motion.vueuse.org/logo.svg',
+      },
+    ],
     ['meta', { name: 'twitter:creator', content: '@yaeeelglx' }],
     [
       'meta',
-      { name: 'twitter:image', content: '' }, // TODO: Add banner image
+      { name: 'twitter:image', content: 'https://motion.vueuse.org/logo.svg' },
     ],
   ],
   themeConfig: {
