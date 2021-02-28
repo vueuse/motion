@@ -47,7 +47,8 @@ export function useElementStyle(target: MaybeRef<MotionTarget>) {
       }
 
       // Append the state object to the target style properties
-      Object.assign(targetRef.value.style, newValue)
+      for (const key in newValue)
+        __set(targetRef.value.style, key, newValue[key])
     },
     {
       immediate: true,
