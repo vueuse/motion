@@ -15,7 +15,7 @@ describe('useMotionTransitions', () => {
 
     push('x', 0, { x: 25 }, defaultTransition)
 
-    expect(Object.values(motionValues.value).length).toBe(1)
+    expect(Object.values(motionValues).length).toBe(1)
   })
 
   it('clears motion values on stop', async () => {
@@ -26,10 +26,10 @@ describe('useMotionTransitions', () => {
     push('opacity', 0, { opacity: 1 }, defaultTransition)
     push('height', 0, { height: 25 }, defaultTransition)
 
-    expect(Object.values(motionValues.value).length).toBe(4)
+    expect(Object.values(motionValues).length).toBe(4)
 
     stop()
 
-    expect(Object.values(motionValues.value).length).toBe(0)
+    expect(Object.values(motionValues).length).toBe(0)
   })
 })
