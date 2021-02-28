@@ -1,3 +1,4 @@
+import { nextTick } from 'vue'
 import { reactiveStyle } from '../src/reactiveStyle'
 describe('reactiveStyle', () => {
   it('create a style object from props', () => {
@@ -13,7 +14,7 @@ describe('reactiveStyle', () => {
 
     state.backgroundColor = 'blue'
 
-    expect(style.value.backgroundColor).toBe('blue')
+    nextTick(() => expect(style.value.backgroundColor).toBe('blue'))
   })
 
   it('add default units for style properties', () => {
@@ -21,6 +22,6 @@ describe('reactiveStyle', () => {
 
     state.marginTop = 10
 
-    expect(style.value.marginTop).toBe('10px')
+    nextTick(() => expect(style.value.marginTop).toBe('10px'))
   })
 })
