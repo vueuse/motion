@@ -1,4 +1,10 @@
-export default (x: string) => `
+export default (
+  r: string,
+  x: string,
+  y: string,
+  s: string,
+  o: string = '0.5',
+) => `
   <div
     v-motion
     :initial="{
@@ -6,9 +12,11 @@ export default (x: string) => `
       opacity: 0.25,
     }"
     :enter="{
-      y: 0,
-      opacity: 1,
-      rotate: ${x}
+      y: ${y},
+      x: ${x},
+      opacity: ${o},
+      rotate: ${r},
+      scale: ${s}
     }"
   />
 `

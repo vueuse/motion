@@ -3,11 +3,11 @@ html {
 }
 
 body {
-  @apply text-white flex items-center justify-center bg-gradient-to-b from-violet-600 to-violet-900 bg-cover bg-fixed overflow-y-scroll;
+  @apply text-white flex items-center justify-center overflow-y-scroll;
 }
 
 #app {
-  @apply w-full md:w-8/12 xl:w-1/2 p-6;
+  @apply w-full md:w-10/12 xl:w-2/3 p-6;
 }
 
 /* PrismJS theme fix */

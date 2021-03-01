@@ -14,7 +14,7 @@
             repeatDelay: 1000,
           },
         }"
-        class="w-24 h-24 bg-indigo-500 border-8 border-indigo-400 shadow-xl cursor-pointer rounded-3xl"
+        class="w-24 h-24 bg-blue-500 border-8 border-blue-400 shadow-xl cursor-pointer rounded-3xl"
       />
 
       <div
@@ -31,7 +31,7 @@
           },
         }"
         :delay="100"
-        class="w-24 h-24 ml-4 bg-indigo-500 border-8 border-indigo-400 shadow-xl cursor-pointer rounded-3xl"
+        class="w-24 h-24 ml-4 bg-red-500 border-8 border-red-400 shadow-xl cursor-pointer rounded-3xl"
       />
 
       <div
@@ -48,7 +48,7 @@
           },
         }"
         :delay="200"
-        class="w-24 h-24 ml-4 bg-indigo-500 border-8 border-indigo-400 shadow-xl cursor-pointer rounded-3xl"
+        class="w-24 h-24 ml-4 bg-yellow-500 border-8 border-yellow-400 shadow-xl cursor-pointer rounded-3xl"
       />
 
       <div
@@ -65,7 +65,7 @@
           },
         }"
         :delay="300"
-        class="w-24 h-24 ml-4 bg-indigo-500 border-8 border-indigo-400 shadow-xl cursor-pointer rounded-3xl"
+        class="w-24 h-24 ml-4 bg-green-500 border-8 border-green-400 shadow-xl cursor-pointer rounded-3xl"
       />
     </template>
   </DemoBox>
