@@ -244,7 +244,7 @@ export function getAnimation(
     const options = {
       from: origin,
       to: target,
-      velocity: value.getVelocity(),
+      velocity: transition.velocity ? transition.velocity : value.getVelocity(),
       onUpdate: (v: Animatable) => value.set(v),
     }
 
