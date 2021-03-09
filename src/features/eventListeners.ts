@@ -60,69 +60,79 @@ export function registerEventListeners<T extends MotionVariants>({
     return result
   })
 
-  // Hovered
-  if (variants.value.hovered) {
-    useEventListener(target.value as EventTarget, 'mouseenter', () => {
-      hovered.value = true
-    })
+  watch(
+    target,
+    (newVal) => {
+      if (!newVal) return
 
-    useEventListener(target.value as EventTarget, 'mouseleave', () => {
-      hovered.value = false
-      tapped.value = false
-    })
+      // Hovered
+      if (variants.value.hovered) {
+        useEventListener(newVal as EventTarget, 'mouseenter', () => {
+          hovered.value = true
+        })
 
-    useEventListener(target.value as EventTarget, 'mouseout', () => {
-      hovered.value = false
-      tapped.value = false
-    })
-  }
+        useEventListener(newVal as EventTarget, 'mouseleave', () => {
+          hovered.value = false
+          tapped.value = false
+        })
 
-  // Tapped
-  if (variants.value.tapped) {
-    // Mouse
-    if (supportsMouseEvents()) {
-      useEventListener(target.value as EventTarget, 'mousedown', () => {
-        tapped.value = true
-      })
+        useEventListener(newVal as EventTarget, 'mouseout', () => {
+          hovered.value = false
+          tapped.value = false
+        })
+      }
 
-      useEventListener(target.value as EventTarget, 'mouseup', () => {
-        tapped.value = false
-      })
-    }
+      // Tapped
+      if (variants.value.tapped) {
+        // Mouse
+        if (supportsMouseEvents()) {
+          useEventListener(newVal as EventTarget, 'mousedown', () => {
+            tapped.value = true
+          })
 
-    // Pointer
-    if (supportsPointerEvents()) {
-      useEventListener(target.value as EventTarget, 'pointerdown', () => {
-        tapped.value = true
-      })
+          useEventListener(newVal as EventTarget, 'mouseup', () => {
+            tapped.value = false
+          })
+        }
 
-      useEventListener(target.value as EventTarget, 'pointerup', () => {
-        tapped.value = false
-      })
-    }
+        // Pointer
+        if (supportsPointerEvents()) {
+          useEventListener(newVal as EventTarget, 'pointerdown', () => {
+            tapped.value = true
+          })
 
-    // Touch
-    if (supportsTouchEvents()) {
-      useEventListener(target.value as EventTarget, 'touchstart', () => {
-        tapped.value = true
-      })
+          useEventListener(newVal as EventTarget, 'pointerup', () => {
+            tapped.value = false
+          })
+        }
 
-      useEventListener(target.value as EventTarget, 'touchend', () => {
-        tapped.value = false
-      })
-    }
-  }
+        // Touch
+        if (supportsTouchEvents()) {
+          useEventListener(newVal as EventTarget, 'touchstart', () => {
+            tapped.value = true
+          })
 
-  // Focused
-  if (variants.value.focused) {
-    useEventListener(target.value as EventTarget, 'focus', () => {
-      focused.value = true
-    })
+          useEventListener(newVal as EventTarget, 'touchend', () => {
+            tapped.value = false
+          })
+        }
+      }
 
-    useEventListener(target.value as EventTarget, 'blur', () => {
-      focused.value = false
-    })
-  }
+      // Focused
+      if (variants.value.focused) {
+        useEventListener(newVal as EventTarget, 'focus', () => {
+          focused.value = true
+        })
+
+        useEventListener(newVal as EventTarget, 'blur', () => {
+          focused.value = false
+        })
+      }
+    },
+    {
+      immediate: true,
+    },
+  )
 
   // Watch local computed variant, apply it dynamically
   watch(computedProperties, (newVal) => {
