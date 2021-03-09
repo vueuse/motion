@@ -34,52 +34,44 @@ export function useMotionControls<T extends MotionVariants>(
   }
 
   const apply = (variant: Variant | keyof T): Promise<void[]> | undefined => {
-    // Get variant data from parameter
-    let variantData = isObject(variant) ? variant : getVariantFromKey(variant)
+    // Check if transition exists
+    let transition = isObject(variant) && variant.transition
 
-    // Get transition data
-    const { transition } = variantData
-
-    // Local promises list
-    const promises = []
-
-    // Loop on each motion properties keys
-    for (const key in variant as Variant) {
-      if (key === 'transition') continue
-
-      const value = variant[key]
-
-      promises.push(
-        new Promise<void>((resolve) => {
-          push(
-            key as keyof MotionProperties,
-            value,
-            motionProperties,
-            transition || getDefaultTransition(key, value),
-            resolve,
-          )
-        }),
-      )
+    // If variant is a key, try to resolve it
+    if (!transition && typeof variant === 'string') {
+      variant = getVariantFromKey(variant)
     }
 
-    return Promise.all(promises)
+    // Delete transition from variant
+    if (transition) delete variant['transition']
+
+    // Return Promise chain
+    return Promise.all(
+      Object.keys(variant).map((key) => {
+        return new Promise<void>((resolve) => {
+          push(
+            key as keyof MotionProperties,
+            variant[key],
+            motionProperties,
+            transition || getDefaultTransition(key, variant[key]),
+            resolve,
+          )
+        })
+      }),
+    )
   }
 
   const set = (variant: Variant | keyof T) => {
-    // Stop current transitions
-    stop()
-
     // Get variant data from parameter
     let variantData = isObject(variant) ? variant : getVariantFromKey(variant)
 
-    // Loop on variant keys
-    for (const key in variantData as Variant) {
-      if (key === 'transition') continue
+    // Delete transition key
+    if (variantData.transition) delete variantData['transition']
 
-      const value = variant[key]
-
+    // Set in chain
+    Object.entries(variantData).forEach(([key, value]) => {
       __set(motionProperties, key, value)
-    }
+    })
   }
 
   const leave = async (done: () => void) => {
