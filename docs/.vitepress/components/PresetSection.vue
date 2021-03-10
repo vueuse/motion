@@ -5,6 +5,7 @@
 
       <button @click="replay">
         <svg
+          ref="replayButton"
           xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           aria-hidden="true"
@@ -52,7 +53,7 @@
 </template>
 
 <script setup="props" lang="ts">
-import { ref, defineProps, nextTick } from 'vue'
+import { ref, defineProps, nextTick, watch } from 'vue'
 import { useMotion } from '@vueuse/motion'
 import type { MotionVariants } from '@vueuse/motion'
 import { slugify } from '../../../src/utils/slugify'
@@ -66,22 +67,40 @@ const { preset, name } = defineProps({
   },
 })
 
+const isReplaying = ref(false)
+const replayButton = ref<SVGElement>()
 const demoElement = ref<HTMLElement>()
 
 const { apply, set } = useMotion(demoElement, preset)
 
+const replayInstance = useMotion(replayButton, {
+  initial: {
+    rotate: 0,
+  },
+})
+
 const replay = async () => {
+  if (isReplaying.value) return
+
+  isReplaying.value = true
+
+  replayInstance.apply({
+    rotate: 360,
+  })
+
   await apply(preset.initial)
 
-  nextTick(async () => {
-    if (preset.visible) {
-      await apply(preset.visible)
-    }
+  if (preset.visible) {
+    await apply(preset.visible)
+  }
 
-    if (preset.enter) {
-      await apply(preset.enter)
-    }
-  })
+  if (preset.enter) {
+    await apply(preset.enter)
+  }
+
+  replayInstance.set({ rotate: 0 })
+
+  isReplaying.value = false
 }
 </script>
 
