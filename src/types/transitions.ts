@@ -49,6 +49,11 @@ export interface Orchestration {
    * Callback triggered on animation complete.
    */
   onComplete?: () => void
+
+  /**
+   * Should the value be set imediately
+   */
+  immediate?: boolean
 }
 
 export interface Repeat {
