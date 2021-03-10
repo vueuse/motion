@@ -14,7 +14,7 @@
 - ✨ Written in **TypeScript**
 - 🏋️‍♀️ Lightweight with **<20kb** bundle size
 
-[🌍 **Documentation**](https://motion.vueuse.js.org)
+[🌍 **Documentation**](https://motion.vueuse.org)
 
 [👀 **Demos**](https://vueuse-motion-demo.netlify.app)
 
