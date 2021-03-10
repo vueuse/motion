@@ -1,3 +1,4 @@
+import { tryOnUnmounted } from '@vueuse/shared'
 import { del as __del, reactive, set as __set } from 'vue-demi'
 import { getMotionValue, MotionValue } from './motionValue'
 import {
@@ -17,33 +18,27 @@ export function useMotionTransitions(): MotionTransitions {
   const motionValues = reactive<MotionValuesMap>({})
 
   const stop = (keys?: string | string[]) => {
+    // Destroy key closure
+    const destroyKey = (key: string) => {
+      if (!motionValues[key]) return
+
+      motionValues[key].stop()
+      motionValues[key].destroy()
+      __del(motionValues, key)
+    }
+
     // Check if keys argument is defined
     if (keys) {
-      // Destroy key closure
-      const destroyKey = (key: string) => {
-        motionValues[key].stop()
-        motionValues[key].destroy()
-        __del(motionValues, key)
-      }
-
       if (isArray(keys)) {
         // If `keys` are an array, loop on specified keys and destroy them
-        keys.forEach((key) => {
-          if (motionValues[key]) destroyKey(key)
-        })
+        keys.forEach(destroyKey)
       } else {
         // If `keys` is a string, destroy the specified one
-        if (motionValues[keys]) destroyKey(keys)
+        destroyKey(keys)
       }
     } else {
       // No keys specified, destroy all animations
-      Object.entries<MotionValue>(motionValues).forEach(
-        ([key, motionValue]) => {
-          motionValue.stop()
-          motionValue.destroy()
-          __del(motionValues, key)
-        },
-      )
+      Object.keys(motionValues).forEach(destroyKey)
     }
   }
 
@@ -77,27 +72,21 @@ export function useMotionTransitions(): MotionTransitions {
       motionValue = _motionValue
     }
 
-    // Clear local motion value on animation complete
-    const _onComplete = () => {
-      if (onComplete) onComplete()
-
-      motionValue.destroy()
-
-      __del(motionValues, key)
-    }
-
     // Create animation
     const animation = getAnimation(
       key,
       motionValue,
       value,
       transition,
-      _onComplete,
+      onComplete,
     )
 
     // Start animation
     motionValue.start(animation)
   }
+
+  // Ensure everything is cleared on unmount
+  tryOnUnmounted(stop)
 
   return { motionValues, stop, push }
 }
