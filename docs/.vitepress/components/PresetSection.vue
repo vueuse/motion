@@ -54,6 +54,7 @@
 <script setup="props" lang="ts">
 import { ref, defineProps, nextTick } from 'vue'
 import { useMotion } from '@vueuse/motion'
+import type { MotionVariants } from '@vueuse/motion'
 import { slugify } from '../../../src/utils/slugify'
 
 const { preset, name } = defineProps({
@@ -61,7 +62,7 @@ const { preset, name } = defineProps({
     type: String,
   },
   preset: {
-    type: Object as MotionVariants,
+    type: Object,
   },
 })
 
@@ -69,16 +70,16 @@ const demoElement = ref<HTMLElement>()
 
 const { apply, set } = useMotion(demoElement, preset)
 
-const replay = () => {
-  set(preset.initial)
+const replay = async () => {
+  await apply(preset.initial)
 
-  nextTick(() => {
+  nextTick(async () => {
     if (preset.visible) {
-      apply(preset.visible)
+      await apply(preset.visible)
     }
 
     if (preset.enter) {
-      apply(preset.enter)
+      await apply(preset.enter)
     }
   })
 }
