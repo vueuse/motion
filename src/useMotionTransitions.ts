@@ -72,6 +72,12 @@ export function useMotionTransitions(): MotionTransitions {
       motionValue = _motionValue
     }
 
+    // Sets the value immediately
+    if (transition && transition.immediate) {
+      motionValue.set(value)
+      return
+    }
+
     // Create animation
     const animation = getAnimation(
       key,
