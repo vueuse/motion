@@ -1,5 +1,5 @@
 import { isObject, MaybeRef } from '@vueuse/core'
-import { Ref, ref, set as __set } from 'vue-demi'
+import { Ref, ref } from 'vue-demi'
 import {
   MotionControls,
   MotionProperties,
@@ -47,11 +47,11 @@ export function useMotionControls<T extends MotionVariants>(
 
     // Return Promise chain
     return Promise.all(
-      Object.keys(variant).map((key) => {
+      Object.entries(variant).map(([key, value]) => {
         return new Promise<void>((resolve) => {
           push(
             key as keyof MotionProperties,
-            variant[key],
+            value,
             motionProperties,
             transition || getDefaultTransition(key, variant[key]),
             resolve,
@@ -70,7 +70,9 @@ export function useMotionControls<T extends MotionVariants>(
 
     // Set in chain
     Object.entries(variantData).forEach(([key, value]) => {
-      __set(motionProperties, key, value)
+      push(key, value, motionProperties, {
+        immediate: true,
+      })
     })
   }
 
