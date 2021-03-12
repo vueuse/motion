@@ -16,8 +16,8 @@ The **roadmap** includes:
 - ✔️ **Make the binding with Vue transition component easier**
 - ✔️ **More default variants**
 - ✔️ **[Nuxt module](https://github.com/Tahul/nuxt-use-motion)**
+- ✔️ [**vueuse/gesture**](https://github.com/vueuse/gesture)
 - 👨‍💻 **Finish writing the test suite for each composable**
 - 👨‍💻 **Context-aware elements, to enable animations between children**
 - ❓ **vueuse/layout**
-- ❓ **vueuse/gestures**
 - ❓ **Making a playground to create animations with a GUI**
