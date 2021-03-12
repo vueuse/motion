@@ -45,6 +45,27 @@ export type MotionControls = {
   leave: (done: () => void) => void
 }
 
+export type SpringControls = {
+  /**
+   * Apply new values with transitions.
+   *
+   * @param variant
+   */
+  set: (properties: MotionProperties) => void
+  /**
+   * Stop all transitions.
+   *
+   * @param variant
+   */
+  stop: (key?: string | string[]) => void
+  /**
+   * Object containing all the current values of the spring.
+   *
+   * @param
+   */
+  values: MotionProperties
+}
+
 export type MotionInstanceBindings<T = MotionVariants> = {
   [key: string]: MotionInstance<T>
 }
