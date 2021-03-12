@@ -1,6 +1,6 @@
 import { MaybeRef } from '@vueuse/shared'
 import { animate } from 'popmotion'
-import { Ref, ref } from 'vue-demi'
+import { Ref, ref, watch } from 'vue-demi'
 import { MotionProperties, MotionTarget, Spring, SpringControls } from './types'
 import { useMotionProperties } from './useMotionProperties'
 import { useMotionValues } from './useMotionValues'
@@ -13,19 +13,24 @@ export function useSpring(
   const targetRef = ref(target)
   let values: MotionProperties = {}
 
-  // Check whether if we are dealing with an object or with an element target
-  if (
-    targetRef.value instanceof HTMLElement ||
-    targetRef.value instanceof SVGElement
-  ) {
-    const { motionProperties } = useMotionProperties(
-      targetRef as Ref<MotionTarget>,
-    )
+  watch(
+    targetRef,
+    (newVal) => {
+      // Target not set yet
+      if (!newVal) return
 
-    values = motionProperties
-  } else {
-    values = { ...targetRef.value }
-  }
+      // Check whether the target reference is an element or a simple object
+      if (newVal instanceof HTMLElement || newVal instanceof SVGElement) {
+        values = useMotionProperties(targetRef as Ref<MotionTarget>)
+          .motionProperties
+      } else {
+        values = { ...newVal }
+      }
+    },
+    {
+      immediate: true,
+    },
+  )
 
   const { stop, get } = useMotionValues()
 
