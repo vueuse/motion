@@ -75,6 +75,10 @@ export class MotionValue<V = any> {
    * @param render
    */
   set(v: V) {
+    if (this.current === undefined && !this.canTrackVelocity) {
+      this.canTrackVelocity = isFloat(v)
+    }
+
     this.updateAndNotify(v)
   }
 
@@ -90,12 +94,12 @@ export class MotionValue<V = any> {
 
     this.updateSubscribers.notify(this.current)
 
-    sync.postRender(this.scheduleVelocityCheck)
-
     // Update timestamp
     const { delta, timestamp } = getFrameData()
 
     if (this.lastUpdated !== timestamp) {
+      sync.postRender(this.scheduleVelocityCheck)
+
       this.timeDelta = delta
       this.lastUpdated = timestamp
     }
