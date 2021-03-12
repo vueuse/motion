@@ -1,6 +1,6 @@
 import sync, { FrameData, getFrameData } from 'framesync'
 import { velocityPerSecond } from 'popmotion'
-import { PassiveEffect, StartAnimation, Subscriber } from './types'
+import { StartAnimation, Subscriber } from './types'
 import { SubscriptionManager } from './utils/subscription-manager'
 
 const isFloat = (value: any): value is string => {
@@ -37,16 +37,6 @@ export class MotionValue<V = any> {
   updateSubscribers = new SubscriptionManager<Subscriber<V>>()
 
   /**
-   * Functions to notify when the `MotionValue` updates and `render` is set to `true`.
-   */
-  private renderSubscribers = new SubscriptionManager<Subscriber<V>>()
-
-  /**
-   * Add a passive effect to this `MotionValue`.
-   */
-  private passiveEffect?: PassiveEffect<V>
-
-  /**
    * A reference to the currently-controlling Popmotion animation
    */
   private stopAnimation?: null | (() => void)
@@ -79,40 +69,13 @@ export class MotionValue<V = any> {
   }
 
   /**
-   * Adds a function that will be notified when the `MotionValue` requests a render.
-   */
-  onRenderRequest(subscription: Subscriber<V>) {
-    // Render immediately
-    subscription(this.get())
-
-    return this.renderSubscribers.add(subscription)
-  }
-
-  /**
-   * Attaches a passive effect to the `MotionValue`.
-   *
-   * @param passiveEffect
-   */
-  attach(passiveEffect: PassiveEffect<V>) {
-    this.passiveEffect = passiveEffect
-  }
-
-  /**
    * Sets the state of the `MotionValue`.
    *
    * @param v
    * @param render
    */
-  set(v: V, render = true) {
-    if (this.current === undefined && !this.canTrackVelocity) {
-      this.canTrackVelocity = isFloat(v)
-    }
-
-    if (!render || !this.passiveEffect) {
-      this.updateAndNotify(v, render)
-    } else {
-      this.passiveEffect(v, this.updateAndNotify)
-    }
+  set(v: V) {
+    this.updateAndNotify(v)
   }
 
   /**
@@ -121,17 +84,13 @@ export class MotionValue<V = any> {
    * @param v
    * @param render
    */
-  updateAndNotify = (v: V, render = true) => {
+  updateAndNotify = (v: V) => {
     this.prev = this.current
     this.current = v
 
-    if (this.prev !== this.current) {
-      this.updateSubscribers.notify(this.current)
-    }
+    this.updateSubscribers.notify(this.current)
 
-    if (render) {
-      this.renderSubscribers.notify(this.current)
-    }
+    sync.postRender(this.scheduleVelocityCheck)
 
     // Update timestamp
     const { delta, timestamp } = getFrameData()
@@ -139,7 +98,6 @@ export class MotionValue<V = any> {
     if (this.lastUpdated !== timestamp) {
       this.timeDelta = delta
       this.lastUpdated = timestamp
-      sync.postRender(this.scheduleVelocityCheck)
     }
   }
 
@@ -222,6 +180,9 @@ export class MotionValue<V = any> {
     return !!this.stopAnimation
   }
 
+  /**
+   * Clear the current animation reference.
+   */
   private clearAnimation() {
     this.stopAnimation = null
   }
@@ -231,7 +192,6 @@ export class MotionValue<V = any> {
    */
   destroy() {
     this.updateSubscribers.clear()
-    this.renderSubscribers.clear()
     this.stop()
   }
 }
