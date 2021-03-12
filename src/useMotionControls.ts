@@ -70,7 +70,7 @@ export function useMotionControls<T extends MotionVariants>(
 
     // Set in chain
     Object.entries(variantData).forEach(([key, value]) => {
-      push(key, value, motionProperties, {
+      push(key as keyof MotionProperties, value, motionProperties, {
         immediate: true,
       })
     })
