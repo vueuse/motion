@@ -71,7 +71,31 @@ You can use it to **trigger** an animation when the element **appears**, transit
 
 ### Leave
 
-_This feature is currently work in progress._ 👷‍♂️
+The **leave** variant **helps** to define the **state** of an **element** when it is supposed to **leave** the **DOM**.
+
+```vue
+<div
+  v-motion
+  :initial="{
+    opacity: 0,
+    y: 100,
+  }"
+  :enter="{
+    opacity: 1,
+    y: 0,
+  }"
+  :leave="{
+    y: -100,
+    opacity: 0,
+  }"
+/>
+```
+
+In order to achieve a **leave transition**, you will have to access the [**Motion Instance**](/motion-instance).
+
+This **instance** exposes an **helper** called `leave` than can **easily** be **mapped** with the Vue **transition** element **@leave** event.
+
+You can take a look at an example of implementation on the [**Demo**](https://vueuse-motion-demo.netlify.app) page, at the "**Transitions**" section.
 
 ## Visibility Variants
 
