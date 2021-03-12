@@ -100,6 +100,10 @@ module.exports = {
             link: '/api/use-motion',
           },
           {
+            text: 'useSpring',
+            link: '/api/use-spring',
+          },
+          {
             text: 'useMotions',
             link: '/api/use-motions',
           },
