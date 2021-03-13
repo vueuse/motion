@@ -112,7 +112,7 @@ When the element leaves, the [**Initial**](#initial-variant) variant will be app
     opacity: 0,
     y: 100,
   }"
-  :enter="{
+  :visible="{
     opacity: 1,
     y: 0,
   }"
