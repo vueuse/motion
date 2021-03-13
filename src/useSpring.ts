@@ -1,12 +1,17 @@
 import { MaybeRef } from '@vueuse/shared'
 import { animate } from 'popmotion'
 import { ref, watch } from 'vue-demi'
-import { MotionProperties, MotionTarget, Spring, SpringControls } from './types'
+import {
+  MotionProperties,
+  PermissiveTarget,
+  Spring,
+  SpringControls,
+} from './types'
 import { useMotionProperties } from './useMotionProperties'
 import { useMotionValues } from './useMotionValues'
 
 export function useSpring(
-  target: MaybeRef<MotionTarget> | MaybeRef<MotionProperties>,
+  target: MaybeRef<PermissiveTarget> | MaybeRef<MotionProperties>,
   spring?: Partial<Spring>,
 ): SpringControls {
   // Base references
@@ -19,14 +24,23 @@ export function useSpring(
       // Target not set yet
       if (!newVal) return
 
+      let _el = newVal
+
+      // Same as resolveElement()
+      // @ts-ignore
+      if (newVal.$el) {
+        // @ts-ignore
+        _el = newVal.$el
+      }
+
       // Check whether the target reference is an element or a simple object
-      if (newVal instanceof HTMLElement || newVal instanceof SVGElement) {
-        values = useMotionProperties(newVal).motionProperties
+      if (_el instanceof HTMLElement || _el instanceof SVGElement) {
+        values = useMotionProperties(_el).motionProperties
         return
       }
 
       // Target seem to be an object, spread it as local values.
-      values = { ...newVal }
+      values = { ...(newVal as MotionProperties) }
     },
     {
       immediate: true,
