@@ -1,5 +1,4 @@
-import { MaybeRef } from '@vueuse/core'
-import { ref, set as __set, watch } from 'vue-demi'
+import { Ref, set as __set, watch } from 'vue-demi'
 import { reactiveStyle } from './reactiveStyle'
 import { MotionTarget, StyleProperties } from './types'
 import { valueTypes } from './utils/style'
@@ -9,10 +8,7 @@ import { valueTypes } from './utils/style'
  *
  * @param target
  */
-export function useElementStyle(target: MaybeRef<MotionTarget>) {
-  // Target element ref
-  const targetRef = ref(target)
-
+export function useElementStyle(target: Ref<MotionTarget>) {
   // Transform cache available before the element is mounted
   let _cache: StyleProperties | undefined
 
@@ -20,12 +16,12 @@ export function useElementStyle(target: MaybeRef<MotionTarget>) {
   const { state, style } = reactiveStyle()
 
   // Sync existing style from supplied element
-  const stopInitWatch = watch(targetRef, (el) => {
+  const stopInitWatch = watch(target, (el) => {
     if (!el) return
 
     // Loop on style keys
     for (const key of Object.keys(valueTypes)) {
-      if (el.style[key] == null || el.style[key] === '') continue
+      if (el.style[key] === null || el.style[key] === '') continue
 
       // Append a defined key to the local StyleProperties state object
       __set(state, key, el.style[key])
@@ -40,15 +36,14 @@ export function useElementStyle(target: MaybeRef<MotionTarget>) {
   const stopSyncWatch = watch(
     style,
     (newValue) => {
-      if (!targetRef.value || !targetRef.value.style) {
+      if (!target.value || !target.value.style) {
         // Add the current value to the cache so it is set on target creation
         _cache = newValue
         return
       }
 
       // Append the state object to the target style properties
-      for (const key in newValue)
-        __set(targetRef.value.style, key, newValue[key])
+      for (const key in newValue) __set(target.value.style, key, newValue[key])
     },
     {
       immediate: true,
