@@ -41,7 +41,7 @@ describe('useElementTransform', () => {
     await nextTick()
 
     expect(element.value.style.transform).toBe(
-      'translateY(120px) translateZ(0)',
+      'translateY(120px) translateZ(0px)',
     )
   })
 })

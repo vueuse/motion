@@ -47,6 +47,6 @@ describe('reactiveTransform', () => {
       true, // it is true by default
     )
 
-    expect(transform.value).toBe('rotateX(90deg) translateZ(0)')
+    expect(transform.value).toBe('rotateX(90deg) translateZ(0px)')
   })
 })
