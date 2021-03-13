@@ -85,16 +85,21 @@ export class MotionValue<V = any> {
    * @param render
    */
   updateAndNotify = (v: V) => {
+    // Update values
     this.prev = this.current
     this.current = v
 
-    // Update timestamp
+    // Get frame data
     const { delta, timestamp } = getFrameData()
+
+    // Update timestamp
     if (this.lastUpdated !== timestamp) {
       this.timeDelta = delta
       this.lastUpdated = timestamp
-      sync.postRender(this.scheduleVelocityCheck)
     }
+
+    // Schedule velocity check post frame render
+    sync.postRender(this.scheduleVelocityCheck)
 
     // Update subscribers
     this.updateSubscribers.notify(this.current)
