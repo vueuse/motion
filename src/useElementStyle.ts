@@ -27,6 +27,7 @@ export function useElementStyle(target: Ref<MotionTarget>) {
       __set(state, key, el.style[key])
     }
 
+    // If cache is present, init the target with the current cached value
     if (_cache) {
       for (const key in _cache) __set(el.style, key, _cache[key])
     }
@@ -36,8 +37,8 @@ export function useElementStyle(target: Ref<MotionTarget>) {
   const stopSyncWatch = watch(
     style,
     (newValue) => {
+      // Add the current value to the cache so it is set on target creation
       if (!target.value || !target.value.style) {
-        // Add the current value to the cache so it is set on target creation
         _cache = newValue
         return
       }
