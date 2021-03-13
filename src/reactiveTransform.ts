@@ -1,3 +1,4 @@
+import { px } from 'style-value-types'
 import { reactive, ref, watch } from 'vue-demi'
 import { TransformProperties } from './types'
 import { getValueAsType, getValueType } from './utils/style'
@@ -28,34 +29,44 @@ export function reactiveTransform(
 
   watch(
     state,
-    () => {
+    (newVal) => {
       // Init result
       let result = ''
+      let hasHardwareAcceleration = false
 
-      // Init transformHasZ (used for GPU optimization)
-      let transformHasZ = false
+      // Use translate3d by default has a better GPU optimization
+      // And corrects scaling discrete behaviors
+      if (enableHardwareAcceleration && (newVal.x || newVal.y || newVal.z)) {
+        const str = [newVal.x || 0, newVal.y || 0, newVal.z || 0]
+          .map(px.transform as any)
+          .join(',')
+
+        result += `translate3d(${str}) `
+
+        hasHardwareAcceleration = true
+      }
 
       // Loop on defined TransformProperties state keys
-      for (const [key, value] of Object.entries(state)) {
+      for (const [key, value] of Object.entries(newVal)) {
+        if (
+          enableHardwareAcceleration &&
+          (key === 'x' || key === 'y' || key === 'z')
+        )
+          continue
+
         // Get value type for key
         const valueType = getValueType(key)
         // Get value as type for key
         const valueAsType = getValueAsType(value, valueType)
         // Append the computed transform key to result string
         result += `${translateAlias[key] || key}(${valueAsType}) `
-        // Set transformHasZ is already defined in the state
-        if (key === 'z' || key === 'translateZ') transformHasZ = true
       }
 
-      if (!transformHasZ && enableHardwareAcceleration) {
-        // Append hardware acceleration property if needed
-        result += 'translateZ(0)'
-      } else {
-        // Trim the last space
-        result = result.trim()
+      if (enableHardwareAcceleration && !hasHardwareAcceleration) {
+        result += `translateZ(0px) `
       }
 
-      transform.value = result
+      transform.value = result.trim()
     },
     {
       immediate: true,
