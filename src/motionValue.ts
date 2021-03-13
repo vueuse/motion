@@ -51,7 +51,7 @@ export class MotionValue<V = any> {
    * @param config - Optional configuration options
    */
   constructor(init: V) {
-    this.current = init
+    this.prev = this.current = init
     this.canTrackVelocity = isFloat(this.current)
   }
 
@@ -88,17 +88,16 @@ export class MotionValue<V = any> {
     this.prev = this.current
     this.current = v
 
-    this.updateSubscribers.notify(this.current)
-
-    sync.postRender(this.scheduleVelocityCheck)
-
     // Update timestamp
     const { delta, timestamp } = getFrameData()
-
     if (this.lastUpdated !== timestamp) {
       this.timeDelta = delta
       this.lastUpdated = timestamp
+      sync.postRender(this.scheduleVelocityCheck)
     }
+
+    // Update subscribers
+    this.updateSubscribers.notify(this.current)
   }
 
   /**
@@ -145,9 +144,7 @@ export class MotionValue<V = any> {
    * This ensures velocity calculations return `0`.
    */
   private velocityCheck = ({ timestamp }: FrameData) => {
-    if (this.current === undefined && !this.canTrackVelocity) {
-      this.canTrackVelocity = isFloat(this.current)
-    }
+    if (!this.canTrackVelocity) this.canTrackVelocity = isFloat(this.current)
 
     if (timestamp !== this.lastUpdated) {
       this.prev = this.current
