@@ -21,14 +21,18 @@
             y: -400,
             opacity: 0,
           }"
-          class="w-24 h-24 bg-indigo-500 border-8 border-indigo-400 shadow-xl cursor-pointer rounded-3xl"
+          class="w-24 h-24 bg-blue-500 border-8 border-blue-400 shadow-xl cursor-pointer rounded-3xl"
         />
       </transition>
     </template>
 
-    <div>
-      <button class="px-4 py-2 bg-indigo-600 rounded-lg hover:bg-indigo-400" @click="toggleShow">Toggle</button>
-    </div>
+    <template #sliders>
+      <div class="border-solid border-white border-t-1">
+        <div class="mt-2">
+          <button class="px-4 py-2 bg-blue-600 rounded-lg text-white hover:bg-blue-400" @click="toggleShow">Toggle</button>
+        </div>
+      </div>
+    </template>
   </DemoBox>
 </template>
 
