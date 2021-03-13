@@ -1,5 +1,4 @@
-import { MaybeRef } from '@vueuse/core'
-import { ref, watch } from 'vue-demi'
+import { Ref, watch } from 'vue-demi'
 import { reactiveTransform } from './reactiveTransform'
 import { MotionTarget } from './types'
 
@@ -8,10 +7,7 @@ import { MotionTarget } from './types'
  *
  * @param target
  */
-export function useElementTransform(target: MaybeRef<MotionTarget>) {
-  // Target element ref
-  const targetRef = ref(target)
-
+export function useElementTransform(target: Ref<MotionTarget>) {
   // Transform cache available before the element is mounted
   let _cache: string | undefined
 
@@ -19,7 +15,7 @@ export function useElementTransform(target: MaybeRef<MotionTarget>) {
   const { state, transform } = reactiveTransform()
 
   // Cache transform until the element is alive and we can bind to it
-  const stopInitWatch = watch(targetRef, (el) => {
+  const stopInitWatch = watch(target, (el) => {
     if (el && _cache) {
       // If cache is present, init the target with the current cached value
       el.style.transform = _cache
@@ -30,14 +26,14 @@ export function useElementTransform(target: MaybeRef<MotionTarget>) {
   const stopSyncWatch = watch(
     transform,
     (newValue) => {
-      if (!targetRef.value || !targetRef.value.style) {
+      if (!target.value || !target.value.style) {
         // Add the current value to the cache so it is set on target creation
         _cache = newValue
         return
       }
 
       // Set the transform string on the target
-      targetRef.value.style.transform = newValue
+      target.value.style.transform = newValue
     },
     {
       immediate: true,
