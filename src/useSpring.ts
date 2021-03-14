@@ -16,43 +16,17 @@ export function useSpring(
 ): SpringControls {
   // Base references
   const targetRef = ref(target)
-  let values: MotionProperties = {}
-
-  watch(
-    targetRef,
-    (newVal) => {
-      // Target not set yet
-      if (!newVal) return
-
-      let _el = newVal
-
-      // Same as resolveElement()
-      // @ts-ignore
-      if (newVal.$el) {
-        // @ts-ignore
-        _el = newVal.$el
-      }
-
-      // Check whether the target reference is an element or a simple object
-      if (_el instanceof HTMLElement || _el instanceof SVGElement) {
-        values = useMotionProperties(_el).motionProperties
-        return
-      }
-
-      // Target seem to be an object, spread it as local values.
-      values = { ...(newVal as MotionProperties) }
-    },
-    {
-      immediate: true,
-    },
-  )
 
   const { stop, get } = useMotionValues()
 
   const set = (properties: MotionProperties) => {
     return Promise.all(
       Object.entries(properties).map(([key, value]) => {
-        const motionValue = get(key as keyof MotionProperties, value, values)
+        const motionValue = get(
+          key as keyof MotionProperties,
+          value,
+          springControls.values,
+        )
 
         const start = (onComplete?: () => void) =>
           animate({
@@ -70,9 +44,37 @@ export function useSpring(
     )
   }
 
-  return {
+  watch(
+    targetRef,
+    (newVal) => {
+      // Target not set yet
+      if (!newVal) return
+
+      let _el = newVal
+
+      if ((newVal as PermissiveTarget).$el) {
+        _el = (newVal as PermissiveTarget).$el
+      }
+
+      // Check whether the target reference is an element or a simple object
+      if (_el instanceof HTMLElement || _el instanceof SVGElement) {
+        springControls.values = useMotionProperties(_el).motionProperties
+        return
+      }
+
+      // Target seem to be an object, spread it as local values.
+      springControls.values = { ...(newVal as MotionProperties) }
+    },
+    {
+      immediate: true,
+    },
+  )
+
+  const springControls: SpringControls = {
     set,
     stop,
-    values,
+    values: {},
   }
+
+  return springControls
 }
