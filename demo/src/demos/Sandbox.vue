@@ -1,8 +1,9 @@
 <template>
   <div
     class="h-200 w-full border-4 rounded-4xl border-red-400 flex items-center justify-center"
+    @click="test"
   >
-    <Block ref="block" style="transform: perspective(500px)" />
+    <Block ref="block" />
   </div>
 </template>
 
@@ -22,4 +23,8 @@ const instance = useMotion(block, {
     opacity: 1,
   },
 })
+
+const test = () => {
+  instance.variant.value = 'enter'
+}
 </script>
