@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { MotionPlugin } from '@vueuse/motion'
 import 'prism-theme-vars/base.css'
 import { createApp } from 'vue-demi'
