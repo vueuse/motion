@@ -1,4 +1,4 @@
-import { Fn, VueInstance } from '@vueuse/core'
+import { Fn, MaybeRef, VueInstance } from '@vueuse/core'
 import { Ref, UnwrapRef } from 'vue-demi'
 import { MotionProperties, MotionVariants, Variant } from './variants'
 
@@ -7,8 +7,8 @@ export type PermissiveTarget = VueInstance | MotionTarget
 export type MotionTarget = HTMLElement | SVGElement | null | undefined
 
 export interface MotionInstance<T = MotionVariants> extends MotionControls {
-  target: Ref<MotionTarget>
-  variants: Ref<T>
+  target: MaybeRef<PermissiveTarget>
+  variants: MaybeRef<T>
   variant: Ref<keyof T>
   state: Ref<Variant | undefined>
   motionProperties: UnwrapRef<MotionProperties>
