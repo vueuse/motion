@@ -1,6 +1,6 @@
 import { MaybeRef } from '@vueuse/core'
-import { reactive, ref, set as __set, watch } from 'vue-demi'
-import { MotionProperties, MotionTarget } from './types'
+import { reactive, set as __set, watch } from 'vue-demi'
+import { MotionProperties, PermissiveTarget } from './types'
 import { useElementStyle } from './useElementStyle'
 import { useElementTransform } from './useElementTransform'
 import { isTransformProp } from './utils/transform'
@@ -10,15 +10,12 @@ import { isTransformProp } from './utils/transform'
  *
  * @param target
  */
-export function useMotionProperties(target: MaybeRef<MotionTarget>) {
-  // Target element ref
-  const targetRef = ref(target)
-
+export function useMotionProperties(target: MaybeRef<PermissiveTarget>) {
   // Target element style object
-  const { style } = useElementStyle(targetRef)
+  const { style } = useElementStyle(target)
 
   // Target element transform object
-  const { transform } = useElementTransform(targetRef)
+  const { transform } = useElementTransform(target)
 
   const motionProperties = reactive<MotionProperties>({})
 
