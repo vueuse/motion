@@ -33,7 +33,7 @@ export function useMotionValues() {
   }
 
   const get = (
-    key: keyof MotionProperties,
+    key: string,
     from: any,
     target: MotionProperties,
   ): MotionValue => {

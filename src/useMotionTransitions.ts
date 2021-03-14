@@ -14,7 +14,7 @@ export function useMotionTransitions(): MotionTransitions {
   const { motionValues, stop, get } = useMotionValues()
 
   const push = (
-    key: keyof MotionProperties,
+    key: string,
     value: ResolvedValueTarget,
     target: MotionProperties,
     transition: Transition = {},
