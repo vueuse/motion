@@ -1,8 +1,10 @@
+import { VueInstance } from '@vueuse/core'
 import { MaybeRef } from '@vueuse/shared'
 import { animate } from 'popmotion'
 import { ref, watch } from 'vue-demi'
 import {
   MotionProperties,
+  MotionTarget,
   PermissiveTarget,
   Spring,
   SpringControls,
@@ -50,10 +52,10 @@ export function useSpring(
       // Target not set yet
       if (!newVal) return
 
-      let _el = newVal
+      let _el
 
-      if ((newVal as PermissiveTarget).$el) {
-        _el = (newVal as PermissiveTarget).$el
+      if ((newVal as VueInstance).$el) {
+        _el = (newVal as VueInstance).$el as MotionTarget
       }
 
       // Check whether the target reference is an element or a simple object

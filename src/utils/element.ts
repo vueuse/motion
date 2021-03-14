@@ -1,5 +1,6 @@
 import { Ref, ref } from '@vue/reactivity'
 import { watch } from '@vue/runtime-core'
+import { VueInstance } from '@vueuse/core'
 import { MaybeRef } from '@vueuse/shared'
 import { MotionTarget, PermissiveTarget } from '../types'
 
@@ -14,8 +15,8 @@ export function resolveElement(
     (newVal) => {
       if (!newVal) return
 
-      if (newVal.$el) {
-        targetRef.value = newVal.$el as MotionTarget
+      if ((newVal as VueInstance).$el) {
+        targetRef.value = (newVal as VueInstance).$el as MotionTarget
         return
       }
 

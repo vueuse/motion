@@ -1,11 +1,8 @@
-import { Fn } from '@vueuse/core'
-import { defineComponent, Ref, UnwrapRef } from 'vue-demi'
+import { Fn, VueInstance } from '@vueuse/core'
+import { Ref, UnwrapRef } from 'vue-demi'
 import { MotionProperties, MotionVariants, Variant } from './variants'
 
-export type PermissiveTarget = InstanceType<
-  ReturnType<typeof defineComponent>
-> &
-  MotionTarget
+export type PermissiveTarget = VueInstance | MotionTarget
 
 export type MotionTarget = HTMLElement | SVGElement | null | undefined
 
