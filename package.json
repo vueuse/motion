@@ -1,6 +1,6 @@
 {
   "name": "@vueuse/motion",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "🤹 Vue Composables putting your components in motion",
   "repository": "https://github.com/vueuse/motion",
   "bugs": {
