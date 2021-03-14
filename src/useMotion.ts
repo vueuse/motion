@@ -1,5 +1,4 @@
 import { MaybeRef } from '@vueuse/core'
-import { Ref, ref } from 'vue-demi'
 import {
   MotionInstance,
   MotionVariants,
@@ -10,7 +9,6 @@ import { useMotionControls } from './useMotionControls'
 import { useMotionFeatures } from './useMotionFeatures'
 import { useMotionProperties } from './useMotionProperties'
 import { useMotionVariants } from './useMotionVariants'
-import { resolveElement } from './utils/element'
 
 /**
  * A Vue Composable that put your components in motion.
@@ -26,24 +24,20 @@ export function useMotion<T extends MotionVariants>(
   variants: MaybeRef<T> = {} as MaybeRef<T>,
   options?: UseMotionOptions,
 ) {
-  // Base references
-  const variantsRef = ref(variants) as Ref<T>
-  const targetRef = resolveElement(target)
-
   // Reactive styling and transform
-  const { motionProperties } = useMotionProperties(targetRef)
+  const { motionProperties } = useMotionProperties(target)
 
   // Variants manager
-  const { variant, state } = useMotionVariants<T>(variantsRef)
+  const { variant, state } = useMotionVariants<T>(variants)
 
   // Motion controls, synchronized with motion properties and variants
-  const controls = useMotionControls<T>(motionProperties, variantsRef)
+  const controls = useMotionControls<T>(motionProperties, variants)
 
   // Create motion instance
   const instance: MotionInstance<T> = {
-    target: targetRef,
+    target,
     variant,
-    variants: variantsRef,
+    variants,
     state,
     motionProperties,
     ...controls,
