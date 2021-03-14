@@ -16,28 +16,36 @@ export function useElementTransform(target: Ref<MotionTarget>) {
   const { state, transform } = reactiveTransform()
 
   // Cache transform until the element is alive and we can bind to it
-  const stopInitWatch = watch(target, (el) => {
-    if (!el) return
+  const stopInitWatch = watch(
+    target,
+    (el) => {
+      if (!el) return
 
-    // Parse transform properties and applies them to the current state
-    if (el.style.transform) {
-      Object.entries(parseTransform(el.style.transform)).forEach(
-        ([key, value]) => {
-          __set(state, key, value)
-        },
-      )
-    }
+      // Parse transform properties and applies them to the current state
+      if (el.style.transform) {
+        Object.entries(parseTransform(el.style.transform)).forEach(
+          ([key, value]) => {
+            __set(state, key, value)
+          },
+        )
+      }
 
-    // If cache is present, init the target with the current cached value
-    if (_cache) {
-      el.style.transform = _cache
-    }
-  })
+      // If cache is present, init the target with the current cached value
+      if (_cache) {
+        el.style.transform = _cache
+      }
+    },
+    {
+      immediate: true,
+    },
+  )
 
   // Sync reactive transform to element
   const stopSyncWatch = watch(
     transform,
     (newValue) => {
+      if (!newValue) return
+
       // Add the current value to the cache so it is set on target creation
       if (!target.value || !target.value.style) {
         _cache = newValue
