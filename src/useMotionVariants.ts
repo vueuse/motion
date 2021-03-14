@@ -1,5 +1,5 @@
 import { MaybeRef } from '@vueuse/core'
-import { computed, Ref, ref } from 'vue-demi'
+import { computed, Ref, ref, unref } from 'vue-demi'
 import { MotionVariants, Variant } from './types'
 
 /**
@@ -12,8 +12,8 @@ import { MotionVariants, Variant } from './types'
 export function useMotionVariants<T extends MotionVariants>(
   variants: MaybeRef<T> = {} as MaybeRef<T>,
 ) {
-  // Variants as ref
-  const variantsRef = ref(variants) as Ref<T>
+  // Unref variants
+  const _variants = unref(variants) as T
 
   // Current variant string
   const variant = ref() as Ref<keyof T>
@@ -22,7 +22,7 @@ export function useMotionVariants<T extends MotionVariants>(
   const state = computed<Variant | undefined>(() => {
     if (!variant.value) return undefined
 
-    return variantsRef.value[variant.value]
+    return _variants[variant.value]
   })
 
   return {
