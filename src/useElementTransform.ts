@@ -1,5 +1,5 @@
-import { unrefElement } from '@vueuse/core'
-import { Ref, set as __set, watch } from 'vue-demi'
+import { MaybeRef, unrefElement } from '@vueuse/core'
+import { set as __set, watch } from 'vue-demi'
 import { reactiveTransform } from './reactiveTransform'
 import { MotionTarget, PermissiveTarget } from './types'
 import { parseTransform } from './utils/transform-parser'
@@ -9,7 +9,7 @@ import { parseTransform } from './utils/transform-parser'
  *
  * @param target
  */
-export function useElementTransform(target: Ref<PermissiveTarget>) {
+export function useElementTransform(target: MaybeRef<PermissiveTarget>) {
   // Transform cache available before the element is mounted
   let _cache: string | undefined
   // Local target cache as we need to resolve the element from PermissiveTarget
