@@ -6,19 +6,25 @@
       </h1>
     </div>
 
-    <h1 class="flex items-center justify-center text-3xl font-bold">Delay</h1>
+    <template v-if="!sandbox">
+      <h1 class="flex items-center justify-center text-3xl font-bold">Delay</h1>
 
-    <Delay class="mt-6 mb-6" />
+      <Delay class="mt-6 mb-6" />
 
-    <h1 class="flex items-center justify-center text-3xl font-bold">Editor</h1>
+      <h1 class="flex items-center justify-center text-3xl font-bold">
+        Editor
+      </h1>
 
-    <Editor class="mt-6 mb-6" />
+      <Editor class="mt-6 mb-6" />
 
-    <h1 class="flex items-center justify-center text-3xl font-bold">
-      Transitions
-    </h1>
+      <h1 class="flex items-center justify-center text-3xl font-bold">
+        Transitions
+      </h1>
 
-    <Transitions class="mt-6 mb-6" />
+      <Transitions class="mt-6 mb-6" />
+    </template>
+
+    <Sandbox v-else />
 
     <div class="flex flex-col items-center justify-center">
       <a class="mt-12 mb-6" href="https://github.com/vueuse/motion">
@@ -39,6 +45,9 @@
 import Delay from './demos/Delay.vue'
 import Editor from './demos/Editor.vue'
 import Transitions from './demos/Transitions.vue'
+import Sandbox from './demos/Sandbox.vue'
+
+const sandbox = false
 </script>
 
 <style lang="postcss" scoped>
