@@ -1,5 +1,5 @@
 import { isObject, MaybeRef } from '@vueuse/core'
-import { Ref, ref } from 'vue-demi'
+import { unref } from 'vue-demi'
 import {
   MotionControls,
   MotionProperties,
@@ -23,14 +23,14 @@ export function useMotionControls<T extends MotionVariants>(
   { push, stop }: MotionTransitions = useMotionTransitions(),
 ): MotionControls {
   // Variants as ref
-  const variantsRef = ref(variants) as Ref<T>
+  const _variants = unref(variants) as T
 
   const getVariantFromKey = (variant: keyof T): Variant => {
-    if (!variantsRef || !variantsRef.value || !variantsRef.value[variant]) {
+    if (!_variants || !_variants[variant]) {
       throw new Error(`The variant ${variant} does not exist.`)
     }
 
-    return variantsRef.value[variant] as Variant
+    return _variants[variant] as Variant
   }
 
   const apply = (variant: Variant | keyof T): Promise<void[]> | undefined => {
@@ -79,13 +79,13 @@ export function useMotionControls<T extends MotionVariants>(
   const leave = async (done: () => void) => {
     let leaveVariant: Variant | undefined
 
-    if (variantsRef && variantsRef.value) {
-      if (variantsRef.value.leave) {
-        leaveVariant = variantsRef.value.leave
+    if (_variants) {
+      if (_variants.leave) {
+        leaveVariant = _variants.leave
       }
 
-      if (!variantsRef.value.leave && variantsRef.value.initial) {
-        leaveVariant = variantsRef.value.initial
+      if (!_variants.leave && _variants.initial) {
+        leaveVariant = _variants.initial
       }
     }
 
