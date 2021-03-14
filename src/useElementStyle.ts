@@ -39,6 +39,9 @@ export function useElementStyle(target: Ref<PermissiveTarget>) {
         for (const key in _cache) __set(el.style, key, _cache[key])
       }
     },
+    {
+      immediate: true,
+    },
   )
 
   // Sync reactive style to element
