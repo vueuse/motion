@@ -1,5 +1,5 @@
-import { useEventListener } from '@vueuse/core'
-import { computed, ref, watch } from 'vue-demi'
+import { unrefElement, useEventListener } from '@vueuse/core'
+import { computed, ref, unref, watch } from 'vue-demi'
 import { MotionInstance, MotionVariants } from '../types'
 import {
   supportsMouseEvents,
@@ -13,6 +13,7 @@ export function registerEventListeners<T extends MotionVariants>({
   variants,
   apply,
 }: MotionInstance<T>) {
+  const _variants = unref(variants)
   // State
   const hovered = ref(false)
   const tapped = ref(false)
@@ -21,16 +22,18 @@ export function registerEventListeners<T extends MotionVariants>({
   const mutableKeys = computed(() => {
     let result: string[] = []
 
-    if (variants.value.hovered) {
-      result = [...result, ...Object.keys(variants.value.hovered)]
+    if (!_variants) return result
+
+    if (_variants.hovered) {
+      result = [...result, ...Object.keys(_variants.hovered)]
     }
 
-    if (variants.value.tapped) {
-      result = [...result, ...Object.keys(variants.value.tapped)]
+    if (_variants.tapped) {
+      result = [...result, ...Object.keys(_variants.tapped)]
     }
 
-    if (variants.value.focused) {
-      result = [...result, ...Object.keys(variants.value.focused)]
+    if (_variants.focused) {
+      result = [...result, ...Object.keys(_variants.focused)]
     }
 
     return result
@@ -41,16 +44,16 @@ export function registerEventListeners<T extends MotionVariants>({
 
     Object.assign(result, state.value)
 
-    if (hovered.value && variants.value.hovered) {
-      Object.assign(result, variants.value.hovered)
+    if (hovered.value && _variants.hovered) {
+      Object.assign(result, _variants.hovered)
     }
 
-    if (tapped.value && variants.value.tapped) {
-      Object.assign(result, variants.value.tapped)
+    if (tapped.value && _variants.tapped) {
+      Object.assign(result, _variants.tapped)
     }
 
-    if (focused.value && variants.value.focused) {
-      Object.assign(result, variants.value.focused)
+    if (focused.value && _variants.focused) {
+      Object.assign(result, _variants.focused)
     }
 
     for (const key in result) {
@@ -61,70 +64,70 @@ export function registerEventListeners<T extends MotionVariants>({
   })
 
   watch(
-    target,
-    (newVal) => {
-      if (!newVal) return
+    () => unrefElement(target),
+    (el) => {
+      if (!el || !_variants) return
 
       // Hovered
-      if (variants.value.hovered) {
-        useEventListener(newVal as EventTarget, 'mouseenter', () => {
+      if (_variants.hovered) {
+        useEventListener(el as EventTarget, 'mouseenter', () => {
           hovered.value = true
         })
 
-        useEventListener(newVal as EventTarget, 'mouseleave', () => {
+        useEventListener(el as EventTarget, 'mouseleave', () => {
           hovered.value = false
           tapped.value = false
         })
 
-        useEventListener(newVal as EventTarget, 'mouseout', () => {
+        useEventListener(el as EventTarget, 'mouseout', () => {
           hovered.value = false
           tapped.value = false
         })
       }
 
       // Tapped
-      if (variants.value.tapped) {
+      if (_variants.tapped) {
         // Mouse
         if (supportsMouseEvents()) {
-          useEventListener(newVal as EventTarget, 'mousedown', () => {
+          useEventListener(el as EventTarget, 'mousedown', () => {
             tapped.value = true
           })
 
-          useEventListener(newVal as EventTarget, 'mouseup', () => {
+          useEventListener(el as EventTarget, 'mouseup', () => {
             tapped.value = false
           })
         }
 
         // Pointer
         if (supportsPointerEvents()) {
-          useEventListener(newVal as EventTarget, 'pointerdown', () => {
+          useEventListener(el as EventTarget, 'pointerdown', () => {
             tapped.value = true
           })
 
-          useEventListener(newVal as EventTarget, 'pointerup', () => {
+          useEventListener(el as EventTarget, 'pointerup', () => {
             tapped.value = false
           })
         }
 
         // Touch
         if (supportsTouchEvents()) {
-          useEventListener(newVal as EventTarget, 'touchstart', () => {
+          useEventListener(el as EventTarget, 'touchstart', () => {
             tapped.value = true
           })
 
-          useEventListener(newVal as EventTarget, 'touchend', () => {
+          useEventListener(el as EventTarget, 'touchend', () => {
             tapped.value = false
           })
         }
       }
 
       // Focused
-      if (variants.value.focused) {
-        useEventListener(newVal as EventTarget, 'focus', () => {
+      if (_variants.focused) {
+        useEventListener(el as EventTarget, 'focus', () => {
           focused.value = true
         })
 
-        useEventListener(newVal as EventTarget, 'blur', () => {
+        useEventListener(el as EventTarget, 'blur', () => {
           focused.value = false
         })
       }
