@@ -1270,18 +1270,18 @@
     vscode-languageserver-textdocument "^1.0.1"
     vscode-uri "^2.1.2"
 
-"@vueuse/core@^4.3.6":
-  version "4.3.6"
-  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-4.3.6.tgz#49a90f67d538f0770ab4ce6e2c62302bc7f091a7"
-  integrity sha512-XqfU/OIxHWq5Ii8pYLGyXADvY0Jbs4t9q3Nx5ItYNjtN9kCdZ1q+arwjqCgIyjCA25hfqdinZNtWjVXsheZUzQ==
+"@vueuse/core@^4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-4.4.0.tgz#ab3ea21a92b0ba3f2630110990f067f5f870bc77"
+  integrity sha512-9WAlh0OCYNxH+o6eDJ/uPY+ZU6er+31rkPNogYpn5xR+PfmspRqzqxQKIaZjEMy6YqwBvEes7mYOIAtx7rV81Q==
   dependencies:
-    "@vueuse/shared" "4.3.6"
+    "@vueuse/shared" "4.4.0"
     vue-demi latest
 
-"@vueuse/shared@4.3.6":
-  version "4.3.6"
-  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-4.3.6.tgz#5d38c7eb4dccc2cef012a8b6d2df932c34d4708a"
-  integrity sha512-sGowcpeVxilaV03wD7N7XL+LZBy0e2FGreYyCWWofVN96PSYPw/hyVrxmZiBrfKn6fFllKf+87wi1TTs4C6ZXg==
+"@vueuse/shared@4.4.0":
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-4.4.0.tgz#c99ab7c931cb40d4d009543cb94c9bc33966b99d"
+  integrity sha512-kt9jRtVTZmMLGugFqJnVfcPcp27wxi0cPcRAXebnlwwMA3KIcTdGAfZoI/reNH1/M4sjPDSyxt9hdlbpGSBq0w==
   dependencies:
     vue-demi latest
 
@@ -5576,10 +5576,10 @@ vscode-web-custom-data@^0.3.2:
   resolved "https://registry.yarnpkg.com/vscode-web-custom-data/-/vscode-web-custom-data-0.3.3.tgz#9e1f2388c718d6f190038a19d144834a436b876f"
   integrity sha512-orMjjj1r4efP5ocODYZm3orpANakRBsxPZPDoD5UIrFOPKDFtMJQLp6PIH1rb3AYVRD1iYXMhDQoC6tZ+DrigA==
 
-vue-demi@0.7.2:
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.7.2.tgz#bb450837d8f36b293d3f9fbaec60570bae3c6b0a"
-  integrity sha512-cRaQymWYC3gcj3Y8CGDjPI7r2BIvHNMuoLSlfyo7CeqtFzV6eIlYK7xPnExPl4m3j6y5D1FOqdclEIWeim5EJg==
+vue-demi@0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.7.3.tgz#463188044d31d33985e67da51f315b447a1fed85"
+  integrity sha512-vrzM26H4CZCXBf/eu4T8nks6o7qgziYM52myk8bg+atw4qYqpeWJf5c82W8VdmgGfSIdh9ulOOe9+GeLc3Z/8A==
 
 vue-demi@latest:
   version "0.7.0"
