@@ -1,6 +1,7 @@
+import { unrefElement } from '@vueuse/core'
 import { Ref, set as __set, watch } from 'vue-demi'
 import { reactiveTransform } from './reactiveTransform'
-import { MotionTarget } from './types'
+import { MotionTarget, PermissiveTarget } from './types'
 import { parseTransform } from './utils/transform-parser'
 
 /**
@@ -8,18 +9,22 @@ import { parseTransform } from './utils/transform-parser'
  *
  * @param target
  */
-export function useElementTransform(target: Ref<MotionTarget>) {
+export function useElementTransform(target: Ref<PermissiveTarget>) {
   // Transform cache available before the element is mounted
   let _cache: string | undefined
+  // Local target cache as we need to resolve the element from PermissiveTarget
+  let _target: MotionTarget = undefined
 
   // Create a reactive transform object
   const { state, transform } = reactiveTransform()
 
   // Cache transform until the element is alive and we can bind to it
   const stopInitWatch = watch(
-    target,
+    () => unrefElement(target),
     (el) => {
       if (!el) return
+
+      _target = el
 
       // Parse transform properties and applies them to the current state
       if (el.style.transform) {
@@ -44,16 +49,14 @@ export function useElementTransform(target: Ref<MotionTarget>) {
   const stopSyncWatch = watch(
     transform,
     (newValue) => {
-      if (!newValue) return
-
       // Add the current value to the cache so it is set on target creation
-      if (!target.value || !target.value.style) {
+      if (!_target || !_target.style) {
         _cache = newValue
         return
       }
 
       // Set the transform string on the target
-      target.value.style.transform = newValue
+      _target.style.transform = newValue
     },
     {
       immediate: true,

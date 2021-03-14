@@ -12,6 +12,7 @@ import { valueTypes } from './utils/style'
 export function useElementStyle(target: Ref<PermissiveTarget>) {
   // Transform cache available before the element is mounted
   let _cache: StyleProperties | undefined
+  // Local target cache as we need to resolve the element from PermissiveTarget
   let _target: MotionTarget = undefined
 
   // Create a reactive style object
