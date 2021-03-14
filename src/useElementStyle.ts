@@ -1,6 +1,7 @@
+import { unrefElement } from '@vueuse/core'
 import { Ref, set as __set, watch } from 'vue-demi'
 import { reactiveStyle } from './reactiveStyle'
-import { MotionTarget, StyleProperties } from './types'
+import { MotionTarget, PermissiveTarget, StyleProperties } from './types'
 import { valueTypes } from './utils/style'
 
 /**
@@ -8,43 +9,49 @@ import { valueTypes } from './utils/style'
  *
  * @param target
  */
-export function useElementStyle(target: Ref<MotionTarget>) {
+export function useElementStyle(target: Ref<PermissiveTarget>) {
   // Transform cache available before the element is mounted
   let _cache: StyleProperties | undefined
+  let _target: MotionTarget = undefined
 
   // Create a reactive style object
   const { state, style } = reactiveStyle()
 
   // Sync existing style from supplied element
-  const stopInitWatch = watch(target, (el) => {
-    if (!el) return
+  const stopInitWatch = watch(
+    () => unrefElement(target),
+    (el) => {
+      if (!el) return
 
-    // Loop on style keys
-    for (const key of Object.keys(valueTypes)) {
-      if (el.style[key] === null || el.style[key] === '') continue
+      _target = el
 
-      // Append a defined key to the local StyleProperties state object
-      __set(state, key, el.style[key])
-    }
+      // Loop on style keys
+      for (const key of Object.keys(valueTypes)) {
+        if (el.style[key] === null || el.style[key] === '') continue
 
-    // If cache is present, init the target with the current cached value
-    if (_cache) {
-      for (const key in _cache) __set(el.style, key, _cache[key])
-    }
-  })
+        // Append a defined key to the local StyleProperties state object
+        __set(state, key, el.style[key])
+      }
+
+      // If cache is present, init the target with the current cached value
+      if (_cache) {
+        for (const key in _cache) __set(el.style, key, _cache[key])
+      }
+    },
+  )
 
   // Sync reactive style to element
   const stopSyncWatch = watch(
     style,
-    (newValue) => {
+    (newVal) => {
       // Add the current value to the cache so it is set on target creation
-      if (!target.value || !target.value.style) {
-        _cache = newValue
+      if (!_target || !_target.style) {
+        _cache = newVal
         return
       }
 
       // Append the state object to the target style properties
-      for (const key in newValue) __set(target.value.style, key, newValue[key])
+      for (const key in newVal) __set(_target.style, key, newVal[key])
     },
     {
       immediate: true,
