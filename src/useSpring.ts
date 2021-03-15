@@ -4,7 +4,6 @@ import { animate } from 'popmotion'
 import { ref, watch } from 'vue-demi'
 import {
   MotionProperties,
-  MotionTarget,
   PermissiveTarget,
   Spring,
   SpringControls,
@@ -16,9 +15,7 @@ export function useSpring(
   target: MaybeRef<PermissiveTarget> | MaybeRef<MotionProperties>,
   spring?: Partial<Spring>,
 ): SpringControls {
-  // Base references
   const targetRef = ref(target)
-
   const { stop, get } = useMotionValues()
 
   const set = (properties: MotionProperties) => {
@@ -46,21 +43,27 @@ export function useSpring(
     )
   }
 
+  const springControls: SpringControls = {
+    set,
+    stop,
+    values: {},
+  }
+
   watch(
     targetRef,
     (newVal) => {
       // Target not set yet
       if (!newVal) return
 
-      let _el
-
-      if ((newVal as VueInstance).$el) {
-        _el = (newVal as VueInstance).$el as MotionTarget
-      }
-
       // Check whether the target reference is an element or a simple object
-      if (_el instanceof HTMLElement || _el instanceof SVGElement) {
-        springControls.values = useMotionProperties(_el).motionProperties
+      if (
+        (newVal as VueInstance).$el ||
+        newVal instanceof HTMLElement ||
+        newVal instanceof SVGElement
+      ) {
+        springControls.values = useMotionProperties(
+          newVal as PermissiveTarget,
+        ).motionProperties
         return
       }
 
@@ -71,12 +74,6 @@ export function useSpring(
       immediate: true,
     },
   )
-
-  const springControls: SpringControls = {
-    set,
-    stop,
-    values: {},
-  }
 
   return springControls
 }
