@@ -19,6 +19,14 @@ export const underDampedSpring = (): Partial<Spring> => ({
   restSpeed: 10,
 })
 
+export const criticallyDampedSpring = (to: SingleTarget) => ({
+  type: 'spring',
+  stiffness: 550,
+  damping: to === 0 ? 2 * Math.sqrt(550) : 30,
+  restDelta: 0.01,
+  restSpeed: 10,
+})
+
 export const overDampedSpring = (to: SingleTarget): Partial<Spring> => ({
   type: 'spring',
   stiffness: 550,
@@ -50,9 +58,9 @@ const defaultTransitions = {
   rotateX: underDampedSpring,
   rotateY: underDampedSpring,
   rotateZ: underDampedSpring,
-  scaleX: overDampedSpring,
-  scaleY: overDampedSpring,
-  scale: overDampedSpring,
+  scaleX: criticallyDampedSpring,
+  scaleY: criticallyDampedSpring,
+  scale: criticallyDampedSpring,
   backgroundColor: linearTween,
   color: linearTween,
   opacity: linearTween,
