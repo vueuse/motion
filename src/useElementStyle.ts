@@ -3,18 +3,21 @@ import { set as __set, watch } from 'vue-demi'
 import { reactiveStyle } from './reactiveStyle'
 import { MotionTarget, PermissiveTarget, StyleProperties } from './types'
 import { valueTypes } from './utils/style'
+import { isTransformOriginProp, isTransformProp } from './utils/transform'
 
 /**
  * A Composable giving access to a StyleProperties object, and binding the generated style object to a target.
  *
  * @param target
  */
-export function useElementStyle(target: MaybeRef<PermissiveTarget>) {
+export function useElementStyle(
+  target: MaybeRef<PermissiveTarget>,
+  onInit?: (initData: Partial<StyleProperties>) => void,
+) {
   // Transform cache available before the element is mounted
   let _cache: StyleProperties | undefined
   // Local target cache as we need to resolve the element from PermissiveTarget
   let _target: MotionTarget = undefined
-
   // Create a reactive style object
   const { state, style } = reactiveStyle()
 
@@ -28,7 +31,13 @@ export function useElementStyle(target: MaybeRef<PermissiveTarget>) {
 
       // Loop on style keys
       for (const key of Object.keys(valueTypes)) {
-        if (el.style[key] === null || el.style[key] === '') continue
+        if (
+          el.style[key] === null ||
+          el.style[key] === '' ||
+          isTransformProp(key) ||
+          isTransformOriginProp(key)
+        )
+          continue
 
         // Append a defined key to the local StyleProperties state object
         __set(state, key, el.style[key])
@@ -36,8 +45,12 @@ export function useElementStyle(target: MaybeRef<PermissiveTarget>) {
 
       // If cache is present, init the target with the current cached value
       if (_cache) {
-        for (const key in _cache) __set(el.style, key, _cache[key])
+        Object.entries(_cache).forEach(([key, value]) =>
+          __set(el.style, key, value),
+        )
       }
+
+      if (onInit) onInit(state)
     },
     {
       immediate: true,
@@ -49,7 +62,7 @@ export function useElementStyle(target: MaybeRef<PermissiveTarget>) {
     style,
     (newVal) => {
       // Add the current value to the cache so it is set on target creation
-      if (!_target || !_target.style) {
+      if (!_target) {
         _cache = newVal
         return
       }
