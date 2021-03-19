@@ -1,5 +1,5 @@
 import { CSSProperties, SVGAttributes } from 'vue-demi'
-import { Transition } from './transitions'
+import { ResolvedSingleTarget, Transition } from './transitions'
 
 /**
  * Permissive properties keys
@@ -69,6 +69,13 @@ export type MotionProperties =
   | SVGAttributes
   | TransformProperties
   | SVGPathProperties
+
+/**
+ * Permissive properties for useSpring
+ */
+export type PermissiveMotionProperties = MotionProperties & {
+  [key: string]: ResolvedSingleTarget
+}
 
 /**
  * Variant
