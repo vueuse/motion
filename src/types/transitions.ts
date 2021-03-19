@@ -361,33 +361,7 @@ export interface Keyframes {
   delay?: number
 }
 
-export interface Just {
-  type: 'just'
-  to?: number | string | ValueTarget
-  from?: number | string
-  delay?: number
-  velocity?: number
-}
-
-export interface None {
-  /**
-   * Set `type` to `false` for an instant transition.
-   */
-  type: false
-
-  from?: number | string
-
-  delay?: number
-
-  velocity?: number
-}
-
-export type PopmotionTransitionProps =
-  | Tween
-  | Spring
-  | Keyframes
-  | Inertia
-  | Just
+export type PopmotionTransitionProps = Tween | Spring | Keyframes | Inertia
 
 export type PermissiveTransitionDefinition = {
   [key: string]: any
@@ -398,8 +372,6 @@ export type TransitionDefinition =
   | Spring
   | Keyframes
   | Inertia
-  | Just
-  | None
   | PermissiveTransitionDefinition
 
 export type TransitionMap = Orchestration & {
