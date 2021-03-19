@@ -1,5 +1,5 @@
 import { MotionValue } from '../motionValue'
-import { MotionProperties } from './variants'
+import { MotionProperties, PermissiveMotionProperties } from './variants'
 
 export type ResolvedKeyframesTarget =
   | [null, ...number[]]
@@ -416,7 +416,7 @@ export interface CustomValueType {
 }
 
 export type MotionValuesMap = {
-  [key in keyof MotionProperties]: MotionValue
+  [key in keyof PermissiveMotionProperties]: MotionValue
 }
 
 export interface MotionTransitions {
