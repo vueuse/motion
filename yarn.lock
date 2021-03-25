@@ -974,10 +974,10 @@
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.2.1.tgz#374e31645d58cb18a07b3ecd8e9dede4deb2cccd"
   integrity sha512-DxZZbyMAM9GWEzXL+BMZROWz9oo6A9EilwwOMET2UVu2uZTqMWS5S69KVtuVKaRjCUpcrOXRalet86/OpG4kqw==
 
-"@types/prismjs@^1.16.3":
-  version "1.16.3"
-  resolved "https://registry.yarnpkg.com/@types/prismjs/-/prismjs-1.16.3.tgz#73ae78b3e339777a1a1b7a8df89dcd6b8fe750c5"
-  integrity sha512-7lbX0Odbg9rnzXRdYdgPQZFkjd38QHpD6tvWxbLi6VXGQbXr054doixIS+TwftHP6afffA1zxCZrIcJRS/MkYQ==
+"@types/prismjs@^1.16.4":
+  version "1.16.4"
+  resolved "https://registry.yarnpkg.com/@types/prismjs/-/prismjs-1.16.4.tgz#2e61e9ade543a6091b9aa70f740197a754ab43e0"
+  integrity sha512-9B+DlSSelvKZMKkAgm1SjBV19XbPIL113GIKl18XgJV+06QvnbykeqeizZrr14b4TWf1deWLu9XZivPD8zMoHA==
 
 "@types/resolve@1.17.1":
   version "1.17.1"
@@ -1270,31 +1270,31 @@
     vscode-languageserver-textdocument "^1.0.1"
     vscode-uri "^2.1.2"
 
-"@vueuse/core@^4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-4.4.1.tgz#1c1a83ac29306840c96329b1005c4d7608cee92f"
-  integrity sha512-L9TWFwI+pEqgEmfv+uWz2kQ9bXejtpaQdoS67UUyii22rSesjP1aTTU7z7XX5i7aIgsHKnKYv68cDCtEZbjsPA==
+"@vueuse/core@^4.5.0":
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-4.5.0.tgz#7e19d0df721550ab27486dadf5b8f760370196da"
+  integrity sha512-2em6NKrjJv2j2jjo73bm7pLKK7JQ8dTNrJ3Rh350xbHFqBXAECd+mbidm0gic20USDfpRMB7SwPY91qCSQDi2Q==
   dependencies:
-    "@vueuse/shared" "4.4.1"
+    "@vueuse/shared" "4.5.0"
     vue-demi latest
 
-"@vueuse/shared@4.4.1":
-  version "4.4.1"
-  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-4.4.1.tgz#8963740d1b8a036933ae5c02b461b430430e2433"
-  integrity sha512-pY7bXgYaA9g25XNREE3zeuIWfOwbyiKeQ0IppE4nIRuro4gVGuLoV/BIU6D0VOTv7hYefv5eqE+WS03v61y8xA==
+"@vueuse/shared@4.5.0":
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-4.5.0.tgz#f679d6c962feb37a1c5057d70984ec45b67358fb"
+  integrity sha512-D8cxNlGQ0tJXRirPwRJ2h8qacZiVMzagkrB4+vLAwJQXWaZh7j14Mr+I/BRyqj1aFilDGU75vclTkslnbOEy0g==
   dependencies:
     vue-demi latest
 
-"@windicss/plugin-utils@0.9.4":
-  version "0.9.4"
-  resolved "https://registry.yarnpkg.com/@windicss/plugin-utils/-/plugin-utils-0.9.4.tgz#6f1212f672257a391e0077a7baf172a55282e631"
-  integrity sha512-udA6kvgj1/zUrDvKw8To0BqG3PsaDwJkOHgT0GnEzyXg3b37TUEJ/8H1sW98ai12K5jL+ovd6/8hmve0wkvvoA==
+"@windicss/plugin-utils@0.9.11":
+  version "0.9.11"
+  resolved "https://registry.yarnpkg.com/@windicss/plugin-utils/-/plugin-utils-0.9.11.tgz#9b8951ff1495e1deb8a094098a343eb8babb9b3b"
+  integrity sha512-gGLe3/Ud63fcpj1FTq+0/feP/UM34j9W+iSyBtpPnmfLx8mi2a9g9vhZrojqL9X9IYY+ZhHczZ8Fn9qcHdzWVw==
   dependencies:
     debug "^4.3.2"
     fast-glob "^3.2.5"
     micromatch "^4.0.2"
     sucrase "^3.17.1"
-    windicss "^2.5.2"
+    windicss "^2.5.4"
 
 abab@^2.0.3:
   version "2.0.5"
@@ -4723,10 +4723,10 @@ rollup@^2.38.5:
   optionalDependencies:
     fsevents "~2.3.1"
 
-rollup@^2.42.0:
-  version "2.42.0"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.42.0.tgz#444ce20a45614099decdd786f2a6fcd6c2240b08"
-  integrity sha512-P9bJnaZ2P0hawoJo+Jto8YZZqil9URogNVE4KJeyj6wrUSDIbdMvmj7CsyEFwdXu/I5SiWEzB1hfmLeMldH6ww==
+rollup@^2.42.4:
+  version "2.42.4"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-2.42.4.tgz#97c910a48bd0db6aaa4271dd48745870cbbbf970"
+  integrity sha512-Zqv3EvNfcllBHyyEUM754npqsZw82VIjK34cDQMwrQ1d6aqxzeYu5yFb7smGkPU4C1Bj7HupIMeT6WU7uIdnMw==
   optionalDependencies:
     fsevents "~2.3.1"
 
@@ -5511,14 +5511,14 @@ verror@1.10.0:
     core-util-is "1.0.2"
     extsprintf "^1.2.0"
 
-vite-plugin-windicss@^0.9.4:
-  version "0.9.4"
-  resolved "https://registry.yarnpkg.com/vite-plugin-windicss/-/vite-plugin-windicss-0.9.4.tgz#cc77935b60b6f7ae6b51cbed9c9fd13e48bc705f"
-  integrity sha512-hLrPV+9KF260iIRVK4XirG3zb7T9qJyZ5xfUGrF560cA7I8IsTMI91ePk8F0H70cWzME+h/wSQiUejRvcvaSnA==
+vite-plugin-windicss@^0.9.11:
+  version "0.9.11"
+  resolved "https://registry.yarnpkg.com/vite-plugin-windicss/-/vite-plugin-windicss-0.9.11.tgz#46809a7d30d5531f9f3568949cd00646a3178f5b"
+  integrity sha512-wcF2VmglWqvtsi8Zq4kTVVU9jPiiAfdyy91TnlgaJYlgRaBZcwb7QSJ9p5SeOWIyl6RpzjlK2JFWa0djrVmG8w==
   dependencies:
-    "@windicss/plugin-utils" "0.9.4"
+    "@windicss/plugin-utils" "0.9.11"
     debug "^4.3.2"
-    windicss "^2.5.2"
+    windicss "^2.5.4"
 
 vite@^2.0.0-beta.70:
   version "2.0.4"
@@ -5592,10 +5592,10 @@ vscode-web-custom-data@^0.3.2:
   resolved "https://registry.yarnpkg.com/vscode-web-custom-data/-/vscode-web-custom-data-0.3.3.tgz#9e1f2388c718d6f190038a19d144834a436b876f"
   integrity sha512-orMjjj1r4efP5ocODYZm3orpANakRBsxPZPDoD5UIrFOPKDFtMJQLp6PIH1rb3AYVRD1iYXMhDQoC6tZ+DrigA==
 
-vue-demi@0.7.3:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.7.3.tgz#463188044d31d33985e67da51f315b447a1fed85"
-  integrity sha512-vrzM26H4CZCXBf/eu4T8nks6o7qgziYM52myk8bg+atw4qYqpeWJf5c82W8VdmgGfSIdh9ulOOe9+GeLc3Z/8A==
+vue-demi@0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/vue-demi/-/vue-demi-0.7.4.tgz#4c6be525788e1f6b3fd5d4f5f9f2148cf6645979"
+  integrity sha512-PT0qzI9Rp8R8eUAsTPXADC+KAZdrMufmbZqEMMqvaiesWyjCpgyuuvS5Su8cvBjK9RevLT/YfFiKWxc8YB9/8g==
 
 vue-demi@latest:
   version "0.7.0"
@@ -5689,10 +5689,10 @@ which@^2.0.1, which@^2.0.2:
   dependencies:
     isexe "^2.0.0"
 
-windicss@^2.5.2:
-  version "2.5.2"
-  resolved "https://registry.yarnpkg.com/windicss/-/windicss-2.5.2.tgz#831858fe45edbf8400d5e8c6b9275fa3ffffcb2f"
-  integrity sha512-WzynOx1rQGzgUq62wqyWjUzOEPArwP8oeWyLqymiF54LSFC7f0oIYXR01bxY/y6OK2wODyK/OuwahPNAsseqqg==
+windicss@^2.5.4:
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/windicss/-/windicss-2.5.4.tgz#e89cd614cc4a7c2c13cc5af588642959de6746db"
+  integrity sha512-K+w/TOxbY38bIjRyJVgQ29ndZ0xZsbpf4a7wClqyFDQdCTbuCnzChBMpO13BqLmksIaHRzL46TeBRpFyV6n5/A==
 
 word-wrap@~1.2.3:
   version "1.2.3"
