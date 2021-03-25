@@ -34,26 +34,24 @@ export function useMotionControls<T extends MotionVariants>(
   }
 
   const apply = (variant: Variant | keyof T): Promise<void[]> | undefined => {
-    // Check if transition exists
-    let transition = isObject(variant) && variant.transition
-
     // If variant is a key, try to resolve it
-    if (!transition && typeof variant === 'string') {
+    if (typeof variant === 'string') {
       variant = getVariantFromKey(variant)
     }
-
-    // Delete transition from variant
-    if (transition) delete variant['transition']
 
     // Return Promise chain
     return Promise.all(
       Object.entries(variant).map(([key, value]) => {
+        // Skip transition key
+        if (key === 'transition') return
+
         return new Promise<void>((resolve) => {
           push(
             key as keyof MotionProperties,
             value,
             motionProperties,
-            transition || getDefaultTransition(key, variant[key]),
+            (variant as Variant).transition ||
+              getDefaultTransition(key, variant[key]),
             resolve,
           )
         })
@@ -65,11 +63,11 @@ export function useMotionControls<T extends MotionVariants>(
     // Get variant data from parameter
     let variantData = isObject(variant) ? variant : getVariantFromKey(variant)
 
-    // Delete transition key
-    if (variantData.transition) delete variantData['transition']
-
     // Set in chain
     Object.entries(variantData).forEach(([key, value]) => {
+      // Skip transition key
+      if (key === 'transition') return
+
       push(key as keyof MotionProperties, value, motionProperties, {
         immediate: true,
       })
