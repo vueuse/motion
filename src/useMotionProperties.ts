@@ -1,4 +1,4 @@
-import { MaybeRef } from '@vueuse/core'
+import { MaybeRef, unrefElement } from '@vueuse/core'
 import { reactive, set as __set, watch } from 'vue-demi'
 import { MotionProperties, PermissiveTarget } from './types'
 import { useElementStyle } from './useElementStyle'
@@ -14,40 +14,29 @@ export function useMotionProperties(
   target: MaybeRef<PermissiveTarget>,
   defaultValues?: Partial<MotionProperties>,
 ) {
-  let init = 2
   // Local motion properties
   const motionProperties = reactive<MotionProperties>({})
 
-  // onInit hook to retrieve parsed data from the target element
-  const onInit = (initData: Partial<MotionProperties>) => {
-    Object.entries(initData).forEach(([key, value]) => {
+  // Local mass setter
+  const apply = (values: Partial<MotionProperties>) => {
+    Object.entries(values).forEach(([key, value]) => {
       __set(motionProperties, key, value)
     })
-
-    init--
   }
 
   // Target element style object
-  const { style } = useElementStyle(target, onInit)
+  const { style, stop: stopStyleWatchers } = useElementStyle(target, apply)
 
   // Target element transform object
-  const { transform } = useElementTransform(target, onInit)
-
-  // Apply default values if specified
-  if (defaultValues) {
-    Object.entries(defaultValues).forEach(([key, value]) => {
-      const target = isTransformProp(key) ? transform : style
-
-      __set(target, key, value)
-    })
-  }
+  const { transform, stop: stopTransformWatchers } = useElementTransform(
+    target,
+    apply,
+  )
 
   // Watch local object and apply styling accordingly
-  watch(
+  const stopPropertiesWatch = watch(
     motionProperties,
     (newVal) => {
-      if (init) return
-
       Object.entries(newVal).forEach(([key, value]) => {
         const target = isTransformProp(key) ? transform : style
 
@@ -62,9 +51,31 @@ export function useMotionProperties(
     },
   )
 
+  // Apply default values once target is available
+  const stopInitWatch = watch(
+    () => unrefElement(target),
+    (el) => {
+      if (!el) return
+
+      if (defaultValues) apply(defaultValues)
+    },
+    {
+      immediate: true,
+    },
+  )
+
+  // Stop watchers
+  const stop = () => {
+    stopStyleWatchers()
+    stopTransformWatchers()
+    stopPropertiesWatch()
+    stopInitWatch()
+  }
+
   return {
     motionProperties,
     style,
     transform,
+    stop,
   }
 }

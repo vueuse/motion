@@ -61,7 +61,7 @@ export function useElementTransform(
     },
   )
 
-  // Stop watchers on unmount
+  // Stop watchers
   const stop = () => {
     stopInitWatch()
     stopSyncWatch()
