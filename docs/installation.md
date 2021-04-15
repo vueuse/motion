@@ -91,7 +91,7 @@ Then, **configure** your **animations** 🤹:
 
 ## Vite SSG
 
-You are concerned if you are using **frameworks** based on [**Vite SSG**](https://github.com/antfu/vite-ssg), such as [**Vitesse**](https://github.com/antfu/vitesse) or [**VitePress**](https://vitepress.vuejs.org/)).
+You are concerned if you are using **frameworks** based on [**Vite SSG**](https://github.com/antfu/vite-ssg), such as [**Vitesse**](https://github.com/antfu/vitesse) or [**VitePress**](https://vitepress.vuejs.org/).
 
 If you are using **directives** within these **frameworks**, an error might occur during build, saying **directives** does not support **transform**.
 
