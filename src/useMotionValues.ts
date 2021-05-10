@@ -1,3 +1,4 @@
+import { tryOnUnmounted } from '@vueuse/shared'
 import { del as __del, set as __set } from 'vue-demi'
 import { getMotionValue, MotionValue } from './motionValue'
 import { MotionProperties, MotionValuesMap } from './types'
@@ -51,6 +52,9 @@ export function useMotionValues() {
 
     return motionValue
   }
+
+  // Ensure everything is cleared on unmount
+  tryOnUnmounted(stop)
 
   return {
     motionValues,
