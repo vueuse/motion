@@ -12,7 +12,7 @@ Be **careful** about **duplicating** the same **name**, note that the **name** c
 
 useMotions exposes an **object** in which **keys** are defined from all the **v-motion** for which you defined a name **value**.
 
-Each values are [**Motion Instances**](/motion-instances) for the named elements.
+Each values are [**Motion Instances**](/motion-instance) for the named elements.
 
 ## Example
 
