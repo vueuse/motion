@@ -46,7 +46,7 @@
   "dependencies": {
     "@vueuse/core": "^4.7.0",
     "popmotion": "^9.3.5",
-    "vue-demi": "0.7.4"
+    "vue-demi": "*"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-beta.1",
