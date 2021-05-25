@@ -2,7 +2,7 @@
 
 Variants represent an **animatable state** for your element.
 
-They are composed of any [**Motion Properties**](/motion-properties) and an optional [**Transition Declaration**](/transitions).
+They are composed of any [**Motion Properties**](/motion-properties) and an optional [**Transition Properties**](/transition-properties).
 
 ```vue
 <div
