@@ -1,7 +1,16 @@
 <template>
   <div
-    class="h-200 w-full border-4 rounded-4xl border-red-400 flex items-center justify-center"
-    @click="test"
+    class="
+      h-200
+      w-full
+      border-4
+      rounded-4xl
+      border-red-400
+      flex
+      items-center
+      justify-center
+    "
+    @click="replay"
   >
     <Block ref="block" />
   </div>
@@ -24,7 +33,5 @@ const instance = useMotion(block, {
   },
 })
 
-const test = () => {
-  instance.variant.value = 'enter'
-}
+const replay = () => (instance.variant.value = 'enter')
 </script>

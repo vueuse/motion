@@ -40,7 +40,7 @@
 
 <script setup lang="ts">
 import { ref, computed, watch, defineAsyncComponent } from 'vue'
-import { useRoute, useSiteData, useSiteDataByRoute } from 'vitepress'
+import { useRoute, useData } from 'vitepress'
 import type { DefaultTheme } from 'vitepress/dist/client/theme-default/config.js'
 
 // Components
@@ -52,8 +52,9 @@ const Home = defineAsyncComponent(() => import('./Home.vue'))
 
 // Generic State
 const route = useRoute()
-const siteData = useSiteData<DefaultTheme.Config>()
-const siteRouteData = useSiteDataByRoute()
+const { site, page, theme, frontmatter } = useData()
+// const siteData = useSiteData<DefaultTheme.Config>()
+// const siteRouteData = useSiteDataByRoute()
 
 // Custom Layout
 const isCustomLayout = computed(() => !!route.data.frontmatter.customLayout)
@@ -62,16 +63,14 @@ const enableHome = computed(() => !!route.data.frontmatter.home)
 
 // Navbar
 const showNavbar = computed(() => {
-  const { themeConfig } = siteRouteData.value
-  const { frontmatter } = route.data
-  if (frontmatter.navbar === false || themeConfig.navbar === false) {
+  const themeConfig = theme.value
+
+  if (frontmatter.value.navbar === false || themeConfig.navbar === false) {
     return false
   }
+
   return (
-    siteData.value.title ||
-    themeConfig.logo ||
-    themeConfig.repo ||
-    themeConfig.nav
+    site.value.title || themeConfig.logo || themeConfig.repo || themeConfig.nav
   )
 })
 
@@ -79,11 +78,10 @@ const showNavbar = computed(() => {
 const openSideBar = ref(false)
 
 const showSidebar = computed(() => {
-  const { frontmatter } = route.data
-  const { themeConfig } = siteRouteData.value
+  const themeConfig = theme.value
   return (
-    !frontmatter.home &&
-    frontmatter.sidebar !== false &&
+    !frontmatter.value.home &&
+    frontmatter.value.sidebar !== false &&
     ((typeof themeConfig.sidebar === 'object' &&
       Object.keys(themeConfig.sidebar).length != 0) ||
       (Array.isArray(themeConfig.sidebar) && themeConfig.sidebar.length != 0))

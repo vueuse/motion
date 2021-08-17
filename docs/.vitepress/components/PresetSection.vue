@@ -53,7 +53,7 @@
 </template>
 
 <script setup="props" lang="ts">
-import { ref, defineProps, nextTick, watch } from 'vue'
+import { ref, nextTick, watch } from 'vue'
 import { useMotion } from '@vueuse/motion'
 import type { MotionVariants } from '@vueuse/motion'
 import { slugify } from '../../../src/utils/slugify'

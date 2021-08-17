@@ -1,10 +1,22 @@
 <template>
   <div
-    class="relative w-full p-4 overflow-hidden bg-gray-800 border-4 shadow-2xl rounded-xl border-violet-600"
+    class="
+      relative
+      w-full
+      p-4
+      overflow-hidden
+      bg-gray-800
+      border-4
+      shadow-2xl
+      rounded-xl
+      border-violet-600
+    "
   >
-    <div class="flex items-center w-full h-full">
-      <div v-if="codeText" class="flex-1">
-        <code-block :code-text="codeText" language="javascript" />
+    <div
+      class="flex flex-wrap-reverse lg:flex-nowrap items-center w-full h-full"
+    >
+      <div v-if="text" class="flex-1">
+        <code-block :text="text" language="javascript" />
       </div>
 
       <div v-if="visible" class="flex items-center justify-center flex-1">
@@ -24,15 +36,17 @@
 </template>
 
 <script setup="props" lang="ts">
+import CodeBlock from '../components/CodeBlock.vue'
 import { useToggle } from '@vueuse/core'
-import CodeBlock from './CodeBlock.vue'
-import { defineProps, nextTick, defineEmit } from 'vue'
+import { nextTick } from 'vue'
 
-defineProps<{
-  codeText?: string
-}>()
+const props = defineProps({
+  text: String,
+})
 
-const emit = defineEmit(['replay'])
+console.log(props)
+
+const emit = defineEmits(['replay'])
 
 const [visible, toggleVisible] = useToggle(true)
 

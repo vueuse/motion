@@ -1,5 +1,5 @@
 <template>
-  <DemoBox :code-text="codeText" @replay="replay">
+  <DemoBox :text="codeText" @replay="replay">
     <template #demoElement>
       <div
         v-motion="'editor'"
@@ -21,7 +21,15 @@
         :tapped="{
           scale: 0.8,
         }"
-        class="w-24 h-24 bg-indigo-500 border-8 border-indigo-400 shadow-xl cursor-pointer rounded-3xl"
+        class="
+          w-24
+          h-24
+          bg-indigo-500
+          border-8 border-indigo-400
+          shadow-xl
+          cursor-pointer
+          rounded-3xl
+        "
       />
     </template>
 
@@ -34,18 +42,16 @@
 <script setup="props" lang="ts">
 import DemoBox from '../components/DemoBox.vue'
 import { useMotions } from '@vueuse/motion'
-import { computed, watch } from 'vue'
+import { ref, watch, computed } from 'vue'
 import basic from '../examples/basic'
 
 const motions = useMotions()
 
-ref: input = '0' as string
+const input = ref<string>('0')
 
-ref: codeText = computed(() => {
-  return basic(input)
-})
+const codeText = computed(() => basic(input.value))
 
-watch($input, (newVal) => {
+watch(input, (newVal) => {
   if (motions.editor) {
     motions.editor.apply({
       rotate: parseInt(newVal),
@@ -54,6 +60,6 @@ watch($input, (newVal) => {
 })
 
 const replay = () => {
-  $input.value = '0'
+  input.value = '0'
 }
 </script>

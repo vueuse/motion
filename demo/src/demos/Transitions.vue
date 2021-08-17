@@ -1,9 +1,9 @@
 <template>
-  <DemoBox :code-text="codeText">
+  <DemoBox :text="codeText">
     <template #demoElement>
       <transition
         :css="false"
-        @leave="(el, done) => motions.transition.leave(done)"
+        @leave="(_, done) => motions.transition.leave(done)"
       >
         <div
           v-if="show"
@@ -21,29 +21,40 @@
             y: -400,
             opacity: 0,
           }"
-          class="w-24 h-24 bg-indigo-500 border-8 border-indigo-400 shadow-xl cursor-pointer rounded-3xl"
+          class="
+            w-24
+            h-24
+            bg-indigo-500
+            border-8 border-indigo-400
+            shadow-xl
+            cursor-pointer
+            rounded-3xl
+          "
         />
       </transition>
     </template>
 
     <div>
-      <button class="px-4 py-2 bg-indigo-600 rounded-lg hover:bg-indigo-400" @click="toggleShow">Toggle</button>
+      <button
+        class="px-4 py-2 bg-indigo-600 rounded-lg hover:bg-indigo-400"
+        @click="() => toggleShow()"
+      >
+        Toggle
+      </button>
     </div>
   </DemoBox>
 </template>
 
 <script setup="props" lang="ts">
+import { computed } from 'vue'
 import DemoBox from '../components/DemoBox.vue'
 import { useMotions } from '@vueuse/motion'
 import { useToggle } from '@vueuse/core'
-import { computed } from 'vue'
 import transitions from '../examples/transitions'
 
 const [show, toggleShow] = useToggle(true)
 
-ref: codeText = computed(() => {
-  return transitions(show.value)
-})
+const codeText = computed(() => transitions(show.value))
 
 const motions = useMotions()
 </script>

@@ -15,15 +15,15 @@ const props = defineProps({
     type: String,
     default: 'javascript',
   },
-  codeText: {
+  text: {
     type: String,
     default: '',
   },
 })
 
 // Refs
-ref: pre = ref<string>()
-ref: code = ref<HTMLElement>()
+const pre = ref<string>()
+const code = ref<HTMLElement>()
 
 // Functions
 const preRender = (codeContent: string) => {
@@ -38,11 +38,13 @@ const render = () => {
   nextTick(() => {
     if (!code) return
 
-    const codeContent = props.codeText || code.innerText
+    const codeContent = props.text || code?.value?.innerText || ''
 
-    code.textContent = preRender(codeContent)
+    if (code.value) {
+      code.value.textContent = preRender(codeContent)
 
-    Prism.highlightElement(code)
+      Prism.highlightElement(code.value)
+    }
   })
 }
 
