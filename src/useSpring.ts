@@ -26,7 +26,7 @@ export function useSpring(
     set: (properties: MotionProperties) =>
       Promise.all(
         Object.entries(properties).map(([key, value]) => {
-          const motionValue = get(key, values[key] || value, values)
+          const motionValue = get(key, values[key], values)
 
           return motionValue.start((onComplete?: () => void) => {
             const options = {
