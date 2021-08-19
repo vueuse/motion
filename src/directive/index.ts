@@ -39,9 +39,9 @@ export const directive = (
   }
 
   const unregister = (
-    el: HTMLElement | SVGElement,
+    _: HTMLElement | SVGElement,
     binding: DirectiveBinding,
-    node: VNode<
+    __: VNode<
       any,
       HTMLElement | SVGElement,
       {

@@ -20,7 +20,7 @@ export function useMotionVariants<T extends MotionVariants>(
 
   // Current variant state
   const state = computed<Variant | undefined>(() => {
-    if (!variant.value) return undefined
+    if (!variant.value) return
 
     return _variants[variant.value]
   })
