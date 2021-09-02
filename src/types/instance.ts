@@ -1,5 +1,5 @@
 import { Fn, MaybeRef, VueInstance } from '@vueuse/core'
-import { ComputedRef, Ref, UnwrapRef } from 'vue-demi'
+import { Ref, UnwrapRef } from 'vue-demi'
 import { MotionProperties, MotionVariants, Variant } from './variants'
 
 export type PermissiveTarget = VueInstance | MotionTarget
