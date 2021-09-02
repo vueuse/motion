@@ -1,5 +1,5 @@
 import { Fn, MaybeRef, VueInstance } from '@vueuse/core'
-import { Ref, UnwrapRef } from 'vue-demi'
+import { ComputedRef, Ref, UnwrapRef } from 'vue-demi'
 import { MotionProperties, MotionVariants, Variant } from './variants'
 
 export type PermissiveTarget = VueInstance | MotionTarget
@@ -12,6 +12,7 @@ export interface MotionInstance<T = MotionVariants> extends MotionControls {
   variant: Ref<keyof T>
   state: Ref<Variant | undefined>
   motionProperties: UnwrapRef<MotionProperties>
+  stop: () => void
 }
 
 export type UseMotionOptions = {
@@ -45,6 +46,10 @@ export type MotionControls = {
    * @param done
    */
   leave: (done: () => void) => void
+  /**
+   * Computed reference reactive to the animation state of motion controls.
+   */
+  isAnimating: any
 }
 
 export type SpringControls = {

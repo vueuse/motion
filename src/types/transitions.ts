@@ -1,3 +1,4 @@
+import { Ref } from 'vue-demi'
 import { MotionValue } from '../motionValue'
 import { MotionProperties, PermissiveMotionProperties } from './variants'
 
@@ -442,5 +443,5 @@ export interface MotionTransitions {
   /**
    * @internal Local transitions reference
    */
-  motionValues: MotionValuesMap
+  motionValues: Ref<MotionValuesMap>
 }
