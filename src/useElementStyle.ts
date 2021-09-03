@@ -77,6 +77,8 @@ export function useElementStyle(
 
   // Stop watchers
   const stop = () => {
+    _target = undefined
+    _cache = undefined
     stopInitWatch()
     stopSyncWatch()
   }
