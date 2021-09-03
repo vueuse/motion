@@ -1,5 +1,5 @@
 import { watch } from 'vue-demi'
-import { MaybeRef, noop, tryOnUnmounted } from '@vueuse/core'
+import { MaybeRef, tryOnUnmounted } from '@vueuse/core'
 import {
   MotionInstance,
   MotionVariants,
