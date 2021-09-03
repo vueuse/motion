@@ -1,4 +1,4 @@
-import { unrefElement, useEventListener } from '@vueuse/core'
+import { useEventListener, Fn } from '@vueuse/core'
 import { computed, ref, unref, watch } from 'vue-demi'
 import { MotionInstance, MotionVariants } from '../types'
 import {
@@ -14,6 +14,15 @@ export function registerEventListeners<T extends MotionVariants>({
   apply,
 }: MotionInstance<T>) {
   const _variants = unref(variants)
+
+  // Proxy useEventListener to force cancellation on stop function
+  const _eventListeners: Fn[] = []
+  const _useEventListener: typeof useEventListener = (...args: any[]) => {
+    const _stop = useEventListener.apply(null, args as any)
+    _eventListeners.push(_stop)
+    return _stop
+  }
+
   // State
   const hovered = ref(false)
   const tapped = ref(false)
@@ -63,82 +72,77 @@ export function registerEventListeners<T extends MotionVariants>({
     return result
   })
 
-  watch(
-    () => unrefElement(target),
-    (el) => {
-      if (!el || !_variants) return
+  // Hovered
+  if (_variants.hovered) {
+    _useEventListener(target, 'mouseenter', () => {
+      hovered.value = true
+    })
 
-      // Hovered
-      if (_variants.hovered) {
-        useEventListener(el as EventTarget, 'mouseenter', () => {
-          hovered.value = true
-        })
+    _useEventListener(target, 'mouseleave', () => {
+      hovered.value = false
+      tapped.value = false
+    })
 
-        useEventListener(el as EventTarget, 'mouseleave', () => {
-          hovered.value = false
-          tapped.value = false
-        })
+    _useEventListener(target, 'mouseout', () => {
+      hovered.value = false
+      tapped.value = false
+    })
+  }
 
-        useEventListener(el as EventTarget, 'mouseout', () => {
-          hovered.value = false
-          tapped.value = false
-        })
-      }
+  // Tapped
+  if (_variants.tapped) {
+    // Mouse
+    if (supportsMouseEvents()) {
+      _useEventListener(target, 'mousedown', () => {
+        tapped.value = true
+      })
 
-      // Tapped
-      if (_variants.tapped) {
-        // Mouse
-        if (supportsMouseEvents()) {
-          useEventListener(el as EventTarget, 'mousedown', () => {
-            tapped.value = true
-          })
+      _useEventListener(target, 'mouseup', () => {
+        tapped.value = false
+      })
+    }
 
-          useEventListener(el as EventTarget, 'mouseup', () => {
-            tapped.value = false
-          })
-        }
+    // Pointer
+    if (supportsPointerEvents()) {
+      _useEventListener(target, 'pointerdown', () => {
+        tapped.value = true
+      })
 
-        // Pointer
-        if (supportsPointerEvents()) {
-          useEventListener(el as EventTarget, 'pointerdown', () => {
-            tapped.value = true
-          })
+      _useEventListener(target, 'pointerup', () => {
+        tapped.value = false
+      })
+    }
 
-          useEventListener(el as EventTarget, 'pointerup', () => {
-            tapped.value = false
-          })
-        }
+    // Touch
+    if (supportsTouchEvents()) {
+      _useEventListener(target, 'touchstart', () => {
+        tapped.value = true
+      })
 
-        // Touch
-        if (supportsTouchEvents()) {
-          useEventListener(el as EventTarget, 'touchstart', () => {
-            tapped.value = true
-          })
+      _useEventListener(target, 'touchend', () => {
+        tapped.value = false
+      })
+    }
+  }
 
-          useEventListener(el as EventTarget, 'touchend', () => {
-            tapped.value = false
-          })
-        }
-      }
+  // Focused
+  if (_variants.focused) {
+    _useEventListener(target, 'focus', () => {
+      focused.value = true
+    })
 
-      // Focused
-      if (_variants.focused) {
-        useEventListener(el as EventTarget, 'focus', () => {
-          focused.value = true
-        })
-
-        useEventListener(el as EventTarget, 'blur', () => {
-          focused.value = false
-        })
-      }
-    },
-    {
-      immediate: true,
-    },
-  )
+    _useEventListener(target, 'blur', () => {
+      focused.value = false
+    })
+  }
 
   // Watch local computed variant, apply it dynamically
-  watch(computedProperties, (newVal) => {
-    apply(newVal)
-  })
+  const _stopSync = watch(computedProperties, apply)
+
+  const stop = () => {
+    _eventListeners.forEach((stopFn) => stopFn())
+    _stopSync()
+  }
+
+  return { stop }
 }
