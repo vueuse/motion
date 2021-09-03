@@ -1,11 +1,4 @@
-import {
-  del as __del,
-  Directive,
-  DirectiveBinding,
-  ref,
-  set as __set,
-  VNode,
-} from 'vue-demi'
+import { Directive, DirectiveBinding, ref, set as __set, VNode } from 'vue-demi'
 import { motionState } from '../features/state'
 import { MotionVariants } from '../types'
 import { useMotion } from '../useMotion'
