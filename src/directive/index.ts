@@ -25,6 +25,12 @@ export const directive = (
       }
     >,
   ) => {
+    // Get instance key if possible (binding value or element key in case of v-for's)
+    const key = binding.value || node.key
+
+    // Cleanup previous motion instance if it exists
+    if (key && motionState[key]) motionState[key].stop()
+
     // Initialize variants with argument
     const variantsRef = ref<MotionVariants>(variants || {})
 
@@ -34,13 +40,17 @@ export const directive = (
     // Create motion instance
     const motionInstance = useMotion(el, variantsRef)
 
+    // Pass the motion instance via the local element
+    // @ts-ignore
+    el.motionInstance = motionInstance
+
     // Set the global state reference if the name is set through v-motion="`value`"
-    if (binding.value) __set(motionState, binding.value, motionInstance)
+    if (key) __set(motionState, key, motionInstance)
   }
 
   const unregister = (
-    _: HTMLElement | SVGElement,
-    binding: DirectiveBinding,
+    el: HTMLElement | SVGElement,
+    _: DirectiveBinding,
     __: VNode<
       any,
       HTMLElement | SVGElement,
@@ -49,9 +59,9 @@ export const directive = (
       }
     >,
   ) => {
-    // Check if motion state has the current element as reference
-    if (binding.value && motionState[binding.value])
-      __del(motionState, binding.value)
+    // Cleanup the unregistered element motion instance
+    // @ts-ignore
+    if (el.motionInstance) el.motionInstance.stop()
   }
 
   return {
