@@ -1,6 +1,6 @@
 {
   "name": "@vueuse/motion",
-  "version": "1.6.0",
+  "version": "2.0.0-beta",
   "description": "🤹 Vue Composables putting your components in motion",
   "repository": "https://github.com/vueuse/motion",
   "bugs": {
@@ -18,14 +18,12 @@
     "popmotion-vue"
   ],
   "sideEffects": false,
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm-bundler.js",
-  "unpkg": "dist/index.global.js",
-  "jsdelivr": "dist/index.global.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rollup -c rollup.config.js",
-    "dev": "rollup -w -c rollup.config.js",
+    "build": "unbuild",
+    "dev": "jiti scripts/watch.ts --cache",
     "lint": "prettier -c --parser typescript \"{src,__tests__,e2e}/**/*.[jt]s?(x)\"",
     "lint:fix": "yarn run lint --write",
     "test:types": "tsc --build tsconfig.json",
@@ -44,12 +42,12 @@
     "README.md"
   ],
   "dependencies": {
-    "@vueuse/core": "^6.0.0",
+    "@vueuse/core": "^6.1.0",
     "popmotion": "^9.4.0",
     "vue-demi": "*"
   },
   "peerDependencies": {
-    "@vue/composition-api": "^1.1.1",
+    "@vue/composition-api": "^1.1.4",
     "vue": "^2.0.0 || >=3.0.0-rc.0"
   },
   "peerDependenciesMeta": {
@@ -58,33 +56,26 @@
     }
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^20.0.0",
-    "@rollup/plugin-node-resolve": "^13.0.4",
-    "@rollup/plugin-replace": "^3.0.0",
     "@types/jest": "^27.0.1",
     "@types/prismjs": "^1.16.6",
-    "@vitejs/plugin-vue": "^1.4.0",
-    "@vue/compiler-sfc": "^3.2.4",
-    "@vue/server-renderer": "^3.2.4",
+    "@vitejs/plugin-vue": "^1.6.0",
+    "@vue/compiler-sfc": "^3.2.8",
+    "@vue/server-renderer": "^3.2.8",
     "@vue/test-utils": "^2.0.0-rc.6",
     "@vuedx/typecheck": "^0.7.4",
     "@vuedx/typescript-plugin-vue": "^0.7.4",
-    "jest": "^27.0.6",
+    "jest": "^27.1.0",
     "lint-staged": "^11.1.2",
-    "pascalcase": "^1.0.0",
     "prettier": "^2.3.2",
     "prism-theme-vars": "^0.2.2",
     "prismjs": "^1.24.1",
-    "rollup": "^2.56.2",
-    "rollup-plugin-dts": "^3.0.2",
-    "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.30.0",
     "style-value-types": "^4.1.4",
     "ts-jest": "^27.0.5",
-    "typescript": "^4.3.5",
-    "vite": "2.5.0",
-    "vite-plugin-windicss": "^1.2.7",
-    "vitepress": "^0.16.1",
+    "typescript": "^4.4.2",
+    "unbuild": "^0.4.2",
+    "vite": "2.5.3",
+    "vite-plugin-windicss": "^1.3.0",
+    "vitepress": "^0.17.0",
     "vue": "^3.2.4",
     "yorkie": "^2.0.0"
   },
