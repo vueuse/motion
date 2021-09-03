@@ -12,7 +12,7 @@ export interface MotionInstance<T = MotionVariants> extends MotionControls {
   variant: Ref<keyof T>
   state: Ref<Variant | undefined>
   motionProperties: UnwrapRef<MotionProperties>
-  stop: () => void
+  stop: (force?: boolean) => void
 }
 
 export type UseMotionOptions = {
