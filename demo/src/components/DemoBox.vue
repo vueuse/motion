@@ -40,11 +40,9 @@ import CodeBlock from '../components/CodeBlock.vue'
 import { useToggle } from '@vueuse/core'
 import { nextTick } from 'vue'
 
-const props = defineProps({
+defineProps({
   text: String,
 })
-
-console.log(props)
 
 const emit = defineEmits(['replay'])
 

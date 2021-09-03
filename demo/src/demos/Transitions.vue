@@ -11,7 +11,6 @@
           :initial="{
             y: 400,
             opacity: 0,
-            rotate: 0,
           }"
           :enter="{
             y: 0,
