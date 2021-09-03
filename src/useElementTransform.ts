@@ -63,6 +63,8 @@ export function useElementTransform(
 
   // Stop watchers
   const stop = () => {
+    _cache = undefined
+    _target = undefined
     stopInitWatch()
     stopSyncWatch()
   }
