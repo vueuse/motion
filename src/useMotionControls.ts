@@ -1,5 +1,5 @@
 import { isObject, MaybeRef } from '@vueuse/core'
-import { unref } from 'vue-demi'
+import { ref, unref, watch } from 'vue-demi'
 import {
   MotionControls,
   MotionProperties,
@@ -20,10 +20,27 @@ import { getDefaultTransition } from './utils/defaults'
 export function useMotionControls<T extends MotionVariants>(
   motionProperties: MotionProperties,
   variants: MaybeRef<T> = {} as MaybeRef<T>,
-  { push, stop }: MotionTransitions = useMotionTransitions(),
+  { motionValues, push, stop }: MotionTransitions = useMotionTransitions(),
 ): MotionControls {
   // Variants as ref
   const _variants = unref(variants) as T
+
+  // Is the current instance animated ref
+  const isAnimating = ref(false)
+
+  // Watcher setting isAnimating
+  const _stopWatchAnimating = watch(
+    motionValues,
+    (newVal) => {
+      // Go through every motion value, and check if any is animating
+      isAnimating.value =
+        Object.values(newVal).filter((value) => value.isAnimating()).length > 0
+    },
+    {
+      immediate: true,
+      deep: true,
+    },
+  )
 
   const getVariantFromKey = (variant: keyof T): Variant => {
     if (!_variants || !_variants[variant]) {
@@ -98,9 +115,13 @@ export function useMotionControls<T extends MotionVariants>(
   }
 
   return {
+    isAnimating,
     apply,
     set,
-    stopTransitions: stop,
+    stopTransitions: () => {
+      _stopWatchAnimating()
+      stop()
+    },
     leave,
   }
 }
