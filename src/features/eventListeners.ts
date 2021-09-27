@@ -74,16 +74,16 @@ export function registerEventListeners<T extends MotionVariants>({
 
   // Hovered
   if (_variants.hovered) {
-    _useEventListener(target, 'mouseenter', () => {
+    _useEventListener(target as any, 'mouseenter', () => {
       hovered.value = true
     })
 
-    _useEventListener(target, 'mouseleave', () => {
+    _useEventListener(target as any, 'mouseleave', () => {
       hovered.value = false
       tapped.value = false
     })
 
-    _useEventListener(target, 'mouseout', () => {
+    _useEventListener(target as any, 'mouseout', () => {
       hovered.value = false
       tapped.value = false
     })
@@ -93,33 +93,33 @@ export function registerEventListeners<T extends MotionVariants>({
   if (_variants.tapped) {
     // Mouse
     if (supportsMouseEvents()) {
-      _useEventListener(target, 'mousedown', () => {
+      _useEventListener(target as any, 'mousedown', () => {
         tapped.value = true
       })
 
-      _useEventListener(target, 'mouseup', () => {
+      _useEventListener(target as any, 'mouseup', () => {
         tapped.value = false
       })
     }
 
     // Pointer
     if (supportsPointerEvents()) {
-      _useEventListener(target, 'pointerdown', () => {
+      _useEventListener(target as any, 'pointerdown', () => {
         tapped.value = true
       })
 
-      _useEventListener(target, 'pointerup', () => {
+      _useEventListener(target as any, 'pointerup', () => {
         tapped.value = false
       })
     }
 
     // Touch
     if (supportsTouchEvents()) {
-      _useEventListener(target, 'touchstart', () => {
+      _useEventListener(target as any, 'touchstart', () => {
         tapped.value = true
       })
 
-      _useEventListener(target, 'touchend', () => {
+      _useEventListener(target as any, 'touchend', () => {
         tapped.value = false
       })
     }
@@ -127,11 +127,11 @@ export function registerEventListeners<T extends MotionVariants>({
 
   // Focused
   if (_variants.focused) {
-    _useEventListener(target, 'focus', () => {
+    _useEventListener(target as any, 'focus', () => {
       focused.value = true
     })
 
-    _useEventListener(target, 'blur', () => {
+    _useEventListener(target as any, 'blur', () => {
       focused.value = false
     })
   }
