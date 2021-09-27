@@ -1,6 +1,6 @@
 {
   "name": "@vueuse/motion",
-  "version": "2.0.0-beta.3",
+  "version": "2.0.0-beta.4",
   "description": "🤹 Vue Composables putting your components in motion",
   "repository": "https://github.com/vueuse/motion",
   "bugs": {
@@ -48,7 +48,7 @@
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.2.2",
-    "vue": "^2.6.14"
+    "vue": "^2.0.0 || >=3.0.0-rc.0"
   },
   "peerDependenciesMeta": {
     "@vue/composition-api": {
