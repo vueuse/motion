@@ -2,8 +2,6 @@ import { defineBuildConfig } from 'unbuild'
 
 export default defineBuildConfig({
   declaration: true,
-  entries: [
-    { input: 'src/', outDir: 'dist', format: 'cjs' },
-    { input: 'src/', outDir: 'dist', format: 'esm' },
-  ],
+  entries: [{ input: 'src/index.ts', outDir: 'dist', name: 'index' }],
+  externals: ['csstype', '@vueuse/shared', 'framesync', 'style-value-types'],
 })
