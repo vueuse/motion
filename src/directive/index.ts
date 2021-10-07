@@ -59,7 +59,7 @@ export const directive = (
 
   return {
     // Vue 3 Directive Hooks
-    created: register,
+    mounted: register,
     unmounted: unregister,
     // Vue 2 Directive Hooks
     // For Nuxt & Vue 2 compatibility
