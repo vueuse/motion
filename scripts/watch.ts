@@ -20,6 +20,14 @@ const tryBuild = async () => {
 }
 
 // Watch src, rebuild on any change
-watch(src).on('change', tryBuild)
-watch(src).on('add', tryBuild)
-watch(src).on('unlink', tryBuild)
+const watcher = watch(src, {
+  ignoreInitial: true,
+})
+
+watcher.on('change', tryBuild)
+
+watcher.on('add', tryBuild)
+
+watcher.on('unlink', tryBuild)
+
+tryBuild()
