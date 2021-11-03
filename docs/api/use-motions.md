@@ -22,7 +22,7 @@ Each values are [**Motion Instances**](/motion-instance) for the named elements.
 </template>
 
 <script setup>
-import { useMotions } from '@vueuse/motions'
+import { useMotions } from '@vueuse/motion'
 
 const { myName } = useMotions()
 </script>
