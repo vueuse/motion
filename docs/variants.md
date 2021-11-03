@@ -43,7 +43,7 @@ It is recommended to include a base state for each parameter that you are willin
 />
 ```
 
-##### _This element will be hidden, and 100px above of its original position._ ☝️
+##### _This element will be hidden, and 100px below its original position._ ☝️
 
 ## Lifecycle Variants
 
