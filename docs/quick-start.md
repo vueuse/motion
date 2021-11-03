@@ -1,14 +1,14 @@
 # Quick Start
 
-Let's **get started** quickly by **installing** the **package** and adding the **plugin**.
+Let's get started quickly by installing the package and adding the plugin.
 
-From your **terminal**:
+From your terminal:
 
 ```bash
 yarn add @vueuse/motion
 ```
 
-In your **Vue** app **entry** file:
+In your Vue app entry file:
 
 ```javascript
 import { createApp } from 'vue'
@@ -22,7 +22,7 @@ app.use(MotionPlugin)
 app.mount('#app')
 ```
 
-You can now **animate** any of your **component**, **HTML** or **SVG** elements using `v-motion`.
+You can now animate any of your component, HTML or SVG elements using `v-motion`.
 
 ```vue
 <template>

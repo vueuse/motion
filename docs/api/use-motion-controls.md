@@ -1,6 +1,6 @@
 # useMotionControls
 
-useMotionControls is used to **create** motion **controls** from motion **properties** and motion **transitions**.
+useMotionControls is used to create motion controls from motion properties and motion transitions.
 
 [**Motion Instance**](/motion-instance) members are **helpers** for you to **interact** with your **element** motion **properties** with ease.
 
@@ -22,23 +22,23 @@ A [**Motion Transitions**](/api/use-motion-transitions) instance.
 
 ### `apply(variant)`
 
-Apply function will take a [**Variant Definition**](/variants) and **apply** it to the element **without** changing the **current** variant **value**.
+Apply function will take a [**Variant Definition**](/variants) and apply it to the element without changing the current variant value.
 
-It also **accepts** a variant **key** from **variants** parameter, that will be applied **without** changing the **current** variant **name**.
+It also accepts a variant key from variants parameter, that will be applied without changing the current variant name.
 
-Apply is a **promise** that will be **resolved** once all the **transitions** resulting from the **variant** you passed are **done**.
+Apply is a promise that will be resolved once all the transitions resulting from the variant you passed are done.
 
 ### `set(variant)`
 
-Set function will take a [**Variant Definition**](/variants) and **apply** it to the element **without** changing the **current** variant **value**.
+Set function will take a [**Variant Definition**](/variants) and apply it to the element without changing the current variant value.
 
-It also **accepts** a variant **key** from **variants** parameter, that will be applied **without** changing the **current** variant **name**.
+It also accepts a variant key from variants parameter, that will be applied without changing the current variant name.
 
-It differs from `apply(variant)` as it will **set** values on target **without** running any **transitions**.
+It differs from `apply(variant)` as it will set values on target without running any transitions.
 
 ### `stopTransitions()`
 
-Stop Transitions function will **stop** all **ongoing** transitions on the **current** [**useMotionTransitions**](/api/use-motion-transitions) instance.
+Stop Transitions function will stop all ongoing transitions on the current [**useMotionTransitions**](/api/use-motion-transitions) instance.
 
 ## Example
 

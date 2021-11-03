@@ -1,20 +1,20 @@
 # Composable Usage
 
-**vueuse/motion** is written using Composition API.
+vueuse/motion is written using Composition API.
 
-The **composable usage** of this **package** allows you to create **animations** from the `setup` hook of your **components**.
+The composable usage of this package allows you to create animations from the `setup` hook of your components.
 
 ## Your first useMotion
 
-useMotion is the **core composable** of this **package**.
+useMotion is the core composable of this package.
 
-It is a function that takes **three parameters**.
+It is a function that takes three parameters.
 
-The **first** parameter is the `target`.
+The first parameter is the `target`.
 
-The **target** can be **HTML** or **SVG** elements, or **references** to these types.
+The target can be HTML or SVG elements, or references to these types.
 
-The **second** parameter are the `variants`.
+The second parameter are the `variants`.
 
 The [**Variants Definitions**](/variants) are described in a specific page.
 
@@ -37,6 +37,6 @@ const motionInstance = useMotion(target, {
 </script>
 ```
 
-Once called, the **useMotion** composable will **return** an instance of [**Motion Instance**](/motion-instance).
+Once called, the useMotion composable will return an instance of [**Motion Instance**](/motion-instance).
 
-By using this **motion instance** members, you will be able to **animate** the **element** with **ease**.
+By using this motion instance members, you will be able to animate the element with ease.

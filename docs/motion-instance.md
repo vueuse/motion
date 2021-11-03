@@ -1,16 +1,16 @@
 # Motion Instance
 
-Motion instance is the **object** exposed when **binding** to a target **element** using [**v-motion**](/directive-usage) or [**useMotion**](/composable-usage).
+Motion instance is the object exposed when binding to a target element using [**v-motion**](/directive-usage) or [**useMotion**](/composable-usage).
 
-It is composed of **three properties**, allowing you to **interact** with the **element**.
+It is composed of three properties, allowing you to interact with the element.
 
 ## Variant
 
-The variant is a **string reference**, that you can **modify** and **watch**.
+The variant is a string reference, that you can modify and watch.
 
-It represents the **current variant** name of the **element**.
+It represents the current variant name of the element.
 
-By modifying this **variant**, you will trigger a **transition** between the **current** variant and the one you just **set**.
+By modifying this variant, you will trigger a transition between the current variant and the one you just set.
 
 ```vue
 <script setup lang="ts">
@@ -45,13 +45,13 @@ const { variant } = useMotion(target, {
 
 ## Apply
 
-Apply is a **function** that lets you **animate** to a **variant** definition, **without changing** the current **variant**.
+Apply is a function that lets you animate to a variant definition, without changing the current variant.
 
-This is useful when used with **event listeners**, or any **temporary** modification to the **motion** properties of the **element**.
+This is useful when used with event listeners, or any temporary modification to the motion properties of the element.
 
-This is also useful for **orchestration**, as **apply** returns a **promise**, you can await it and **chain** variant **applying**.
+This is also useful for orchestration, as apply returns a promise, you can await it and chain variant applying.
 
-Apply **accepts** both a [**Variant Declaration**](/variants) or a **key** from the motion instance **variants**.
+Apply accepts both a [**Variant Declaration**](/variants) or a key from the motion instance variants.
 
 ```vue
 <script setup lang="ts">
@@ -90,13 +90,13 @@ const customEvent = async () => {
 
 ## Stop
 
-Stop is a **function** that lets you **stop** ongoing **animations** for a specific **element**.
+Stop is a function that lets you stop ongoing animations for a specific element.
 
-Calling it **without** argument will be stopping **all** the **animations**.
+Calling it without argument will be stopping all the animations.
 
-Calling it with an **array** of [**Motion Properties**](/motion-properties) keys will stop **every** specified **key**.
+Calling it with an array of [**Motion Properties**](/motion-properties) keys will stop every specified key.
 
-Calling it with a **single** motion property key will stop the specified **key**.
+Calling it with a single motion property key will stop the specified key.
 
 ```vue
 <script setup lang="ts">

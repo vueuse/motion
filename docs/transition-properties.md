@@ -1,6 +1,6 @@
 # Transition Properties
 
-Transition properties are represented by an **object** containing all **transition parameters** of a variant.
+Transition properties are represented by an object containing all transition parameters of a variant.
 
 They are one of the two parts that compose a [**Variant**](/variants), with [**Motion Properties**](/motion-properties).
 
@@ -8,7 +8,7 @@ They are one of the two parts that compose a [**Variant**](/variants), with [**M
 
 ### Delay
 
-You can specify a **delay** which will be added **every** time the **transition** is pushed.
+You can specify a delay which will be added every time the transition is pushed.
 
 ```vue
 <div
@@ -59,15 +59,15 @@ Three parameters are available:
 
 ## Transition Types
 
-Two types of **animations** are supported.
+Two types of animations are supported.
 
-For the most [**Common Animatable Properties**](https://github.com/vueuse/motion/blob/main/src/utils/defaults.ts#L43), it will uses **generated** spring **transitions**.
+For the most [**Common Animatable Properties**](https://github.com/vueuse/motion/blob/main/src/utils/defaults.ts#L43), it will uses generated spring transitions.
 
-The rest of the properties might be using **keyframes**.
+The rest of the properties might be using keyframes.
 
 ### Spring
 
-Springs are used to create **dynamic** and **natural** animations.
+Springs are used to create dynamic and natural animations.
 
 It supports multiple parameters:
 
@@ -85,9 +85,9 @@ The mass of the object, heavier objects will take longer to speed up and slow do
 
 ### Keyframes
 
-Keyframes ared used **mainly** for **color** related animations as springs are not **designed** for that.
+Keyframes ared used mainly for color related animations as springs are not designed for that.
 
-It also **works** with **numbers** though.
+It also works with numbers though.
 
 It supports multiple parameters:
 
@@ -117,11 +117,11 @@ Supported easing names:
 
 ## Per-key transition definition
 
-Transition properties supports **per-key** transition **definition**.
+Transition properties supports per-key transition definition.
 
-It allows you to create **complex animations** without using the `apply` **function**.
+It allows you to create complex animations without using the `apply` function.
 
-To do so, you have to define **key-specific** transition **inside** your transition **definition**.
+To do so, you have to define key-specific transition inside your transition definition.
 
 ```vue
 <div

@@ -4,7 +4,7 @@ useMotionProperties is used to access [**Motion Properties**](/motion-properties
 
 Motion properties are combining [**useElementStyle**](/api/use-element-style) and [**useElementTransform**](/api/use-element-transform).
 
-It allows to add another **layer** between **variants** and direct element **styling**, and a **cleaner** data format from [**variants**](/variants).
+It allows to add another layer between variants and direct element styling, and a cleaner data format from [**variants**](/variants).
 
 ## Parameters
 
@@ -12,7 +12,7 @@ It allows to add another **layer** between **variants** and direct element **sty
 
 Target must be an element (**SVG** / **HTML**), or a reference to an element.
 
-If the target **reference** is **updated**, the **current** motion properties will be **updated** from the new **element** styling.
+If the target reference is updated, the current motion properties will be updated from the new element styling.
 
 ## Exposed
 
@@ -20,7 +20,7 @@ If the target **reference** is **updated**, the **current** motion properties wi
 
 Motion properties are an object combining [**Style Properties**](/motion-properties#style-properties) and [**Transform Properties**](/motion-properties#transform-properties).
 
-Change a **value** and it will be **updated** on the target **element**.
+Change a value and it will be updated on the target element.
 
 ### `style`
 

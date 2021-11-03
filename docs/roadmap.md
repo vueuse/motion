@@ -1,8 +1,8 @@
 # Roadmap
 
-This package is under **active development**, as it still **misses** some **features**.
+This package is under **active development**, as it still misses some features.
 
-As I think it is still more than **usable** in its current **state**, I'm **releasing** it.
+As I think it is still more than usable in its current state, I'm releasing it.
 
 - ✔️ : Done
 - 👨‍💻 : WIP

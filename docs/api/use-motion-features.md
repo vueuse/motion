@@ -1,6 +1,6 @@
 # useMotionFeatures
 
-useMotionFeatures is used to **register** features such as **variant sync**, **event listeners**.
+useMotionFeatures is used to register features such as variant sync, event listeners.
 
 ## Parameters
 

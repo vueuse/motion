@@ -1,8 +1,8 @@
 # useElementTransform
 
-useElementTransform is used to **sync** a reactive **object** to a **target** element **CSS transform**.
+useElementTransform is used to sync a reactive object to a target element CSS transform.
 
-It uses [**reactiveTransform**](https://github.com/vueuse/motion/blob/main/src/reactiveTransform.ts) and binds it to a **target**.
+It uses [**reactiveTransform**](https://github.com/vueuse/motion/blob/main/src/reactiveTransform.ts) and binds it to a target.
 
 ## Parameters
 
@@ -10,19 +10,19 @@ It uses [**reactiveTransform**](https://github.com/vueuse/motion/blob/main/src/r
 
 Target must be an element (**SVG** / **HTML**), or a reference to an element.
 
-If the target **reference** is **updated**, the **current** transform will be **updated** from the new **element** styling.
+If the target reference is updated, the current transform will be updated from the new element styling.
 
 ## Exposed
 
 ### `transform`
 
-Transform is the current `target` [**Transform Properties**](/motion-properties#transform-properties) as a **reactive** object.
+Transform is the current `target` [**Transform Properties**](/motion-properties#transform-properties) as a reactive object.
 
-When you **change** a value, it will **update** the **element** transform **property** accordingly.
+When you change a value, it will update the element transform property accordingly.
 
 ### `stop()`
 
-Stop function will **stop** the **watcher** that **syncs** the element **transform** with the reactive object.
+Stop function will stop the watcher that syncs the element transform with the reactive object.
 
 ## Example
 

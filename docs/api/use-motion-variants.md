@@ -1,6 +1,6 @@
 # useMotionVariants
 
-useMotionVariants is used to handle the [**Variants**](/variants) **state** and **selection**.
+useMotionVariants is used to handle the [**Variants**](/variants) state and selection.
 
 ## Parameters
 
@@ -12,11 +12,11 @@ A [**Variants**](/variants#custom-variants) definition.
 
 ### `state`
 
-The **current** variant **data** value as a **computed**.
+The current variant data value as a computed.
 
 ### `variant`
 
-A **string** reference that **updates** the state when **changed**.
+A string reference that updates the state when changed.
 
 #### Example
 

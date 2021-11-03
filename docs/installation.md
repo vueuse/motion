@@ -1,6 +1,6 @@
 # Installation
 
-Install `@vueuse/motion` using your **package manager** of choice.
+Install `@vueuse/motion` using your package manager of choice.
 
 ```bash
 yarn add @vueuse/motion
@@ -12,11 +12,11 @@ The **required** packages can be found [**here for Vue 2**](https://github.com/v
 
 ## Plugin Installation
 
-If you are planning on using the **directives** (`v-motion`) from this **package**, you might want to add the **plugin** to your **Vue instance**.
+If you are planning on using the directives (`v-motion`) from this package, you might want to add the plugin to your Vue instance.
 
 ### Global Installation
 
-You can add the **support** for `v-motion` **globally**, by installing the **plugin**.
+You can add the support for `v-motion` globally, by installing the plugin.
 
 ```javascript
 import { MotionPlugin } from '@vueuse/motion'
@@ -30,7 +30,7 @@ app.mount('#app')
 
 ### Component Installation
 
-If you want to import the **directive code** only from **components** that uses it, **import** the **directive** and install it at **component level**.
+If you want to import the directive code only from components that uses it, import the directive and install it at component level.
 
 ```javascript
 import { directive as motion } from '@vueuse/motion'
@@ -44,13 +44,13 @@ export default {
 
 ## Nuxt Module
 
-If you are using [**Nuxt**](https://nuxtjs.org/), this **package** has a specific **implementation** that makes the **declaration** of custom **directives** even **easier**.
+If you are using [**Nuxt**](https://nuxtjs.org/), this package has a specific implementation that makes the declaration of custom directives even easier.
 
 It is called [**nuxt-use-motion**](https://github.com/Tahul/nuxt-use-motion).
 
-You **must** have [**@nuxtjs/composition-api**](https://composition-api.nuxtjs.org/) setup in your **project** in order to make this **work**.
+You **must** have [**@nuxtjs/composition-api**](https://composition-api.nuxtjs.org/) setup in your project in order to make this work.
 
-Once you **installed** it, just add `nuxt-use-motion` to your project:
+Once you installed it, just add `nuxt-use-motion` to your project:
 
 ```bash
 yarn add nuxt-use-motion
@@ -65,7 +65,7 @@ Add `nuxt-use-motion` to the `modules` section of `nuxt.config.js`:
 }
 ```
 
-Then, **configure** your **animations** 🤹:
+Then, configure your animations 🤹:
 
 ```javascript
 {
@@ -91,11 +91,11 @@ Then, **configure** your **animations** 🤹:
 
 ## Vite SSG
 
-You are concerned if you are using **frameworks** based on [**Vite SSG**](https://github.com/antfu/vite-ssg), such as [**Vitesse**](https://github.com/antfu/vitesse) or [**VitePress**](https://vitepress.vuejs.org/).
+You are concerned if you are using **frameworks** based on [Vite SSG](https://github.com/antfu/vite-ssg), such as [Vitesse](https://github.com/antfu/vitesse) or [VitePress](https://vitepress.vuejs.org/).
 
-If you are using **directives** within these **frameworks**, an error might occur during build, saying **directives** does not support **transform**.
+If you are using directives within these frameworks, an error might occur during build, saying directives does not support transform.
 
-To **solve** that problem, you have to **install** this package inside your **app**.
+To solve that problem, you have to install this package inside your app.
 
 ```bash
 yarn add -D patch-vue-directive-ssr
