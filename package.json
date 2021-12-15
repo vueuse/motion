@@ -42,12 +42,12 @@
     "README.md"
   ],
   "dependencies": {
-    "@vueuse/core": "^6.7.4",
-    "popmotion": "^10.0.2",
+    "@vueuse/core": "^7.3.0",
+    "popmotion": "^11.0.3",
     "vue-demi": "*"
   },
   "peerDependencies": {
-    "@vue/composition-api": "^1.3.2",
+    "@vue/composition-api": "^1.4.1",
     "vue": "^2.0.0 || >=3.0.0-rc.0"
   },
   "peerDependenciesMeta": {
@@ -56,27 +56,26 @@
     }
   },
   "devDependencies": {
-    "@types/jest": "^27.0.2",
+    "@types/jest": "^27.0.3",
     "@types/prismjs": "^1.16.6",
-    "@vitejs/plugin-vue": "^1.9.4",
-    "@vue/compiler-sfc": "^3.2.21",
-    "@vue/server-renderer": "^3.2.21",
+    "@vitejs/plugin-vue": "^2.0.1",
+    "@vue/server-renderer": "^3.2.26",
     "@vue/test-utils": "^2.0.0-rc.6",
     "@vuedx/typecheck": "^0.7.4",
     "@vuedx/typescript-plugin-vue": "^0.7.4",
-    "jest": "^27.3.1",
-    "lint-staged": "^11.2.6",
-    "prettier": "^2.4.1",
+    "jest": "^27.4.5",
+    "lint-staged": "^12.1.2",
+    "prettier": "^2.5.1",
     "prism-theme-vars": "^0.2.2",
     "prismjs": "^1.25.0",
-    "style-value-types": "^5.0.0",
-    "ts-jest": "^27.0.7",
-    "typescript": "^4.4.4",
-    "unbuild": "^0.5.11",
-    "vite": "2.6.13",
-    "vite-plugin-windicss": "^1.4.12",
-    "vitepress": "^0.17.0",
-    "vue": "^3.2.4",
+    "style-value-types": "^5.1.0",
+    "ts-jest": "^27.1.1",
+    "typescript": "^4.5.4",
+    "unbuild": "^0.6.7",
+    "vite": "2.7.2",
+    "vite-plugin-windicss": "^1.5.4",
+    "vitepress": "^0.20.8",
+    "vue": "^3.2.26",
     "yorkie": "^2.0.0"
   },
   "gitHooks": {
