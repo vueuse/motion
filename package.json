@@ -42,7 +42,7 @@
     "README.md"
   ],
   "dependencies": {
-    "@vueuse/core": "^7.3.0",
+    "@vueuse/core": "^7.5.1",
     "popmotion": "^11.0.3",
     "vue-demi": "*"
   },
@@ -56,25 +56,27 @@
     }
   },
   "devDependencies": {
-    "@types/jest": "^27.0.3",
+    "@types/jest": "^27.4.0",
     "@types/prismjs": "^1.16.6",
     "@vitejs/plugin-vue": "^2.0.1",
     "@vue/server-renderer": "^3.2.26",
     "@vue/test-utils": "^2.0.0-rc.6",
     "@vuedx/typecheck": "^0.7.4",
     "@vuedx/typescript-plugin-vue": "^0.7.4",
+    "chokidar": "^3.5.2",
     "jest": "^27.4.5",
-    "lint-staged": "^12.1.2",
+    "lint-staged": "^12.1.5",
     "prettier": "^2.5.1",
     "prism-theme-vars": "^0.2.2",
     "prismjs": "^1.25.0",
     "style-value-types": "^5.1.0",
-    "ts-jest": "^27.1.1",
+    "ts-jest": "^27.1.2",
     "typescript": "^4.5.4",
     "unbuild": "^0.6.7",
-    "vite": "2.7.2",
-    "vite-plugin-windicss": "^1.5.4",
-    "vitepress": "^0.20.8",
+    "upath": "^2.0.1",
+    "vite": "2.7.10",
+    "vite-plugin-windicss": "^1.6.1",
+    "vitepress": "^0.20.10",
     "vue": "^3.2.26",
     "yorkie": "^2.0.0"
   },
