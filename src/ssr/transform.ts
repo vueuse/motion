@@ -5,8 +5,6 @@ import {
   createCallExpression,
   findProp,
   isText,
-  ConstantTypes,
-  NodeTypes,
   MERGE_PROPS,
 } from '@vue/compiler-core'
 import { isString } from '@vueuse/core'
@@ -28,37 +26,40 @@ type DirectiveTransformResult = ReturnType<DirectiveTransform>
 
 export function transform(variants?: MotionVariants): DirectiveTransform {
   return (dir, node, context): DirectiveTransformResult => {
-    // NOTE: debug
-    // console.log('v-motion transform dir:', dir)
-    // console.log('v-motion transform node:', node)
+    // Debug logging
+    // console.log({ dir, node, context })
+
     const result: DirectiveTransformResult = { props: [], needRuntime: true }
 
-    // check `v-motion` directive expression
+    // Check `v-motion` directive expression
     const { exp } = dir
-    if (!exp) {
-      // TODO:
+    if (exp) {
+      // TODO: Handle { initial: { ...} } expression
+      // console.log({ exp })
+
+      console.log(createObjectProperty('style', exp))
     }
 
-    // find `initial` prop binding
+    // Find `initial` prop binding
     const prop = findProp(node, 'initial', true, false)
-    if (!isBindDirective(prop)) {
-      // TODO: should be implement warning or erorr
-      // console.warn('TODO')
-      // context.onError(new Error('TODO') as CompilerError)
+    // Check if `initial` prop binding exists
+    if (!isBindDirective(prop) || prop.exp == null || prop.arg == null) {
       return result
     }
 
-    // check `initial` prop binding expression
-    if (prop.exp == null || prop.arg == null) {
-      // TODO: should be implement erorr
-      return result
-    }
+    /*
+    console.log({
+      prop,
+      node,
+      context,
+    })
+    */
 
-    // transform `initial` prop to `style` attribute
+    // Transform `initial` prop to `style` attribute
     result.props = [
       createObjectProperty(
         `style`,
-        createStyleObjectExpression(prop, node, context),
+        createStyleObjectExpressionFromDirectiveNode(prop, node, context),
       ),
     ]
 
@@ -68,14 +69,17 @@ export function transform(variants?: MotionVariants): DirectiveTransform {
 
 const isSymbol = (val: unknown): val is symbol => typeof val === 'symbol'
 
+// NodeTypes.DIRECTIVE
 const isBindDirective = (prop: any): prop is DirectiveNode =>
-  prop != null && prop.type === NodeTypes.DIRECTIVE && prop.name === 'bind'
+  prop != null && prop.type === 7 && prop.name === 'bind'
 
+// NodeTypes.SIMPLE_EXPRESSION
 const isSimpleExpressionNode = (node: any): node is SimpleExpressionNode =>
-  node != null && node.type === NodeTypes.SIMPLE_EXPRESSION
+  node != null && node.type === 4
 
+// NodeTypes.COMPOUND_EXPRESSION
 const isCompoundExpressionNode = (node: any): node is CompoundExpressionNode =>
-  node != null && node.type === NodeTypes.COMPOUND_EXPRESSION
+  node != null && node.type === 8
 
 // @ts-ignore
 function mapNodeContentHanlder(
@@ -112,41 +116,41 @@ function mapNodeContentHanlder(
 
 function isConstant(node: SimpleExpressionNode): boolean {
   if ('isConstant' in node) {
-    // for v3.0.3 earlier
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // For v3.0.3 earlier
     return (node as any).isConstant
   } else if ('constType' in node) {
-    // for v3.0.3 or later
-    return (node.constType as number) > ConstantTypes.NOT_CONSTANT
+    // For v3.0.3 or later
+    return (node.constType as number) > 0
   } else {
-    throw Error('unexpected error')
+    throw Error('Unexpected error while transforming a v-motion directive.')
   }
 }
 
-function createStyleObjectExpression(
+function createStyleObjectExpressionFromDirectiveNode(
   prop: DirectiveNode,
   node: ElementNode,
   context: TransformContext,
 ): Property['value'] {
   const properties: Property[] = []
+
+  // @ts-ignore
+  const content = prop.exp.content
+
   if (isSimpleExpressionNode(prop.exp)) {
     if (isConstant(prop.exp)) {
       const { status, value } = evaluateValue(prop.exp.content)
+
       if (status === 'ok') {
         for (const [key, val] of Object.entries(value as Record<string, any>)) {
           properties.push(
             createObjectProperty(
               key,
-              createSimpleExpression(
-                String(val),
-                true,
-                prop.loc,
-                ConstantTypes.CAN_STRINGIFY,
-              ),
+              createSimpleExpression(String(val), true, prop.loc, 3),
             ),
           )
         }
       }
+
       return createObjectExpression(properties, node.loc)
     } else {
       if (isSimpleExpressionNode(prop.arg) && isConstant(prop.arg)) {
@@ -154,7 +158,7 @@ function createStyleObjectExpression(
           prop.exp.content,
           false,
           prop.loc,
-          ConstantTypes.NOT_CONSTANT,
+          0,
         )
         const from = createObjectExpression([], prop.loc)
         return createCallExpression(
@@ -168,13 +172,9 @@ function createStyleObjectExpression(
     }
   } else if (isCompoundExpressionNode(prop.exp)) {
     const expression = prop.exp!.children.map(mapNodeContentHanlder).join('')
-    const source = createSimpleExpression(
-      expression,
-      false,
-      prop.loc,
-      ConstantTypes.NOT_CONSTANT,
-    )
+    const source = createSimpleExpression(expression, false, prop.loc, 0)
     const from = createObjectExpression([], prop.loc)
+
     return createCallExpression(
       context.helper(MERGE_PROPS),
       [source, from],

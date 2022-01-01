@@ -88,7 +88,7 @@ function getObjectMemberValue(node: any): string {
     return node.name
   } else if (node.type === 'MemberExpression') {
     const paths: string[] = []
-    collectMermberPath(node, paths)
+    collectMemberPath(node, paths)
     paths.reverse()
     return paths.join('.')
   } else {
@@ -115,7 +115,7 @@ function traverseObjectMember(node: any, target: any): void {
   })
 }
 
-function collectMermberPath(node: any, paths: string[]): void {
+function collectMemberPath(node: any, paths: string[]): void {
   if (node.type === 'Identifier') {
     paths.push(node.name)
     return
@@ -123,7 +123,7 @@ function collectMermberPath(node: any, paths: string[]): void {
 
   if (node.property.type === 'Identifier') {
     paths.push(node.property.name)
-    return collectMermberPath(node.object, paths)
+    return collectMemberPath(node.object, paths)
   }
 }
 
