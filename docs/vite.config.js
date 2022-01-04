@@ -1,4 +1,5 @@
 import { resolve } from 'path'
+import { fileURLToPath } from 'url'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
@@ -9,7 +10,10 @@ export default defineConfig({
     alias: [
       {
         find: '@vueuse/motion',
-        replacement: resolve(__dirname, '../src/index.ts'),
+        replacement: resolve(
+          fileURLToPath(import.meta.url),
+          '../../src/index.ts',
+        ),
       },
     ],
   },

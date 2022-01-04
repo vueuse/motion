@@ -1,11 +1,21 @@
 // @ts-check
+// import { transform as motionTransform } from '../../src/ssr/index'
 
 /**
  * @type {import('vitepress').UserConfig}
  */
-module.exports = {
+export default {
   title: '@vueuse/motion',
   description: '🤹 Vue Composables putting your components in motion',
+  vue: {
+    template: {
+      compilerOptions: {
+        directiveTransforms: {
+          // motion: motionTransform(),
+        },
+      },
+    },
+  },
   head: [
     ['link', { rel: 'icon', href: '/favicon.ico', type: 'image/png' }],
     ['link', { rel: 'icon', href: '/logo.svg', type: 'image/svg+xml' }],

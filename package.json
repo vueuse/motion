@@ -1,6 +1,6 @@
 {
   "name": "@vueuse/motion",
-  "version": "2.0.0-beta.5",
+  "version": "2.0.0-beta.7",
   "description": "🤹 Vue Composables putting your components in motion",
   "repository": "https://github.com/vueuse/motion",
   "bugs": {
@@ -17,10 +17,13 @@
     "v-motion",
     "popmotion-vue"
   ],
-  "sideEffects": false,
-  "main": "dist/index.mjs",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "type": "module",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.mjs"
+  },
   "scripts": {
     "build": "unbuild",
     "dev": "jiti scripts/watch.ts --cache",
