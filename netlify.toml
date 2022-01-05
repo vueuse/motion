@@ -9,3 +9,11 @@
   to = "https://motion.vueuse.org/:splat"
   status = 301
   force = true
+
+[build]
+    publish = "docs/.vitepress/dist"
+    command = "npx pnpm install --store=node_modules/.pnpm-store && npx pnpm build:docs"
+
+[build.environment]
+  NODE_VERSION = "16"
+  NPM_FLAGS = "--version" # prevent Netlify npm install
