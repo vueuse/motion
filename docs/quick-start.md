@@ -5,7 +5,7 @@ Let's get started quickly by installing the package and adding the plugin.
 From your terminal:
 
 ```bash
-yarn add @vueuse/motion
+pnpm add @vueuse/motion
 ```
 
 In your Vue app entry file:

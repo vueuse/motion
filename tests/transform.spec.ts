@@ -4,6 +4,7 @@ import { MotionDirective } from '../src/index'
 import { compile } from '@vue/compiler-ssr'
 import { defineComponent, createSSRApp } from 'vue'
 import { renderToString } from '@vue/server-renderer'
+import { describe, test, expect } from 'vitest'
 
 describe('transform', () => {
   test('initial: basic', async () => {

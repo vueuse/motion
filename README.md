@@ -25,7 +25,7 @@ Let's **get started** quick by **installing** the **package** and adding the **p
 From your **terminal**:
 
 ```bash
-yarn add @vueuse/motion
+pnpm add @vueuse/motion
 ```
 
 In your **Vue** app **entry** file:

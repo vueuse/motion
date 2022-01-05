@@ -1,6 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { nextTick, ref } from 'vue-demi'
 import { useElementStyle } from '../src'
+import { describe, it, expect } from 'vitest'
 
 const TestComponent = {
   template: '<div>Hello world</div>',

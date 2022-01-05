@@ -17,4 +17,11 @@ export default defineConfig({
       },
     ],
   },
+  test: {
+    global: true,
+    environment: 'happy-dom',
+    include: ['tests/**/*.spec.ts'],
+    // Temporarily disable `transform` test
+    exclude: ['tests/transform.spec.ts'],
+  },
 })

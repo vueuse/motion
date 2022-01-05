@@ -3,7 +3,7 @@
 Install `@vueuse/motion` using your package manager of choice.
 
 ```bash
-yarn add @vueuse/motion
+pnpm add @vueuse/motion
 ```
 
 Please note that if you are using **Vue 2** or **Nuxt**, you need to install the [**Composition API**](https://v3.vuejs.org/guide/composition-api-introduction.html).
@@ -53,7 +53,7 @@ You **must** have [**@nuxtjs/composition-api**](https://composition-api.nuxtjs.o
 Once you installed it, just add `nuxt-use-motion` to your project:
 
 ```bash
-yarn add nuxt-use-motion
+pnpm add nuxt-use-motion
 ```
 
 Add `nuxt-use-motion` to the `modules` section of `nuxt.config.js`:
@@ -98,7 +98,7 @@ If you are using directives within these frameworks, an error might occur during
 To solve that problem, you have to install this package inside your app.
 
 ```bash
-yarn add -D patch-vue-directive-ssr
+pnpm add -D patch-vue-directive-ssr
 ```
 
 This [**patch**](https://github.com/vueuse/patch-vue-directive-ssr) has been written by [**Antfu**](https://github.com/antfu).

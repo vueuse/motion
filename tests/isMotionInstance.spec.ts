@@ -1,6 +1,7 @@
 import { ref } from '@vue/reactivity'
 import { mount } from '@vue/test-utils'
 import { isMotionInstance, useMotion } from '../src'
+import { describe, it, expect } from 'vitest'
 
 const TestComponent = {
   template: '<div>Hello world</div>',
@@ -11,6 +12,7 @@ const getElementRef = () => {
 
   return ref<HTMLElement>(c.element as HTMLElement)
 }
+
 describe('isMotionInstance', () => {
   it('recognize a motion instance', () => {
     const ref = getElementRef()

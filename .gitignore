@@ -1,7 +1,9 @@
 # Library
 node_modules
-yarn-error.log
 dist
+
+# Tests
+coverage
 
 # OS
 .DS_Store

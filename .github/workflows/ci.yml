@@ -18,39 +18,36 @@ jobs:
         node: [16]
 
     steps:
-      - uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
-
       - name: Checkout
         uses: actions/checkout@master
         with:
           persist-credentials: false
           fetch-depth: 0
 
-      - name: Cache
-        uses: actions/cache@v2
+      - name: Install PNPM
+        uses: pnpm/action-setup@v2.0.1
         with:
-          path: node_modules
-          key: ${{ matrix.os }}-node-v${{ matrix.node }}-deps-${{ hashFiles(format('{0}{1}', github.workspace, '/yarn.lock')) }}
+          version: 6.23.5
 
-      - name: Dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: yarn
+      - name: Setup Node v16
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
+          cache: 'pnpm'
 
-      - name: Lint
-        run: yarn lint
+      - name: Install dependencies
+        run: pnpm install
 
-      - name: Test
-        run: yarn test
+      - name: Lint project
+        run: pnpm lint
 
-      - name: Coverage
-        uses: codecov/codecov-action@v1
+      - name: Test project
+        run: pnpm test
 
-      - name: Build
-        run: yarn build
+      - name: Build project
+        run: pnpm build
 
-      - name: Version Check
+      - name: Version check
         id: check
         uses: EndBug/version-check@v1
         with:

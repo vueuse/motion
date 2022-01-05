@@ -1,4 +1,5 @@
 import { useMotionTransitions } from '../src'
+import { describe, it, expect } from 'vitest'
 import { Transition } from '../src/types/transitions'
 
 const defaultTransition: Transition = {

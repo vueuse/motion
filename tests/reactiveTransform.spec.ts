@@ -1,5 +1,7 @@
 import { nextTick } from 'vue'
 import { reactiveTransform } from '../src/reactiveTransform'
+import { describe, it, expect } from 'vitest'
+
 describe('reactiveTransform', () => {
   it('generate transform from transformProperties', () => {
     const { transform } = reactiveTransform(

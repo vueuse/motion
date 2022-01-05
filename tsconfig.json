@@ -1,12 +1,14 @@
 {
   "include": [
-    "src/types/global.d.ts",
+    "env.d.ts",
     "src/**/*.ts",
     "tests/**/*.ts",
+
     "docs/**/*.ts",
     "docs/**/*.d.ts",
     "docs/**/*.tsx",
     "docs/**/*.vue",
+
     "demo/**/*.ts",
     "demo/**/*.d.ts",
     "demo/**/*.tsx",
@@ -14,6 +16,18 @@
   ],
   "exclude": ["dist", "node_modules"],
   "compilerOptions": {
+    "types": ["node", "vite/client"],
+    "lib": ["esnext", "dom"],
+    "plugins": [
+      {
+        "name": "@vuedx/typescript-plugin-vue"
+      }
+    ],
+    "paths": {
+      "@vueuse/motion": ["./src/index.ts"],
+      "@vueuse/motion/*": ["./src/*"]
+    },
+
     "baseUrl": ".",
     "rootDir": ".",
     "outDir": "dist",
@@ -39,17 +53,6 @@
     "esModuleInterop": true,
     "removeComments": false,
     "strictPropertyInitialization": false,
-    "jsx": "preserve",
-    "lib": ["esnext", "dom"],
-    "types": ["node", "jest"],
-    "plugins": [
-      {
-        "name": "@vuedx/typescript-plugin-vue"
-      }
-    ],
-    "paths": {
-      "@vueuse/motion": ["./src/index.ts"],
-      "@vueuse/motion/*": ["./src/*"]
-    }
+    "jsx": "preserve"
   }
 }
