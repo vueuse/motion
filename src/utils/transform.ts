@@ -1,3 +1,5 @@
+import { Variant } from './../types/variants'
+
 /**
  * A list of all transformable axes. We'll use this list to generated a version
  * of each axes for each transform.
@@ -42,4 +44,22 @@ export function isTransformProp(key: string) {
 const transformOriginProps = new Set(['originX', 'originY', 'originZ'])
 export function isTransformOriginProp(key: string) {
   return transformOriginProps.has(key)
+}
+
+/**
+ * Split values between style and transform keys.
+ */
+export function splitValues(variant: Variant) {
+  const transform = {}
+  const style = {}
+
+  Object.entries(variant).forEach(([key, value]) => {
+    if (isTransformProp(key) || isTransformOriginProp(key)) {
+      transform[key] = value
+    } else {
+      style[key] = value
+    }
+  })
+
+  return { transform, style }
 }
