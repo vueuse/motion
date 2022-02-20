@@ -72,6 +72,13 @@ export function stateFromTransform(
 
     // Handle translate3d and scale3d
     if (key === 'translate3d') {
+      if (value === 0) {
+        axes.forEach((axis) => {
+          __set(state, axis, 0)
+        })
+        return
+      }
+
       // Loop on parsed scale / translate definition
       value.forEach((axisValue: ResolvedValueTarget, index: number) => {
         __set(state, axes[index], axisValue)
