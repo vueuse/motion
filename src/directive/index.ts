@@ -3,6 +3,8 @@ import { motionState } from '../features/state'
 import { MotionVariants } from '../types'
 import { useMotion } from '../useMotion'
 import { resolveVariants } from '../utils/directive'
+import { reactiveStyle, reactiveTransform } from '../index'
+import { splitValues } from '../utils/transform'
 
 export const directive = (
   variants?: MotionVariants,
@@ -66,6 +68,25 @@ export const directive = (
     // @ts-expect-error
     bind: register,
     unbind: unregister,
+    // Vue 3 SSR
+    getSSRProps(binding) {
+      const { initial = {} } = binding.value
+
+      if (Object.keys(initial).length === 0) return
+
+      const { transform: _transform, style: _style } = splitValues(initial)
+
+      const { transform } = reactiveTransform(_transform)
+
+      const { style } = reactiveStyle(_style)
+
+      // @ts-ignore
+      if (transform.value) style.value.transform = transform.value
+
+      return {
+        style: style.value,
+      }
+    },
   }
 }
 
