@@ -22,7 +22,19 @@ export const popVisible: MotionVariants = {
   },
 }
 
+export const popVisibleOnce: MotionVariants = {
+  initial: {
+    scale: 0,
+    opacity: 0,
+  },
+  visibleOnce: {
+    scale: 1,
+    opacity: 1,
+  },
+}
+
 export default {
   pop,
   popVisible,
+  popVisibleOnce,
 }
