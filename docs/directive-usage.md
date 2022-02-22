@@ -19,6 +19,7 @@ The supported variants props are the following:
 - **:initial**
 - **:enter**
 - **:visible**
+- **:visible-once**
 - **:hovered**
 - **:focused**
 - **:tapped**
@@ -31,7 +32,7 @@ The rest of the variants properties can be found on the [**Variants**](/variants
 
 As a shorthand, you can use the `:delay` prop, that allows you to edit the delay from the element props.
 
-If you specified `visible` or `enter` variant, the delay will be applied to each of them.
+If you specified `visible`, `visible-once` or `enter` variant, the delay will be applied to each of them.
 
 Otherwise, the delay will be applied on the `initial` [**variant**](/variants).
 

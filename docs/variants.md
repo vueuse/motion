@@ -121,6 +121,24 @@ When the element leaves, the [**Initial**](#initial-variant) variant will be app
 
 ##### _This element will fade in smoothly each times it enters the viewport._ ☝️
 
+### Visible Once
+
+Unlike the visible variant, this variant is only triggered once.
+
+```vue
+<div
+  v-motion
+  :initial="{
+    opacity: 0,
+    y: 100,
+  }"
+  :visibleOnce="{
+    opacity: 1,
+    y: 0,
+  }"
+/>
+```
+
 ## Events Variants
 
 Variants can also be used to interact with the element using event listeners.

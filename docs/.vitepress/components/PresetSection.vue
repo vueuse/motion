@@ -94,6 +94,10 @@ const replay = async () => {
     await apply(preset.visible)
   }
 
+  if (preset.visibleOnce) {
+    await apply(preset.visibleOnce)
+  }
+
   if (preset.enter) {
     await apply(preset.enter)
   }
