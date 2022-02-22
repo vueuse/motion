@@ -93,6 +93,7 @@ declare module '@vue/runtime-dom' {
     leave?: Variant
     // Intersection observer variants
     visible?: Variant
+    visibleOnce?: Variant
     // Event listeners variants
     hovered?: Variant
     tapped?: Variant
