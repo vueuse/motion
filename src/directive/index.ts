@@ -21,13 +21,22 @@ export const directive = (
     >,
   ) => {
     // Get instance key if possible (binding value or element key in case of v-for's)
-    const key = binding.value || node.key
+    const key = (
+      binding.value && typeof binding.value === 'string'
+        ? binding.value
+        : node.key
+    ) as string
 
     // Cleanup previous motion instance if it exists
     if (key && motionState[key]) motionState[key].stop()
 
     // Initialize variants with argument
     const variantsRef = ref<MotionVariants>(variants || {})
+
+    // Set variants from v-motion binding
+    if (typeof binding.value === 'object') {
+      variantsRef.value = binding.value
+    }
 
     // Resolve variants from node props
     resolveVariants(node, variantsRef)
