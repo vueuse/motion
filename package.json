@@ -94,9 +94,11 @@
   },
   "lint-staged": {
     "*.js": [
+      "eslint --fix",
       "prettier --write"
     ],
     "*.ts?(x)": [
+      "eslint --fix",
       "prettier --parser=typescript --write"
     ]
   }
