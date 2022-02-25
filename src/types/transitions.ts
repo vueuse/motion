@@ -1,6 +1,6 @@
-import { Ref } from 'vue-demi'
-import { MotionValue } from '../motionValue'
-import { MotionProperties, PermissiveMotionProperties } from './variants'
+import type { Ref } from 'vue-demi'
+import type { MotionValue } from '../motionValue'
+import type { MotionProperties, PermissiveMotionProperties } from './variants'
 
 export type ResolvedKeyframesTarget =
   | [null, ...number[]]
@@ -21,7 +21,7 @@ export type ResolvedValueTarget = ResolvedSingleTarget | ResolvedKeyframesTarget
 
 export type ValueTarget = SingleTarget | KeyframesTarget
 
-export type Props = { [key: string]: any }
+export type Props = Record<string, any>
 
 export type EasingFunction = (v: number) => number
 
@@ -364,9 +364,7 @@ export interface Keyframes {
 
 export type PopmotionTransitionProps = Tween | Spring | Keyframes | Inertia
 
-export type PermissiveTransitionDefinition = {
-  [key: string]: any
-}
+export type PermissiveTransitionDefinition = Record<string, any>
 
 export type TransitionDefinition =
   | Tween
@@ -375,9 +373,7 @@ export type TransitionDefinition =
   | Inertia
   | PermissiveTransitionDefinition
 
-export type TransitionMap = Orchestration & {
-  [key: string]: TransitionDefinition
-}
+export type TransitionMap = Orchestration & Record<string, TransitionDefinition>
 
 /**
  * Transition props

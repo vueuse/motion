@@ -1,6 +1,6 @@
-import { MaybeRef } from '@vueuse/shared'
+import type { MaybeRef } from '@vueuse/shared'
 import { animate } from 'popmotion'
-import {
+import type {
   MotionProperties,
   PermissiveMotionProperties,
   PermissiveTarget,

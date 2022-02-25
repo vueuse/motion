@@ -8,7 +8,7 @@ export class SubscriptionManager<Handler extends GenericHandler> {
 
   add(handler: Handler) {
     this.subscriptions.add(handler)
-    return () => void this.subscriptions.delete(handler)
+    return () => this.subscriptions.delete(handler)
   }
 
   notify(
@@ -21,9 +21,7 @@ export class SubscriptionManager<Handler extends GenericHandler> {
     c?: Parameters<Handler>[2],
   ) {
     if (!this.subscriptions.size) return
-    for (const handler of this.subscriptions) {
-      handler(a, b, c)
-    }
+    for (const handler of this.subscriptions) handler(a, b, c)
   }
 
   clear() {

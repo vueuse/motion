@@ -17,7 +17,7 @@ export function slugify(string: string) {
 
   return string
     .toString()
-    .replace(/[A-Z]/g, (s) => '-' + s) // Camel to slug
+    .replace(/[A-Z]/g, (s) => `-${s}`) // Camel to slug
     .toLowerCase()
     .replace(/\s+/g, '-') // Replace spaces with -
     .replace(p, (c) => b.charAt(a.indexOf(c))) // Replace special characters

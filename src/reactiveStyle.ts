@@ -1,5 +1,6 @@
-import { reactive, Ref, ref, watch } from 'vue-demi'
-import { StyleProperties } from './types'
+import type { Ref } from 'vue-demi'
+import { reactive, ref, watch } from 'vue-demi'
+import type { StyleProperties } from './types'
 import { getValueAsType, getValueType } from './utils/style'
 
 /**

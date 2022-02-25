@@ -1,6 +1,6 @@
 import { noop, useIntersectionObserver } from '@vueuse/core'
 import { unref } from 'vue-demi'
-import { MotionInstance, MotionVariants } from '../types'
+import type { MotionInstance, MotionVariants } from '../types'
 
 export function registerVisibilityHooks<T extends MotionVariants>({
   target,
@@ -15,11 +15,8 @@ export function registerVisibilityHooks<T extends MotionVariants>({
     const { stop: stopObserver } = useIntersectionObserver(
       target,
       ([{ isIntersecting }]) => {
-        if (isIntersecting) {
-          variant.value = 'visible'
-        } else {
-          variant.value = 'initial'
-        }
+        if (isIntersecting) variant.value = 'visible'
+        else variant.value = 'initial'
       },
     )
 

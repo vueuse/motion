@@ -1,6 +1,7 @@
-import { isObject, MaybeRef } from '@vueuse/core'
+import type { MaybeRef } from '@vueuse/core'
+import { isObject } from '@vueuse/core'
 import { ref, unref, watch } from 'vue-demi'
-import {
+import type {
   MotionControls,
   MotionProperties,
   MotionTransitions,
@@ -43,42 +44,41 @@ export function useMotionControls<T extends MotionVariants>(
   )
 
   const getVariantFromKey = (variant: keyof T): Variant => {
-    if (!_variants || !_variants[variant]) {
+    if (!_variants || !_variants[variant])
       throw new Error(`The variant ${variant} does not exist.`)
-    }
 
     return _variants[variant] as Variant
   }
 
   const apply = (variant: Variant | keyof T): Promise<void[]> | undefined => {
     // If variant is a key, try to resolve it
-    if (typeof variant === 'string') {
-      variant = getVariantFromKey(variant)
-    }
+    if (typeof variant === 'string') variant = getVariantFromKey(variant)
 
     // Return Promise chain
     return Promise.all(
-      Object.entries(variant).map(([key, value]) => {
-        // Skip transition key
-        if (key === 'transition') return
+      Object.entries(variant)
+        .map(([key, value]) => {
+          // Skip transition key
+          if (key === 'transition') return undefined
 
-        return new Promise<void>((resolve) => {
-          push(
-            key as keyof MotionProperties,
-            value,
-            motionProperties,
-            (variant as Variant).transition ||
-              getDefaultTransition(key, variant[key]),
-            resolve,
-          )
+          return new Promise<void>((resolve) => {
+            push(
+              key as keyof MotionProperties,
+              value,
+              motionProperties,
+              (variant as Variant).transition ||
+                getDefaultTransition(key, variant[key]),
+              resolve,
+            )
+          })
         })
-      }),
+        .filter(Boolean),
     )
   }
 
   const set = (variant: Variant | keyof T) => {
     // Get variant data from parameter
-    let variantData = isObject(variant) ? variant : getVariantFromKey(variant)
+    const variantData = isObject(variant) ? variant : getVariantFromKey(variant)
 
     // Set in chain
     Object.entries(variantData).forEach(([key, value]) => {
@@ -95,13 +95,10 @@ export function useMotionControls<T extends MotionVariants>(
     let leaveVariant: Variant | undefined
 
     if (_variants) {
-      if (_variants.leave) {
-        leaveVariant = _variants.leave
-      }
+      if (_variants.leave) leaveVariant = _variants.leave
 
-      if (!_variants.leave && _variants.initial) {
+      if (!_variants.leave && _variants.initial)
         leaveVariant = _variants.initial
-      }
     }
 
     if (!leaveVariant) {

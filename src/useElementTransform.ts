@@ -1,7 +1,12 @@
-import { MaybeRef, unrefElement } from '@vueuse/core'
+import type { MaybeRef } from '@vueuse/core'
+import { unrefElement } from '@vueuse/core'
 import { watch } from 'vue-demi'
 import { reactiveTransform } from './reactiveTransform'
-import { MotionTarget, PermissiveTarget, TransformProperties } from './types'
+import type {
+  MotionTarget,
+  PermissiveTarget,
+  TransformProperties,
+} from './types'
 import { stateFromTransform } from './utils/transform-parser'
 
 /**
@@ -16,7 +21,7 @@ export function useElementTransform(
   // Transform cache available before the element is mounted
   let _cache: string | undefined
   // Local target cache as we need to resolve the element from PermissiveTarget
-  let _target: MotionTarget = undefined
+  let _target: MotionTarget
   // Create a reactive transform object
   const { state, transform } = reactiveTransform()
 
@@ -32,9 +37,7 @@ export function useElementTransform(
       if (el.style.transform) stateFromTransform(state, el.style.transform)
 
       // If cache is present, init the target with the current cached value
-      if (_cache) {
-        el.style.transform = _cache
-      }
+      if (_cache) el.style.transform = _cache
 
       if (onInit) onInit(state)
     },

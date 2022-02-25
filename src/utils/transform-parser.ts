@@ -1,5 +1,5 @@
 import { set as __set } from 'vue-demi'
-import {
+import type {
   MotionProperties,
   ResolvedValueTarget,
   TransformProperties,
@@ -15,9 +15,7 @@ export function parseTransform(transform: string): Partial<MotionProperties> {
   const transforms = transform.trim().split(/\) |\)/)
 
   // Handle "initial", "inherit", "unset".
-  if (transforms.length === 1) {
-    return {}
-  }
+  if (transforms.length === 1) return {}
 
   const parseValues = (value: string): string | number => {
     // If value is ending with px or deg, return it as a number

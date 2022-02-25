@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { ref } from 'vue-demi'
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { useMotion } from '../src'
 
 const TestComponent = {

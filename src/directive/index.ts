@@ -1,6 +1,7 @@
-import { Directive, DirectiveBinding, ref, set as __set, VNode } from 'vue-demi'
+import type { Directive, DirectiveBinding, VNode } from 'vue-demi'
+import { set as __set, ref } from 'vue-demi'
 import { motionState } from '../features/state'
-import { MotionVariants } from '../types'
+import type { MotionVariants } from '../types'
 import { useMotion } from '../useMotion'
 import { resolveVariants } from '../utils/directive'
 import { reactiveStyle, reactiveTransform } from '../index'
@@ -12,13 +13,7 @@ export const directive = (
   const register = (
     el: HTMLElement | SVGElement,
     binding: DirectiveBinding,
-    node: VNode<
-      any,
-      HTMLElement | SVGElement,
-      {
-        [key: string]: any
-      }
-    >,
+    node: VNode<any, HTMLElement | SVGElement, Record<string, any>>,
   ) => {
     // Get instance key if possible (binding value or element key in case of v-for's)
     const key = (
@@ -34,9 +29,7 @@ export const directive = (
     const variantsRef = ref<MotionVariants>(variants || {})
 
     // Set variants from v-motion binding
-    if (typeof binding.value === 'object') {
-      variantsRef.value = binding.value
-    }
+    if (typeof binding.value === 'object') variantsRef.value = binding.value
 
     // Resolve variants from node props
     resolveVariants(node, variantsRef)
@@ -45,26 +38,16 @@ export const directive = (
     const motionInstance = useMotion(el, variantsRef)
 
     // Pass the motion instance via the local element
-    // @ts-ignore
+    // @ts-expect-error - we know that the element is a HTMLElement
     el.motionInstance = motionInstance
 
     // Set the global state reference if the name is set through v-motion="`value`"
     if (key) __set(motionState, key, motionInstance)
   }
 
-  const unregister = (
-    el: HTMLElement | SVGElement,
-    _: DirectiveBinding,
-    __: VNode<
-      any,
-      HTMLElement | SVGElement,
-      {
-        [key: string]: any
-      }
-    >,
-  ) => {
+  const unregister = (el: HTMLElement | SVGElement) => {
     // Cleanup the unregistered element motion instance
-    // @ts-ignore
+    // @ts-expect-error - we know that the element is a HTMLElement
     if (el.motionInstance) el.motionInstance.stop()
   }
 
@@ -74,22 +57,26 @@ export const directive = (
     unmounted: unregister,
     // Vue 2 Directive Hooks
     // For Nuxt & Vue 2 compatibility
-    // @ts-expect-error
+    // @ts-expect-error - Compatibility
     bind: register,
     unbind: unregister,
     // Vue 3 SSR
     getSSRProps(binding) {
       const { initial = {} } = binding.value
 
-      if (Object.keys(initial).length === 0) return
+      // No initial
+      if (!initial || Object.keys(initial).length === 0) return
 
+      // Split values between `transform` and `style`
       const { transform: _transform, style: _style } = splitValues(initial)
 
+      // Generate transform string
       const { transform } = reactiveTransform(_transform)
 
+      // Generate style string
       const { style } = reactiveStyle(_style)
 
-      // @ts-ignore
+      // @ts-expect-error - Set transform from style
       if (transform.value) style.value.transform = transform.value
 
       return {

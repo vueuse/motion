@@ -1,6 +1,7 @@
-import { useEventListener, Fn } from '@vueuse/core'
+import type { Fn } from '@vueuse/core'
+import { useEventListener } from '@vueuse/core'
 import { computed, ref, unref, watch } from 'vue-demi'
-import { MotionInstance, MotionVariants } from '../types'
+import type { MotionInstance, MotionVariants } from '../types'
 import {
   supportsMouseEvents,
   supportsPointerEvents,
@@ -18,6 +19,7 @@ export function registerEventListeners<T extends MotionVariants>({
   // Proxy useEventListener to force cancellation on stop function
   const _eventListeners: Fn[] = []
   const _useEventListener: typeof useEventListener = (...args: any[]) => {
+    // eslint-disable-next-line prefer-spread
     const _stop = useEventListener.apply(null, args as any)
     _eventListeners.push(_stop)
     return _stop
@@ -33,17 +35,13 @@ export function registerEventListeners<T extends MotionVariants>({
 
     if (!_variants) return result
 
-    if (_variants.hovered) {
+    if (_variants.hovered)
       result = [...result, ...Object.keys(_variants.hovered)]
-    }
 
-    if (_variants.tapped) {
-      result = [...result, ...Object.keys(_variants.tapped)]
-    }
+    if (_variants.tapped) result = [...result, ...Object.keys(_variants.tapped)]
 
-    if (_variants.focused) {
+    if (_variants.focused)
       result = [...result, ...Object.keys(_variants.focused)]
-    }
 
     return result
   })
@@ -53,21 +51,17 @@ export function registerEventListeners<T extends MotionVariants>({
 
     Object.assign(result, state.value)
 
-    if (hovered.value && _variants.hovered) {
+    if (hovered.value && _variants.hovered)
       Object.assign(result, _variants.hovered)
-    }
 
-    if (tapped.value && _variants.tapped) {
+    if (tapped.value && _variants.tapped)
       Object.assign(result, _variants.tapped)
-    }
 
-    if (focused.value && _variants.focused) {
+    if (focused.value && _variants.focused)
       Object.assign(result, _variants.focused)
-    }
 
-    for (const key in result) {
+    for (const key in result)
       if (!mutableKeys.value.includes(key)) delete result[key]
-    }
 
     return result
   })

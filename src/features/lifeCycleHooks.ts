@@ -1,5 +1,5 @@
 import { unref, watch } from 'vue-demi'
-import { MotionInstance, MotionVariants } from '../types'
+import type { MotionInstance, MotionVariants } from '../types'
 
 export function registerLifeCycleHooks<T extends MotionVariants>({
   set,

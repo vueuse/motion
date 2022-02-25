@@ -1,17 +1,15 @@
-import { CSSProperties, SVGAttributes } from 'vue-demi'
-import { ResolvedSingleTarget, Transition } from './transitions'
+import type { CSSProperties, SVGAttributes } from 'vue-demi'
+import type { ResolvedSingleTarget, Transition } from './transitions'
 
 /**
  * Permissive properties keys
  */
-export type PropertiesKeys = {
-  [key: string]: string | number | undefined | any
-}
+export type PropertiesKeys = Record<string, string | number | undefined | any>
 
 /**
  * SVG Supported properties
  */
-export type SVGPathProperties = {
+export interface SVGPathProperties {
   pathLength?: number
   pathOffset?: number
   pathSpacing?: number
@@ -20,7 +18,7 @@ export type SVGPathProperties = {
 /**
  * Transform properties
  */
-export type TransformProperties = {
+export interface TransformProperties {
   x?: string | number
   y?: string | number
   z?: string | number
@@ -73,9 +71,8 @@ export type MotionProperties =
 /**
  * Permissive properties for useSpring
  */
-export type PermissiveMotionProperties = MotionProperties & {
-  [key: string]: ResolvedSingleTarget
-}
+export type PermissiveMotionProperties = MotionProperties &
+  Record<string, ResolvedSingleTarget>
 
 /**
  * Variant
@@ -87,7 +84,7 @@ export type Variant = {
 /**
  * Motion variants object
  */
-export type MotionVariants = {
+export interface MotionVariants {
   // Initial variant
   initial?: Variant
   // Lifecycle hooks variants

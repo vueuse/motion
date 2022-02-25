@@ -1,4 +1,4 @@
-import { MotionVariants } from '../types'
+import type { MotionVariants } from '../types'
 
 // Slide from left
 

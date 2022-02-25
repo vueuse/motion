@@ -1,5 +1,5 @@
 import { watch } from 'vue-demi'
-import { MotionInstance, MotionVariants } from '../types'
+import type { MotionInstance, MotionVariants } from '../types'
 
 export function registerVariantsSync<T extends MotionVariants>({
   state,

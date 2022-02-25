@@ -6,8 +6,18 @@
           <div class="features">
             <section
               v-for="(feature, index) in features"
+              v-motion="{
+                initial: {
+        y: 200,
+        opacity: 0,
+      },
+      enter: {
+        y: 0,
+        opacity: 1,
+      }
+              }"
               :key="index"
-              :ref="`feature_${index}`"
+              
               class="feature"
             >
               <h2 class="title" v-if="feature.title">
@@ -54,55 +64,7 @@ export default defineComponent({
       },
     ]
 
-    const feature_0 = ref()
-    const feature_1 = ref()
-    const feature_2 = ref()
-
-    useMotion(feature_0, {
-      initial: {
-        y: 200,
-        opacity: 0,
-      },
-      enter: {
-        y: 0,
-        opacity: 1,
-      },
-    })
-
-    useMotion(feature_1, {
-      initial: {
-        y: 200,
-        opacity: 0,
-      },
-      enter: {
-        y: 0,
-        opacity: 1,
-        transition: {
-          delay: 100,
-        },
-      },
-    })
-
-    useMotion(feature_2, {
-      initial: {
-        y: 200,
-        opacity: 0,
-      },
-      enter: {
-        y: 0,
-        opacity: 1,
-        transition: {
-          delay: 200,
-        },
-      },
-    })
-
-    return {
-      features,
-      feature_0,
-      feature_1,
-      feature_2,
-    }
+    return { features }
   },
 })
 </script>

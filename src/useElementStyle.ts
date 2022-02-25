@@ -1,7 +1,8 @@
-import { MaybeRef, unrefElement } from '@vueuse/core'
+import type { MaybeRef } from '@vueuse/core'
+import { unrefElement } from '@vueuse/core'
 import { set as __set, watch } from 'vue-demi'
 import { reactiveStyle } from './reactiveStyle'
-import { MotionTarget, PermissiveTarget, StyleProperties } from './types'
+import type { MotionTarget, PermissiveTarget, StyleProperties } from './types'
 import { valueTypes } from './utils/style'
 import { isTransformOriginProp, isTransformProp } from './utils/transform'
 
@@ -17,7 +18,7 @@ export function useElementStyle(
   // Transform cache available before the element is mounted
   let _cache: StyleProperties | undefined
   // Local target cache as we need to resolve the element from PermissiveTarget
-  let _target: MotionTarget = undefined
+  let _target: MotionTarget
   // Create a reactive style object
   const { state, style } = reactiveStyle()
 

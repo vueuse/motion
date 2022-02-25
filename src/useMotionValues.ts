@@ -1,7 +1,9 @@
 import { tryOnUnmounted } from '@vueuse/shared'
-import { del as __del, Ref, ref, set as __set } from 'vue-demi'
-import { getMotionValue, MotionValue } from './motionValue'
-import { MotionProperties, MotionValuesMap } from './types'
+import type { Ref } from 'vue-demi'
+import { del as __del, set as __set, ref } from 'vue-demi'
+import type { MotionValue } from './motionValue'
+import { getMotionValue } from './motionValue'
+import type { MotionProperties, MotionValuesMap } from './types'
 const { isArray } = Array
 
 export function useMotionValues() {

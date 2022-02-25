@@ -1,4 +1,4 @@
-import { Variant } from './../types/variants'
+import type { Variant } from './../types/variants'
 
 /**
  * A list of all transformable axes. We'll use this list to generated a version
@@ -54,11 +54,9 @@ export function splitValues(variant: Variant) {
   const style = {}
 
   Object.entries(variant).forEach(([key, value]) => {
-    if (isTransformProp(key) || isTransformOriginProp(key)) {
+    if (isTransformProp(key) || isTransformOriginProp(key))
       transform[key] = value
-    } else {
-      style[key] = value
-    }
+    else style[key] = value
   })
 
   return { transform, style }

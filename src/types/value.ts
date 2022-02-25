@@ -1,4 +1,6 @@
-export type StopAnimation = { stop: () => void }
+export interface StopAnimation {
+  stop: () => void
+}
 
 export type Transformer<T> = (v: T) => T
 

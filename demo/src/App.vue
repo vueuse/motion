@@ -7,7 +7,9 @@
     </div>
 
     <template v-if="!sandbox">
-      <h1 class="flex items-center justify-center text-3xl font-bold">Delay</h1>
+      <h1 class="flex items-center justify-center text-3xl font-bold">
+        Delay
+      </h1>
 
       <Delay class="mt-6 mb-6" />
 

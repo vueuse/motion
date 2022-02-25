@@ -1,10 +1,11 @@
-import { Fn, tryOnUnmounted } from '@vueuse/core'
+import type { Fn } from '@vueuse/core'
+import { tryOnUnmounted } from '@vueuse/core'
 import { ref } from 'vue-demi'
 import { registerEventListeners } from './features/eventListeners'
 import { registerLifeCycleHooks } from './features/lifeCycleHooks'
 import { registerVariantsSync } from './features/syncVariants'
 import { registerVisibilityHooks } from './features/visibilityHooks'
-import { MotionInstance, MotionVariants, UseMotionOptions } from './types'
+import type { MotionInstance, MotionVariants, UseMotionOptions } from './types'
 
 /**
  * A Composable executing resolved variants features from variants declarations.

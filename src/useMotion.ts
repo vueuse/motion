@@ -1,6 +1,7 @@
 import { watch } from 'vue-demi'
-import { MaybeRef, tryOnUnmounted } from '@vueuse/core'
-import {
+import type { MaybeRef } from '@vueuse/core'
+import { tryOnUnmounted } from '@vueuse/core'
+import type {
   MotionInstance,
   MotionVariants,
   PermissiveTarget,
@@ -43,14 +44,15 @@ export function useMotion<T extends MotionVariants>(
     state,
     motionProperties,
     ...controls,
-    stop: (force: boolean = false) => {},
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    stop: (force = false) => {},
   }
 
   // Bind features
   const { stop: stopMotionFeatures } = useMotionFeatures(instance, options)
 
   // Instance cleanup function
-  instance.stop = (force: boolean = false) => {
+  instance.stop = (force = false) => {
     const _stop = () => {
       instance.stopTransitions()
       stopMotionProperties()
@@ -58,7 +60,7 @@ export function useMotion<T extends MotionVariants>(
     }
 
     // Check if leave variant exist, if so wait for the animation to end before cleaning up
-    if (!force && variants.value && variants.value['leave']) {
+    if (!force && variants.value && (variants.value as MotionVariants).leave) {
       const _stopWatch = watch(instance.isAnimating, (newVal) => {
         if (!newVal) {
           _stopWatch()

@@ -1,6 +1,6 @@
-import { Fn, MaybeRef, VueInstance } from '@vueuse/core'
-import { Ref, UnwrapRef } from 'vue-demi'
-import { MotionProperties, MotionVariants, Variant } from './variants'
+import type { Fn, MaybeRef, VueInstance } from '@vueuse/core'
+import type { Ref, UnwrapRef } from 'vue-demi'
+import type { MotionProperties, MotionVariants, Variant } from './variants'
 
 export type PermissiveTarget = VueInstance | MotionTarget
 
@@ -15,14 +15,14 @@ export interface MotionInstance<T = MotionVariants> extends MotionControls {
   stop: (force?: boolean) => void
 }
 
-export type UseMotionOptions = {
+export interface UseMotionOptions {
   syncVariants?: boolean
   lifeCycleHooks?: boolean
   visibilityHooks?: boolean
   eventListeners?: boolean
 }
 
-export type MotionControls = {
+export interface MotionControls {
   /**
    * Apply a variant declaration and execute the resolved transitions.
    *
@@ -52,7 +52,7 @@ export type MotionControls = {
   isAnimating: any
 }
 
-export type SpringControls = {
+export interface SpringControls {
   /**
    * Apply new values with transitions.
    *
@@ -73,9 +73,7 @@ export type SpringControls = {
   values: MotionProperties
 }
 
-export type MotionInstanceBindings<T = MotionVariants> = {
-  [key: string]: MotionInstance<T>
-}
+export type MotionInstanceBindings<T> = Record<string, MotionInstance<T>>
 
 declare module '@vue/runtime-core' {
   export interface ComponentCustomProperties {

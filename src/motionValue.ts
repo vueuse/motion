@@ -1,6 +1,7 @@
-import sync, { FrameData, getFrameData } from 'framesync'
+import type { FrameData } from 'framesync'
+import sync, { getFrameData } from 'framesync'
 import { velocityPerSecond } from 'popmotion'
-import { StartAnimation, Subscriber } from './types'
+import type { StartAnimation, Subscriber } from './types'
 import { SubscriptionManager } from './utils/subscription-manager'
 
 const isFloat = (value: any): value is string => {
@@ -24,12 +25,12 @@ export class MotionValue<V = any> {
   /**
    * Duration, in milliseconds, since last updating frame.
    */
-  private timeDelta: number = 0
+  private timeDelta = 0
 
   /**
    * Timestamp of the last time this `MotionValue` was updated.
    */
-  private lastUpdated: number = 0
+  private lastUpdated = 0
 
   /**
    * Functions to notify when the `MotionValue` updates.
@@ -130,9 +131,9 @@ export class MotionValue<V = any> {
    */
   getVelocity() {
     // This could be isFloat(this.prev) && isFloat(this.current), but that would be wasteful
+    // These casts could be avoided if parseFloat would be typed better
     return this.canTrackVelocity
-      ? // These casts could be avoided if parseFloat would be typed better
-        velocityPerSecond(
+      ? velocityPerSecond(
           parseFloat(this.current as any) - parseFloat(this.prev as any),
           this.timeDelta,
         )
@@ -151,9 +152,7 @@ export class MotionValue<V = any> {
   private velocityCheck = ({ timestamp }: FrameData) => {
     if (!this.canTrackVelocity) this.canTrackVelocity = isFloat(this.current)
 
-    if (timestamp !== this.lastUpdated) {
-      this.prev = this.current
-    }
+    if (timestamp !== this.lastUpdated) this.prev = this.current
   }
 
   /**

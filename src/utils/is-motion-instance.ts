@@ -1,6 +1,6 @@
 import { isFunction } from '@vueuse/shared'
 import { isRef } from 'vue-demi'
-import { MotionInstance } from '../types'
+import type { MotionInstance } from '../types'
 
 /**
  * Check whether an object is a Motion Instance or not.
