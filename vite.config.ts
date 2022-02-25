@@ -1,4 +1,5 @@
-import { resolve } from 'path'
+import { join, resolve } from 'path'
+import { writeFileSync } from 'fs'
 import vue from '@vitejs/plugin-vue'
 import { defineConfig } from 'vite'
 import WindiCSS from 'vite-plugin-windicss'
@@ -8,7 +9,21 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ['vue-demi'],
   },
-  plugins: [vue(), WindiCSS()],
+  plugins: [
+    vue(),
+    WindiCSS(),
+    {
+      name: 'add-common-js-package-plugin',
+      writeBundle(options) {
+        if (options.format === 'cjs') {
+          writeFileSync(
+            join(options.dir, 'package.json'),
+            JSON.stringify({ type: 'commonjs' }),
+          )
+        }
+      },
+    },
+  ],
   resolve: {
     alias: [
       {

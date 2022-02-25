@@ -77,7 +77,7 @@ export type MotionInstanceBindings<T> = Record<string, MotionInstance<T>>
 
 declare module '@vue/runtime-core' {
   export interface ComponentCustomProperties {
-    $motions?: MotionInstanceBindings
+    $motions?: MotionInstanceBindings<any>
   }
 }
 

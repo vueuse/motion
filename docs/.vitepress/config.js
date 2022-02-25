@@ -1,6 +1,3 @@
-// @ts-check
-// import { transform as motionTransform } from '../../src/ssr/index'
-
 /**
  * @type {import('vitepress').UserConfig}
  */

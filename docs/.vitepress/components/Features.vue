@@ -8,16 +8,18 @@
               v-for="(feature, index) in features"
               v-motion="{
                 initial: {
-        y: 200,
-        opacity: 0,
-      },
-      enter: {
-        y: 0,
-        opacity: 1,
-      }
+                  y: 200,
+                  opacity: 0,
+                },
+                enter: {
+                  y: 0,
+                  opacity: 1,
+                  transition: {
+                    delay: index * 100
+                  }
+                }
               }"
               :key="index"
-              
               class="feature"
             >
               <h2 class="title" v-if="feature.title">

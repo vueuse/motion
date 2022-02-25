@@ -22,10 +22,7 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
+    ".": "./dist/index.mjs"
   },
   "scripts": {
     "build": "unbuild",
@@ -85,7 +82,7 @@
     "vite": "2.8.4",
     "vite-plugin-windicss": "^1.7.1",
     "vitepress": "^0.22.3",
-    "vitest": "^0.5.3",
+    "vitest": "^0.5.5",
     "vue": "^3.2.31",
     "yorkie": "^2.0.0"
   },
