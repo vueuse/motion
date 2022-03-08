@@ -7,6 +7,7 @@ const directivePropsKeys = [
   'enter',
   'leave',
   'visible',
+  'appear',
   'hovered',
   'tapped',
   'focused',
