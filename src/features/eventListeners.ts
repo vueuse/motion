@@ -134,7 +134,7 @@ export function registerEventListeners<T extends MotionVariants>({
   const _stopSync = watch(computedProperties, apply)
 
   const stop = () => {
-    _eventListeners.forEach((stopFn) => stopFn())
+    _eventListeners.forEach(stopFn => stopFn())
     _stopSync()
   }
 

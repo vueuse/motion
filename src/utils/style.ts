@@ -18,7 +18,7 @@ type ValueTypeMap = Record<string, ValueType>
  */
 export const auto: ValueType = {
   test: (v: any) => v === 'auto',
-  parse: (v) => v,
+  parse: v => v,
 }
 
 /**

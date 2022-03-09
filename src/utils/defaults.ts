@@ -74,9 +74,10 @@ export const getDefaultTransition = (
 
   if (isKeyframesTarget(to)) {
     transitionFactory = keyframes as TransitionFactory
-  } else {
-    transitionFactory =
-      defaultTransitions[valueKey] || defaultTransitions.default
+  }
+  else {
+    transitionFactory
+      = defaultTransitions[valueKey] || defaultTransitions.default
   }
 
   return { to, ...transitionFactory(to) } as PopmotionTransitionProps

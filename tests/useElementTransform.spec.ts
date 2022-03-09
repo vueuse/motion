@@ -32,7 +32,7 @@ describe('useElementTransform', () => {
     expect(transform.scale).toBe(1.2)
   })
 
-  it('mutates element properties', async () => {
+  it('mutates element properties', async() => {
     const element = getElementRef()
 
     const { transform } = useElementTransform(element)

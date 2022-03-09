@@ -19,7 +19,7 @@ describe('useMotionTransitions', () => {
     expect(Object.values(motionValues.value).length).toBe(1)
   })
 
-  it('clears motion values on stop', async () => {
+  it('clears motion values on stop', async() => {
     const { push, motionValues, stop } = useMotionTransitions()
 
     push('x', 0, { x: 25 }, defaultTransition)

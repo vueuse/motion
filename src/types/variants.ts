@@ -48,15 +48,15 @@ export interface TransformProperties {
  */
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 export type StyleProperties = Omit<
-  CSSProperties,
-  | 'transition'
-  | 'rotate'
-  | 'scale'
-  | 'perspective'
-  | 'transform'
-  | 'transformBox'
-  | 'transformOrigin'
-  | 'transformStyle'
+CSSProperties,
+| 'transition'
+| 'rotate'
+| 'scale'
+| 'perspective'
+| 'transform'
+| 'transformBox'
+| 'transformOrigin'
+| 'transformStyle'
 >
 
 /**
@@ -72,7 +72,7 @@ export type MotionProperties =
  * Permissive properties for useSpring
  */
 export type PermissiveMotionProperties = MotionProperties &
-  Record<string, ResolvedSingleTarget>
+Record<string, ResolvedSingleTarget>
 
 /**
  * Variant

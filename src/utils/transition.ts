@@ -57,7 +57,8 @@ export const easingDefinitionToFunction = (definition: Easing) => {
   if (Array.isArray(definition)) {
     const [x1, y1, x2, y2] = definition
     return cubicBezier(x1, y1, x2, y2)
-  } else if (typeof definition === 'string') {
+  }
+  else if (typeof definition === 'string') {
     return easingLookup[definition]
   }
 
@@ -92,9 +93,9 @@ export const isAnimatable = (key: string, value: ResolvedValueTarget) => {
   if (typeof value === 'number' || Array.isArray(value)) return true
 
   if (
-    typeof value === 'string' && // It's animatable if we have a string
-    complex.test(value) && // And it contains numbers and/or colors
-    !value.startsWith('url(') // Unless it starts with "url("
+    typeof value === 'string' // It's animatable if we have a string
+    && complex.test(value) // And it contains numbers and/or colors
+    && !value.startsWith('url(') // Unless it starts with "url("
   )
     return true
 
@@ -130,7 +131,7 @@ export function convertTransitionToAnimationOptions<T>({
 
   // Map easing names to Popmotion's easing functions
   if (ease) {
-    ;(options as any).ease = isEasingArray(ease)
+    (options as any).ease = isEasingArray(ease)
       ? ease.map(easingDefinitionToFunction)
       : easingDefinitionToFunction(ease)
   }
@@ -217,8 +218,8 @@ export function getAnimation(
   const valueTransition = getValueTransition(transition, key)
 
   // Get origin
-  let origin =
-    valueTransition.from === null || valueTransition.from === undefined
+  let origin
+    = valueTransition.from === null || valueTransition.from === undefined
       ? value.get()
       : valueTransition.from
 
@@ -244,24 +245,24 @@ export function getAnimation(
       onUpdate: (v: Animatable) => value.set(v),
     }
 
-    return valueTransition.type === 'inertia' ||
-      valueTransition.type === 'decay'
+    return valueTransition.type === 'inertia'
+      || valueTransition.type === 'decay'
       ? inertia({ ...options, ...valueTransition })
       : animate({
-          ...getPopmotionAnimationOptions(valueTransition, options, key),
-          onUpdate: (v: any) => {
-            options.onUpdate(v)
+        ...getPopmotionAnimationOptions(valueTransition, options, key),
+        onUpdate: (v: any) => {
+          options.onUpdate(v)
 
-            if (valueTransition.onUpdate) valueTransition.onUpdate(v)
-          },
-          onComplete: () => {
-            if (transition.onComplete) transition.onComplete()
+          if (valueTransition.onUpdate) valueTransition.onUpdate(v)
+        },
+        onComplete: () => {
+          if (transition.onComplete) transition.onComplete()
 
-            if (onComplete) onComplete()
+          if (onComplete) onComplete()
 
-            if (complete) complete()
-          },
-        })
+          if (complete) complete()
+        },
+      })
   }
 
   /**
@@ -279,9 +280,9 @@ export function getAnimation(
     return { stop: () => {} }
   }
 
-  return !isOriginAnimatable ||
-    !isTargetAnimatable ||
-    valueTransition.type === false
+  return !isOriginAnimatable
+    || !isTargetAnimatable
+    || valueTransition.type === false
     ? set
     : start
 }
