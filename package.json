@@ -72,7 +72,6 @@
     "eslint": "^8.9.0",
     "happy-dom": "^2.41.0",
     "lint-staged": "^12.3.4",
-    "prettier": "^2.5.1",
     "prism-theme-vars": "^0.2.2",
     "prismjs": "^1.27.0",
     "style-value-types": "^5.1.0",
@@ -91,12 +90,10 @@
   },
   "lint-staged": {
     "*.js": [
-      "eslint --fix",
-      "prettier --write"
+      "eslint --fix"
     ],
     "*.ts?(x)": [
-      "eslint --fix",
-      "prettier --parser=typescript --write"
+      "eslint --fix"
     ]
   }
 }

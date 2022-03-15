@@ -18,10 +18,12 @@ export function registerVisibilityHooks<T extends MotionVariants>({
         if (_variants.visible) {
           if (isIntersecting) variant.value = 'visible'
           else variant.value = 'initial'
-        } else if (_variants.visibleOnce) {
+        }
+        else if (_variants.visibleOnce) {
           if (isIntersecting) {
             if (variant.value !== 'visibleOnce') variant.value = 'visibleOnce'
-          } else {
+          }
+          else {
             if (!variant.value) variant.value = 'initial'
           }
         }
