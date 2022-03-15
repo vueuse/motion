@@ -34,8 +34,8 @@ export function useMotionControls<T extends MotionVariants>(
     motionValues,
     (newVal) => {
       // Go through every motion value, and check if any is animating
-      isAnimating.value =
-        Object.values(newVal).filter((value) => value.isAnimating()).length > 0
+      isAnimating.value
+        = Object.values(newVal).filter(value => value.isAnimating()).length > 0
     },
     {
       immediate: true,
@@ -66,8 +66,8 @@ export function useMotionControls<T extends MotionVariants>(
               key as keyof MotionProperties,
               value,
               motionProperties,
-              (variant as Variant).transition ||
-                getDefaultTransition(key, variant[key]),
+              (variant as Variant).transition
+                || getDefaultTransition(key, variant[key]),
               resolve,
             )
           })
@@ -91,7 +91,7 @@ export function useMotionControls<T extends MotionVariants>(
     })
   }
 
-  const leave = async (done: () => void) => {
+  const leave = async(done: () => void) => {
     let leaveVariant: Variant | undefined
 
     if (_variants) {

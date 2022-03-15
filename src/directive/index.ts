@@ -61,8 +61,8 @@ export const directive = (
     bind: register,
     unbind: unregister,
     // Vue 3 SSR
-    getSSRProps(binding) {
-      const { initial = {} } = binding.value
+    getSSRProps(binding, el) {
+      const { initial } = binding.value || el.props || {}
 
       // No initial
       if (!initial || Object.keys(initial).length === 0) return

@@ -49,8 +49,8 @@ export function reactiveTransform(
       // Loop on defined TransformProperties state keys
       for (const [key, value] of Object.entries(newVal)) {
         if (
-          enableHardwareAcceleration &&
-          (key === 'x' || key === 'y' || key === 'z')
+          enableHardwareAcceleration
+          && (key === 'x' || key === 'y' || key === 'z')
         )
           continue
 

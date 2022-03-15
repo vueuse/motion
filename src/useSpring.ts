@@ -38,7 +38,7 @@ export function useSpring(
               from: motionValue.get(),
               to: value,
               velocity: motionValue.getVelocity(),
-              onUpdate: (v) => motionValue.set(v),
+              onUpdate: v => motionValue.set(v),
               onComplete,
               ...options,
             })

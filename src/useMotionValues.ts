@@ -24,11 +24,13 @@ export function useMotionValues() {
       if (isArray(keys)) {
         // If `keys` are an array, loop on specified keys and destroy them
         keys.forEach(destroyKey)
-      } else {
+      }
+      else {
         // If `keys` is a string, destroy the specified one
         destroyKey(keys)
       }
-    } else {
+    }
+    else {
       // No keys specified, destroy all animations
       Object.keys(motionValues.value).forEach(destroyKey)
     }

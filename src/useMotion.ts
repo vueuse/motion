@@ -27,8 +27,8 @@ export function useMotion<T extends MotionVariants>(
   options?: UseMotionOptions,
 ) {
   // Reactive styling and transform
-  const { motionProperties, stop: stopMotionProperties } =
-    useMotionProperties(target)
+  const { motionProperties, stop: stopMotionProperties }
+    = useMotionProperties(target)
 
   // Variants manager
   const { variant, state } = useMotionVariants<T>(variants)
@@ -67,7 +67,8 @@ export function useMotion<T extends MotionVariants>(
           _stop()
         }
       })
-    } else {
+    }
+    else {
       _stop()
     }
   }

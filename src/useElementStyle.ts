@@ -33,10 +33,10 @@ export function useElementStyle(
       // Loop on style keys
       for (const key of Object.keys(valueTypes)) {
         if (
-          el.style[key] === null ||
-          el.style[key] === '' ||
-          isTransformProp(key) ||
-          isTransformOriginProp(key)
+          el.style[key] === null
+          || el.style[key] === ''
+          || isTransformProp(key)
+          || isTransformOriginProp(key)
         )
           continue
 

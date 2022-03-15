@@ -23,8 +23,8 @@ export const resolveVariants = (
   const target = node.props
     ? node.props // @ts-expect-error - Compatibility (Vue 3)
     : node.data && node.data.attrs // @ts-expect-error - Compatibility (Vue 2)
-    ? node.data.attrs
-    : {}
+      ? node.data.attrs
+      : {}
 
   if (target) {
     if (target.variants && isObject(target.variants)) {

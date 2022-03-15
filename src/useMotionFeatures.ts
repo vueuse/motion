@@ -57,7 +57,7 @@ export function useMotionFeatures<T extends MotionVariants>(
   }
 
   // Stop all the registered features
-  const stop = () => toStop.value.forEach((_stop) => _stop())
+  const stop = () => toStop.value.forEach(_stop => _stop())
 
   // Enforce cleanup on unmounted
   tryOnUnmounted(stop)

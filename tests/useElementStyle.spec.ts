@@ -32,7 +32,7 @@ describe('useElementStyle', () => {
     expect(style.backgroundColor).toBe('blue')
   })
 
-  it('mutates element properties', async () => {
+  it('mutates element properties', async() => {
     const element = getElementRef()
 
     const { style } = useElementStyle(element)
