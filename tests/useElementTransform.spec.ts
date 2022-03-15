@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { nextTick, ref } from 'vue-demi'
+import { describe, expect, it } from 'vitest'
 import { useElementTransform } from '../src'
-import { describe, it, expect } from 'vitest'
 
 const TestComponent = {
   template: '<div>Hello world</div>',
@@ -32,7 +32,7 @@ describe('useElementTransform', () => {
     expect(transform.scale).toBe(1.2)
   })
 
-  it('mutates element properties', async () => {
+  it('mutates element properties', async() => {
     const element = getElementRef()
 
     const { transform } = useElementTransform(element)

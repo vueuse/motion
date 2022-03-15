@@ -1,6 +1,6 @@
 import { isNumber, isObject } from '@vueuse/core'
-import { Ref, VNode } from 'vue-demi'
-import { MotionVariants } from '../types'
+import type { Ref, VNode } from 'vue-demi'
+import type { MotionVariants } from '../types'
 
 const directivePropsKeys = [
   'initial',
@@ -15,30 +15,24 @@ const directivePropsKeys = [
 ]
 
 export const resolveVariants = (
-  node: VNode<
-    any,
-    HTMLElement | SVGElement,
-    {
-      [key: string]: any
-    }
-  >,
+  node: VNode<any, HTMLElement | SVGElement, Record<string, any>>,
   variantsRef: Ref<MotionVariants>,
 ) => {
   // This is done to achieve compat with Vue 2 & 3
   // node.props = Vue 3 element props location
   // node.data.attrs = Vue 2 element props location
   const target = node.props
-    ? node.props // @ts-expect-error
-    : node.data && node.data.attrs // @ts-expect-error
-    ? node.data.attrs
-    : {}
+    ? node.props // @ts-expect-error - Compatibility (Vue 3)
+    : node.data && node.data.attrs // @ts-expect-error - Compatibility (Vue 2)
+      ? node.data.attrs
+      : {}
 
   if (target) {
-    if (target['variants'] && isObject(target['variants'])) {
+    if (target.variants && isObject(target.variants)) {
       // If variant are passed through a single object reference, initialize with it
       variantsRef.value = {
         ...variantsRef.value,
-        ...target['variants'],
+        ...target.variants,
       }
     }
 
@@ -50,9 +44,8 @@ export const resolveVariants = (
 
           if (variantsRef && variantsRef.value) {
             if (variantsRef.value.enter) {
-              if (!variantsRef.value.enter.transition) {
+              if (!variantsRef.value.enter.transition)
                 variantsRef.value.enter.transition = {}
-              }
 
               variantsRef.value.enter.transition = {
                 ...variantsRef.value.enter.transition,
@@ -61,9 +54,8 @@ export const resolveVariants = (
             }
 
             if (variantsRef.value.visible) {
-              if (!variantsRef.value.visible.transition) {
+              if (!variantsRef.value.visible.transition)
                 variantsRef.value.visible.transition = {}
-              }
 
               variantsRef.value.visible.transition = {
                 ...variantsRef.value.visible.transition,
@@ -87,13 +79,10 @@ export const resolveVariants = (
         return
       }
 
-      if (key === 'visible-once') {
-        key = 'visibleOnce'
-      }
+      if (key === 'visible-once') key = 'visibleOnce'
 
       if (target && target[key] && isObject(target[key])) {
         variantsRef.value[key] = target[key]
-      }
     })
   }
 }

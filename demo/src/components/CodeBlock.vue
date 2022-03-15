@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, nextTick, defineProps, watch } from 'vue-demi'
+import { defineProps, nextTick, ref, watch } from 'vue-demi'
 import Prism from 'prismjs'
 
 const props = defineProps({
@@ -31,9 +31,8 @@ const preRender = (codeContent: string) => {
 }
 
 const render = () => {
-  if (!Prism.languages[props.language]) {
+  if (!Prism.languages[props.language])
     require(`prismjs/components/prism-${props.language}`)
-  }
 
   nextTick(() => {
     if (!code) return

@@ -26,7 +26,9 @@
 
     <div class="absolute cursor-pointer select-none top-6 right-8">
       <div class="flex flex-row items-center justify-end">
-        <button class="ml-4" @click="replay">🔃</button>
+        <button class="ml-4" @click="replay">
+          🔃
+        </button>
         <slot name="controls" />
       </div>
     </div>
@@ -36,9 +38,9 @@
 </template>
 
 <script setup="props" lang="ts">
-import CodeBlock from '../components/CodeBlock.vue'
 import { useToggle } from '@vueuse/core'
 import { nextTick } from 'vue'
+import CodeBlock from '../components/CodeBlock.vue'
 
 defineProps({
   text: String,

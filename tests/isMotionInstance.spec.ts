@@ -1,7 +1,7 @@
 import { ref } from '@vue/reactivity'
 import { mount } from '@vue/test-utils'
+import { describe, expect, it } from 'vitest'
 import { isMotionInstance, useMotion } from '../src'
-import { describe, it, expect } from 'vitest'
 
 const TestComponent = {
   template: '<div>Hello world</div>',

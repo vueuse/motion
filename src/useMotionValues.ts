@@ -1,7 +1,9 @@
 import { tryOnUnmounted } from '@vueuse/shared'
-import { del as __del, Ref, ref, set as __set } from 'vue-demi'
-import { getMotionValue, MotionValue } from './motionValue'
-import { MotionProperties, MotionValuesMap } from './types'
+import type { Ref } from 'vue-demi'
+import { del as __del, set as __set, ref } from 'vue-demi'
+import type { MotionValue } from './motionValue'
+import { getMotionValue } from './motionValue'
+import type { MotionProperties, MotionValuesMap } from './types'
 const { isArray } = Array
 
 export function useMotionValues() {
@@ -22,11 +24,13 @@ export function useMotionValues() {
       if (isArray(keys)) {
         // If `keys` are an array, loop on specified keys and destroy them
         keys.forEach(destroyKey)
-      } else {
+      }
+      else {
         // If `keys` is a string, destroy the specified one
         destroyKey(keys)
       }
-    } else {
+    }
+    else {
       // No keys specified, destroy all animations
       Object.keys(motionValues.value).forEach(destroyKey)
     }

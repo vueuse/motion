@@ -1,6 +1,6 @@
+import type { AnimationOptions, Easing } from 'popmotion'
 import {
   animate,
-  AnimationOptions,
   anticipate,
   backIn,
   backInOut,
@@ -15,13 +15,12 @@ import {
   easeIn,
   easeInOut,
   easeOut,
-  Easing,
   inertia,
   linear,
 } from 'popmotion'
 import { complex } from 'style-value-types'
-import { MotionValue } from '../motionValue'
-import {
+import type { MotionValue } from '../motionValue'
+import type {
   PermissiveTransitionDefinition,
   ResolvedValueTarget,
   StartAnimation,
@@ -58,7 +57,8 @@ export const easingDefinitionToFunction = (definition: Easing) => {
   if (Array.isArray(definition)) {
     const [x1, y1, x2, y2] = definition
     return cubicBezier(x1, y1, x2, y2)
-  } else if (typeof definition === 'string') {
+  }
+  else if (typeof definition === 'string') {
     return easingLookup[definition]
   }
 
@@ -93,12 +93,11 @@ export const isAnimatable = (key: string, value: ResolvedValueTarget) => {
   if (typeof value === 'number' || Array.isArray(value)) return true
 
   if (
-    typeof value === 'string' && // It's animatable if we have a string
-    complex.test(value) && // And it contains numbers and/or colors
-    !value.startsWith('url(') // Unless it starts with "url("
-  ) {
+    typeof value === 'string' // It's animatable if we have a string
+    && complex.test(value) // And it contains numbers and/or colors
+    && !value.startsWith('url(') // Unless it starts with "url("
+  )
     return true
-  }
 
   return false
 }
@@ -128,19 +127,17 @@ export function convertTransitionToAnimationOptions<T>({
 }: PermissiveTransitionDefinition): AnimationOptions<T> {
   const options: AnimationOptions<T> = { ...transition }
 
-  if (times) options['offset'] = times
+  if (times) (options as any).offset = times
 
   // Map easing names to Popmotion's easing functions
   if (ease) {
-    options['ease'] = isEasingArray(ease)
+    (options as any).ease = isEasingArray(ease)
       ? ease.map(easingDefinitionToFunction)
       : easingDefinitionToFunction(ease)
   }
 
   // Map delay to elapsed from Popmotion
-  if (delay) {
-    options['elapsed'] = -delay
-  }
+  if (delay) options.elapsed = -delay
 
   return options
 }
@@ -157,9 +154,8 @@ export function getPopmotionAnimationOptions(
   options: any,
   key: string,
 ) {
-  if (Array.isArray(options.to)) {
+  if (Array.isArray(options.to))
     if (!transition.duration) transition.duration = 800
-  }
 
   hydrateKeyframes(options)
 
@@ -183,11 +179,13 @@ export function getPopmotionAnimationOptions(
  * if any options are left.
  */
 export function isTransitionDefined({
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   delay,
   repeat,
   repeatType,
   repeatDelay,
   from,
+  /* eslint-enable */
   ...transition
 }: Transition) {
   return !!Object.keys(transition).length
@@ -203,7 +201,7 @@ export function isTransitionDefined({
  * @param key
  */
 export function getValueTransition(transition: Transition, key: string) {
-  return transition[key] || transition['default'] || transition
+  return transition[key] || (transition as any).default || transition
 }
 
 /**
@@ -220,8 +218,8 @@ export function getAnimation(
   const valueTransition = getValueTransition(transition, key)
 
   // Get origin
-  let origin =
-    valueTransition.from === null || valueTransition.from === undefined
+  let origin
+    = valueTransition.from === null || valueTransition.from === undefined
       ? value.get()
       : valueTransition.from
 
@@ -230,9 +228,8 @@ export function getAnimation(
 
   // If we're trying to animate from "none", try and get an animatable version
   // of the target. This could be improved to work both ways.
-  if (origin === 'none' && isTargetAnimatable && typeof target === 'string') {
+  if (origin === 'none' && isTargetAnimatable && typeof target === 'string')
     origin = getAnimatableNone(key, target)
-  }
 
   // Is origin animatable
   const isOriginAnimatable = isAnimatable(key, origin)
@@ -248,24 +245,24 @@ export function getAnimation(
       onUpdate: (v: Animatable) => value.set(v),
     }
 
-    return valueTransition.type === 'inertia' ||
-      valueTransition.type === 'decay'
+    return valueTransition.type === 'inertia'
+      || valueTransition.type === 'decay'
       ? inertia({ ...options, ...valueTransition })
       : animate({
-          ...getPopmotionAnimationOptions(valueTransition, options, key),
-          onUpdate: (v: any) => {
-            options.onUpdate(v)
+        ...getPopmotionAnimationOptions(valueTransition, options, key),
+        onUpdate: (v: any) => {
+          options.onUpdate(v)
 
-            if (valueTransition.onUpdate) valueTransition.onUpdate(v)
-          },
-          onComplete: () => {
-            if (transition.onComplete) transition.onComplete()
+          if (valueTransition.onUpdate) valueTransition.onUpdate(v)
+        },
+        onComplete: () => {
+          if (transition.onComplete) transition.onComplete()
 
-            if (onComplete) onComplete()
+          if (onComplete) onComplete()
 
-            if (complete) complete()
-          },
-        })
+          if (complete) complete()
+        },
+      })
   }
 
   /**
@@ -283,9 +280,9 @@ export function getAnimation(
     return { stop: () => {} }
   }
 
-  return !isOriginAnimatable ||
-    !isTargetAnimatable ||
-    valueTransition.type === false
+  return !isOriginAnimatable
+    || !isTargetAnimatable
+    || valueTransition.type === false
     ? set
     : start
 }

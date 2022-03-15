@@ -46,9 +46,9 @@
 
 <script setup="props" lang="ts">
 import { computed } from 'vue'
-import DemoBox from '../components/DemoBox.vue'
 import { useMotions } from '@vueuse/motion'
 import { useToggle } from '@vueuse/core'
+import DemoBox from '../components/DemoBox.vue'
 import transitions from '../examples/transitions'
 
 const [show, toggleShow] = useToggle(true)

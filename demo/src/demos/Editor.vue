@@ -34,15 +34,15 @@
     </template>
 
     <div>
-      <input type="range" max="360" min="0" v-model="input" step="1" />
+      <input v-model="input" type="range" max="360" min="0" step="1">
     </div>
   </DemoBox>
 </template>
 
 <script setup="props" lang="ts">
-import DemoBox from '../components/DemoBox.vue'
 import { useMotions } from '@vueuse/motion'
-import { ref, watch, computed } from 'vue'
+import { computed, ref, watch } from 'vue'
+import DemoBox from '../components/DemoBox.vue'
 import basic from '../examples/basic'
 
 const motions = useMotions()

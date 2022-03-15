@@ -1,7 +1,7 @@
 import { mount } from '@vue/test-utils'
 import { nextTick, ref } from 'vue-demi'
+import { describe, expect, it } from 'vitest'
 import { useElementStyle } from '../src'
-import { describe, it, expect } from 'vitest'
 
 const TestComponent = {
   template: '<div>Hello world</div>',
@@ -32,7 +32,7 @@ describe('useElementStyle', () => {
     expect(style.backgroundColor).toBe('blue')
   })
 
-  it('mutates element properties', async () => {
+  it('mutates element properties', async() => {
     const element = getElementRef()
 
     const { style } = useElementStyle(element)

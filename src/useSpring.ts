@@ -1,6 +1,6 @@
-import { MaybeRef } from '@vueuse/shared'
+import type { MaybeRef } from '@vueuse/shared'
 import { animate } from 'popmotion'
-import {
+import type {
   MotionProperties,
   PermissiveMotionProperties,
   PermissiveTarget,
@@ -38,7 +38,7 @@ export function useSpring(
               from: motionValue.get(),
               to: value,
               velocity: motionValue.getVelocity(),
-              onUpdate: (v) => motionValue.set(v),
+              onUpdate: v => motionValue.set(v),
               onComplete,
               ...options,
             })

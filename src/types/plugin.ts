@@ -1,8 +1,6 @@
-import { MotionVariants } from './variants'
+import type { MotionVariants } from './variants'
 
 export interface MotionPluginOptions {
-  directives?: {
-    [key: string]: MotionVariants
-  }
+  directives?: Record<string, MotionVariants>
   excludePresets?: boolean
 }

@@ -20,20 +20,6 @@ export default defineBuildConfig({
       format: 'cjs',
       ext: 'cjs',
     },
-    {
-      input: 'src/ssr/index.ts',
-      outDir: 'dist',
-      name: 'ssr',
-      format: 'esm',
-      ext: 'mjs',
-    },
-    {
-      input: 'src/ssr/index.ts',
-      outDir: 'dist',
-      name: 'ssr',
-      format: 'cjs',
-      ext: 'cjs',
-    },
   ],
   externals: [
     'vue',

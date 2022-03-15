@@ -1,12 +1,12 @@
 import { px } from 'style-value-types'
 import { reactive, ref, watch } from 'vue-demi'
-import { TransformProperties } from './types'
+import type { TransformProperties } from './types'
 import { getValueAsType, getValueType } from './utils/style'
 
 /**
  * Aliases translate key for simpler API integration.
  */
-const translateAlias: { [key: string]: string } = {
+const translateAlias: Record<string, string> = {
   x: 'translateX',
   y: 'translateY',
   z: 'translateZ',
@@ -20,7 +20,7 @@ const translateAlias: { [key: string]: string } = {
  */
 export function reactiveTransform(
   props: TransformProperties = {},
-  enableHardwareAcceleration: boolean = true,
+  enableHardwareAcceleration = true,
 ) {
   // Reactive TransformProperties object
   const state = reactive<TransformProperties>({ ...props })
@@ -49,8 +49,8 @@ export function reactiveTransform(
       // Loop on defined TransformProperties state keys
       for (const [key, value] of Object.entries(newVal)) {
         if (
-          enableHardwareAcceleration &&
-          (key === 'x' || key === 'y' || key === 'z')
+          enableHardwareAcceleration
+          && (key === 'x' || key === 'y' || key === 'z')
         )
           continue
 
@@ -62,9 +62,8 @@ export function reactiveTransform(
         result += `${translateAlias[key] || key}(${valueAsType}) `
       }
 
-      if (enableHardwareAcceleration && !hasHardwareAcceleration) {
-        result += `translateZ(0px) `
-      }
+      if (enableHardwareAcceleration && !hasHardwareAcceleration)
+        result += 'translateZ(0px) '
 
       transform.value = result.trim()
     },

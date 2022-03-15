@@ -1,3 +1,4 @@
+import type { ValueType } from 'style-value-types'
 import {
   alpha,
   color,
@@ -8,19 +9,16 @@ import {
   progressPercentage,
   px,
   scale,
-  ValueType,
 } from 'style-value-types'
 
-interface ValueTypeMap {
-  [key: string]: ValueType
-}
+type ValueTypeMap = Record<string, ValueType>
 
 /**
  * ValueType for "auto"
  */
 export const auto: ValueType = {
   test: (v: any) => v === 'auto',
-  parse: (v) => v,
+  parse: v => v,
 }
 
 /**
