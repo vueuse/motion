@@ -18,7 +18,17 @@ export const fadeVisible: MotionVariants = {
   },
 }
 
+export const fadeVisibleOnce: MotionVariants = {
+  initial: {
+    opacity: 0,
+  },
+  visibleOnce: {
+    opacity: 1,
+  },
+}
+
 export default {
   fade,
   fadeVisible,
+  fadeVisibleOnce,
 }

@@ -1,5 +1,5 @@
-export { fade, fadeVisible } from './fade'
-export { pop, popVisible } from './pop'
+export { fade, fadeVisible, fadeVisibleOnce } from './fade'
+export { pop, popVisible, popVisibleOnce } from './pop'
 export {
   rollBottom,
   rollLeft,
@@ -9,6 +9,10 @@ export {
   rollVisibleLeft,
   rollVisibleRight,
   rollVisibleTop,
+  rollVisibleOnceBottom,
+  rollVisibleOnceLeft,
+  rollVisibleOnceRight,
+  rollVisibleOnceTop,
 } from './roll'
 export {
   slideBottom,
@@ -19,4 +23,8 @@ export {
   slideVisibleLeft,
   slideVisibleRight,
   slideVisibleTop,
+  slideVisibleOnceBottom,
+  slideVisibleOnceLeft,
+  slideVisibleOnceRight,
+  slideVisibleOnceTop,
 } from './slide'

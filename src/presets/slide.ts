@@ -24,6 +24,17 @@ export const slideVisibleLeft: MotionVariants = {
   },
 }
 
+export const slideVisibleOnceLeft: MotionVariants = {
+  initial: {
+    x: -100,
+    opacity: 0,
+  },
+  visibleOnce: {
+    x: 0,
+    opacity: 1,
+  },
+}
+
 // Slide from right
 
 export const slideRight: MotionVariants = {
@@ -43,6 +54,17 @@ export const slideVisibleRight: MotionVariants = {
     opacity: 0,
   },
   visible: {
+    x: 0,
+    opacity: 1,
+  },
+}
+
+export const slideVisibleOnceRight: MotionVariants = {
+  initial: {
+    x: 100,
+    opacity: 0,
+  },
+  visibleOnce: {
     x: 0,
     opacity: 1,
   },
@@ -72,6 +94,17 @@ export const slideVisibleTop: MotionVariants = {
   },
 }
 
+export const slideVisibleOnceTop: MotionVariants = {
+  initial: {
+    y: -100,
+    opacity: 0,
+  },
+  visibleOnce: {
+    y: 0,
+    opacity: 1,
+  },
+}
+
 // Slide from bottom
 
 export const slideBottom: MotionVariants = {
@@ -96,13 +129,28 @@ export const slideVisibleBottom: MotionVariants = {
   },
 }
 
+export const slideVisibleOnceBottom: MotionVariants = {
+  initial: {
+    y: 100,
+    opacity: 0,
+  },
+  visibleOnce: {
+    y: 0,
+    opacity: 1,
+  },
+}
+
 export default {
   slideLeft,
   slideVisibleLeft,
+  slideVisibleOnceLeft,
   slideRight,
   slideVisibleRight,
+  slideVisibleOnceRight,
   slideTop,
   slideVisibleTop,
+  slideVisibleOnceTop,
   slideBottom,
   slideVisibleBottom,
+  slideVisibleOnceBottom,
 }

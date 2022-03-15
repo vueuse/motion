@@ -11,12 +11,27 @@ export function registerVisibilityHooks<T extends MotionVariants>({
   let stop = noop
 
   // Bind intersection observer on target
-  if (_variants && _variants.visible) {
+  if (_variants && (_variants.visible || _variants.visibleOnce)) {
     const { stop: stopObserver } = useIntersectionObserver(
       target,
       ([{ isIntersecting }]) => {
-        if (isIntersecting) variant.value = 'visible'
-        else variant.value = 'initial'
+        if (_variants.visible) {
+          if (isIntersecting) {
+            variant.value = 'visible'
+          } else {
+            variant.value = 'initial'
+          }
+        } else if (_variants.visibleOnce) {
+          if (isIntersecting) {
+            if (variant.value !== 'visibleOnce') {
+              variant.value = 'visibleOnce'
+            }
+          } else {
+            if (!variant.value) {
+              variant.value = 'initial'
+            }
+          }
+        }
       },
     )
 

@@ -16,6 +16,7 @@ import { useMotion } from '@vueuse/motion'
 import {
   fade,
   fadeVisible,
+  fadeVisibleOnce,
   rollBottom,
   rollLeft,
   rollRight,
@@ -24,8 +25,13 @@ import {
   rollVisibleLeft,
   rollVisibleRight,
   rollVisibleTop,
+  rollVisibleOnceBottom,
+  rollVisibleOnceLeft,
+  rollVisibleOnceRight,
+  rollVisibleOnceTop,
   pop,
   popVisible,
+  popVisibleOnce,
   slideBottom,
   slideLeft,
   slideRight,
@@ -34,11 +40,16 @@ import {
   slideVisibleLeft,
   slideVisibleRight,
   slideVisibleTop,
+  slideVisibleOnceBottom,
+  slideVisibleOnceLeft,
+  slideVisibleOnceRight,
+  slideVisibleOnceTop,
 } from '@vueuse/motion'
 
 const presets = {
   fade,
   fadeVisible,
+  fadeVisibleOnce,
   rollBottom,
   rollLeft,
   rollRight,
@@ -47,8 +58,13 @@ const presets = {
   rollVisibleLeft,
   rollVisibleRight,
   rollVisibleTop,
+  rollVisibleOnceBottom,
+  rollVisibleOnceLeft,
+  rollVisibleOnceRight,
+  rollVisibleOnceTop,
   pop,
   popVisible,
+  popVisibleOnce,
   slideBottom,
   slideLeft,
   slideRight,
@@ -57,6 +73,10 @@ const presets = {
   slideVisibleLeft,
   slideVisibleRight,
   slideVisibleTop,
+  slideVisibleOnceBottom,
+  slideVisibleOnceLeft,
+  slideVisibleOnceRight,
+  slideVisibleOnceTop,
 }
 </script>
 

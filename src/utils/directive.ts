@@ -7,6 +7,7 @@ const directivePropsKeys = [
   'enter',
   'leave',
   'visible',
+  'visible-once',
   'hovered',
   'tapped',
   'focused',
@@ -61,13 +62,26 @@ export const resolveVariants = (
                 delay,
               }
             }
+
+            if (variantsRef.value.visibleOnce) {
+              if (!variantsRef.value.visibleOnce.transition) {
+                variantsRef.value.visibleOnce.transition = {}
+              }
+
+              variantsRef.value.visibleOnce.transition = {
+                ...variantsRef.value.visibleOnce.transition,
+                delay,
+              }
+            }
           }
         }
 
         return
       }
 
-      if (target && target[key] && isObject(target[key]))
+      if (key === 'visible-once') key = 'visibleOnce'
+
+      if (target && target[key] && isObject(target[key])) {
         variantsRef.value[key] = target[key]
     })
   }

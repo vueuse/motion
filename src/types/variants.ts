@@ -92,6 +92,7 @@ export interface MotionVariants {
   leave?: Variant
   // Intersection observer variants
   visible?: Variant
+  visibleOnce?: Variant
   // Event listeners variants
   hovered?: Variant
   tapped?: Variant

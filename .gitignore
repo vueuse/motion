@@ -1,6 +1,7 @@
 # Library
 node_modules
 dist
+yarn.lock
 
 # Tests
 coverage
