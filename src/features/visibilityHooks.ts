@@ -16,20 +16,13 @@ export function registerVisibilityHooks<T extends MotionVariants>({
       target,
       ([{ isIntersecting }]) => {
         if (_variants.visible) {
-          if (isIntersecting) {
-            variant.value = 'visible'
-          } else {
-            variant.value = 'initial'
-          }
+          if (isIntersecting) variant.value = 'visible'
+          else variant.value = 'initial'
         } else if (_variants.visibleOnce) {
           if (isIntersecting) {
-            if (variant.value !== 'visibleOnce') {
-              variant.value = 'visibleOnce'
-            }
+            if (variant.value !== 'visibleOnce') variant.value = 'visibleOnce'
           } else {
-            if (!variant.value) {
-              variant.value = 'initial'
-            }
+            if (!variant.value) variant.value = 'initial'
           }
         }
       },

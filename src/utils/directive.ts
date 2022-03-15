@@ -24,8 +24,8 @@ export const resolveVariants = (
   const target = node.props
     ? node.props // @ts-expect-error - Compatibility (Vue 3)
     : node.data && node.data.attrs // @ts-expect-error - Compatibility (Vue 2)
-      ? node.data.attrs
-      : {}
+    ? node.data.attrs
+    : {}
 
   if (target) {
     if (target.variants && isObject(target.variants)) {
@@ -64,9 +64,8 @@ export const resolveVariants = (
             }
 
             if (variantsRef.value.visibleOnce) {
-              if (!variantsRef.value.visibleOnce.transition) {
+              if (!variantsRef.value.visibleOnce.transition)
                 variantsRef.value.visibleOnce.transition = {}
-              }
 
               variantsRef.value.visibleOnce.transition = {
                 ...variantsRef.value.visibleOnce.transition,
@@ -81,7 +80,7 @@ export const resolveVariants = (
 
       if (key === 'visible-once') key = 'visibleOnce'
 
-      if (target && target[key] && isObject(target[key])) {
+      if (target && target[key] && isObject(target[key]))
         variantsRef.value[key] = target[key]
     })
   }
