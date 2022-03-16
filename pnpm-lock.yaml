@@ -9,9 +9,11 @@ specifiers:
   '@vuedx/typecheck': ^0.7.4
   '@vuedx/typescript-plugin-vue': ^0.7.4
   '@vueuse/core': ^8.0.1
+  '@vueuse/shared': ^8.0.1
   c8: ^7.11.0
   chokidar: ^3.5.3
   eslint: ^8.11.0
+  framesync: ^6.1.0
   happy-dom: ^2.47.2
   lint-staged: ^12.3.5
   popmotion: ^11.0.3
@@ -31,7 +33,10 @@ specifiers:
 
 dependencies:
   '@vueuse/core': 8.0.1_vue@3.2.31
+  '@vueuse/shared': 8.0.1_vue@3.2.31
+  framesync: 6.1.0
   popmotion: 11.0.3
+  style-value-types: 5.1.0
   vue-demi: 0.12.1_vue@3.2.31
 
 devDependencies:
@@ -49,7 +54,6 @@ devDependencies:
   lint-staged: 12.3.5
   prism-theme-vars: 0.2.2
   prismjs: 1.27.0
-  style-value-types: 5.1.0
   typescript: 4.6.2
   unbuild: 0.7.0
   upath: 2.0.1
@@ -3090,6 +3094,12 @@ packages:
       tslib: 2.3.1
     dev: false
 
+  /framesync/6.1.0:
+    resolution: {integrity: sha512-aBX+hdWAvwiJYeQlFLY2533VxeL6OEu71CAgV4GGKksrj6+dE6i7K86WSSiRBEARCoJn5bFqffhg4l07eA27tg==}
+    dependencies:
+      tslib: 2.3.1
+    dev: false
+
   /fs-extra/10.0.0:
     resolution: {integrity: sha512-C5owb14u9eJwizKGdchcDUQeFtlSHHthBk8pbX9Vc1PFZrLombudjDnNns88aYslCyF6IY5SUw3Roz6xShcEIQ==}
     engines: {node: '>=12'}
@@ -3273,6 +3283,7 @@ packages:
 
   /hey-listen/1.0.8:
     resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
+    dev: false
 
   /highlight.js/10.7.3:
     resolution: {integrity: sha512-tzcUFauisWKNHaRkN4Wjl/ZA07gENAjFl3J/c480dprkGTg5EQstgaNFqBfUqCq54kZRIEcreTsAgF/m2quD7A==}
@@ -4792,7 +4803,7 @@ packages:
     dependencies:
       hey-listen: 1.0.8
       tslib: 2.3.1
-    dev: true
+    dev: false
 
   /supports-color/5.5.0:
     resolution: {integrity: sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==}
