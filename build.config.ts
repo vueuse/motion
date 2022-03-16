@@ -23,6 +23,7 @@ export default defineBuildConfig({
   ],
   externals: [
     'vue',
+    'csstype',
     '@vueuse/shared',
     'framesync',
     'style-value-types',
