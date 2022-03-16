@@ -6,6 +6,7 @@
           <div class="features">
             <section
               v-for="(feature, index) in features"
+              :key="index"
               v-motion="{
                 initial: {
                   y: 200,
@@ -19,16 +20,15 @@
                   }
                 }
               }"
-              :key="index"
               class="feature"
             >
-              <h2 class="title" v-if="feature.title">
+              <h2 v-if="feature.title" class="title">
                 <span role="img">{{ feature.icon }}</span>
                 {{ feature.title }}
               </h2>
               <p
-                class="details"
                 v-if="feature.details"
+                class="details"
                 v-html="feature.details"
               />
             </section>

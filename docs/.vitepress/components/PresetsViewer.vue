@@ -10,41 +10,41 @@
 </template>
 
 <script setup="props" lang="ts">
-import PresetSection from './PresetSection.vue'
 import { ref } from 'vue'
-import { useMotion } from '@vueuse/motion'
 import {
   fade,
   fadeVisible,
   fadeVisibleOnce,
+  pop,
+  popVisible,
+  popVisibleOnce,
   rollBottom,
   rollLeft,
   rollRight,
   rollTop,
   rollVisibleBottom,
   rollVisibleLeft,
-  rollVisibleRight,
-  rollVisibleTop,
   rollVisibleOnceBottom,
   rollVisibleOnceLeft,
   rollVisibleOnceRight,
   rollVisibleOnceTop,
-  pop,
-  popVisible,
-  popVisibleOnce,
+  rollVisibleRight,
+  rollVisibleTop,
   slideBottom,
   slideLeft,
   slideRight,
   slideTop,
   slideVisibleBottom,
   slideVisibleLeft,
-  slideVisibleRight,
-  slideVisibleTop,
   slideVisibleOnceBottom,
   slideVisibleOnceLeft,
   slideVisibleOnceRight,
   slideVisibleOnceTop,
+  slideVisibleRight,
+  slideVisibleTop,
+  useMotion,
 } from '@vueuse/motion'
+import PresetSection from './PresetSection.vue'
 
 const presets = {
   fade,

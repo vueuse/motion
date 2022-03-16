@@ -13,9 +13,9 @@
 </template>
 
 <script setup lang="ts">
-import Hero from './Hero.vue'
 import HomeFeatures from 'vitepress/dist/client/theme-default/components/HomeFeatures.vue'
 import HomeFooter from 'vitepress/dist/client/theme-default/components/HomeFooter.vue'
+import Hero from './Hero.vue'
 </script>
 
 <style scoped>
