@@ -1,6 +1,6 @@
 {
   "name": "@vueuse/motion",
-  "version": "2.0.0-beta.12",
+  "version": "2.0.0-beta.13",
   "description": "🤹 Vue Composables putting your components in motion",
   "repository": "https://github.com/vueuse/motion",
   "bugs": {
@@ -46,11 +46,12 @@
     "README.md"
   ],
   "dependencies": {
-    "popmotion": "^11.0.3",
+    "@vueuse/core": "^8.1.2",
+    "@vueuse/shared": "^8.1.2",
+    "csstype": "^3.0.11",
     "framesync": "^6.1.0",
+    "popmotion": "^11.0.3",
     "style-value-types": "^5.1.0",
-    "@vueuse/core": "^8.0.1",
-    "@vueuse/shared": "^8.0.1",
     "vue-demi": "*"
   },
   "peerDependencies": {
@@ -63,7 +64,7 @@
     }
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.18.8",
+    "@antfu/eslint-config": "^0.18.9",
     "@types/prismjs": "^1.26.0",
     "@vitejs/plugin-vue": "^2.2.4",
     "@vue/server-renderer": "^3.2.31",
@@ -73,8 +74,8 @@
     "c8": "^7.11.0",
     "chokidar": "^3.5.3",
     "eslint": "^8.11.0",
-    "happy-dom": "^2.47.2",
-    "lint-staged": "^12.3.5",
+    "happy-dom": "^2.50.0",
+    "lint-staged": "^12.3.7",
     "prism-theme-vars": "^0.2.2",
     "prismjs": "^1.27.0",
     "typescript": "^4.6.2",
@@ -83,7 +84,7 @@
     "vite": "2.8.6",
     "vite-plugin-windicss": "^1.8.3",
     "vitepress": "^0.22.3",
-    "vitest": "^0.6.1",
+    "vitest": "^0.7.7",
     "vue": "^3.2.31",
     "yorkie": "^2.0.0"
   },
