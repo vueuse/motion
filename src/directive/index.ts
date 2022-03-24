@@ -1,4 +1,5 @@
 import type { Directive, DirectiveBinding, VNode } from 'vue-demi'
+import defu from 'defu'
 import { set as __set, ref } from 'vue-demi'
 import { motionState } from '../features/state'
 import type { MotionVariants } from '../types'
@@ -62,7 +63,11 @@ export const directive = (
     unbind: unregister,
     // Vue 3 SSR
     getSSRProps(binding, el) {
-      const { initial } = binding.value || el.props || {}
+      // Get initial value from binding
+      const { initial: bindingInitial } = binding.value || (el && el.props) || {}
+
+      // Merge it with directive initial variants
+      const initial = defu(variants?.initial || {}, bindingInitial || {})
 
       // No initial
       if (!initial || Object.keys(initial).length === 0) return
