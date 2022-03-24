@@ -1,6 +1,6 @@
 {
   "name": "@vueuse/motion",
-  "version": "2.0.0-beta.15",
+  "version": "2.0.0-beta.16",
   "description": "🤹 Vue Composables putting your components in motion",
   "repository": "https://github.com/vueuse/motion",
   "bugs": {
@@ -65,9 +65,9 @@
     "vue-demi": "*"
   },
   "peerDependencies": {
+    "@nuxt/kit": "npm:@nuxt/kit-edge@latest",
     "@vue/composition-api": "^1.4.1",
-    "vue": "^2.0.0 || >=3.0.0-rc.0",
-    "@nuxt/kit": "npm:@nuxt/kit-edge@latest"
+    "vue": "^2.0.0 || >=3.0.0-rc.0"
   },
   "peerDependenciesMeta": {
     "@vue/composition-api": {
@@ -77,18 +77,19 @@
   "devDependencies": {
     "@antfu/eslint-config": "^0.18.9",
     "@nuxt/module-builder": "latest",
-    "nuxt3": "latest",
     "@types/prismjs": "^1.26.0",
     "@vitejs/plugin-vue": "^2.2.4",
     "@vue/server-renderer": "^3.2.31",
     "@vue/test-utils": "^2.0.0-rc.17",
     "@vuedx/typecheck": "^0.7.4",
     "@vuedx/typescript-plugin-vue": "^0.7.4",
+    "bumpp": "^7.1.1",
     "c8": "^7.11.0",
     "chokidar": "^3.5.3",
     "eslint": "^8.11.0",
     "happy-dom": "^2.50.0",
     "lint-staged": "^12.3.7",
+    "nuxt3": "latest",
     "prism-theme-vars": "^0.2.2",
     "prismjs": "^1.27.0",
     "typescript": "^4.6.2",
