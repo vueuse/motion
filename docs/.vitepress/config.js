@@ -53,6 +53,10 @@ export default {
             link: '/installation',
           },
           {
+            text: 'Nuxt Usage',
+            link: '/nuxt',
+          },
+          {
             text: 'Quick Start',
             link: '/quick-start',
           },

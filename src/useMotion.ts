@@ -45,7 +45,7 @@ export function useMotion<T extends MotionVariants>(
     motionProperties,
     ...controls,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    stop: (force = false) => {},
+    stop: (_ = false) => {},
   }
 
   // Bind features
