@@ -1,6 +1,6 @@
 import { execSync } from 'child_process'
 import consola from 'consola'
-import { version } from '../package.json'
+import { name, version } from '../package.json'
 
 execSync('npm run build', { stdio: 'inherit' })
 
