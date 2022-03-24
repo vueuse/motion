@@ -1,6 +1,6 @@
 import { watch } from 'vue-demi'
 import type { MaybeRef } from '@vueuse/core'
-import { tryOnUnmounted } from '@vueuse/core'
+import { tryOnUnmounted, unrefElement, watchOnce } from '@vueuse/core'
 import type {
   MotionInstance,
   MotionVariants,
@@ -74,6 +74,23 @@ export function useMotion<T extends MotionVariants>(
   }
 
   tryOnUnmounted(() => instance.stop())
+
+  // Merge instances if binding detected from directive
+  watchOnce(
+    () => unrefElement(target),
+    (el) => {
+      if (!el) return
+
+      // @ts-expect-error - We are checking if motionInstance has be bound via directive
+      if (el?.motionInstance) {
+        // Stop previous instance
+        instance.stop()
+
+        // @ts-expect-error - We are checking if motionInstance has be bound via directive
+        Object.assign(instance, el.motionInstance)
+      }
+    },
+  )
 
   return instance
 }
