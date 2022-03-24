@@ -1,3 +1,5 @@
+import { copySync } from 'fs-extra'
+import consola from 'consola'
 import { defineBuildConfig } from 'unbuild'
 
 export default defineBuildConfig({
@@ -6,6 +8,7 @@ export default defineBuildConfig({
   },
   declaration: true,
   entries: [
+    // Plugin
     {
       input: 'src/index.ts',
       outDir: 'dist',
@@ -20,9 +23,29 @@ export default defineBuildConfig({
       format: 'cjs',
       ext: 'cjs',
     },
+    // Nuxt
+    {
+      input: 'src/nuxt/module.ts',
+      outDir: 'dist',
+      name: 'nuxt',
+      format: 'esm',
+      ext: 'mjs',
+    },
+    {
+      input: 'src/nuxt/module.ts',
+      outDir: 'dist',
+      name: 'nuxt',
+      format: 'cjs',
+      ext: 'cjs',
+    },
   ],
   externals: [
+    '@nuxt/kit',
+    '@nuxt/schema',
+    'nuxt3',
     'vue',
+    'defu',
+    '@vueuse/motion',
     'csstype',
     '@vueuse/shared',
     'framesync',
@@ -30,5 +53,18 @@ export default defineBuildConfig({
     '@vue/compiler-core',
     '@babel/parser',
     '@vue/shared',
+    'vue-demi',
+    '@vueuse/core',
   ],
+  hooks: {
+    'build:done': () => {
+      copySync(
+        'src/nuxt/templates',
+        'dist/templates',
+      )
+
+      // eslint-disable-next-line no-console
+      consola.info('Nuxt templates copied to `dist/`!')
+    },
+  },
 })
