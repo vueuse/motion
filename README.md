@@ -8,9 +8,10 @@
 
 - 🏎 **Smooth animations** based on [**Popmotion**](https://popmotion.io/)
 - 🎮 **Declarative** API
-- 🚀 **Plug** & **play** with **10+ presets**
+- 🚀 **Plug** & **play** with **20+ presets**
 - ✅ Supports **Vue 2 & 3** using [**vue-demi**](https://github.com/antfu/vue-demi)
-- 🚚 Supports **Nuxt** using [**nuxt-use-motion**](https://github.com/Tahul/nuxt-use-motion)
+- 🌐 Supports **SSR**
+- 🚚 Supports **Nuxt 3** and **@nuxt/bridge**
 - ✨ Written in **TypeScript**
 - 🏋️‍♀️ Lightweight with **<20kb** bundle size
 
@@ -74,7 +75,7 @@ To see more about how to **control** your declared **variants**, check out [**Mo
 
 This package is **heavily** inspired by [**Framer Motion**](https://www.framer.com/motion/).
 
-I would also like to **thank** [**antfu**](https://github.com/antfu) and [**patak**](https://twitter.com/patak_js) for their kind help!
+I would also like to **thank** [**antfu**](https://github.com/antfu), [**patak-dev**](https://github.com/patak-dev) and [**kazupon**](https://github.com/kazupon) for their kind help!
 
 If you **like** this package, consider **following me** on [**GitHub**](https://github.com/Tahul) and on [**Twitter**](https://twitter.com/yaeeelglx).
 
