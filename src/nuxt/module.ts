@@ -1,12 +1,7 @@
 import { resolve } from 'path'
 import { fileURLToPath } from 'url'
 import { addPluginTemplate, addTemplate, defineNuxtModule } from '@nuxt/kit'
-import type { MotionVariants } from '../types'
-
-export interface ModuleOptions {
-  directives?: Record<string, MotionVariants>
-  excludePresets?: boolean
-}
+import type { ModuleOptions } from '../types'
 
 const DEFAULTS: ModuleOptions = {}
 
