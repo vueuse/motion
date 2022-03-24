@@ -25,7 +25,40 @@
     ],
     "paths": {
       "@vueuse/motion": ["./src/index.ts"],
-      "@vueuse/motion/*": ["./src/*"]
+      "@vueuse/motion/*": ["./src/*"],
+      "#app": [
+        "./node_modules/.pnpm/nuxt3@3.0.0-27467464.a0c4d6e_vite@2.8.6/node_modules/nuxt3/dist/app"
+      ],
+      "#app/*": [
+        "./node_modules/.pnpm/nuxt3@3.0.0-27467464.a0c4d6e_vite@2.8.6/node_modules/nuxt3/dist/app/*"
+      ],
+      "vue-demi": [
+        "./node_modules/.pnpm/nuxt3@3.0.0-27467464.a0c4d6e_vite@2.8.6/node_modules/nuxt3/dist/app/compat/vue-demi"
+      ],
+      "#meta": [
+        "./node_modules/.pnpm/nuxt3@3.0.0-27467464.a0c4d6e_vite@2.8.6/node_modules/nuxt3/dist/meta/runtime"
+      ],
+      "#meta/*": [
+        "./node_modules/.pnpm/nuxt3@3.0.0-27467464.a0c4d6e_vite@2.8.6/node_modules/nuxt3/dist/meta/runtime/*"
+      ],
+      "#imports": [
+        "./nuxt-playground/.nuxt/imports"
+      ],
+      "#build": [
+        "./nuxt-playground/.nuxt"
+      ],
+      "#build/*": [
+        "./nuxt-playground/.nuxt/*"
+      ],
+      "#config": [
+        "@nuxt/nitro"
+      ],
+      "#storage": [
+        "@nuxt/nitro"
+      ],
+      "#assets": [
+        "@nuxt/nitro"
+      ]
     },
 
     "baseUrl": ".",
