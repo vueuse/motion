@@ -1,0 +1,43 @@
+# reactiveStyle
+
+reactiveStyle is an helper function creating a reactive object compatible with an HTML `style` attribute.
+
+## Parameters
+
+### `props`
+
+Default [**StyleProperties**](https://github.com/Tahul/vueuse/motion/tree/main/src/types/variants.ts#L49-L50) object to create the reactive one from.
+
+## Exposed
+
+### `state`
+
+The reactive [**StyleProperties**](https://github.com/Tahul/vueuse/motion/tree/main/src/types/variants.ts#L49-L50) object to manipulate.
+
+### `style`
+
+A reactive [**style attribute**](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style) compatible string.
+
+#### Example
+
+```vue
+<template>
+  <div
+    :style="elementStyle" @click="toggleColor"
+  />
+</template>
+
+<script setup>
+const { state, style: elementStyle } = reactiveStyle({
+  opacity: 0,
+  backgroundColor: 'blue',
+})
+
+const toggleColor = () => {
+  if (state.backgroundColor === 'blue')
+    state.backgroundColor === 'red'
+  else
+    state.backgroundColor === 'blue'
+}
+</script>
+```
