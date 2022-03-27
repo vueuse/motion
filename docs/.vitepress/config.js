@@ -146,6 +146,14 @@ export default {
             text: 'useElementTransform',
             link: '/api/use-element-transform',
           },
+          {
+            text: 'reactiveStyle',
+            link: '/api/reactive-style',
+          },
+          {
+            text: 'reactiveTransform',
+            link: '/api/reactive-transform',
+          },
         ],
       },
     ],
