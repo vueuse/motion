@@ -13,7 +13,7 @@ Add `@vueuse/motion/nuxt` to the `modules` section of `nuxt.config.js`:
 ```javascript
 {
   // nuxt.config.js
-  modules: ['@vueue/motion/nuxt']
+  modules: ['@vueuse/motion/nuxt']
 }
 ```
 
