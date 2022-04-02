@@ -1,3 +1,66 @@
+<script setup lang="ts">
+import { useMotion } from '@vueuse/motion'
+import { ref } from 'vue'
+const buttons = ref<SVGElement>()
+const browser = ref<SVGElement>()
+const card = ref<SVGElement>()
+const search = ref<SVGElement>()
+const armRight = ref<SVGElement>()
+const armLeft = ref<SVGElement>()
+const circleTop = ref<SVGElement>()
+const circleBottom = ref<SVGElement>()
+const head = ref<SVGElement>()
+const mouth = ref<SVGElement>()
+const eyeLeft = ref<SVGElement>()
+const eyeRight = ref<SVGElement>()
+
+const refs = [
+  buttons,
+  browser,
+  card,
+  search,
+  circleBottom,
+  circleTop,
+  head,
+  mouth,
+  eyeLeft,
+  eyeRight,
+  armLeft,
+  armRight,
+]
+
+refs.forEach((ref, index) => {
+  const { variant } = useMotion(ref, {
+    initial: {
+      y: 100,
+      opacity: 0,
+    },
+    enter: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 320,
+        damping: 20,
+        delay: 50 * index,
+        onComplete: () => {
+          variant.value = 'levitate'
+        },
+      },
+    },
+    levitate: {
+      y: 15,
+      transition: {
+        duration: 1500,
+        repeat: Infinity,
+        ease: 'easeInOut',
+        repeatType: 'mirror',
+      },
+    },
+  })
+})
+</script>
+
 <template>
   <div>
     <svg
@@ -351,66 +414,3 @@
     </svg>
   </div>
 </template>
-
-<script setup lang="ts">
-import { useMotion } from '@vueuse/motion'
-import { ref } from 'vue'
-const buttons = ref<SVGElement>()
-const browser = ref<SVGElement>()
-const card = ref<SVGElement>()
-const search = ref<SVGElement>()
-const armRight = ref<SVGElement>()
-const armLeft = ref<SVGElement>()
-const circleTop = ref<SVGElement>()
-const circleBottom = ref<SVGElement>()
-const head = ref<SVGElement>()
-const mouth = ref<SVGElement>()
-const eyeLeft = ref<SVGElement>()
-const eyeRight = ref<SVGElement>()
-
-const refs = [
-  buttons,
-  browser,
-  card,
-  search,
-  circleBottom,
-  circleTop,
-  head,
-  mouth,
-  eyeLeft,
-  eyeRight,
-  armLeft,
-  armRight,
-]
-
-refs.forEach((ref, index) => {
-  const { variant } = useMotion(ref, {
-    initial: {
-      y: 100,
-      opacity: 0,
-    },
-    enter: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: 'spring',
-        stiffness: 320,
-        damping: 20,
-        delay: 50 * index,
-        onComplete: () => {
-          variant.value = 'levitate'
-        },
-      },
-    },
-    levitate: {
-      y: 15,
-      transition: {
-        duration: 1500,
-        repeat: Infinity,
-        ease: 'easeInOut',
-        repeatType: 'mirror',
-      },
-    },
-  })
-})
-</script>

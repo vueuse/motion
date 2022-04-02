@@ -1,3 +1,63 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useMotion } from '@vueuse/motion'
+
+const bigBottomCircle = ref<SVGElement>()
+const smallBottomCircle = ref<SVGElement>()
+const bigTopCircle = ref<SVGElement>()
+const head = ref<SVGElement>()
+const arms = ref<SVGElement>()
+const legs = ref<SVGElement>()
+const leftEye = ref<SVGElement>()
+const rightEye = ref<SVGElement>()
+const mouth = ref<SVGElement>()
+const hat = ref<SVGElement>()
+
+const refs = [
+  bigBottomCircle,
+  smallBottomCircle,
+  bigTopCircle,
+  head,
+  arms,
+  legs,
+  leftEye,
+  rightEye,
+  mouth,
+]
+
+refs.forEach((ref, index) => {
+  const { variant } = useMotion(ref, {
+    initial: {
+      scale: 1,
+      y: 100,
+      opacity: 0,
+    },
+    enter: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 320,
+        damping: 20,
+        delay: index * 50,
+        onComplete: () => {
+          variant.value = 'levitate'
+        },
+      },
+    },
+    levitate: {
+      y: 15,
+      transition: {
+        duration: 1500,
+        repeat: Infinity,
+        ease: 'easeInOut',
+        repeatType: 'mirror',
+      },
+    },
+  })
+})
+</script>
+
 <template>
   <div class="person">
     <svg
@@ -290,66 +350,6 @@
     </svg>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import { useMotion } from '@vueuse/motion'
-
-const bigBottomCircle = ref<SVGElement>()
-const smallBottomCircle = ref<SVGElement>()
-const bigTopCircle = ref<SVGElement>()
-const head = ref<SVGElement>()
-const arms = ref<SVGElement>()
-const legs = ref<SVGElement>()
-const leftEye = ref<SVGElement>()
-const rightEye = ref<SVGElement>()
-const mouth = ref<SVGElement>()
-const hat = ref<SVGElement>()
-
-const refs = [
-  bigBottomCircle,
-  smallBottomCircle,
-  bigTopCircle,
-  head,
-  arms,
-  legs,
-  leftEye,
-  rightEye,
-  mouth,
-]
-
-refs.forEach((ref, index) => {
-  const { variant } = useMotion(ref, {
-    initial: {
-      scale: 1,
-      y: 100,
-      opacity: 0,
-    },
-    enter: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        type: 'spring',
-        stiffness: 320,
-        damping: 20,
-        delay: index * 50,
-        onComplete: () => {
-          variant.value = 'levitate'
-        },
-      },
-    },
-    levitate: {
-      y: 15,
-      transition: {
-        duration: 1500,
-        repeat: Infinity,
-        ease: 'easeInOut',
-        repeatType: 'mirror',
-      },
-    },
-  })
-})
-</script>
 
 <style>
 .person {

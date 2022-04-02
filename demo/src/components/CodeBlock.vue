@@ -1,10 +1,3 @@
-<template>
-  <pre ref="pre" class="w-full shadow-xl">
-    <code ref="code" :class="['w-full', `language-${language}`]">
-        <slot v-if="$slots" />
-    </code>
-</pre>
-</template>
 
 <script setup lang="ts">
 import { defineProps, nextTick, ref, watch } from 'vue-demi'
@@ -58,3 +51,11 @@ watch(
   },
 )
 </script>
+
+<template>
+  <pre ref="pre" class="w-full shadow-xl">
+    <code ref="code" :class="['w-full', `language-${language}`]">
+        <slot v-if="$slots" />
+    </code>
+</pre>
+</template>

@@ -1,13 +1,3 @@
-<template>
-  <div class="presetsViewer">
-    <preset-section
-      v-for="[key, preset] in Object.entries(presets)"
-      :key="key"
-      :name="key"
-      :preset="preset"
-    />
-  </div>
-</template>
 
 <script setup="props" lang="ts">
 import { ref } from 'vue'
@@ -79,6 +69,17 @@ const presets = {
   slideVisibleOnceTop,
 }
 </script>
+
+<template>
+  <div class="presetsViewer">
+    <preset-section
+      v-for="[key, preset] in Object.entries(presets)"
+      :key="key"
+      :name="key"
+      :preset="preset"
+    />
+  </div>
+</template>
 
 <style scoped>
 .presetsViewer {

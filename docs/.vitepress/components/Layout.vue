@@ -1,43 +1,3 @@
-<template>
-  <div class="theme" :class="pageClasses">
-    <NavBar v-if="showNavbar" @toggle="toggleSidebar" />
-
-    <SideBar :open="openSideBar">
-      <template #sidebar-top>
-        <slot name="sidebar-top" />
-      </template>
-      <template #sidebar-bottom>
-        <slot name="sidebar-bottom" />
-      </template>
-    </SideBar>
-
-    <div class="sidebar-mask" @click="toggleSidebar(false)" />
-
-    <Content v-if="isCustomLayout" />
-
-    <Home v-else-if="enableHome">
-      <template #hero>
-        <slot name="home-hero" />
-      </template>
-      <template #features>
-        <slot name="home-features" />
-      </template>
-      <template #footer>
-        <slot name="home-footer" />
-      </template>
-    </Home>
-
-    <Page v-else>
-      <template #top>
-        <slot name="page-top" />
-      </template>
-      <template #bottom>
-        <slot name="page-bottom" />
-      </template>
-    </Page>
-  </div>
-</template>
-
 <script setup lang="ts">
 import { computed, defineAsyncComponent, ref, watch } from 'vue'
 import { useData, useRoute } from 'vitepress'
@@ -108,6 +68,46 @@ const pageClasses = computed(() => {
   ]
 })
 </script>
+
+<template>
+  <div class="theme" :class="pageClasses">
+    <NavBar v-if="showNavbar" @toggle="toggleSidebar" />
+
+    <SideBar :open="openSideBar">
+      <template #sidebar-top>
+        <slot name="sidebar-top" />
+      </template>
+      <template #sidebar-bottom>
+        <slot name="sidebar-bottom" />
+      </template>
+    </SideBar>
+
+    <div class="sidebar-mask" @click="toggleSidebar(false)" />
+
+    <Content v-if="isCustomLayout" />
+
+    <Home v-else-if="enableHome">
+      <template #hero>
+        <slot name="home-hero" />
+      </template>
+      <template #features>
+        <slot name="home-features" />
+      </template>
+      <template #footer>
+        <slot name="home-footer" />
+      </template>
+    </Home>
+
+    <Page v-else>
+      <template #top>
+        <slot name="page-top" />
+      </template>
+      <template #bottom>
+        <slot name="page-bottom" />
+      </template>
+    </Page>
+  </div>
+</template>
 
 <style>
 #ads-container {

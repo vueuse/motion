@@ -1,31 +1,3 @@
-<template>
-  <header class="home-hero">
-    <h1 id="main-title" ref="header" class="title">
-      <span>@vueuse</span>
-      <span>/</span>
-      <span>motion</span>
-    </h1>
-    <p ref="description" class="description">
-      <b>Vue Composables</b> putting your <b>components</b> in
-      <b>motion</b>
-    </p>
-
-    <Illustration class="illustration" />
-
-    <div class="actions">
-      <div ref="introduction" class="action">
-        <NavLink :item="{ link: '/introduction', text: 'Get Started' }" />
-      </div>
-
-      <div ref="sources" class="action alt">
-        <NavLink
-          :item="{ link: 'https://github.com/vueuse/motion', text: 'Sources' }"
-        />
-      </div>
-    </div>
-  </header>
-</template>
-
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import NavLink from 'vitepress/dist/client/theme-default/components/NavLink.vue'
@@ -90,6 +62,34 @@ useMotion(sources, {
   },
 })
 </script>
+
+<template>
+  <header class="home-hero">
+    <h1 id="main-title" ref="header" class="title">
+      <span>@vueuse</span>
+      <span>/</span>
+      <span>motion</span>
+    </h1>
+    <p ref="description" class="description">
+      <b>Vue Composables</b> putting your <b>components</b> in
+      <b>motion</b>
+    </p>
+
+    <Illustration class="illustration" />
+
+    <div class="actions">
+      <div ref="introduction" class="action">
+        <NavLink :item="{ link: '/introduction', text: 'Get Started' }" />
+      </div>
+
+      <div ref="sources" class="action alt">
+        <NavLink
+          :item="{ link: 'https://github.com/vueuse/motion', text: 'Sources' }"
+        />
+      </div>
+    </div>
+  </header>
+</template>
 
 <style scoped>
 .home-hero {

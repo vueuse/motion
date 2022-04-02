@@ -1,3 +1,25 @@
+<script setup="props" lang="ts">
+import { useToggle } from '@vueuse/core'
+import { nextTick } from 'vue'
+import CodeBlock from '../components/CodeBlock.vue'
+
+defineProps({
+  text: String,
+})
+
+const emit = defineEmits(['replay'])
+
+const [visible, toggleVisible] = useToggle(true)
+
+const replay = () => {
+  toggleVisible()
+
+  emit('replay')
+
+  nextTick(toggleVisible)
+}
+</script>
+
 <template>
   <div
     class="
@@ -36,25 +58,3 @@
     <slot />
   </div>
 </template>
-
-<script setup="props" lang="ts">
-import { useToggle } from '@vueuse/core'
-import { nextTick } from 'vue'
-import CodeBlock from '../components/CodeBlock.vue'
-
-defineProps({
-  text: String,
-})
-
-const emit = defineEmits(['replay'])
-
-const [visible, toggleVisible] = useToggle(true)
-
-const replay = () => {
-  toggleVisible()
-
-  emit('replay')
-
-  nextTick(toggleVisible)
-}
-</script>

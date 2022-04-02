@@ -1,3 +1,17 @@
+<script setup="props" lang="ts">
+import { computed } from 'vue'
+import { useMotions } from '@vueuse/motion'
+import { useToggle } from '@vueuse/core'
+import DemoBox from '../components/DemoBox.vue'
+import transitions from '../examples/transitions'
+
+const [show, toggleShow] = useToggle(true)
+
+const codeText = computed(() => transitions(show.value))
+
+const motions = useMotions()
+</script>
+
 <template>
   <DemoBox :text="codeText">
     <template #demoElement>
@@ -43,17 +57,3 @@
     </div>
   </DemoBox>
 </template>
-
-<script setup="props" lang="ts">
-import { computed } from 'vue'
-import { useMotions } from '@vueuse/motion'
-import { useToggle } from '@vueuse/core'
-import DemoBox from '../components/DemoBox.vue'
-import transitions from '../examples/transitions'
-
-const [show, toggleShow] = useToggle(true)
-
-const codeText = computed(() => transitions(show.value))
-
-const motions = useMotions()
-</script>

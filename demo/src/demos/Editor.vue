@@ -1,3 +1,28 @@
+<script setup="props" lang="ts">
+import { useMotions } from '@vueuse/motion'
+import { computed, ref, watch } from 'vue'
+import DemoBox from '../components/DemoBox.vue'
+import basic from '../examples/basic'
+
+const motions = useMotions()
+
+const input = ref<string>('0')
+
+const codeText = computed(() => basic(input.value))
+
+watch(input, (newVal) => {
+  if (motions.editor) {
+    motions.editor.apply({
+      rotate: parseInt(newVal),
+    })
+  }
+})
+
+const replay = () => {
+  input.value = '0'
+}
+</script>
+
 <template>
   <DemoBox :text="codeText" @replay="replay">
     <template #demoElement>
@@ -38,28 +63,3 @@
     </div>
   </DemoBox>
 </template>
-
-<script setup="props" lang="ts">
-import { useMotions } from '@vueuse/motion'
-import { computed, ref, watch } from 'vue'
-import DemoBox from '../components/DemoBox.vue'
-import basic from '../examples/basic'
-
-const motions = useMotions()
-
-const input = ref<string>('0')
-
-const codeText = computed(() => basic(input.value))
-
-watch(input, (newVal) => {
-  if (motions.editor) {
-    motions.editor.apply({
-      rotate: parseInt(newVal),
-    })
-  }
-})
-
-const replay = () => {
-  input.value = '0'
-}
-</script>

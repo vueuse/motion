@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import HomeFeatures from 'vitepress/dist/client/theme-default/components/HomeFeatures.vue'
+import HomeFooter from 'vitepress/dist/client/theme-default/components/HomeFooter.vue'
+import Hero from './Hero.vue'
+</script>
+
 <template>
   <main class="home" aria-labelledby="main-title">
     <Hero />
@@ -11,12 +17,6 @@
     <slot name="footer" />
   </main>
 </template>
-
-<script setup lang="ts">
-import HomeFeatures from 'vitepress/dist/client/theme-default/components/HomeFeatures.vue'
-import HomeFooter from 'vitepress/dist/client/theme-default/components/HomeFooter.vue'
-import Hero from './Hero.vue'
-</script>
 
 <style scoped>
 .home {

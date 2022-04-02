@@ -1,3 +1,11 @@
+<script setup="props" lang="ts">
+import { computed } from 'vue'
+import DemoBox from '../components/DemoBox.vue'
+import delay from '../examples/delay'
+
+const codeText = computed(() => delay())
+</script>
+
 <template>
   <DemoBox :text="codeText">
     <template #demoElement>
@@ -105,11 +113,3 @@
     </template>
   </DemoBox>
 </template>
-
-<script setup="props" lang="ts">
-import { computed } from 'vue'
-import DemoBox from '../components/DemoBox.vue'
-import delay from '../examples/delay'
-
-const codeText = computed(() => delay())
-</script>

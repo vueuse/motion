@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import Delay from './demos/Delay.vue'
+import Editor from './demos/Editor.vue'
+import Transitions from './demos/Transitions.vue'
+import Sandbox from './demos/Sandbox.vue'
+
+const sandbox = false
+</script>
+
 <template>
   <div>
     <div class="flex items-center justify-center">
@@ -42,15 +51,6 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import Delay from './demos/Delay.vue'
-import Editor from './demos/Editor.vue'
-import Transitions from './demos/Transitions.vue'
-import Sandbox from './demos/Sandbox.vue'
-
-const sandbox = false
-</script>
 
 <style lang="postcss" scoped>
 a {
