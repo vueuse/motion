@@ -1,6 +1,6 @@
 import type { Directive, DirectiveBinding, VNode } from 'vue-demi'
 import defu from 'defu'
-import { set as __set, ref } from 'vue-demi'
+import { set as __set, ref, unref } from 'vue-demi'
 import { motionState } from '../features/state'
 import type { MotionVariants } from '../types'
 import { useMotion } from '../useMotion'
@@ -57,14 +57,16 @@ export const directive = (
     created: register,
     unmounted: unregister,
     // Vue 2 Directive Hooks
-    // For Nuxt & Vue 2 compatibility
+    // For Nuxt & Vue 2 Compatibility
     // @ts-expect-error - Compatibility
     bind: register,
     unbind: unregister,
     // Vue 3 SSR
-    getSSRProps(binding, el) {
+    getSSRProps(binding, node) {
       // Get initial value from binding
-      const { initial: bindingInitial } = binding.value || (el && el.props) || {}
+      let { initial: bindingInitial } = binding.value || (node && node.props) || {}
+
+      bindingInitial = unref(bindingInitial)
 
       // Merge it with directive initial variants
       const initial = defu(variants?.initial || {}, bindingInitial || {})
