@@ -1,6 +1,6 @@
 import { resolve } from 'path'
 import { defineNuxtConfig } from 'nuxt3'
-import MyModule from '../dist/nuxt.mjs'
+import MyModule from '../src/nuxt/module'
 
 export default defineNuxtConfig({
   alias: {
@@ -9,6 +9,14 @@ export default defineNuxtConfig({
   modules: [
     MyModule,
   ],
+  components: {
+    dirs: [
+      {
+        path: './components',
+        global: true,
+      },
+    ],
+  },
   motion: {
     directives: {
       'slide-rotate-top': {
