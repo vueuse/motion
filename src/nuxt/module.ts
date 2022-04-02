@@ -1,7 +1,5 @@
-import { resolve } from 'path'
-import { fileURLToPath } from 'url'
-import { addPluginTemplate, addTemplate, defineNuxtModule } from '@nuxt/kit'
-import type { ModuleOptions } from '../types'
+import { addAutoImport, addPlugin, createResolver, defineNuxtModule, resolveModule } from '@nuxt/kit'
+import type { ModuleOptions, MotionPluginOptions } from '../types'
 
 const DEFAULTS: ModuleOptions = {}
 
@@ -18,16 +16,15 @@ export default defineNuxtModule<ModuleOptions>({
   },
   defaults: DEFAULTS,
   setup(options, nuxt) {
+    const { resolve } = createResolver(import.meta.url)
+    const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: resolve('./runtime') })
+
+    // Push options to runtimeConfig
+    nuxt.options.publicRuntimeConfig.motion = options
+
     // Add templates (options and directives)
-    const templatesDir = fileURLToPath(new URL('./templates', import.meta.url).toString())
-    addTemplate({
-      fileName: 'motion.config.js',
-      src: resolve(templatesDir, 'motion.config.js'),
-    })
-    addPluginTemplate({
-      src: resolve(templatesDir, 'motion.js'),
-      fileName: 'motion.js',
-      options,
+    addPlugin({
+      src: resolveRuntimeModule('./templates/motion.js'),
     })
 
     // Transpile necessary packages at build time
@@ -48,5 +45,25 @@ export default defineNuxtModule<ModuleOptions>({
       nuxt.options.alias = {}
     if (!nuxt.options.alias.tslib)
       nuxt.options.alias.tslib = 'tslib/tslib.es6.js'
+
+    // Add auto imports
+    addAutoImport([
+      { name: 'useMotion', as: 'useMotion', from: resolveRuntimeModule('../../index') },
+    ])
   },
 })
+
+interface ModulePublicRuntimeConfig extends MotionPluginOptions {}
+
+interface ModulePrivateRuntimeConfig extends MotionPluginOptions {}
+
+declare module '@nuxt/schema' {
+  interface ConfigSchema {
+    publicRuntimeConfig?: {
+      motion: ModulePublicRuntimeConfig
+    }
+    privateRuntimeConfig?: {
+      motion: ModulePrivateRuntimeConfig
+    }
+  }
+}
