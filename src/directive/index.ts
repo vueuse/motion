@@ -5,8 +5,7 @@ import { motionState } from '../features/state'
 import type { MotionVariants } from '../types'
 import { useMotion } from '../useMotion'
 import { resolveVariants } from '../utils/directive'
-import { reactiveStyle, reactiveTransform } from '../index'
-import { splitValues } from '../utils/transform'
+import { variantToStyle } from '../utils/transform'
 
 export const directive = (
   variants?: MotionVariants,
@@ -24,13 +23,15 @@ export const directive = (
     ) as string
 
     // Cleanup previous motion instance if it exists
-    if (key && motionState[key]) motionState[key].stop()
+    if (key && motionState[key])
+      motionState[key].stop()
 
     // Initialize variants with argument
     const variantsRef = ref<MotionVariants>(variants || {})
 
     // Set variants from v-motion binding
-    if (typeof binding.value === 'object') variantsRef.value = binding.value
+    if (typeof binding.value === 'object')
+      variantsRef.value = binding.value
 
     // Resolve variants from node props
     resolveVariants(node, variantsRef)
@@ -43,13 +44,15 @@ export const directive = (
     el.motionInstance = motionInstance
 
     // Set the global state reference if the name is set through v-motion="`value`"
-    if (key) __set(motionState, key, motionInstance)
+    if (key)
+      __set(motionState, key, motionInstance)
   }
 
   const unregister = (el: HTMLElement | SVGElement) => {
     // Cleanup the unregistered element motion instance
     // @ts-expect-error - we know that the element is a HTMLElement
-    if (el.motionInstance) el.motionInstance.stop()
+    if (el.motionInstance)
+      el.motionInstance.stop()
   }
 
   return {
@@ -72,22 +75,14 @@ export const directive = (
       const initial = defu(variants?.initial || {}, bindingInitial || {})
 
       // No initial
-      if (!initial || Object.keys(initial).length === 0) return
+      if (!initial || Object.keys(initial).length === 0)
+        return
 
-      // Split values between `transform` and `style`
-      const { transform: _transform, style: _style } = splitValues(initial)
-
-      // Generate transform string
-      const { transform } = reactiveTransform(_transform)
-
-      // Generate style string
-      const { style } = reactiveStyle(_style)
-
-      // @ts-expect-error - Set transform from style
-      if (transform.value) style.value.transform = transform.value
+      // Resolve variant
+      const style = variantToStyle(initial)
 
       return {
-        style: style.value,
+        style,
       }
     },
   }

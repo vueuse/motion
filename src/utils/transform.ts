@@ -1,3 +1,5 @@
+import { reactiveStyle } from '../reactiveStyle'
+import { reactiveTransform } from '../reactiveTransform'
 import type { Variant } from './../types/variants'
 
 /**
@@ -60,4 +62,21 @@ export function splitValues(variant: Variant) {
   })
 
   return { transform, style }
+}
+
+export function variantToStyle(variant: Variant) {
+  // Split values between `transform` and `style`
+  const { transform: _transform, style: _style } = splitValues(variant)
+
+  // Generate transform string
+  const { transform } = reactiveTransform(_transform)
+
+  // Generate style string
+  const { style } = reactiveStyle(_style)
+
+  // @ts-expect-error - Set transform from style
+  if (transform.value)
+    style.value.transform = transform.value
+
+  return style.value
 }
