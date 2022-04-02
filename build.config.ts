@@ -59,12 +59,12 @@ export default defineBuildConfig({
   hooks: {
     'build:done': () => {
       copySync(
-        'src/nuxt/templates',
-        'dist/templates',
+        'src/nuxt/runtime',
+        'dist/runtime',
       )
 
       // eslint-disable-next-line no-console
-      consola.info('Nuxt templates copied to `dist/`!')
+      consola.info('Nuxt runtime copied to `dist/`!')
     },
   },
 })
