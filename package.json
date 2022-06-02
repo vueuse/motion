@@ -22,7 +22,10 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": "./dist/index.mjs",
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
     "./nuxt": {
       "import": "./dist/nuxt.mjs",
       "require": "./dist/nuxt.cjs"
