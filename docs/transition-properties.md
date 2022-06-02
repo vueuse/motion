@@ -83,6 +83,26 @@ The opposite of stiffness. The lower it is relative to sitffness, the bouncier t
 
 The mass of the object, heavier objects will take longer to speed up and slow down.
 
+```vue
+<div
+  v-motion
+  :initial="{
+    y: 100,
+    opacity: 0,
+  }"
+  :enter="{
+    y: 0,
+    opacity: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 250,
+      damping: 25,
+      mass: 0.5,
+    },
+  }"
+/>
+```
+
 ### Keyframes
 
 Keyframes ared used mainly for color related animations as springs are not designed for that.
@@ -114,6 +134,26 @@ Supported easing names:
 - **circIn**, **circOut**, **circInOut**
 - **backIn**, **backOut**, **backInOut**
 - **anticipate**
+
+
+```vue
+<div
+  v-motion
+  :initial="{
+    y: 100,
+    opacity: 0,
+  }"
+  :enter="{
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 300,
+      type: 'keyframes',
+      ease: 'easeIn',
+    },
+  }"
+/>
+```
 
 ## Per-key transition definition
 
