@@ -61,15 +61,15 @@ You can now **animate** any of your **component**, **HTML** or **SVG** elements 
 </template>
 ```
 
-To see more about how to use **directives**, check out [**Directive Usage**](https://motion.vueuse.js.org/directive-usage).
+To see more about how to use **directives**, check out [**Directive Usage**](https://motion.vueuse.org/directive-usage).
 
-To see more about what **properties** you can **animate**, check out [**Motion Properties**](https://motion.vueuse.js.org/motion-properties).
+To see more about what **properties** you can **animate**, check out [**Motion Properties**](https://motion.vueuse.org/motion-properties).
 
-To see more about how to **create** your own **animations** styles, check out [**Transition Properties**](https://motion.vueuse.js.org/transition-properties).
+To see more about how to **create** your own **animations** styles, check out [**Transition Properties**](https://motion.vueuse.org/transition-properties).
 
-To see more about what are **variants** and how you can **use** them, check out [**Variants**](https://motion.vueuse.js.org/variants).
+To see more about what are **variants** and how you can **use** them, check out [**Variants**](https://motion.vueuse.org/variants).
 
-To see more about how to **control** your declared **variants**, check out [**Motion Instance**](https://motion.vueuse.js.org/motion-instance).
+To see more about how to **control** your declared **variants**, check out [**Motion Instance**](https://motion.vueuse.org/motion-instance).
 
 ## Credits
 
