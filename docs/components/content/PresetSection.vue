@@ -1,16 +1,15 @@
-
 <script setup="props" lang="ts">
-import { nextTick, ref, watch } from 'vue'
+import { ref } from 'vue'
+import type { PropType } from 'vue'
 import { useMotion } from '@vueuse/motion'
-import type { MotionVariants } from '@vueuse/motion'
 import { slugify } from '../../../src/utils/slugify'
 
 const props = defineProps({
   name: {
-    type: String,
+    type: String as PropType<any>,
   },
   preset: {
-    type: Object,
+    type: Object as PropType<any>,
   },
 })
 
@@ -18,7 +17,7 @@ const isReplaying = ref(false)
 const replayButton = ref<SVGElement>()
 const demoElement = ref<HTMLElement>()
 
-const { apply, set } = useMotion(demoElement, props.preset)
+const { apply } = useMotion(demoElement, props.preset)
 
 const replayInstance = useMotion(replayButton, {
   initial: {
@@ -26,7 +25,7 @@ const replayInstance = useMotion(replayButton, {
   },
 })
 
-const replay = async() => {
+const replay = async () => {
   if (isReplaying.value) return
 
   isReplaying.value = true
@@ -37,14 +36,11 @@ const replay = async() => {
 
   await apply(props.preset.initial)
 
-  if (props.preset.visible)
-    await apply(props.preset.visible)
+  if (props.preset.visible) await apply(props.preset.visible)
 
-  if (props.preset.visibleOnce)
-    await apply(props.preset.visibleOnce)
+  if (props.preset.visibleOnce) await apply(props.preset.visibleOnce)
 
-  if (props.preset.enter)
-    await apply(props.preset.enter)
+  if (props.preset.enter) await apply(props.preset.enter)
 
   replayInstance.set({ rotate: 0 })
 
@@ -55,7 +51,7 @@ const replay = async() => {
 <template>
   <div class="presetSection">
     <h2 style="text-transform: capitalize">
-      {{ name.replace(/[A-Z]/g, (s) => ' ' + s) }}
+      {{ name.replace(/[A-Z]/g, (s: any) => ` ${s}`) }}
 
       <button @click="replay">
         <svg

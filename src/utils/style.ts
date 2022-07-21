@@ -1,15 +1,5 @@
 import type { ValueType } from 'style-value-types'
-import {
-  alpha,
-  color,
-  complex,
-  degrees,
-  filter,
-  number,
-  progressPercentage,
-  px,
-  scale,
-} from 'style-value-types'
+import { alpha, color, complex, degrees, filter, number, progressPercentage, px, scale } from 'style-value-types'
 
 type ValueTypeMap = Record<string, ValueType>
 
@@ -18,7 +8,7 @@ type ValueTypeMap = Record<string, ValueType>
  */
 export const auto: ValueType = {
   test: (v: any) => v === 'auto',
-  parse: v => v,
+  parse: (v) => v,
 }
 
 /**
@@ -129,9 +119,7 @@ export const getValueType = (key: string) => valueTypes[key]
  * @param type
  */
 export const getValueAsType = (value: any, type?: ValueType) => {
-  return type && typeof value === 'number' && type.transform
-    ? type.transform(value)
-    : value
+  return type && typeof value === 'number' && type.transform ? type.transform(value) : value
 }
 
 /**
@@ -144,7 +132,5 @@ export function getAnimatableNone(key: string, value: string): any {
   let defaultValueType = getValueType(key)
   if (defaultValueType !== filter) defaultValueType = complex
   // If value is not recognised as animatable, ie "none", create an animatable version origin based on the target
-  return defaultValueType.getAnimatableNone
-    ? defaultValueType.getAnimatableNone(value)
-    : undefined
+  return defaultValueType.getAnimatableNone ? defaultValueType.getAnimatableNone(value) : undefined
 }

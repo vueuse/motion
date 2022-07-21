@@ -22,15 +22,7 @@ const codeText = computed(() => delay())
             repeatDelay: 1000,
           },
         }"
-        class="
-          w-24
-          h-24
-          bg-indigo-500
-          border-8 border-indigo-400
-          shadow-xl
-          cursor-pointer
-          rounded-3xl
-        "
+        class="h-24 w-24 cursor-pointer rounded-3xl border-8 border-indigo-400 bg-indigo-500 shadow-xl"
       />
 
       <div
@@ -47,16 +39,7 @@ const codeText = computed(() => delay())
           },
         }"
         :delay="100"
-        class="
-          w-24
-          h-24
-          ml-4
-          bg-indigo-500
-          border-8 border-indigo-400
-          shadow-xl
-          cursor-pointer
-          rounded-3xl
-        "
+        class="ml-4 h-24 w-24 cursor-pointer rounded-3xl border-8 border-indigo-400 bg-indigo-500 shadow-xl"
       />
 
       <div
@@ -73,16 +56,7 @@ const codeText = computed(() => delay())
           },
         }"
         :delay="200"
-        class="
-          w-24
-          h-24
-          ml-4
-          bg-indigo-500
-          border-8 border-indigo-400
-          shadow-xl
-          cursor-pointer
-          rounded-3xl
-        "
+        class="ml-4 h-24 w-24 cursor-pointer rounded-3xl border-8 border-indigo-400 bg-indigo-500 shadow-xl"
       />
 
       <div
@@ -99,16 +73,7 @@ const codeText = computed(() => delay())
           },
         }"
         :delay="300"
-        class="
-          w-24
-          h-24
-          ml-4
-          bg-indigo-500
-          border-8 border-indigo-400
-          shadow-xl
-          cursor-pointer
-          rounded-3xl
-        "
+        class="ml-4 h-24 w-24 cursor-pointer rounded-3xl border-8 border-indigo-400 bg-indigo-500 shadow-xl"
       />
     </template>
   </DemoBox>

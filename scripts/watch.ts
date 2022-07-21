@@ -1,6 +1,6 @@
+import { resolve } from 'path'
 import { watch } from 'chokidar'
 import { build } from 'unbuild'
-import { resolve } from 'upath'
 import consola from 'consola'
 
 // Package root
@@ -9,14 +9,12 @@ const rootDir = resolve(__dirname, '..')
 const src = resolve(__dirname, '../src')
 
 // Package build promise
-const tryBuild = async() => {
+const tryBuild = async () => {
   try {
     await build(rootDir, false)
-  }
-  catch (e) {
+  } catch (e) {
     consola.log(e)
-  }
-  finally {
+  } finally {
     consola.info('Waiting for changes...')
   }
 }

@@ -1,9 +1,4 @@
-import type {
-  MotionProperties,
-  MotionTransitions,
-  ResolvedValueTarget,
-  Transition,
-} from './types'
+import type { MotionProperties, MotionTransitions, ResolvedValueTarget, Transition } from './types'
 import { useMotionValues } from './useMotionValues'
 import { getAnimation } from './utils/transition'
 
@@ -13,13 +8,7 @@ import { getAnimation } from './utils/transition'
 export function useMotionTransitions(): MotionTransitions {
   const { motionValues, stop, get } = useMotionValues()
 
-  const push = (
-    key: string,
-    value: ResolvedValueTarget,
-    target: MotionProperties,
-    transition: Transition = {},
-    onComplete?: () => void,
-  ) => {
+  const push = (key: string, value: ResolvedValueTarget, target: MotionProperties, transition: Transition = {}, onComplete?: () => void) => {
     // Get the `from` key from target
     const from = target[key]
 
@@ -33,13 +22,7 @@ export function useMotionTransitions(): MotionTransitions {
     }
 
     // Create animation
-    const animation = getAnimation(
-      key,
-      motionValue,
-      value,
-      transition,
-      onComplete,
-    )
+    const animation = getAnimation(key, motionValue, value, transition, onComplete)
 
     // Start animation
     motionValue.start(animation)

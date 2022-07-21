@@ -1,12 +1,8 @@
 import type { MaybeRef } from '@vueuse/core'
-import { unrefElement } from '@vueuse/core'
-import { watch } from 'vue-demi'
+import { watch } from 'vue'
 import { reactiveTransform } from './reactiveTransform'
-import type {
-  MotionTarget,
-  PermissiveTarget,
-  TransformProperties,
-} from './types'
+import type { MotionTarget, PermissiveTarget, TransformProperties } from './types'
+import { usePermissiveTarget } from './usePermissiveTarget'
 import { stateFromTransform } from './utils/transform-parser'
 
 /**
@@ -14,10 +10,7 @@ import { stateFromTransform } from './utils/transform-parser'
  *
  * @param target
  */
-export function useElementTransform(
-  target: MaybeRef<PermissiveTarget>,
-  onInit?: (initData: Partial<TransformProperties>) => void,
-) {
+export function useElementTransform(target: MaybeRef<PermissiveTarget>, onInit?: (initData: Partial<TransformProperties>) => void) {
   // Transform cache available before the element is mounted
   let _cache: string | undefined
   // Local target cache as we need to resolve the element from PermissiveTarget
@@ -26,28 +19,20 @@ export function useElementTransform(
   const { state, transform } = reactiveTransform()
 
   // Cache transform until the element is alive and we can bind to it
-  const stopInitWatch = watch(
-    () => unrefElement(target),
-    (el) => {
-      if (!el) return
+  usePermissiveTarget(target, (el) => {
+    _target = el
 
-      _target = el
+    // Parse transform properties and applies them to the current state
+    if (el.style.transform) stateFromTransform(state, el.style.transform)
 
-      // Parse transform properties and applies them to the current state
-      if (el.style.transform) stateFromTransform(state, el.style.transform)
+    // If cache is present, init the target with the current cached value
+    if (_cache) el.style.transform = _cache
 
-      // If cache is present, init the target with the current cached value
-      if (_cache) el.style.transform = _cache
-
-      if (onInit) onInit(state)
-    },
-    {
-      immediate: true,
-    },
-  )
+    if (onInit) onInit(state)
+  })
 
   // Sync reactive transform to element
-  const stopSyncWatch = watch(
+  watch(
     transform,
     (newValue) => {
       // Add the current value to the cache so it is set on target creation
@@ -64,16 +49,7 @@ export function useElementTransform(
     },
   )
 
-  // Stop watchers
-  const stop = () => {
-    _cache = undefined
-    _target = undefined
-    stopInitWatch()
-    stopSyncWatch()
-  }
-
   return {
     transform: state,
-    stop,
   }
 }

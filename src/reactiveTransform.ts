@@ -1,5 +1,5 @@
 import { px } from 'style-value-types'
-import { reactive, ref, watch } from 'vue-demi'
+import { reactive, ref, watch } from 'vue'
 import type { TransformProperties } from './types'
 import { getValueAsType, getValueType } from './utils/style'
 
@@ -18,10 +18,7 @@ const translateAlias: Record<string, string> = {
  * @param props
  * @param enableHardwareAcceleration
  */
-export function reactiveTransform(
-  props: TransformProperties = {},
-  enableHardwareAcceleration = true,
-) {
+export function reactiveTransform(props: TransformProperties = {}, enableHardwareAcceleration = true) {
   // Reactive TransformProperties object
   const state = reactive<TransformProperties>({ ...props })
 
@@ -37,9 +34,7 @@ export function reactiveTransform(
       // Use translate3d by default has a better GPU optimization
       // And corrects scaling discrete behaviors
       if (enableHardwareAcceleration && (newVal.x || newVal.y || newVal.z)) {
-        const str = [newVal.x || 0, newVal.y || 0, newVal.z || 0]
-          .map(px.transform as any)
-          .join(',')
+        const str = [newVal.x || 0, newVal.y || 0, newVal.z || 0].map(px.transform as any).join(',')
 
         result += `translate3d(${str}) `
 
@@ -48,11 +43,7 @@ export function reactiveTransform(
 
       // Loop on defined TransformProperties state keys
       for (const [key, value] of Object.entries(newVal)) {
-        if (
-          enableHardwareAcceleration
-          && (key === 'x' || key === 'y' || key === 'z')
-        )
-          continue
+        if (enableHardwareAcceleration && (key === 'x' || key === 'y' || key === 'z')) continue
 
         // Get value type for key
         const valueType = getValueType(key)
@@ -62,8 +53,7 @@ export function reactiveTransform(
         result += `${translateAlias[key] || key}(${valueAsType}) `
       }
 
-      if (enableHardwareAcceleration && !hasHardwareAcceleration)
-        result += 'translateZ(0px) '
+      if (enableHardwareAcceleration && !hasHardwareAcceleration) result += 'translateZ(0px) '
 
       transform.value = result.trim()
     },

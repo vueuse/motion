@@ -1,6 +1,6 @@
 import { MotionPlugin } from '@vueuse/motion'
 import 'prism-theme-vars/base.css'
-import { createApp } from 'vue-demi'
+import { createApp } from 'vue'
 import 'windi.css'
 import App from './App.vue'
 import Block from './components/Block.vue'

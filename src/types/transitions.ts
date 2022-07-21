@@ -1,17 +1,10 @@
-import type { Ref } from 'vue-demi'
+import type { Ref } from 'vue'
 import type { MotionValue } from '../motionValue'
 import type { MotionProperties, PermissiveMotionProperties } from './variants'
 
-export type ResolvedKeyframesTarget =
-  | [null, ...number[]]
-  | number[]
-  | [null, ...string[]]
-  | string[]
+export type ResolvedKeyframesTarget = [null, ...number[]] | number[] | [null, ...string[]] | string[]
 
-export type KeyframesTarget =
-  | ResolvedKeyframesTarget
-  | [null, ...CustomValueType[]]
-  | CustomValueType[]
+export type KeyframesTarget = ResolvedKeyframesTarget | [null, ...CustomValueType[]] | CustomValueType[]
 
 export type ResolvedSingleTarget = string | number
 
@@ -366,21 +359,14 @@ export type PopmotionTransitionProps = Tween | Spring | Keyframes | Inertia
 
 export type PermissiveTransitionDefinition = Record<string, any>
 
-export type TransitionDefinition =
-  | Tween
-  | Spring
-  | Keyframes
-  | Inertia
-  | PermissiveTransitionDefinition
+export type TransitionDefinition = Tween | Spring | Keyframes | Inertia | PermissiveTransitionDefinition
 
 export type TransitionMap = Orchestration & Record<string, TransitionDefinition>
 
 /**
  * Transition props
  */
-export type Transition =
-  | (Orchestration & Repeat & TransitionDefinition)
-  | (Orchestration & Repeat & TransitionMap)
+export type Transition = (Orchestration & Repeat & TransitionDefinition) | (Orchestration & Repeat & TransitionMap)
 
 export type MakeCustomValueType<T> = { [K in keyof T]: T[K] | CustomValueType }
 
@@ -401,11 +387,7 @@ export type TargetAndTransition = TargetWithKeyframes & {
   transitionEnd?: Target
 }
 
-export type TargetResolver = (
-  custom: any,
-  current: Target,
-  velocity: Target,
-) => TargetAndTransition
+export type TargetResolver = (custom: any, current: Target, velocity: Target) => TargetAndTransition
 
 export interface CustomValueType {
   mix: (from: any, to: any) => (p: number) => number | string
@@ -428,13 +410,7 @@ export interface MotionTransitions {
    * @param transition
    * @param values
    */
-  push: (
-    key: string,
-    value: ResolvedValueTarget,
-    target: MotionProperties,
-    transition: Transition,
-    onComplete?: () => void,
-  ) => void
+  push: (key: string, value: ResolvedValueTarget, target: MotionProperties, transition: Transition, onComplete?: () => void) => void
 
   /**
    * @internal Local transitions reference

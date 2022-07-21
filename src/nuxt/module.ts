@@ -28,23 +28,17 @@ export default defineNuxtModule<ModuleOptions>({
     })
 
     // Transpile necessary packages at build time
-    if (!nuxt.options.build.transpile)
-      nuxt.options.build.transpile = []
+    if (!nuxt.options.build.transpile) nuxt.options.build.transpile = []
     const transpileList = ['defu', '@vueuse/motion', '@vueuse/shared', '@vueuse/core']
-    transpileList.forEach(
-      (pkgName) => {
-        if (!nuxt.options.build.transpile.includes(pkgName))
-          nuxt.options.build.transpile.push(pkgName)
-      },
-    )
+    transpileList.forEach((pkgName) => {
+      if (!nuxt.options.build.transpile.includes(pkgName)) nuxt.options.build.transpile.push(pkgName)
+    })
 
     /**
      * Workaround for TSLib issue on @nuxt/bridge and nuxt3
      */
-    if (!nuxt.options.alias)
-      nuxt.options.alias = {}
-    if (!nuxt.options.alias.tslib)
-      nuxt.options.alias.tslib = 'tslib/tslib.es6.js'
+    if (!nuxt.options.alias) nuxt.options.alias = {}
+    if (!nuxt.options.alias.tslib) nuxt.options.alias.tslib = 'tslib/tslib.es6.js'
 
     // Add auto imports
     addAutoImport([

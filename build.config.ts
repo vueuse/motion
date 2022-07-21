@@ -43,6 +43,7 @@ export default defineBuildConfig({
     '@nuxt/kit',
     '@nuxt/schema',
     'nuxt3',
+    'nuxt',
     'vue',
     'defu',
     '@vueuse/motion',
@@ -53,17 +54,12 @@ export default defineBuildConfig({
     '@vue/compiler-core',
     '@babel/parser',
     '@vue/shared',
-    'vue-demi',
     '@vueuse/core',
   ],
   hooks: {
     'build:done': () => {
-      copySync(
-        'src/nuxt/runtime',
-        'dist/runtime',
-      )
+      copySync('src/nuxt/runtime', 'dist/runtime')
 
-      // eslint-disable-next-line no-console
       consola.info('Nuxt runtime copied to `dist/`!')
     },
   },

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent } from 'vue'
 
 export default defineComponent({
   setup() {
@@ -7,20 +7,17 @@ export default defineComponent({
       {
         icon: '🕹',
         title: 'Declarative Animations',
-        details:
-          'Write <b>animations</b> right from your <b>template</b> or <b>config</b> control them from your <b>script</b>.',
+        details: 'Write <b>animations</b> right from your <b>template</b> or <b>config</b> control them from your <b>script</b>.',
       },
       {
         icon: '🏎',
         title: 'Fast and Lightweight',
-        details:
-          '<b>Animations</b> powered by <a href="http://popmotion.io"><b>Popmotion</b></a>. <b>Bundle</b> size <b><20kb</b> gzipped.',
+        details: '<b>Animations</b> powered by <a href="http://popmotion.io"><b>Popmotion</b></a>. <b>Bundle</b> size <b><20kb</b> gzipped.',
       },
       {
         icon: '💚',
         title: 'Plug and Play',
-        details:
-          'Compatible with <b>Vue 2</b>, <b>3</b> and <b>Nuxt</b>. Start with <b>defaults</b>, write <b>yours</b> with <b>ease</b>.',
+        details: 'Compatible with <b>Vue 2</b>, <b>3</b> and <b>Nuxt</b>. Start with <b>defaults</b>, write <b>yours</b> with <b>ease</b>.',
       },
     ]
 
@@ -30,44 +27,27 @@ export default defineComponent({
 </script>
 
 <template>
-  <ClientOnly>
-    <div class="home-features">
-      <div class="wrapper">
-        <div class="container">
-          <div class="features">
-            <section
-              v-for="(feature, index) in features"
-              :key="index"
-              v-motion="{
-                initial: {
-                  y: 200,
-                  opacity: 0,
-                },
-                enter: {
-                  y: 0,
-                  opacity: 1,
-                  transition: {
-                    delay: index * 100
-                  }
-                }
-              }"
-              class="feature"
-            >
-              <h2 v-if="feature.title" class="title">
-                <span role="img">{{ feature.icon }}</span>
-                {{ feature.title }}
-              </h2>
-              <p
-                v-if="feature.details"
-                class="details"
-                v-html="feature.details"
-              />
-            </section>
-          </div>
-        </div>
-      </div>
-    </div>
-  </ClientOnly>
+  <Card
+    v-for="(feature, index) in features"
+    :key="index"
+    v-motion="{
+      initial: {
+        y: 200,
+        opacity: 0,
+      },
+      enter: {
+        y: 0,
+        opacity: 1,
+        transition: {
+          delay: index * 100,
+        },
+      },
+    }"
+    class="feature"
+    :title="feature.title"
+    :icon="feature.icon"
+    :description="feature.details"
+  />
 </template>
 
 <style scoped>

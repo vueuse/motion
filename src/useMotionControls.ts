@@ -1,13 +1,7 @@
 import type { MaybeRef } from '@vueuse/core'
 import { isObject } from '@vueuse/core'
-import { ref, unref, watch } from 'vue-demi'
-import type {
-  MotionControls,
-  MotionProperties,
-  MotionTransitions,
-  MotionVariants,
-  Variant,
-} from './types'
+import { ref, unref, watch } from 'vue'
+import type { MotionControls, MotionProperties, MotionTransitions, MotionVariants, Variant } from './types'
 import { useMotionTransitions } from './useMotionTransitions'
 import { getDefaultTransition } from './utils/defaults'
 
@@ -30,12 +24,11 @@ export function useMotionControls<T extends MotionVariants>(
   const isAnimating = ref(false)
 
   // Watcher setting isAnimating
-  const _stopWatchAnimating = watch(
+  watch(
     motionValues,
     (newVal) => {
       // Go through every motion value, and check if any is animating
-      isAnimating.value
-        = Object.values(newVal).filter(value => value.isAnimating()).length > 0
+      isAnimating.value = Object.values(newVal).filter((value) => value.isAnimating()).length > 0
     },
     {
       immediate: true,
@@ -44,8 +37,7 @@ export function useMotionControls<T extends MotionVariants>(
   )
 
   const getVariantFromKey = (variant: keyof T): Variant => {
-    if (!_variants || !_variants[variant])
-      throw new Error(`The variant ${variant} does not exist.`)
+    if (!_variants || !_variants[variant]) throw new Error(`The variant ${variant as string} does not exist.`)
 
     return _variants[variant] as Variant
   }
@@ -62,14 +54,7 @@ export function useMotionControls<T extends MotionVariants>(
           if (key === 'transition') return undefined
 
           return new Promise<void>((resolve) => {
-            push(
-              key as keyof MotionProperties,
-              value,
-              motionProperties,
-              (variant as Variant).transition
-                || getDefaultTransition(key, variant[key]),
-              resolve,
-            )
+            push(key as keyof MotionProperties, value, motionProperties, (variant as Variant).transition || getDefaultTransition(key, variant[key]), resolve)
           })
         })
         .filter(Boolean),
@@ -91,14 +76,13 @@ export function useMotionControls<T extends MotionVariants>(
     })
   }
 
-  const leave = async(done: () => void) => {
+  const leave = async (done: () => void) => {
     let leaveVariant: Variant | undefined
 
     if (_variants) {
       if (_variants.leave) leaveVariant = _variants.leave
 
-      if (!_variants.leave && _variants.initial)
-        leaveVariant = _variants.initial
+      if (!_variants.leave && _variants.initial) leaveVariant = _variants.initial
     }
 
     if (!leaveVariant) {
@@ -115,10 +99,7 @@ export function useMotionControls<T extends MotionVariants>(
     isAnimating,
     apply,
     set,
-    stopTransitions: () => {
-      _stopWatchAnimating()
-      stop()
-    },
     leave,
+    stop,
   }
 }
