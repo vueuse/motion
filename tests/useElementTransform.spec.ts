@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import { nextTick, ref } from 'vue-demi'
+import { nextTick, ref } from 'vue'
 import { describe, expect, it } from 'vitest'
 import { useElementTransform } from '../src'
 
@@ -32,7 +32,7 @@ describe('useElementTransform', () => {
     expect(transform.scale).toBe(1.2)
   })
 
-  it('mutates element properties', async() => {
+  it('mutates element properties', async () => {
     const element = getElementRef()
 
     const { transform } = useElementTransform(element)
@@ -41,8 +41,6 @@ describe('useElementTransform', () => {
 
     await nextTick()
 
-    expect(element.value.style.transform).toBe(
-      'translateY(120px) translateZ(0px)',
-    )
+    expect(element.value.style.transform).toBe('translateY(120px) translateZ(0px)')
   })
 })

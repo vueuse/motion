@@ -1,6 +1,5 @@
-
 <script setup lang="ts">
-import { defineProps, nextTick, ref, watch } from 'vue-demi'
+import { defineProps, nextTick, ref, watch } from 'vue'
 import Prism from 'prismjs'
 
 const props = defineProps({
@@ -24,11 +23,10 @@ const preRender = (codeContent: string) => {
 }
 
 const render = () => {
-  if (!Prism.languages[props.language])
-    require(`prismjs/components/prism-${props.language}`)
+  if (!Prism.languages[props.language]) require(`prismjs/components/prism-${props.language}`)
 
   nextTick(() => {
-    if (!code) return
+    if (!code.value) return
 
     const codeContent = props.text || code?.value?.innerText || ''
 
@@ -54,7 +52,7 @@ watch(
 
 <template>
   <pre ref="pre" class="w-full shadow-xl">
-    <code ref="code" :class="['w-full', `language-${language}`]">
+    <code ref="code" class="w-full" :class="[`language-${language}`]">
         <slot v-if="$slots" />
     </code>
 </pre>

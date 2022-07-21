@@ -1,4 +1,4 @@
-import type { Ref } from 'vue-demi'
+import type { Ref } from 'vue'
 import { useMediaQuery } from '@vueuse/core'
 
 /**
@@ -6,8 +6,6 @@ import { useMediaQuery } from '@vueuse/core'
  *
  * @param options
  */
-export function useReducedMotion(
-  options: { window?: Window } = {},
-): Ref<boolean> {
+export function useReducedMotion(options: { window?: Window } = {}): Ref<boolean> {
   return useMediaQuery('(prefers-reduced-motion: reduce)', options)
 }

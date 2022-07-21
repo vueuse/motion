@@ -1,5 +1,5 @@
 <template>
-  <div class="w-32 h-32 bg-red-400 border-8 rounded-4xl border-red-600">
+  <div class="rounded-4xl h-32 w-32 border-8 border-red-600 bg-red-400">
     <slot />
   </div>
 </template>

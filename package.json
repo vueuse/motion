@@ -37,18 +37,19 @@
     "test:unit": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test": "pnpm test:types && pnpm test:unit && pnpm test:coverage",
-    "dev:docs": "vitepress dev docs",
-    "build:docs": "vitepress build docs",
-    "serve:docs": "vitepress serve docs",
+    "dev:docs": "nuxt dev docs",
+    "build:docs": "nuxt generate docs",
+    "preview:docs": "nuxt preview docs",
     "publish:ci": "jiti scripts/publish.ts",
     "release": "jiti scripts/release.ts && git push --follow-tags",
     "dev:demo": "vite",
     "build:demo": "vite build",
     "serve:demo": "vite serve demo/dist",
-    "prepare:nuxt": "nuxt-module-build --stub && nuxi prepare playground",
+    "prepare:nuxt": "nuxi prepare playground && unbuild --stub",
     "build:nuxt": "nuxt-module-build",
     "dev:nuxt": "nuxi dev nuxt-playground",
-    "build:nuxt:playground": "nuxi build playground"
+    "build:nuxt:playground": "nuxi build playground",
+    "prepare": "pnpm run prepare:nuxt"
   },
   "files": [
     "dist/**/*",
@@ -56,51 +57,47 @@
     "README.md"
   ],
   "dependencies": {
-    "@vueuse/core": "^8.2.3",
-    "@vueuse/shared": "^8.2.3",
-    "csstype": "^3.0.11",
+    "@vueuse/core": "^8.9.4",
+    "@vueuse/shared": "^8.9.4",
+    "csstype": "^3.1.0",
     "framesync": "^6.1.0",
     "popmotion": "^11.0.3",
-    "style-value-types": "^5.1.0",
-    "vue-demi": "*"
+    "style-value-types": "^5.1.0"
   },
   "peerDependencies": {
-    "@nuxt/kit": "npm:@nuxt/kit-edge@latest",
-    "@vue/composition-api": "^1.4.1",
-    "vue": "^2.0.0 || >=3.0.0-rc.0"
-  },
-  "peerDependenciesMeta": {
-    "@vue/composition-api": {
-      "optional": true
-    }
+    "@nuxt/kit": "^3.0.0-rc.4"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.19.2",
+    "@nuxt-themes/docus": "npm:@nuxt-themes/docus-edge@latest",
     "@nuxt/module-builder": "latest",
     "@types/prismjs": "^1.26.0",
-    "@vitejs/plugin-vue": "^2.3.1",
-    "@vue/server-renderer": "^3.2.31",
-    "@vue/test-utils": "^2.0.0-rc.17",
-    "@vuedx/typecheck": "^0.7.4",
-    "@vuedx/typescript-plugin-vue": "^0.7.4",
-    "bumpp": "^7.1.1",
-    "c8": "^7.11.0",
+    "@vitejs/plugin-vue": "^3.0.1",
+    "@vue/server-renderer": "^3.2.37",
+    "@vue/test-utils": "^2.0.2",
+    "bumpp": "^8.2.1",
+    "c8": "^7.12.0",
     "chokidar": "^3.5.3",
-    "eslint": "^8.12.0",
-    "happy-dom": "^2.55.0",
-    "lint-staged": "^12.3.7",
-    "nuxt3": "latest",
-    "prism-theme-vars": "^0.2.2",
-    "prismjs": "^1.27.0",
-    "typescript": "^4.6.3",
-    "unbuild": "^0.7.2",
-    "upath": "^2.0.1",
-    "vite": "2.9.1",
-    "vite-plugin-windicss": "^1.8.3",
-    "vitepress": "^0.22.3",
-    "vitest": "^0.8.2",
-    "vue": "^3.2.31",
-    "yorkie": "^2.0.0"
+    "happy-dom": "^6.0.4",
+    "lint-staged": "^13.0.3",
+    "nuxt": "^3.0.0-rc.4",
+    "prism-theme-vars": "^0.2.4",
+    "prismjs": "^1.28.0",
+    "typescript": "^4.7.4",
+    "unbuild": "^0.7.6",
+    "vite": "3.0.2",
+    "vite-plugin-windicss": "^1.8.7",
+    "vitepress": "^0.22.4",
+    "vitest": "^0.18.1",
+    "vue": "^3.2.37",
+    "yorkie": "^2.0.0",
+    "eslint": "^8.20.0",
+    "@antfu/eslint-config": "^0.25.2",
+    "@nuxtjs/eslint-config-typescript": "^10.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-prettier-vue": "^4.2.0",
+    "prettier": "^2.7.1",
+    "prettier-plugin-tailwindcss": "^0.1.12"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -112,5 +109,14 @@
     "*.ts?(x)": [
       "eslint --fix"
     ]
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@types/react",
+        "react",
+        "react-dom"
+      ]
+    }
   }
 }

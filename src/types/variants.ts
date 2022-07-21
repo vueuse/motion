@@ -1,4 +1,4 @@
-import type { CSSProperties, SVGAttributes } from 'vue-demi'
+import type { CSSProperties, SVGAttributes } from 'vue'
 import type { ResolvedSingleTarget, Transition } from './transitions'
 
 /**
@@ -47,32 +47,17 @@ export interface TransformProperties {
  * Relevant styling properties
  */
 export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
-export type StyleProperties = Omit<
-CSSProperties,
-| 'transition'
-| 'rotate'
-| 'scale'
-| 'perspective'
-| 'transform'
-| 'transformBox'
-| 'transformOrigin'
-| 'transformStyle'
->
+export type StyleProperties = Omit<CSSProperties, 'transition' | 'rotate' | 'scale' | 'perspective' | 'transform' | 'transformBox' | 'transformOrigin' | 'transformStyle'>
 
 /**
  * Available properties for useMotion variants
  */
-export type MotionProperties =
-  | StyleProperties
-  | SVGAttributes
-  | TransformProperties
-  | SVGPathProperties
+export type MotionProperties = StyleProperties | SVGAttributes | TransformProperties | SVGPathProperties
 
 /**
  * Permissive properties for useSpring
  */
-export type PermissiveMotionProperties = MotionProperties &
-Record<string, ResolvedSingleTarget>
+export type PermissiveMotionProperties = MotionProperties & Record<string, ResolvedSingleTarget>
 
 /**
  * Variant

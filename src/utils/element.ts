@@ -5,9 +5,7 @@ import type { VueInstance } from '@vueuse/core'
 import type { MaybeRef } from '@vueuse/shared'
 import type { MotionTarget, PermissiveTarget } from '../types'
 
-export function resolveElement(
-  target: MaybeRef<PermissiveTarget>,
-): Ref<MotionTarget> {
+export function resolveElement(target: MaybeRef<PermissiveTarget>): Ref<MotionTarget> {
   const _targetRef = ref(target)
   const targetRef = ref()
 

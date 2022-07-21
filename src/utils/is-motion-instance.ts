@@ -1,5 +1,5 @@
 import { isFunction } from '@vueuse/shared'
-import { isRef } from 'vue-demi'
+import { isRef } from 'vue'
 import type { MotionInstance } from '../types'
 
 /**
@@ -13,14 +13,5 @@ import type { MotionInstance } from '../types'
 export function isMotionInstance(obj: any): obj is MotionInstance {
   const _obj = obj as MotionInstance
 
-  return (
-    _obj.apply !== undefined
-    && isFunction(_obj.apply)
-    && _obj.set !== undefined
-    && isFunction(_obj.set)
-    && _obj.stopTransitions !== undefined
-    && isFunction(_obj.stopTransitions)
-    && _obj.target !== undefined
-    && isRef(_obj.target)
-  )
+  return _obj.apply !== undefined && isFunction(_obj.apply) && _obj.set !== undefined && isFunction(_obj.set) && _obj.target !== undefined && isRef(_obj.target)
 }

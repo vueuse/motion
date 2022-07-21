@@ -21,36 +21,20 @@ const replay = () => {
 </script>
 
 <template>
-  <div
-    class="
-      relative
-      w-full
-      p-4
-      overflow-hidden
-      bg-gray-800
-      border-4
-      shadow-2xl
-      rounded-xl
-      border-violet-600
-    "
-  >
-    <div
-      class="flex flex-wrap-reverse lg:flex-nowrap items-center w-full h-full"
-    >
+  <div class="relative w-full overflow-hidden rounded-xl border-4 border-violet-600 bg-gray-800 p-4 shadow-2xl">
+    <div class="flex h-full w-full flex-wrap-reverse items-center lg:flex-nowrap">
       <div v-if="text" class="flex-1">
         <code-block :text="text" language="javascript" />
       </div>
 
-      <div v-if="visible" class="flex items-center justify-center flex-1">
+      <div v-if="visible" class="flex flex-1 items-center justify-center">
         <slot name="demoElement" />
       </div>
     </div>
 
-    <div class="absolute cursor-pointer select-none top-6 right-8">
+    <div class="absolute top-6 right-8 cursor-pointer select-none">
       <div class="flex flex-row items-center justify-end">
-        <button class="ml-4" @click="replay">
-          🔃
-        </button>
+        <button class="ml-4" @click="replay">🔃</button>
         <slot name="controls" />
       </div>
     </div>

@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import NavLink from 'vitepress/dist/client/theme-default/components/NavLink.vue'
+import { ref } from 'vue'
 import { useMotion } from '@vueuse/motion'
 import Illustration from './Illustration.vue'
 
@@ -79,13 +78,11 @@ useMotion(sources, {
 
     <div class="actions">
       <div ref="introduction" class="action">
-        <NavLink :item="{ link: '/introduction', text: 'Get Started' }" />
+        <NuxtLink :item="{ link: '/introduction', text: 'Get Started' }" />
       </div>
 
       <div ref="sources" class="action alt">
-        <NavLink
-          :item="{ link: 'https://github.com/vueuse/motion', text: 'Sources' }"
-        />
+        <NuxtLink to="https://github.com/vueuse/motion">Source</NuxtLink>
       </div>
     </div>
   </header>

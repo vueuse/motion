@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { join, resolve } from 'path'
 import { writeFileSync } from 'fs'
 import vue from '@vitejs/plugin-vue'
@@ -6,9 +7,6 @@ import WindiCSS from 'vite-plugin-windicss'
 
 export default defineConfig({
   root: 'demo/',
-  optimizeDeps: {
-    exclude: ['vue-demi'],
-  },
   plugins: [
     vue(),
     WindiCSS(),
@@ -16,10 +14,7 @@ export default defineConfig({
       name: 'add-common-js-package-plugin',
       writeBundle(options) {
         if (options.format === 'cjs') {
-          writeFileSync(
-            join(options.dir, 'package.json'),
-            JSON.stringify({ type: 'commonjs' }),
-          )
+          writeFileSync(join(options.dir, 'package.json'), JSON.stringify({ type: 'commonjs' }))
         }
       },
     },
@@ -33,10 +28,9 @@ export default defineConfig({
     ],
   },
   test: {
-    global: true,
     environment: 'happy-dom',
-    include: ['tests/**/*.spec.ts'],
+    include: ['../tests/**/*.spec.ts'],
     // Temporarily disable `transform` test
-    exclude: ['tests/transform.spec.ts'],
+    exclude: ['../tests/transform.spec.ts'],
   },
 })

@@ -46,20 +46,12 @@ const replay = () => {
         :tapped="{
           scale: 0.8,
         }"
-        class="
-          w-24
-          h-24
-          bg-indigo-500
-          border-8 border-indigo-400
-          shadow-xl
-          cursor-pointer
-          rounded-3xl
-        "
+        class="h-24 w-24 cursor-pointer rounded-3xl border-8 border-indigo-400 bg-indigo-500 shadow-xl"
       />
     </template>
 
     <div>
-      <input v-model="input" type="range" max="360" min="0" step="1">
+      <input v-model="input" type="range" max="360" min="0" step="1" />
     </div>
   </DemoBox>
 </template>

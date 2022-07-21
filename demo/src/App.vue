@@ -10,27 +10,19 @@ const sandbox = false
 <template>
   <div>
     <div class="flex items-center justify-center">
-      <h1 class="m-6 text-4xl font-bold cursor-pointer select-none">
-        🤹&nbsp;@vueuse/motion
-      </h1>
+      <h1 class="m-6 cursor-pointer select-none text-4xl font-bold">🤹&nbsp;@vueuse/motion</h1>
     </div>
 
     <template v-if="!sandbox">
-      <h1 class="flex items-center justify-center text-3xl font-bold">
-        Delay
-      </h1>
+      <h1 class="flex items-center justify-center text-3xl font-bold">Delay</h1>
 
       <Delay class="mt-6 mb-6" />
 
-      <h1 class="flex items-center justify-center text-3xl font-bold">
-        Editor
-      </h1>
+      <h1 class="flex items-center justify-center text-3xl font-bold">Editor</h1>
 
       <Editor class="mt-6 mb-6" />
 
-      <h1 class="flex items-center justify-center text-3xl font-bold">
-        Transitions
-      </h1>
+      <h1 class="flex items-center justify-center text-3xl font-bold">Transitions</h1>
 
       <Transitions class="mt-6 mb-6" />
     </template>
@@ -38,15 +30,11 @@ const sandbox = false
     <Sandbox v-else />
 
     <div class="flex flex-col items-center justify-center">
-      <a class="mt-12 mb-6" href="https://github.com/vueuse/motion">
-        ↩️&nbsp;&nbsp;Bring me back to GitHub
-      </a>
+      <a class="mt-12 mb-6" href="https://github.com/vueuse/motion"> ↩️&nbsp;&nbsp;Bring me back to GitHub </a>
 
       <p class="mb-6 text-center">
         This package has been written by
-        <a href="https://twitter.com/yaeeelglx" target="_blank">
-          Yaël Guilloux
-        </a>
+        <a href="https://twitter.com/yaeeelglx" target="_blank"> Yaël Guilloux </a>
       </p>
     </div>
   </div>

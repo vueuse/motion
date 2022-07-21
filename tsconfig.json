@@ -1,4 +1,5 @@
 {
+  "extends": "./nuxt-playground/.nuxt/tsconfig.json",
   "include": [
     "env.d.ts",
     "src/**/*.ts",
@@ -16,51 +17,13 @@
   ],
   "exclude": ["dist", "node_modules"],
   "compilerOptions": {
-    "types": ["node", "vite/client"],
+    "types": ["node", "vite/client", "vitest/globals"],
     "lib": ["esnext", "dom"],
-    "plugins": [
-      {
-        "name": "@vuedx/typescript-plugin-vue"
-      }
-    ],
     "paths": {
       "@vueuse/motion": ["./src/index.ts"],
       "@vueuse/motion/*": ["./src/*"],
-      "#app": [
-        "./node_modules/.pnpm/nuxt3@3.0.0-27467464.a0c4d6e_vite@2.8.6/node_modules/nuxt3/dist/app"
-      ],
-      "#app/*": [
-        "./node_modules/.pnpm/nuxt3@3.0.0-27467464.a0c4d6e_vite@2.8.6/node_modules/nuxt3/dist/app/*"
-      ],
-      "vue-demi": [
-        "./node_modules/.pnpm/nuxt3@3.0.0-27467464.a0c4d6e_vite@2.8.6/node_modules/nuxt3/dist/app/compat/vue-demi"
-      ],
-      "#meta": [
-        "./node_modules/.pnpm/nuxt3@3.0.0-27467464.a0c4d6e_vite@2.8.6/node_modules/nuxt3/dist/meta/runtime"
-      ],
-      "#meta/*": [
-        "./node_modules/.pnpm/nuxt3@3.0.0-27467464.a0c4d6e_vite@2.8.6/node_modules/nuxt3/dist/meta/runtime/*"
-      ],
-      "#imports": [
-        "./nuxt-playground/.nuxt/imports"
-      ],
-      "#build": [
-        "./nuxt-playground/.nuxt"
-      ],
-      "#build/*": [
-        "./nuxt-playground/.nuxt/*"
-      ],
-      "#config": [
-        "@nuxt/nitro"
-      ],
-      "#storage": [
-        "@nuxt/nitro"
-      ],
-      "#assets": [
-        "@nuxt/nitro"
-      ]
+      "csstype": ["node_modules/csstype"]
     },
-
     "baseUrl": ".",
     "rootDir": ".",
     "outDir": "dist",
