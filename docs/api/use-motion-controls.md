@@ -54,7 +54,7 @@ const { apply, stopTransitions } = useMotionControls(motionProperties, {
   },
   custom: {
     y: 0,
-    opacty: 1,
+    opacity: 1,
   },
 })
 
