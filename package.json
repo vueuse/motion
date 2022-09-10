@@ -115,5 +115,12 @@
     "*.ts?(x)": [
       "eslint --fix"
     ]
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "vitepress"
+      ]
+    }
   }
 }
