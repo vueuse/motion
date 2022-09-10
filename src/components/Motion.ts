@@ -131,11 +131,11 @@ export default defineComponent({
     if (process?.env?.NODE_ENV === 'development' || (process as any)?.dev) {
       const replayAnimation = (instance: MotionInstance<any>) => {
         if (instance.variants?.initial) instance.set('initial')
-        nextTick(() => {
+        setTimeout(() => {
           if (instance.variants?.enter) instance.apply('enter')
           if (instance.variants?.visible) instance.apply('visible')
           if (instance.variants?.visibleOnce) instance.apply('visibleOnce')
-        })
+        }, 10)
       }
 
       onUpdated(() => Object.entries(instances).forEach(([_, value]) => replayAnimation(value)))

@@ -1,6 +1,7 @@
 ---
+title: Put your components in motion!
 navigation: false
-layout: fluid
+layout: page
 transitions:
   initial:
     y: 100
@@ -13,15 +14,6 @@ transitions:
 ---
 
 ::block-hero
----
-cta:
-  - Get Started
-  - /getting-started/introduction
-secondary:
-  - Star on GitHub
-  - https://github.com/vueuse/motion
----
-
 #title
 ::motion
 ---
@@ -49,6 +41,38 @@ delay: 100
 Vue composables putting your components in Motion.
 ::
 
+#actions
+::motion
+---
+initial:
+  y: 100
+  opacity: 0
+enter:
+  y: 0
+  opacity: 1
+delay: 200
+---
+  ::button-link{size="large" to="/getting-started/introduction"}
+  Get Started
+  ::
+::
+
+::motion
+---
+initial:
+  y: 100
+  opacity: 0
+enter:
+  y: 0
+  opacity: 1
+delay: 300
+---
+  ::button-link{to="https://github.com/vueuse/motion" .!bg-transparent .!text-black .dark:!text-white blank}
+  :icon{name="fa-brands:github" .mr-2}
+  Star on GitHub
+  ::
+::
+
 #right
 ::div{.w-full .flex .items-center .justify-center}
   ::illustration
@@ -71,9 +95,11 @@ Vue composables putting your components in Motion.
     ::card
     ---
     icon: 🕹
-    title: Declarative Animations^
-    description: 'Write animations right from your template or config control them from your script.'
     ---
+    #title
+    Declarative Animations
+    #description
+    Write animations right from your template or config control them from your script.
     ::
   ::
 
@@ -90,9 +116,11 @@ Vue composables putting your components in Motion.
     ::card
     ---
     icon: 🏎
-    description: Animations powered by Popmotion. Bundle size <20kb gzipped.
-    title: Fast and Lightweight
     ---
+    #title
+    Fast and Lightweight
+    #description
+    Animations powered by Popmotion. Bundle size <20kb gzipped.
     ::
   ::
 
@@ -109,9 +137,11 @@ Vue composables putting your components in Motion.
     ::card
     ---
     icon: 💚
-    title: Plug and Play
-    description: Compatible with Vue 2, 3 and Nuxt. Start with defaults, write yours with ease.
     ---
+    #title
+    Plug and Play
+    #description
+    Compatible with Vue 2, 3 and Nuxt. Start with defaults, write yours with ease.
     ::
   ::
 ::

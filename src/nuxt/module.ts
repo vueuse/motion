@@ -9,10 +9,6 @@ export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: '@vueuse/motion',
     configKey: CONFIG_KEY,
-    compatibility: {
-      nuxt: '^3.0.0-rc.3',
-      bridge: true,
-    },
   },
   defaults: DEFAULTS,
   setup(options, nuxt) {

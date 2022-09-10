@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useMotion } from '@vueuse/motion'
 import { ref } from 'vue'
+
 const buttons = ref<SVGElement>()
 const browser = ref<SVGElement>()
 const card = ref<SVGElement>()
@@ -19,8 +20,8 @@ const refs = [buttons, browser, card, search, circleBottom, circleTop, head, mou
 refs.forEach((ref, index) => {
   const { variant } = useMotion(ref, {
     initial: {
-      y: 100,
-      opacity: 0,
+      y: 0,
+      opacity: 1,
     },
     enter: {
       y: 0,
@@ -36,7 +37,7 @@ refs.forEach((ref, index) => {
       },
     },
     levitate: {
-      y: 15,
+      y: 20,
       transition: {
         duration: 1500,
         repeat: Infinity,
@@ -49,7 +50,7 @@ refs.forEach((ref, index) => {
 </script>
 
 <template>
-  <div>
+  <Motion :initial="{ y: 100, opacity: 0 }" :enter="{ y: 0, opacity: 1 }" :delay="100">
     <svg height="340px" viewBox="0 0 1141 956" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path
         ref="buttons"
@@ -326,5 +327,5 @@ refs.forEach((ref, index) => {
         />
       </g>
     </svg>
-  </div>
+  </Motion>
 </template>
