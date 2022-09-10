@@ -57,12 +57,12 @@
     "README.md"
   ],
   "dependencies": {
-    "@vueuse/core": "^8.9.4",
-    "@vueuse/shared": "^8.9.4",
+    "@vueuse/core": "^9.2.0",
+    "@vueuse/shared": "^9.2.0",
     "csstype": "^3.1.0",
-    "framesync": "^6.1.0",
-    "popmotion": "^11.0.3",
-    "style-value-types": "^5.1.0"
+    "framesync": "^6.1.2",
+    "popmotion": "^11.0.5",
+    "style-value-types": "^5.1.2"
   },
   "peerDependencies": {
     "@nuxt/kit": "^3.0.0-rc.4"
@@ -71,8 +71,8 @@
     "@nuxt-themes/docus": "npm:@nuxt-themes/docus-edge@latest",
     "@nuxt/module-builder": "latest",
     "@types/prismjs": "^1.26.0",
-    "@vitejs/plugin-vue": "^3.0.1",
-    "@vue/server-renderer": "^3.2.37",
+    "@vitejs/plugin-vue": "^3.1.0",
+    "@vue/server-renderer": "^3.2.39",
     "@vue/test-utils": "^2.0.2",
     "bumpp": "^8.2.1",
     "c8": "^7.12.0",
@@ -81,23 +81,23 @@
     "lint-staged": "^13.0.3",
     "nuxt": "^3.0.0-rc.4",
     "prism-theme-vars": "^0.2.4",
-    "prismjs": "^1.28.0",
-    "typescript": "^4.7.4",
-    "unbuild": "^0.7.6",
-    "vite": "3.0.2",
-    "vite-plugin-windicss": "^1.8.7",
+    "prismjs": "^1.29.0",
+    "typescript": "^4.8.3",
+    "unbuild": "^0.8.10",
+    "vite": "3.1.0",
+    "vite-plugin-windicss": "^1.8.8",
     "vitepress": "^0.22.4",
-    "vitest": "^0.18.1",
-    "vue": "^3.2.37",
+    "vitest": "^0.23.2",
+    "vue": "^3.2.39",
     "yorkie": "^2.0.0",
-    "eslint": "^8.20.0",
-    "@antfu/eslint-config": "^0.25.2",
-    "@nuxtjs/eslint-config-typescript": "^10.0.0",
+    "eslint": "^8.23.0",
+    "@antfu/eslint-config": "^0.26.3",
+    "@nuxtjs/eslint-config-typescript": "^11.0.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-prettier-vue": "^4.2.0",
     "prettier": "^2.7.1",
-    "prettier-plugin-tailwindcss": "^0.1.12"
+    "prettier-plugin-tailwindcss": "^0.1.13"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

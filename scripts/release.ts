@@ -12,8 +12,8 @@ if (oldVersion === version) {
   process.exit()
 }
 
-execSync('pnpm build', { stdio: 'inherit' })
-execSync('pnpm update', { stdio: 'inherit' })
+execSync('yarn build', { stdio: 'inherit' })
+execSync('yarn update', { stdio: 'inherit' })
 execSync('git add .', { stdio: 'inherit' })
 
 execSync(`git commit -m "chore: release v${version}"`, { stdio: 'inherit' })

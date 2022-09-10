@@ -31,7 +31,7 @@ const replay = async () => {
   isReplaying.value = true
 
   replayInstance.apply({
-    rotate: 360,
+    rotate: -360,
   })
 
   await apply(props.preset.initial)
@@ -50,29 +50,10 @@ const replay = async () => {
 
 <template>
   <div class="presetSection">
-    <h2 style="text-transform: capitalize">
+    <ProseH3 :id="name" class="capitalize">
       {{ name.replace(/[A-Z]/g, (s: any) => ` ${s}`) }}
+    </ProseH3>
 
-      <button @click="replay">
-        <svg
-          ref="replayButton"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          aria-hidden="true"
-          focusable="false"
-          role="img"
-          width="1.2em"
-          height="1.5em"
-          preserveAspectRatio="xMidYMid meet"
-          viewBox="0 0 344 432"
-        >
-          <path
-            d="M171 91q70 0 120 50t50 120.5T291 382t-120.5 50T50 382T0 261h43q0 53 37.5 90.5T171 389t90.5-37.5T299 261t-37.5-90.5T171 133v86L64 112L171 5v86z"
-            style="fill: var(--c-text)"
-          />
-        </svg>
-      </button>
-    </h2>
     <div class="content">
       <div class="demoCode">
         <code>
@@ -82,7 +63,10 @@ const replay = async () => {
         </code>
       </div>
 
-      <div class="demoContainer">
+      <div class="demoContainer relative">
+        <button class="absolute right-4 top-4" @click="replay">
+          <Icon ref="replayButton" name="heroicons-outline:refresh" class="h-6 w-6" />
+        </button>
         <div ref="demoElement" class="demoElement">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
             <path
@@ -109,18 +93,6 @@ const replay = async () => {
   flex-direction: column;
 }
 
-h2 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-h2 > button {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-}
-
 .content {
   display: flex;
 }
@@ -131,13 +103,13 @@ h2 > button {
 }
 
 .demoContainer {
+  @apply bg-blue-50/25 dark:bg-blue-900/25;
   width: 50%;
   flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 12rem;
-  background-color: var(--code-inline-bg-color);
   overflow: hidden;
   border-radius: 16px;
 }

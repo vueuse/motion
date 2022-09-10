@@ -1,5 +1,4 @@
 {
-  "extends": "./nuxt-playground/.nuxt/tsconfig.json",
   "include": [
     "env.d.ts",
     "src/**/*.ts",
@@ -22,7 +21,83 @@
     "paths": {
       "@vueuse/motion": ["./src/index.ts"],
       "@vueuse/motion/*": ["./src/*"],
-      "csstype": ["node_modules/csstype"]
+      "csstype": ["node_modules/csstype"],
+
+      "~~": [
+        "."
+      ],
+      "~~/*": [
+        "./*"
+      ],
+      "@@": [
+        "."
+      ],
+      "@@/*": [
+        "./*"
+      ],
+      "~": [
+        "."
+      ],
+      "~/*": [
+        "./*"
+      ],
+      "@": [
+        "."
+      ],
+      "@/*": [
+        "./*"
+      ],
+      "assets": [
+        "assets"
+      ],
+      "public": [
+        "public"
+      ],
+      "public/*": [
+        "public/*"
+      ],
+      "#app": [
+        "node_modules/nuxt/dist/app"
+      ],
+      "#app/*": [
+        "node_modules/nuxt/dist/app/*"
+      ],
+      "vue-demi": [
+        "node_modules/nuxt/dist/app/compat/vue-demi"
+      ],
+      "tslib": [
+        "tslib/tslib.es6"
+      ],
+      "#design-tokens": [
+        "docs/.nuxt/tokens/index"
+      ],
+      "#design-tokens/style": [
+        "docs/.nuxt/tokens/tokens"
+      ],
+      "#design-tokens/types": [
+        "docs/.nuxt/tokens/types"
+      ],
+      "#color-mode-options": [
+        "docs/.nuxt/color-mode-options"
+      ],
+      "#head": [
+        "node_modules/nuxt/dist/head/runtime"
+      ],
+      "#head/*": [
+        "node_modules/nuxt/dist/head/runtime/*"
+      ],
+      "#imports": [
+        "docs/.nuxt/imports"
+      ],
+      "#build": [
+        "docs/.nuxt"
+      ],
+      "#build/*": [
+        "docs/.nuxt/*"
+      ],
+      "#components": [
+        "docs/.nuxt/components"
+      ]
     },
     "baseUrl": ".",
     "rootDir": ".",
