@@ -12,7 +12,7 @@
 
 [build]
     publish = "docs/.output/public"
-    command = "npm install -g pnpm && pnpm install --store=node_modules/.pnpm-store && pnpm build:docs"
+    command = "npx pnpm install --store=node_modules/.pnpm-store && (cd docs && npx pnpm build:docs)"
 
 [build.environment]
   NODE_VERSION = "16"
