@@ -69,7 +69,7 @@ const presets = {
 
 <template>
   <div class="presetsViewer">
-    <preset-section v-for="[key, preset] in Object.entries(presets)" :key="key" :name="key" :preset="preset" />
+    <PresetSection v-for="[key, preset] in Object.entries(presets)" :key="key" :name="key" :preset="preset" />
   </div>
 </template>
 

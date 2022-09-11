@@ -24,7 +24,7 @@ const replay = () => {
   <div class="relative w-full overflow-hidden rounded-xl border-4 border-violet-600 bg-gray-800 p-4 shadow-2xl">
     <div class="flex h-full w-full flex-wrap-reverse items-center lg:flex-nowrap">
       <div v-if="text" class="flex-1">
-        <code-block :text="text" language="javascript" />
+        <CodeBlock :text="text" language="javascript" />
       </div>
 
       <div v-if="visible" class="flex flex-1 items-center justify-center">
