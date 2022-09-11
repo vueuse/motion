@@ -3,6 +3,7 @@ import { defineNuxtConfig } from 'nuxt'
 
 export default defineNuxtConfig({
   css: ['~/assets/pico.css'],
+  css: ['~/assets/pico.css'],
   alias: {
     '@vueuse/motion': resolve(__dirname, '../../src/index.ts'),
     '@vueuse/motion/nuxt': resolve(__dirname, '../../src/nuxt/module.ts'),

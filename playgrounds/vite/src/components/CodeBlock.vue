@@ -26,7 +26,7 @@ const render = () => {
   if (!Prism.languages[props.language]) require(`prismjs/components/prism-${props.language}`)
 
   nextTick(() => {
-    if (!code.value) return
+    if (!code.value.value) return
 
     const codeContent = props.text || code?.value?.innerText || ''
 
