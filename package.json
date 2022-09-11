@@ -33,26 +33,28 @@
   },
   "scripts": {
     "build": "unbuild",
-    "dev": "jiti scripts/watch.ts --cache",
+    "dev": "nr dev:vite",
+    "release": "release-it",
     "lint": "eslint --ext .js,.vue,.ts,.tsx .",
     "lint:fix": "eslint --ext .js,.vue,.ts,.tsx . --fix",
-    "test:types": "tsc --build tsconfig.json",
     "test:unit": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "test": "pnpm test:types && pnpm test:unit && pnpm test:coverage",
-    "dev:docs": "nuxt dev docs",
-    "build:docs": "nuxt generate docs",
-    "preview:docs": "nuxt preview docs",
-    "publish:ci": "jiti scripts/publish.ts",
-    "release": "jiti scripts/release.ts && git push --follow-tags",
-    "dev:demo": "vite",
-    "build:demo": "vite build",
-    "serve:demo": "vite serve demo/dist",
-    "prepare:nuxt": "nuxi prepare playground && unbuild --stub",
-    "build:nuxt": "nuxt-module-build",
-    "dev:nuxt": "nuxi dev nuxt-playground",
-    "build:nuxt:playground": "nuxi build playground",
-    "prepare": "pnpm run prepare:nuxt"
+    "test": "pnpm test:unit && pnpm test:coverage",
+    "prepare": "nr prepare:nuxt",
+    "__": "__",
+    "dev:nuxt": "(cd playgrounds/nuxt && nr dev:nuxt)",
+    "build:nuxt": "(cd playgrounds/nuxt && nr build:nuxt)",
+    "generate:nuxt": "(cd playgrounds/nuxt && nr preview:nuxt)",
+    "dev:ssg": "(cd playgrounds/vite-ssg && nr dev:ssg)",
+    "build:ssg": "(cd playgrounds/vite-ssg && nr build:ssg)",
+    "preview:ssg": "(cd playgrounds/vite-ssg && nr preview:ssg)",
+    "dev:vite": "(cd playgrounds/vite && nr dev:vite)",
+    "build:vite": "(cd playgrounds/vite && nr build:vite)",
+    "preview:vite": "(cd playgrounds/vite && nr preview:vite)",
+    "dev:docs": "(cd docs && nr dev:docs)",
+    "build:docs": "(cd docs && nr build:docs)",
+    "preview:docs": "(cd docs && nr preview:docs)",
+    "prepare:nuxt": "(cd playgrounds/nuxt && nr prepare:nuxt)"
   },
   "files": [
     "dist/**/*",
@@ -68,39 +70,30 @@
     "style-value-types": "^5.1.2"
   },
   "peerDependencies": {
-    "@nuxt/kit": "^3.0.0-rc.4"
+    "@nuxt/kit": "^3.0.0-rc.9"
   },
   "devDependencies": {
-    "@nuxt-themes/docus": "npm:@nuxt-themes/docus-edge@latest",
-    "@nuxt/module-builder": "latest",
-    "@types/prismjs": "^1.26.0",
-    "@vitejs/plugin-vue": "^3.1.0",
-    "@vue/server-renderer": "^3.2.39",
-    "@vue/test-utils": "^2.0.2",
-    "bumpp": "^8.2.1",
-    "c8": "^7.12.0",
-    "chokidar": "^3.5.3",
-    "happy-dom": "^6.0.4",
-    "lint-staged": "^13.0.3",
-    "nuxt": "^3.0.0-rc.4",
-    "prism-theme-vars": "^0.2.4",
-    "prismjs": "^1.29.0",
-    "typescript": "^4.8.3",
-    "unbuild": "^0.8.10",
-    "vite": "3.1.0",
-    "vite-plugin-windicss": "^1.8.8",
-    "vitepress": "^0.22.4",
-    "vitest": "^0.23.2",
-    "vue": "^3.2.39",
-    "yorkie": "^2.0.0",
-    "eslint": "^8.23.0",
     "@antfu/eslint-config": "^0.26.3",
     "@nuxtjs/eslint-config-typescript": "^11.0.0",
+    "@vitest/coverage-c8": "^0.23.2",
+    "@vue/test-utils": "^2.0.2",
+    "chokidar": "^3.5.3",
+    "eslint": "^8.23.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-prettier-vue": "^4.2.0",
+    "happy-dom": "^6.0.4",
+    "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
-    "prettier-plugin-tailwindcss": "^0.1.13"
+    "typescript": "^4.8.3",
+    "unbuild": "^0.8.10",
+    "vite": "3.1.0",
+    "vitest": "^0.23.2",
+    "vue": "^3.2.39",
+    "yorkie": "^2.0.0"
+  },
+  "resolutions": {
+    "@nuxt/content": "2.1.0"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
@@ -118,7 +111,11 @@
       "ignoreMissing": [
         "@types/react",
         "react",
-        "react-dom"
+        "react-dom",
+        "webpack",
+        "postcss",
+        "tailwindcss",
+        "vue"
       ]
     }
   }

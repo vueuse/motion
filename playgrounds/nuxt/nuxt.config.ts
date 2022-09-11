@@ -1,13 +1,13 @@
 import { resolve } from 'path'
 import { defineNuxtConfig } from 'nuxt'
-import MotionModule from '../src/nuxt/module'
 
 export default defineNuxtConfig({
   css: ['~/assets/pico.css'],
   alias: {
-    '@vueuse/motion': resolve(__dirname, '../src/index.ts'),
+    '@vueuse/motion': resolve(__dirname, '../../src/index.ts'),
+    '@vueuse/motion/nuxt': resolve(__dirname, '../../src/nuxt/module.ts'),
   },
-  modules: [MotionModule, '@nuxt/content'],
+  modules: ['@vueuse/motion/nuxt', '@nuxt/content'],
   content: {
     highlight: {
       theme: 'one-dark-pro',

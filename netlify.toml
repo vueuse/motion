@@ -11,7 +11,7 @@
   force = true
 
 [build]
-    publish = "docs/.vitepress/dist"
+    publish = "docs/.output/public"
     command = "npx pnpm install --store=node_modules/.pnpm-store && npx pnpm build:docs"
 
 [build.environment]

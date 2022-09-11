@@ -1,0 +1,20 @@
+{
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev:ssg": "vite",
+    "build:ssg": "vite-ssg build",
+    "preview:ssg": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.2.37",
+    "@vueuse/motion": "workspace:~",
+    "vue-router": "^4.0.1",
+    "@vueuse/head": "^0.7.10"
+  },
+  "devDependencies": {
+    "vite": "3.1.0",
+    "@vitejs/plugin-vue": "^3.0.3",
+    "vite-ssg": "latest"
+  }
+}

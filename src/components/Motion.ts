@@ -1,6 +1,6 @@
 import { isHTMLTag } from '@vue/shared'
 import type { Component, PropType, VNode } from 'vue'
-import { computed, defineComponent, h, nextTick, onUpdated, reactive, resolveComponent, useSlots } from 'vue'
+import { computed, defineComponent, h, onUpdated, reactive, resolveComponent, useSlots } from 'vue'
 import type { MotionVariants, Variant } from '../types/variants'
 import { useMotion } from '../useMotion'
 import { variantToStyle } from '../utils/transform'

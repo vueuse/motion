@@ -5,7 +5,7 @@ const DEFAULTS: ModuleOptions = {}
 
 const CONFIG_KEY = 'motion'
 
-export default defineNuxtModule<ModuleOptions>({
+const module = defineNuxtModule<ModuleOptions>({
   meta: {
     name: '@vueuse/motion',
     configKey: CONFIG_KEY,
@@ -52,19 +52,10 @@ export default defineNuxtModule<ModuleOptions>({
       { name: 'useReducedMotion', as: 'useReducedMotion', from: resolveRuntimeModule('../../index') },
     ])
   },
-})
+}) as any
 
-interface ModulePublicRuntimeConfig extends MotionPluginOptions {}
+export interface ModulePublicRuntimeConfig extends MotionPluginOptions {}
 
-interface ModulePrivateRuntimeConfig extends MotionPluginOptions {}
+export interface ModulePrivateRuntimeConfig extends MotionPluginOptions {}
 
-declare module '@nuxt/schema' {
-  interface ConfigSchema {
-    publicRuntimeConfig?: {
-      motion: ModulePublicRuntimeConfig
-    }
-    privateRuntimeConfig?: {
-      motion: ModulePrivateRuntimeConfig
-    }
-  }
-}
+export default module

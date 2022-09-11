@@ -46,7 +46,7 @@ export const directive = (variants?: MotionVariants): Directive<HTMLElement | SV
     unmounted: unregister,
     getSSRProps(binding, node) {
       // Get initial value from binding
-      let { initial: bindingInitial } = binding.value || (node && node.props) || {}
+      let { initial: bindingInitial } = binding.value || (node && node?.props) || {}
 
       bindingInitial = unref(bindingInitial)
 

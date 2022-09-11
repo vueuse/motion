@@ -1,28 +1,22 @@
 {
   "include": [
     "env.d.ts",
-    "src/**/*.ts",
-    "tests/**/*.ts",
-
-    "docs/**/*.ts",
-    "docs/**/*.d.ts",
-    "docs/**/*.tsx",
-    "docs/**/*.vue",
-
-    "demo/**/*.ts",
-    "demo/**/*.d.ts",
-    "demo/**/*.tsx",
-    "demo/**/*.vue"
+    "src/**/*",
+    "tests/**/*",
+    "docs/**/*",
+    "playgrounds/**/*"
   ],
   "exclude": ["dist", "node_modules"],
   "compilerOptions": {
     "types": ["node", "vite/client", "vitest/globals"],
     "lib": ["esnext", "dom"],
     "paths": {
-      "@vueuse/motion": ["./src/index.ts"],
-      "@vueuse/motion/*": ["./src/*"],
-      "csstype": ["node_modules/csstype"],
-
+      "@vueuse/motion/*": [
+        "./src/*"
+      ],
+      "csstype": [
+        "node_modules/csstype"
+      ],
       "~~": [
         "."
       ],
@@ -97,6 +91,9 @@
       ],
       "#components": [
         "docs/.nuxt/components"
+      ],
+      "@vueuse/motion": [
+        "./src/index.ts"
       ]
     },
     "baseUrl": ".",

@@ -7,11 +7,10 @@
 **Vue Composables** putting your **components** in **motion**
 
 - 🏎 **Smooth animations** based on [**Popmotion**](https://popmotion.io/)
-- 🎮 **Declarative** API
+- 🎮 **Declarative** API inspired from [**Framer Motion**](https://www.framer.com/motion/)
 - 🚀 **Plug** & **play** with **20+ presets**
-- ✅ Supports **Vue 2 & 3** using [**vue-demi**](https://github.com/antfu/vue-demi)
-- 🌐 Supports **SSR**
-- 🚚 Supports **Nuxt 3** and **@nuxt/bridge**
+- 🌐 **SSR Ready**
+- 🚚 First-class support for **Nuxt 3**
 - ✨ Written in **TypeScript**
 - 🏋️‍♀️ Lightweight with **<20kb** bundle size
 
@@ -73,7 +72,9 @@ To see more about how to **control** your declared **variants**, check out [**Mo
 
 ## Credits
 
-This package is **heavily** inspired by [**Framer Motion**](https://www.framer.com/motion/).
+This package is **heavily** inspired by [**Framer Motion**](https://www.framer.com/motion/) by [**https://twitter.com/mattgperry**].
+
+If you are interested in using [WAAPI](https://developer.mozilla.org/fr/docs/Web/API/Web_Animations_API), check out [Motion.dev](https://motion.dev/)!
 
 I would also like to **thank** [**antfu**](https://github.com/antfu), [**patak-dev**](https://github.com/patak-dev) and [**kazupon**](https://github.com/kazupon) for their kind help!
 

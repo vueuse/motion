@@ -15,7 +15,7 @@ const motions = useMotions()
 <template>
   <DemoBox :text="codeText">
     <template #demoElement>
-      <transition :css="false" @leave="(_, done) => motions.transition.leave(done)">
+      <transition :css="false" @leave="(_: any, done: any) => motions.transition.leave(done)">
         <div
           v-if="show"
           v-motion="'transition'"

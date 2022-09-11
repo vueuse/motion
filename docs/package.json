@@ -1,0 +1,16 @@
+{
+  "private": "true",
+  "scripts": {
+    "dev:docs": "nuxt dev",
+    "build:docs": "nuxt generate",
+    "preview:docs": "nuxt preview"
+  },
+  "dependencies": {
+    "@vueuse/motion": "workspace:~"
+  },
+  "devDependencies": {
+    "nuxt": "npm:nuxt3@latest",
+    "@nuxt-themes/docus": "npm:@nuxt-themes/docus-edge@latest",
+    "@nuxt/content": "^2.1.0"
+  }
+}

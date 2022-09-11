@@ -1,4 +1,4 @@
-name: Build and tests
+name: Build playgrounds
 
 on:
   push:
@@ -39,11 +39,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Lint project
-        run: pnpm lint
+      - name: Build project (Vite)
+        run: pnpm build:vite
 
-      - name: Test project
-        run: pnpm test
+      - name: Build project (Nuxt)
+        run: pnpm build:nuxt
 
-      - name: Build project
-        run: pnpm build
+      - name: Build project (Vite SSG)
+        run: pnpm build:ssg
