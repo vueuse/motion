@@ -8,6 +8,7 @@ importers:
   .:
     specifiers:
       '@antfu/eslint-config': ^0.26.3
+      '@antfu/ni': ^0.18.0
       '@nuxtjs/eslint-config-typescript': ^11.0.0
       '@vitest/coverage-c8': ^0.23.2
       '@vue/test-utils': ^2.0.2
@@ -40,6 +41,7 @@ importers:
       style-value-types: 5.1.2
     devDependencies:
       '@antfu/eslint-config': 0.26.3_itqs5654cmlnjraw6gjzqacppi
+      '@antfu/ni': 0.18.0
       '@nuxtjs/eslint-config-typescript': 11.0.0_itqs5654cmlnjraw6gjzqacppi
       '@vitest/coverage-c8': 0.23.2_happy-dom@6.0.4
       '@vue/test-utils': 2.0.2_vue@3.2.39
@@ -231,6 +233,11 @@ packages:
       - eslint-import-resolver-webpack
       - supports-color
       - typescript
+    dev: true
+
+  /@antfu/ni/0.18.0:
+    resolution: {integrity: sha512-D0eek5EV8wOUpZNVAs/mPyeC5TMWFXqchqCyPiR6Lj5FgmSJw0EpFLqAczHX0O5+Jc07N7NBwBip85Gi1MBJnA==}
+    hasBin: true
     dev: true
 
   /@antfu/utils/0.5.2:
