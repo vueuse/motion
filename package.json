@@ -119,5 +119,22 @@
         "vue"
       ]
     }
+  },
+  "release-it": {
+    "hooks": {
+      "before:init": [
+        "pnpm build"
+      ]
+    },
+    "npm": {
+      "access": "public"
+    },
+    "git": {
+      "commitMessage": "chore(release): release v${version}"
+    },
+    "github": {
+      "release": true,
+      "releaseName": "v${version}"
+    }
   }
 }
