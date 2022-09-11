@@ -93,7 +93,7 @@ The leave variant helps to define the state of an element when it is supposed to
 
 In order to achieve a leave transition, you will have to access the [**Motion Instance**](/motion-instance).
 
-This instance exposes an helper called `leave` than can easily be mapped with the Vue transition element @leave event.
+This instance exposes an helper called `leave` that can easily be mapped with the Vue transition element @leave event.
 
 You can take a look at an example of implementation on the [**Demo**](https://vueuse-motion-demo.netlify.app) page, at the "**Transitions**" section.
 
