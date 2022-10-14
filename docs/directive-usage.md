@@ -19,7 +19,7 @@ The supported variants props are the following:
 - **:initial**
 - **:enter**
 - **:visible**
-- **:visible-once**
+- **:visibleOnce**
 - **:hovered**
 - **:focused**
 - **:tapped**
