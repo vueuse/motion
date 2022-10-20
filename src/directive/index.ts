@@ -35,15 +35,8 @@ export const directive = (variants?: MotionVariants): Directive<HTMLElement | SV
     if (key) motionState[key] = motionInstance
   }
 
-  const unregister = (el: HTMLElement | SVGElement) => {
-    // Cleanup the unregistered element motion instance
-    // @ts-expect-error - we know that the element is a HTMLElement
-    if (el.motionInstance) (el as any).motionInstance.stop()
-  }
-
   return {
     created: register,
-    unmounted: unregister,
     getSSRProps(binding, node) {
       // Get initial value from binding
       let { initial: bindingInitial } = binding.value || (node && node?.props) || {}

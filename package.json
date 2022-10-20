@@ -62,8 +62,8 @@
     "README.md"
   ],
   "dependencies": {
-    "@vueuse/core": "^9.3.0",
-    "@vueuse/shared": "^9.3.0",
+    "@vueuse/core": "^9.3.1",
+    "@vueuse/shared": "^9.3.1",
     "csstype": "^3.1.1",
     "framesync": "^6.1.2",
     "popmotion": "^11.0.5",
@@ -73,29 +73,29 @@
     "vue": ">=3.0.0"
   },
   "optionalDependencies": {
-    "@nuxt/kit": "^3.0.0-rc.11"
+    "@nuxt/kit": "^3.0.0-rc.12"
   },
   "devDependencies": {
-    "@nuxt/kit": "^3.0.0-rc.11",
+    "@nuxt/kit": "^3.0.0-rc.12",
     "@antfu/eslint-config": "^0.27.0",
     "@nuxtjs/eslint-config-typescript": "^11.0.0",
-    "@vitest/coverage-c8": "^0.23.4",
-    "@vue/test-utils": "^2.0.2",
+    "@vitest/coverage-c8": "^0.24.3",
+    "@vue/test-utils": "^2.1.0",
     "chokidar": "^3.5.3",
-    "eslint": "^8.24.0",
+    "eslint": "^8.25.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-prettier-vue": "^4.2.0",
-    "happy-dom": "^6.0.4",
+    "happy-dom": "^7.6.0",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
     "typescript": "^4.8.4",
-    "unbuild": "^0.8.11",
-    "vite": "3.1.4",
-    "vitest": "^0.23.4",
-    "vue": "^3.2.40",
+    "unbuild": "^0.9.4",
+    "vite": "3.1.8",
+    "vitest": "^0.24.3",
+    "vue": "^3.2.41",
     "yorkie": "^2.0.0",
-    "@antfu/ni": "^0.18.0"
+    "@antfu/ni": "^0.18.2"
   },
   "resolutions": {
     "@nuxt/content": "2.1.0"
@@ -121,7 +121,8 @@
         "webpack",
         "postcss",
         "tailwindcss",
-        "vue"
+        "vue",
+        "axios"
       ]
     }
   },

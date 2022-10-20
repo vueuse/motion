@@ -9,7 +9,7 @@ defineProps({
 
 <template>
   <div class="block" :style="{ backgroundColor: color, opacity: 1 }">
-    <Markdown :use="$slots.default" />
+    <ContentSlot :use="$slots.default" />
   </div>
 </template>
 

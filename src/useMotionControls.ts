@@ -53,9 +53,9 @@ export function useMotionControls<T extends MotionVariants>(
           // Skip transition key
           if (key === 'transition') return undefined
 
-          return new Promise<void>((resolve) => {
-            push(key as keyof MotionProperties, value, motionProperties, (variant as Variant).transition || getDefaultTransition(key, variant[key]), resolve)
-          })
+          return new Promise<void>((resolve) =>
+            push(key as keyof MotionProperties, value, motionProperties, (variant as Variant).transition || getDefaultTransition(key, variant[key]), resolve),
+          )
         })
         .filter(Boolean),
     )
