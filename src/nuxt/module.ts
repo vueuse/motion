@@ -1,4 +1,4 @@
-import { addAutoImportDir, addPlugin, createResolver, defineNuxtModule, resolveModule } from '@nuxt/kit'
+import { addImportsDir, addPlugin, createResolver, defineNuxtModule, resolveModule } from '@nuxt/kit'
 import type { ModuleOptions, MotionPluginOptions } from '../types'
 
 const DEFAULTS: ModuleOptions = {}
@@ -16,7 +16,7 @@ const module = defineNuxtModule<ModuleOptions>({
     const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: resolve('./runtime') })
 
     // Push options to runtimeConfig
-    nuxt.options.publicRuntimeConfig.motion = options
+    nuxt.options.runtimeConfig.public.motion = options
 
     // Add templates (options and directives)
     addPlugin({
@@ -37,7 +37,7 @@ const module = defineNuxtModule<ModuleOptions>({
     if (!nuxt.options.alias.tslib) nuxt.options.alias.tslib = 'tslib/tslib.es6.js'
 
     // Add auto imports
-    addAutoImportDir(resolve('./composables/'))
+    addImportsDir(resolve('./composables/'))
   },
 }) as any
 

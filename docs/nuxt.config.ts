@@ -1,5 +1,4 @@
 import { resolve } from 'path'
-import { defineNuxtConfig } from 'nuxt'
 
 export default defineNuxtConfig({
   theme: '@nuxt-themes/docus',

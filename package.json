@@ -62,8 +62,8 @@
     "README.md"
   ],
   "dependencies": {
-    "@vueuse/core": "^9.3.1",
-    "@vueuse/shared": "^9.3.1",
+    "@vueuse/core": "^9.5.0",
+    "@vueuse/shared": "^9.5.0",
     "csstype": "^3.1.1",
     "framesync": "^6.1.2",
     "popmotion": "^11.0.5",
@@ -73,32 +73,29 @@
     "vue": ">=3.0.0"
   },
   "optionalDependencies": {
-    "@nuxt/kit": "^3.0.0-rc.12"
+    "@nuxt/kit": "^3.0.0"
   },
   "devDependencies": {
-    "@nuxt/kit": "^3.0.0-rc.12",
-    "@antfu/eslint-config": "^0.27.0",
-    "@nuxtjs/eslint-config-typescript": "^11.0.0",
-    "@vitest/coverage-c8": "^0.24.3",
-    "@vue/test-utils": "^2.1.0",
+    "@nuxt/kit": "^3.0.0",
+    "@antfu/eslint-config": "^0.31.0",
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
+    "@vitest/coverage-c8": "^0.25.2",
+    "@vue/test-utils": "^2.2.4",
     "chokidar": "^3.5.3",
-    "eslint": "^8.25.0",
+    "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-prettier-vue": "^4.2.0",
-    "happy-dom": "^7.6.0",
+    "happy-dom": "^7.7.0",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
-    "typescript": "^4.8.4",
-    "unbuild": "^0.9.4",
-    "vite": "3.1.8",
-    "vitest": "^0.24.3",
-    "vue": "^3.2.41",
+    "typescript": "^4.9.3",
+    "unbuild": "^1.0.1",
+    "vite": "3.2.4",
+    "vitest": "^0.25.2",
+    "vue": "^3.2.45",
     "yorkie": "^2.0.0",
-    "@antfu/ni": "^0.18.2"
-  },
-  "resolutions": {
-    "@nuxt/content": "2.1.0"
+    "@antfu/ni": "^0.18.8"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"

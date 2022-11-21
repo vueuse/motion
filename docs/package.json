@@ -9,8 +9,8 @@
     "@vueuse/motion": "workspace:~"
   },
   "devDependencies": {
-    "nuxt": "npm:nuxt3@latest",
+    "nuxt": "^3.0.0",
     "@nuxt-themes/docus": "npm:@nuxt-themes/docus-edge@latest",
-    "@nuxt/content": "^2.1.0"
+    "@nuxt/content": "^2.2.2"
   }
 }
