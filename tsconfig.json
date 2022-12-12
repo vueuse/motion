@@ -1,4 +1,6 @@
 {
+  "extends": "./playgrounds/nuxt/.nuxt/tsconfig.json",
+
   "include": [
     "env.d.ts",
     "src/**/*",
@@ -6,7 +8,9 @@
     "docs/**/*",
     "playgrounds/**/*"
   ],
+
   "exclude": ["dist", "node_modules"],
+
   "compilerOptions": {
     "types": ["node", "vite/client", "vitest/globals"],
     "lib": ["esnext", "dom"],
@@ -96,6 +100,7 @@
         "./src/index.ts"
       ]
     },
+
     "baseUrl": ".",
     "rootDir": ".",
     "outDir": "dist",
