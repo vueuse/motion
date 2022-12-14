@@ -77,7 +77,7 @@ A higher stiffness will result in a snappier animation.
 
 - `damping`
 
-The opposite of stiffness. The lower it is relative to sitffness, the bouncier the animation will get.
+The opposite of stiffness. The lower it is relative to stiffness, the bouncier the animation will get.
 
 - `mass`
 
