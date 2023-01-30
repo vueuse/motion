@@ -165,6 +165,9 @@ A regular hover event listener, it will not work on mobile devices.
   :initial="{
     scale: 1,
   }"
+  :visible="{
+    scale: 1,
+  }"
   :hovered="{
     scale: 1.2,
   }"
@@ -181,6 +184,9 @@ A regular focus event listener.
 <div
   v-motion
   :initial="{
+    scale: 1,
+  }"
+  :visible="{
     scale: 1,
   }"
   :focused="{
@@ -201,6 +207,9 @@ It will switch between them depending on the user supported pointer events.
 <div
   v-motion
   :initial="{
+    scale: 1,
+  }"
+  :hovered="{
     scale: 1,
   }"
   :tapped="{
