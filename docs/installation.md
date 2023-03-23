@@ -33,11 +33,11 @@ app.mount('#app')
 If you want to import the directive code only from components that uses it, import the directive and install it at component level.
 
 ```javascript
-import { directive as motion } from '@vueuse/motion'
+import { MotionDirective } from '@vueuse/motion'
 
 export default {
   directives: {
-    motion: motion(),
+    motion: MotionDirective(),
   },
 }
 ```
