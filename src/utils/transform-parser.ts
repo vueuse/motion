@@ -78,7 +78,7 @@ export function stateFromTransform(
       }
 
       // Loop on parsed scale / translate definition
-      value.forEach((axisValue: ResolvedValueTarget, index: number) => {
+      Object.values(parseTransform(transform))[0].forEach((axisValue: ResolvedValueTarget, index: number) => {
         __set(state, axes[index], axisValue)
       })
 
