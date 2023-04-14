@@ -15,7 +15,7 @@ export default defineNuxtModule<ModuleOptions>({
     },
   },
   defaults: DEFAULTS,
-  async setup(options, nuxt) {
+  setup(options, nuxt) {
     const resolveRuntimeModule = (path: string) => new URL(path, import.meta.url).pathname
 
     // Push options to runtimeConfig

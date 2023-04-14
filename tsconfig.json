@@ -66,7 +66,6 @@
     "outDir": "dist",
     "sourceMap": false,
     "noEmit": true,
-    "preserveSymlinks": true,
 
     "target": "esnext",
     "module": "esnext",
