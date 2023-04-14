@@ -92,7 +92,7 @@
     "eslint": "^8.12.0",
     "happy-dom": "^2.55.0",
     "lint-staged": "^12.3.7",
-    "nuxt3": "latest",
+    "nuxt": "^3.4.1",
     "prism-theme-vars": "^0.2.2",
     "prismjs": "^1.27.0",
     "typescript": "^4.6.3",

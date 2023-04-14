@@ -2,7 +2,6 @@ import type { MaybeRef } from '@vueuse/core'
 import { isObject } from '@vueuse/core'
 import { ref, unref, watch } from 'vue-demi'
 import type {
-  MotionControls,
   MotionProperties,
   MotionTransitions,
   MotionVariants,
@@ -22,9 +21,9 @@ export function useMotionControls<T extends MotionVariants>(
   motionProperties: MotionProperties,
   variants: MaybeRef<T> = {} as MaybeRef<T>,
   { motionValues, push, stop }: MotionTransitions = useMotionTransitions(),
-): MotionControls {
+) {
   // Variants as ref
-  const _variants = unref(variants) as T
+  const _variants = unref(variants)
 
   // Is the current instance animated ref
   const isAnimating = ref(false)
@@ -45,21 +44,23 @@ export function useMotionControls<T extends MotionVariants>(
 
   const getVariantFromKey = (variant: keyof T): Variant => {
     if (!_variants || !_variants[variant])
-      throw new Error(`The variant ${variant} does not exist.`)
+      throw new Error(`The variant ${String(variant)} does not exist.`)
 
     return _variants[variant] as Variant
   }
 
   const apply = (variant: Variant | keyof T): Promise<void[]> | undefined => {
     // If variant is a key, try to resolve it
-    if (typeof variant === 'string') variant = getVariantFromKey(variant)
+    if (typeof variant === 'string')
+      variant = getVariantFromKey(variant)
 
     // Return Promise chain
     return Promise.all(
       Object.entries(variant)
         .map(([key, value]) => {
           // Skip transition key
-          if (key === 'transition') return undefined
+          if (key === 'transition')
+            return undefined
 
           return new Promise<void>((resolve) => {
             push(
@@ -67,7 +68,7 @@ export function useMotionControls<T extends MotionVariants>(
               value,
               motionProperties,
               (variant as Variant).transition
-                || getDefaultTransition(key, variant[key]),
+              || getDefaultTransition(key as keyof MotionProperties, variant[key as keyof typeof variant]),
               resolve,
             )
           })
@@ -83,7 +84,8 @@ export function useMotionControls<T extends MotionVariants>(
     // Set in chain
     Object.entries(variantData).forEach(([key, value]) => {
       // Skip transition key
-      if (key === 'transition') return
+      if (key === 'transition')
+        return
 
       push(key as keyof MotionProperties, value, motionProperties, {
         immediate: true,
@@ -95,7 +97,8 @@ export function useMotionControls<T extends MotionVariants>(
     let leaveVariant: Variant | undefined
 
     if (_variants) {
-      if (_variants.leave) leaveVariant = _variants.leave
+      if (_variants.leave)
+        leaveVariant = _variants.leave
 
       if (!_variants.leave && _variants.initial)
         leaveVariant = _variants.initial

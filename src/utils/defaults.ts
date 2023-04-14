@@ -47,8 +47,6 @@ const keyframes = (values: KeyframesTarget): Partial<Keyframes> => ({
   values,
 })
 
-type TransitionFactory = (to: ValueTarget) => Partial<PopmotionTransitionProps>
-
 const defaultTransitions = {
   default: overDampedSpring,
   x: underDampedSpring,
@@ -70,15 +68,11 @@ export const getDefaultTransition = (
   valueKey: string,
   to: ValueTarget,
 ): PopmotionTransitionProps => {
-  let transitionFactory: TransitionFactory
-
   if (isKeyframesTarget(to)) {
-    transitionFactory = keyframes as TransitionFactory
+    return { to, ...keyframes(to) } as PopmotionTransitionProps
   }
   else {
-    transitionFactory
-      = defaultTransitions[valueKey] || defaultTransitions.default
+    const transitionFactory = defaultTransitions[valueKey as keyof typeof defaultTransitions] || defaultTransitions.default
+    return { to, ...transitionFactory(to) } as PopmotionTransitionProps
   }
-
-  return { to, ...transitionFactory(to) } as PopmotionTransitionProps
 }

@@ -14,13 +14,14 @@ export function useMotionTransitions(): MotionTransitions {
   const { motionValues, stop, get } = useMotionValues()
 
   const push = (
-    key: string,
+    key: keyof MotionProperties,
     value: ResolvedValueTarget,
     target: MotionProperties,
     transition: Transition = {},
     onComplete?: () => void,
   ) => {
     // Get the `from` key from target
+
     const from = target[key]
 
     // Get motion value for the target key

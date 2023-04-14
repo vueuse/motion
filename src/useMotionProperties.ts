@@ -1,7 +1,7 @@
 import type { MaybeRef } from '@vueuse/core'
 import { unrefElement } from '@vueuse/core'
 import { set as __set, reactive, watch } from 'vue-demi'
-import type { MotionProperties, PermissiveTarget } from './types'
+import type { MotionProperties, PermissiveTarget, StyleProperties, TransformProperties } from './types'
 import { useElementStyle } from './useElementStyle'
 import { useElementTransform } from './useElementTransform'
 import { isTransformProp } from './utils/transform'
@@ -41,7 +41,9 @@ export function useMotionProperties(
       Object.entries(newVal).forEach(([key, value]) => {
         const target = isTransformProp(key) ? transform : style
 
-        if (target[key] && target[key] === value) return
+        // @ts-expect-error We don't know if the key exists in target
+        if (target[key] === value)
+          return
 
         __set(target, key, value)
       })
@@ -56,9 +58,11 @@ export function useMotionProperties(
   const stopInitWatch = watch(
     () => unrefElement(target),
     (el) => {
-      if (!el) return
+      if (!el)
+        return
 
-      if (defaultValues) apply(defaultValues)
+      if (defaultValues)
+        apply(defaultValues)
     },
     {
       immediate: true,
@@ -78,5 +82,10 @@ export function useMotionProperties(
     style,
     transform,
     stop,
+  } as {
+    motionProperties: MotionProperties
+    style: StyleProperties
+    transform: TransformProperties
+    stop: () => void
   }
 }

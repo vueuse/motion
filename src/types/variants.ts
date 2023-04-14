@@ -63,10 +63,10 @@ CSSProperties,
  * Available properties for useMotion variants
  */
 export type MotionProperties =
-  | StyleProperties
-  | SVGAttributes
-  | TransformProperties
-  | SVGPathProperties
+  & StyleProperties
+  & SVGAttributes
+  & TransformProperties
+  & SVGPathProperties
 
 /**
  * Permissive properties for useSpring

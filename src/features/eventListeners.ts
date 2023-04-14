@@ -33,12 +33,14 @@ export function registerEventListeners<T extends MotionVariants>({
   const mutableKeys = computed(() => {
     let result: string[] = []
 
-    if (!_variants) return result
+    if (!_variants)
+      return result
 
     if (_variants.hovered)
       result = [...result, ...Object.keys(_variants.hovered)]
 
-    if (_variants.tapped) result = [...result, ...Object.keys(_variants.tapped)]
+    if (_variants.tapped)
+      result = [...result, ...Object.keys(_variants.tapped)]
 
     if (_variants.focused)
       result = [...result, ...Object.keys(_variants.focused)]
@@ -60,8 +62,10 @@ export function registerEventListeners<T extends MotionVariants>({
     if (focused.value && _variants.focused)
       Object.assign(result, _variants.focused)
 
-    for (const key in result)
-      if (!mutableKeys.value.includes(key)) delete result[key]
+    for (const key in result) {
+      if (!mutableKeys.value.includes(key))
+        delete result[key as keyof typeof result]
+    }
 
     return result
   })

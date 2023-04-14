@@ -1,6 +1,7 @@
 import { reactiveStyle } from '../reactiveStyle'
 import { reactiveTransform } from '../reactiveTransform'
-import type { Variant } from './../types/variants'
+import type { TransformProperties } from '../types'
+import type { MotionProperties, Variant } from './../types/variants'
 
 /**
  * A list of all transformable axes. We'll use this list to generated a version
@@ -36,7 +37,7 @@ export function sortTransformProps(a: string, b: string) {
  * A quick lookup for transform props.
  */
 const transformPropSet = new Set(transformProps)
-export function isTransformProp(key: string) {
+export function isTransformProp(key: string): key is keyof TransformProperties {
   return transformPropSet.has(key)
 }
 
@@ -44,7 +45,7 @@ export function isTransformProp(key: string) {
  * A quick lookup for transform origin props
  */
 const transformOriginProps = new Set(['originX', 'originY', 'originZ'])
-export function isTransformOriginProp(key: string) {
+export function isTransformOriginProp(key: string): key is keyof TransformProperties {
   return transformOriginProps.has(key)
 }
 
@@ -52,13 +53,13 @@ export function isTransformOriginProp(key: string) {
  * Split values between style and transform keys.
  */
 export function splitValues(variant: Variant) {
-  const transform = {}
-  const style = {}
+  const transform: MotionProperties = {}
+  const style: MotionProperties = {}
 
   Object.entries(variant).forEach(([key, value]) => {
     if (isTransformProp(key) || isTransformOriginProp(key))
       transform[key] = value
-    else style[key] = value
+    style[key as keyof MotionProperties] = value
   })
 
   return { transform, style }
@@ -74,7 +75,6 @@ export function variantToStyle(variant: Variant) {
   // Generate style string
   const { style } = reactiveStyle(_style)
 
-  // @ts-expect-error - Set transform from style
   if (transform.value)
     style.value.transform = transform.value
 

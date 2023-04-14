@@ -22,14 +22,14 @@ export interface UseMotionOptions {
   eventListeners?: boolean
 }
 
-export interface MotionControls {
+export interface MotionControls<T extends MotionVariants = MotionVariants> {
   /**
    * Apply a variant declaration and execute the resolved transitions.
    *
    * @param variant
    * @returns Promise<void[]>
    */
-  apply: (variant: Variant | string) => Promise<void[]> | undefined
+  apply: (variant: Variant | keyof T) => Promise<void[]> | undefined
   /**
    * Apply a variant declaration without transitions.
    *

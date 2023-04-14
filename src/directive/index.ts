@@ -50,8 +50,9 @@ export const directive = (
 
   const unregister = (el: HTMLElement | SVGElement) => {
     // Cleanup the unregistered element motion instance
-    // @ts-expect-error - we know that the element is a HTMLElement
+    // @ts-expect-error - we know that the element is an HTMLElement
     if (el.motionInstance)
+      // @ts-expect-error - el is still typed as an HTMLElement
       el.motionInstance.stop()
   }
 

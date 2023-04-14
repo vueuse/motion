@@ -66,6 +66,7 @@
     "outDir": "dist",
     "sourceMap": false,
     "noEmit": true,
+    "preserveSymlinks": true,
 
     "target": "esnext",
     "module": "esnext",
@@ -77,7 +78,6 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "noImplicitReturns": true,
-    "suppressImplicitAnyIndexErrors": true,
     "strict": true,
     "isolatedModules": false,
 

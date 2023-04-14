@@ -1,6 +1,6 @@
 import type { Ref } from 'vue-demi'
 import { reactive, ref, watch } from 'vue-demi'
-import type { StyleProperties } from './types'
+import type { MotionProperties } from './types'
 import { getValueAsType, getValueType } from './utils/style'
 
 /**
@@ -8,20 +8,20 @@ import { getValueAsType, getValueType } from './utils/style'
  *
  * @param props
  */
-export function reactiveStyle(props: StyleProperties = {}) {
+export function reactiveStyle(props: MotionProperties = {}) {
   // Reactive StyleProperties object
-  const state = reactive<StyleProperties>({
+  const state = reactive<MotionProperties>({
     ...props,
   })
 
-  const style = ref({}) as Ref<StyleProperties>
+  const style = ref({}) as Ref<MotionProperties>
 
   // Reactive DOM Element compatible `style` object bound to state
   watch(
     state,
     () => {
       // Init result object
-      const result: StyleProperties = {}
+      const result: MotionProperties = {}
 
       for (const [key, value] of Object.entries(state)) {
         // Get value type for key
@@ -29,7 +29,7 @@ export function reactiveStyle(props: StyleProperties = {}) {
         // Get value as type for key
         const valueAsType = getValueAsType(value, valueType)
         // Append the computed style to result object
-        result[key] = valueAsType
+        result[key as keyof MotionProperties] = valueAsType
       }
 
       style.value = result
@@ -43,5 +43,8 @@ export function reactiveStyle(props: StyleProperties = {}) {
   return {
     state,
     style,
+  } as {
+    state: MotionProperties
+    style: Ref<MotionProperties>
   }
 }

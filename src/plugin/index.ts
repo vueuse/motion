@@ -18,7 +18,7 @@ export const MotionPlugin: Plugin = {
       for (const key in presets) {
         // Get preset variants
         // eslint-disable-next-line import/namespace
-        const preset = presets[key]
+        const preset = presets[key as keyof typeof presets]
 
         // Register the preset `v-motion-${key}` directive
         app.directive(`motion-${slugify(key)}`, directive(preset))

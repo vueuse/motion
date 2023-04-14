@@ -1,4 +1,4 @@
-import { addAutoImport, addPlugin, createResolver, defineNuxtModule, resolveModule } from '@nuxt/kit'
+import { addImports, addPlugin, defineNuxtModule } from '@nuxt/kit'
 import type { ModuleOptions, MotionPluginOptions } from '../types'
 
 const DEFAULTS: ModuleOptions = {}
@@ -15,16 +15,15 @@ export default defineNuxtModule<ModuleOptions>({
     },
   },
   defaults: DEFAULTS,
-  setup(options, nuxt) {
-    const { resolve } = createResolver(import.meta.url)
-    const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: resolve('./runtime') })
+  async setup(options, nuxt) {
+    const resolveRuntimeModule = (path: string) => new URL(path, import.meta.url).pathname
 
     // Push options to runtimeConfig
-    nuxt.options.publicRuntimeConfig.motion = options
+    nuxt.options.runtimeConfig.public.motion = options
 
     // Add templates (options and directives)
     addPlugin({
-      src: resolveRuntimeModule('./templates/motion.js'),
+      src: resolveRuntimeModule('./runtime/templates/motion.js'),
     })
 
     // Transpile necessary packages at build time
@@ -47,26 +46,26 @@ export default defineNuxtModule<ModuleOptions>({
       nuxt.options.alias.tslib = 'tslib/tslib.es6.js'
 
     // Add auto imports
-    addAutoImport([
-      { name: 'reactiveStyle', as: 'reactiveStyle', from: resolveRuntimeModule('../../index') },
-      { name: 'reactiveTransform', as: 'reactiveTransform', from: resolveRuntimeModule('../../index') },
-      { name: 'useElementStyle', as: 'useElementStyle', from: resolveRuntimeModule('../../index') },
-      { name: 'useElementTransform', as: 'useElementTransform', from: resolveRuntimeModule('../../index') },
-      { name: 'useMotion', as: 'useMotion', from: resolveRuntimeModule('../../index') },
-      { name: 'useMotionControls', as: 'useMotionControls', from: resolveRuntimeModule('../../index') },
-      { name: 'useMotionProperties', as: 'useMotionProperties', from: resolveRuntimeModule('../../index') },
-      { name: 'useMotions', as: 'useMotions', from: resolveRuntimeModule('../../index') },
-      { name: 'useMotionTransitions', as: 'useMotionTransitions', from: resolveRuntimeModule('../../index') },
-      { name: 'useMotionVariants', as: 'useMotionVariants', from: resolveRuntimeModule('../../index') },
-      { name: 'useSpring', as: 'useSpring', from: resolveRuntimeModule('../../index') },
-      { name: 'useReducedMotion', as: 'useReducedMotion', from: resolveRuntimeModule('../../index') },
+    addImports([
+      { name: 'reactiveStyle', as: 'reactiveStyle', from: resolveRuntimeModule('../index') },
+      { name: 'reactiveTransform', as: 'reactiveTransform', from: resolveRuntimeModule('../index') },
+      { name: 'useElementStyle', as: 'useElementStyle', from: resolveRuntimeModule('../index') },
+      { name: 'useElementTransform', as: 'useElementTransform', from: resolveRuntimeModule('../index') },
+      { name: 'useMotion', as: 'useMotion', from: resolveRuntimeModule('../index') },
+      { name: 'useMotionControls', as: 'useMotionControls', from: resolveRuntimeModule('../index') },
+      { name: 'useMotionProperties', as: 'useMotionProperties', from: resolveRuntimeModule('../index') },
+      { name: 'useMotions', as: 'useMotions', from: resolveRuntimeModule('../index') },
+      { name: 'useMotionTransitions', as: 'useMotionTransitions', from: resolveRuntimeModule('../index') },
+      { name: 'useMotionVariants', as: 'useMotionVariants', from: resolveRuntimeModule('../index') },
+      { name: 'useSpring', as: 'useSpring', from: resolveRuntimeModule('../index') },
+      { name: 'useReducedMotion', as: 'useReducedMotion', from: resolveRuntimeModule('../index') },
     ])
   },
 })
 
-interface ModulePublicRuntimeConfig extends MotionPluginOptions {}
+interface ModulePublicRuntimeConfig extends MotionPluginOptions { }
 
-interface ModulePrivateRuntimeConfig extends MotionPluginOptions {}
+interface ModulePrivateRuntimeConfig extends MotionPluginOptions { }
 
 declare module '@nuxt/schema' {
   interface ConfigSchema {

@@ -1,5 +1,5 @@
 import { resolve } from 'path'
-import { defineNuxtConfig } from 'nuxt3'
+import { defineNuxtConfig } from 'nuxt/config'
 import MyModule from '../src/nuxt/module'
 
 export default defineNuxtConfig({
@@ -17,18 +17,22 @@ export default defineNuxtConfig({
       },
     ],
   },
-  motion: {
-    directives: {
-      'slide-rotate-top': {
-        initial: {
-          y: -400,
-          opacity: 0,
-          rotate: 90,
-        },
-        enter: {
-          y: 0,
-          opacity: 1,
-          rotate: 0,
+  runtimeConfig: {
+    public: {
+      motion: {
+        directives: {
+          'slide-rotate-top': {
+            initial: {
+              y: -400,
+              opacity: 0,
+              rotate: 90,
+            },
+            enter: {
+              y: 0,
+              opacity: 1,
+              rotate: 0,
+            },
+          },
         },
       },
     },

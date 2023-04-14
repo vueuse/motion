@@ -3,8 +3,8 @@ import { defineNuxtPlugin } from '#app'
 
 export default defineNuxtPlugin(
   (nuxtApp) => {
-    const { motion: options } = useRuntimeConfig()
+    const config = useRuntimeConfig()
 
-    nuxtApp.vueApp.use(MotionPlugin, options)
+    nuxtApp.vueApp.use(MotionPlugin, config.public.motion)
   }
 )

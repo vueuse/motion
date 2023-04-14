@@ -429,7 +429,7 @@ export interface MotionTransitions {
    * @param values
    */
   push: (
-    key: string,
+    key: keyof MotionProperties,
     value: ResolvedValueTarget,
     target: MotionProperties,
     transition: Transition,

@@ -45,7 +45,7 @@ export function useMotion<T extends MotionVariants>(
     motionProperties,
     ...controls,
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    stop: (_ = false) => {},
+    stop: (_ = false) => { },
   }
 
   // Bind features
@@ -79,7 +79,8 @@ export function useMotion<T extends MotionVariants>(
   watchOnce(
     () => unrefElement(target),
     (el) => {
-      if (!el) return
+      if (!el)
+        return
 
       // @ts-expect-error - We are checking if motionInstance has be bound via directive
       if (el?.motionInstance) {
