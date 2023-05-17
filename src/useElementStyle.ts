@@ -24,14 +24,17 @@ export function useElementStyle(target: MaybeRef<PermissiveTarget>, onInit?: (in
 
     // Loop on style keys
     for (const key of Object.keys(valueTypes)) {
+      // @ts-ignore
       if (el.style[key] === null || el.style[key] === '' || isTransformProp(key) || isTransformOriginProp(key)) continue
 
       // Append a defined key to the local StyleProperties state object
+      // @ts-ignore
       state[key] = el.style[key]
     }
 
     // If cache is present, init the target with the current cached value
     if (_cache) {
+      // @ts-ignore
       Object.entries(_cache).forEach(([key, value]) => (el.style[key] = value))
     }
 
@@ -49,6 +52,7 @@ export function useElementStyle(target: MaybeRef<PermissiveTarget>, onInit?: (in
       }
 
       // Append the state object to the target style properties
+      // @ts-ignore
       for (const key in newVal) _target.style[key] = newVal[key]
     },
     {

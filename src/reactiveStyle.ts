@@ -29,6 +29,7 @@ export function reactiveStyle(props: StyleProperties = {}) {
         // Get value as type for key
         const valueAsType = getValueAsType(value, valueType)
         // Append the computed style to result object
+        // @ts-ignore
         result[key] = valueAsType
       }
 

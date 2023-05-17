@@ -16,6 +16,7 @@ export function useMotionProperties(target: MaybeRef<PermissiveTarget>, defaultV
   const motionProperties = reactive<MotionProperties>({})
 
   // Local mass setter
+  // @ts-ignore
   const apply = (values: Partial<MotionProperties>) => Object.entries(values).forEach(([key, value]) => (motionProperties[key] = value))
 
   // Target element style object
@@ -30,9 +31,9 @@ export function useMotionProperties(target: MaybeRef<PermissiveTarget>, defaultV
     (newVal) => {
       Object.entries(newVal).forEach(([key, value]) => {
         const target = isTransformProp(key) ? transform : style
-
+        // @ts-ignore
         if (target[key] && target[key] === value) return
-
+        // @ts-ignore
         target[key] = value
       })
     },

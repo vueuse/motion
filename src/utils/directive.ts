@@ -1,4 +1,4 @@
-import { isNumber, isObject } from '@vueuse/core'
+import { isObject } from '@vueuse/core'
 import type { Ref, VNode } from 'vue'
 import type { MotionVariants } from '../types'
 
@@ -26,7 +26,7 @@ export const resolveVariants = (node: VNode<any, HTMLElement | SVGElement, Recor
     // Loop on directive prop keys, add them to the local variantsRef if defined
     directivePropsKeys.forEach((key) => {
       if (key === 'delay') {
-        if (target && target[key] && isNumber(target[key])) {
+        if (target && target[key] && typeof target[key] === 'number') {
           const delay = target[key]
 
           if (variantsRef && variantsRef.value) {

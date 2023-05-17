@@ -56,7 +56,9 @@ export function splitValues(variant: Variant) {
   const style = {}
 
   Object.entries(variant).forEach(([key, value]) => {
+    // @ts-ignore
     if (isTransformProp(key) || isTransformOriginProp(key)) transform[key] = value
+    // @ts-ignore
     else style[key] = value
   })
 
