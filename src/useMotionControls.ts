@@ -54,7 +54,7 @@ export function useMotionControls<T extends MotionVariants>(
           if (key === 'transition') return undefined
 
           return new Promise<void>((resolve) =>
-            // @ts-ignore
+            // @ts-expect-error - Fix errors later for typescript 5
             push(key as keyof MotionProperties, value, motionProperties, (variant as Variant).transition || getDefaultTransition(key, variant[key]), resolve),
           )
         })

@@ -17,7 +17,7 @@ export const MotionPlugin: Plugin = {
     if (!options || (options && !options.excludePresets)) {
       for (const key in presets) {
         // Get preset variants
-        // @ts-ignore
+        // @ts-expect-error - Fix errors later for typescript 5
         const preset = presets[key]
 
         // Register the preset `v-motion-${key}` directive
