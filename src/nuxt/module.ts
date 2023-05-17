@@ -32,8 +32,9 @@ export default defineNuxtModule<ModuleOptions>({
 
     /**
      * Workaround for TSLib issue on @nuxt/bridge and nuxt3
+     * # fix: https://github.com/nuxt/nuxt/issues/19265#issuecomment-1443803783
      */
     if (!nuxt.options.alias) nuxt.options.alias = {}
-    if (!nuxt.options.alias.tslib) nuxt.options.alias.tslib = 'tslib/tslib.es6.js'
+    if (!nuxt.options.alias.tslib) nuxt.options.alias.tslib = 'tslib'
   },
 })
