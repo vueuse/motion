@@ -7,7 +7,7 @@
 **Vue Composables** putting your **components** in **motion**
 
 - 🏎 **Smooth animations** based on [**Popmotion**](https://popmotion.io/)
-- 🎮 **Declarative** API inspired from [**Framer Motion**](https://www.framer.com/motion/)
+- 🎮 **Declarative** API inspired by [**Framer Motion**](https://www.framer.com/motion/)
 - 🚀 **Plug** & **play** with **20+ presets**
 - 🌐 **SSR Ready**
 - 🚚 First-class support for **Nuxt 3**
@@ -20,7 +20,7 @@
 
 ## Quick Start
 
-Let's **get started** quick by **installing** the **package** and adding the **plugin**.
+Let's **get started** by **installing** the **package** and adding the **plugin**.
 
 From your **terminal**:
 
@@ -64,7 +64,7 @@ To see more about how to use **directives**, check out [**Directive Usage**](htt
 
 To see more about what **properties** you can **animate**, check out [**Motion Properties**](https://motion.vueuse.org/motion-properties).
 
-To see more about how to **create** your own **animations** styles, check out [**Transition Properties**](https://motion.vueuse.org/transition-properties).
+To see more about how to **create** your own **animation** styles, check out [**Transition Properties**](https://motion.vueuse.org/transition-properties).
 
 To see more about what are **variants** and how you can **use** them, check out [**Variants**](https://motion.vueuse.org/variants).
 

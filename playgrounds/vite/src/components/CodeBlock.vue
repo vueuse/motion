@@ -23,7 +23,7 @@ function preRender(codeContent: string) {
 }
 
 async function render() {
-  if (!Prism.languages[props.language]) await import(`prismjs/components/prism-${props.language}`)
+  if (!Prism.languages[props.language]) await import(/* @vite-ignore */ `prismjs/components/prism-${props.language}`)
 
   nextTick(() => {
     if (!(code?.value as any).value) return

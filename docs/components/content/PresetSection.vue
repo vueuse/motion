@@ -56,11 +56,11 @@ async function replay() {
 
     <div class="content">
       <div class="demoCode">
-        <code>
+        <ProseCodeInline>
           {{ `
           <div v-motion-${slugify(name)} />
           ` }}
-        </code>
+        </ProseCodeInline>
       </div>
 
       <div class="demoContainer relative">
@@ -116,5 +116,33 @@ async function replay() {
 
 .demoElement {
   width: 6rem;
+}
+
+.relative {
+  position: relative;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.top-4 {
+  top: 1rem;
+}
+
+.right-4 {
+  right: 1rem;
+}
+
+.h-6 {
+  height: 1.5rem;
+}
+
+.w-6 {
+  width: 1.5rem;
 }
 </style>
