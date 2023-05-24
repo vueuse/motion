@@ -9,7 +9,6 @@ import type { MotionInstance } from './../types/instance'
 
 export default defineComponent({
   props: {
-    // eslint-disable-next-line vue/no-reserved-props
     is: {
       type: [String, Object] as PropType<string | Component>,
       required: false,

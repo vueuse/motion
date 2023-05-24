@@ -18,7 +18,7 @@ watch(input, (newVal) => {
   }
 })
 
-const replay = () => {
+function replay() {
   input.value = '0'
 }
 </script>

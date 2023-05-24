@@ -47,7 +47,7 @@ const easingLookup = {
  *
  * @param definition
  */
-export const easingDefinitionToFunction = (definition: Easing) => {
+export function easingDefinitionToFunction(definition: Easing) {
   if (Array.isArray(definition)) {
     const [x1, y1, x2, y2] = definition
     return cubicBezier(x1, y1, x2, y2)
@@ -63,7 +63,7 @@ export const easingDefinitionToFunction = (definition: Easing) => {
  *
  * @param ease
  */
-export const isEasingArray = (ease: any): ease is Easing[] => {
+export function isEasingArray(ease: any): ease is Easing[] {
   return Array.isArray(ease) && typeof ease[0] !== 'number'
 }
 
@@ -76,7 +76,7 @@ export const isEasingArray = (ease: any): ease is Easing[] => {
  *
  * @internal
  */
-export const isAnimatable = (key: string, value: ResolvedValueTarget) => {
+export function isAnimatable(key: string, value: ResolvedValueTarget) {
   // If the list of keys tat might be non-animatable grows, replace with Set
   if (key === 'zIndex') return false
 
@@ -161,6 +161,7 @@ export function getPopmotionAnimationOptions(transition: PermissiveTransitionDef
  * This filters out orchestration options and returns true
  * if any options are left.
  */
+// eslint-disable-next-line unused-imports/no-unused-vars
 export function isTransitionDefined({ delay, repeat, repeatType, repeatDelay, from, ...transition }: Transition) {
   return !!Object.keys(transition).length
 }
@@ -175,6 +176,7 @@ export function isTransitionDefined({ delay, repeat, repeatType, repeatDelay, fr
  * @param key
  */
 export function getValueTransition(transition: Transition, key: string) {
+  // @ts-expect-error - ?
   return transition[key] || (transition as any).default || transition
 }
 

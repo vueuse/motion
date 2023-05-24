@@ -41,7 +41,7 @@ export default defineBuildConfig({
       builder: 'mkdist',
       input: 'src/nuxt/runtime',
       outDir: 'dist/runtime',
-    }
+    },
   ],
   externals: [
     '@nuxt/kit',

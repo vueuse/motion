@@ -7,7 +7,7 @@ import { useMotion } from '../useMotion'
 import { resolveVariants } from '../utils/directive'
 import { variantToStyle } from '../utils/transform'
 
-export const directive = (variants?: MotionVariants): Directive<HTMLElement | SVGElement> => {
+export function directive(variants?: MotionVariants): Directive<HTMLElement | SVGElement> {
   const register = (el: HTMLElement | SVGElement, binding: DirectiveBinding, node: VNode<any, HTMLElement | SVGElement, Record<string, any>>) => {
     // Get instance key if possible (binding value or element key in case of v-for's)
     const key = (binding.value && typeof binding.value === 'string' ? binding.value : node.key) as string

@@ -18,15 +18,15 @@ const pre = ref<string>()
 const code = ref<HTMLElement>()
 
 // Functions
-const preRender = (codeContent: string) => {
+function preRender(codeContent: string) {
   return codeContent.replace(/\s+data-v-\S+="[^"]*"/g, '')
 }
 
-const render = () => {
-  if (!Prism.languages[props.language]) require(`prismjs/components/prism-${props.language}`)
+async function render() {
+  if (!Prism.languages[props.language]) await import(`prismjs/components/prism-${props.language}`)
 
   nextTick(() => {
-    if (!code.value.value) return
+    if (!(code?.value as any).value) return
 
     const codeContent = props.text || code?.value?.innerText || ''
 

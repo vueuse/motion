@@ -11,7 +11,7 @@ const emit = defineEmits(['replay'])
 
 const [visible, toggleVisible] = useToggle(true)
 
-const replay = () => {
+function replay() {
   toggleVisible()
 
   emit('replay')

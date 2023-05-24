@@ -1,4 +1,4 @@
-import { resolve } from 'path'
+import { resolve } from 'node:path'
 
 export default defineNuxtConfig({
   css: ['~/assets/pico.css'],

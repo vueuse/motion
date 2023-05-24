@@ -4,7 +4,7 @@ import type { MotionVariants } from '../types'
 
 const directivePropsKeys = ['initial', 'enter', 'leave', 'visible', 'visible-once', 'hovered', 'tapped', 'focused', 'delay']
 
-export const resolveVariants = (node: VNode<any, HTMLElement | SVGElement, Record<string, any>>, variantsRef: Ref<MotionVariants>) => {
+export function resolveVariants(node: VNode<any, HTMLElement | SVGElement, Record<string, any>>, variantsRef: Ref<MotionVariants>) {
   // This is done to achieve compat with Vue 2 & 3
   // node.props = Vue 3 element props location
   // node.data.attrs = Vue 2 element props location

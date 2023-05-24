@@ -118,7 +118,7 @@ export const getValueType = (key: string) => valueTypes[key]
  * @param value
  * @param type
  */
-export const getValueAsType = (value: any, type?: ValueType) => {
+export function getValueAsType(value: any, type?: ValueType) {
   return type && typeof value === 'number' && type.transform ? type.transform(value) : value
 }
 

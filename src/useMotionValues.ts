@@ -4,6 +4,7 @@ import type { Ref } from 'vue'
 import type { MotionValue } from './motionValue'
 import { getMotionValue } from './motionValue'
 import type { MotionProperties, MotionValuesMap } from './types'
+
 const { isArray } = Array
 
 export function useMotionValues() {

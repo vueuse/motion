@@ -1,44 +1,54 @@
 import type { Keyframes, KeyframesTarget, PopmotionTransitionProps, SingleTarget, Spring, ValueTarget } from '../types'
 
-export const isKeyframesTarget = (v: ValueTarget): v is KeyframesTarget => {
+export function isKeyframesTarget(v: ValueTarget): v is KeyframesTarget {
   return Array.isArray(v)
 }
 
-export const underDampedSpring = (): Partial<Spring> => ({
-  type: 'spring',
-  stiffness: 500,
-  damping: 25,
-  restDelta: 0.5,
-  restSpeed: 10,
-})
+export function underDampedSpring(): Partial<Spring> {
+  return {
+    type: 'spring',
+    stiffness: 500,
+    damping: 25,
+    restDelta: 0.5,
+    restSpeed: 10,
+  }
+}
 
-export const criticallyDampedSpring = (to: SingleTarget) => ({
-  type: 'spring',
-  stiffness: 550,
-  damping: to === 0 ? 2 * Math.sqrt(550) : 30,
-  restDelta: 0.01,
-  restSpeed: 10,
-})
+export function criticallyDampedSpring(to: SingleTarget) {
+  return {
+    type: 'spring',
+    stiffness: 550,
+    damping: to === 0 ? 2 * Math.sqrt(550) : 30,
+    restDelta: 0.01,
+    restSpeed: 10,
+  }
+}
 
-export const overDampedSpring = (to: SingleTarget): Partial<Spring> => ({
-  type: 'spring',
-  stiffness: 550,
-  damping: to === 0 ? 100 : 30,
-  restDelta: 0.01,
-  restSpeed: 10,
-})
+export function overDampedSpring(to: SingleTarget): Partial<Spring> {
+  return {
+    type: 'spring',
+    stiffness: 550,
+    damping: to === 0 ? 100 : 30,
+    restDelta: 0.01,
+    restSpeed: 10,
+  }
+}
 
-export const linearTween = (): Partial<Keyframes> => ({
-  type: 'keyframes',
-  ease: 'linear',
-  duration: 300,
-})
+export function linearTween(): Partial<Keyframes> {
+  return {
+    type: 'keyframes',
+    ease: 'linear',
+    duration: 300,
+  }
+}
 
-const keyframes = (values: KeyframesTarget): Partial<Keyframes> => ({
-  type: 'keyframes',
-  duration: 800,
-  values,
-})
+function keyframes(values: KeyframesTarget): Partial<Keyframes> {
+  return {
+    type: 'keyframes',
+    duration: 800,
+    values,
+  }
+}
 
 type TransitionFactory = (to: ValueTarget) => Partial<PopmotionTransitionProps>
 
@@ -59,7 +69,7 @@ const defaultTransitions = {
   opacity: linearTween,
 }
 
-export const getDefaultTransition = (valueKey: string, to: ValueTarget): PopmotionTransitionProps => {
+export function getDefaultTransition(valueKey: string, to: ValueTarget): PopmotionTransitionProps {
   let transitionFactory: TransitionFactory
 
   if (isKeyframesTarget(to)) {

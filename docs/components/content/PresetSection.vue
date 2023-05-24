@@ -25,7 +25,7 @@ const replayInstance = useMotion(replayButton, {
   },
 })
 
-const replay = async () => {
+async function replay() {
   if (isReplaying.value) return
 
   isReplaying.value = true

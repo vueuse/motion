@@ -4,7 +4,7 @@ import { velocityPerSecond } from 'popmotion'
 import type { StartAnimation, Subscriber } from './types'
 import { SubscriptionManager } from './utils/subscription-manager'
 
-const isFloat = (value: any): value is string => {
+function isFloat(value: any): value is string {
   return !isNaN(parseFloat(value))
 }
 
