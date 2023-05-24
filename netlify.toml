@@ -9,7 +9,3 @@
   to = "https://motion.vueuse.org/:splat"
   status = 301
   force = true
-
-[build.environment]
-  NODE_VERSION = "16"
-  NPM_FLAGS = "--version" # prevent Netlify npm install
