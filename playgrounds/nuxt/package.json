@@ -11,6 +11,6 @@
   },
   "devDependencies": {
     "@nuxt/content": "^2.6.0",
-    "nuxt": "^3.5.0"
+    "nuxt": "^3.5.1"
   }
 }
