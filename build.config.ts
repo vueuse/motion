@@ -1,5 +1,3 @@
-import { copySync } from 'fs-extra'
-import consola from 'consola'
 import { defineBuildConfig } from 'unbuild'
 
 export default defineBuildConfig({
@@ -38,6 +36,12 @@ export default defineBuildConfig({
       format: 'cjs',
       ext: 'cjs',
     },
+    // Copy runtime folder with mkdist
+    {
+      builder: 'mkdist',
+      input: 'src/nuxt/runtime',
+      outDir: 'dist/runtime',
+    }
   ],
   externals: [
     '@nuxt/kit',
@@ -56,11 +60,4 @@ export default defineBuildConfig({
     '@vue/shared',
     '@vueuse/core',
   ],
-  hooks: {
-    'build:done': () => {
-      copySync('src/nuxt/runtime', 'dist/runtime')
-
-      consola.info('Nuxt runtime copied to `dist/`!')
-    },
-  },
 })

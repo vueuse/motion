@@ -10,6 +10,7 @@ export function useMotionTransitions(): MotionTransitions {
 
   const push = (key: string, value: ResolvedValueTarget, target: MotionProperties, transition: Transition = {}, onComplete?: () => void) => {
     // Get the `from` key from target
+    // @ts-expect-error - Fix errors later for typescript 5
     const from = target[key]
 
     // Get motion value for the target key

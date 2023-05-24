@@ -1,27 +1,27 @@
-import { addImportsDir, addPlugin, createResolver, defineNuxtModule, resolveModule } from '@nuxt/kit'
-import type { ModuleOptions, MotionPluginOptions } from '../types'
+import { defu } from 'defu'
+import { addImportsDir, addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
+import type { ModuleOptions as MotionModuleOpts } from '../types'
 
-const DEFAULTS: ModuleOptions = {}
+export interface ModuleOptions extends MotionModuleOpts {}
 
-const CONFIG_KEY = 'motion'
-
-const module = defineNuxtModule<ModuleOptions>({
+export default defineNuxtModule<ModuleOptions>({
   meta: {
     name: '@vueuse/motion',
-    configKey: CONFIG_KEY,
+    configKey: 'motion',
   },
-  defaults: DEFAULTS,
+  defaults: {},
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
-    const resolveRuntimeModule = (path: string) => resolveModule(path, { paths: resolve('./runtime') })
+    const resolveRuntimeModule = (path: string) => resolve('./runtime', path)
 
-    // Push options to runtimeConfig
-    nuxt.options.runtimeConfig.public.motion = options
+    // Push options and merge to runtimeConfig
+    nuxt.options.runtimeConfig.motion = defu(nuxt.options.runtimeConfig?.motion || {}, options)
 
     // Add templates (options and directives)
-    addPlugin({
-      src: resolveRuntimeModule('./templates/motion.js'),
-    })
+    addPlugin(resolveRuntimeModule('./templates/motion'))
+
+    // Add auto imports
+    addImportsDir(resolve('./runtime/composables'))
 
     // Transpile necessary packages at build time
     if (!nuxt.options.build.transpile) nuxt.options.build.transpile = []
@@ -32,17 +32,9 @@ const module = defineNuxtModule<ModuleOptions>({
 
     /**
      * Workaround for TSLib issue on @nuxt/bridge and nuxt3
+     * # fix: https://github.com/nuxt/nuxt/issues/19265#issuecomment-1443803783
      */
     if (!nuxt.options.alias) nuxt.options.alias = {}
-    if (!nuxt.options.alias.tslib) nuxt.options.alias.tslib = 'tslib/tslib.es6.js'
-
-    // Add auto imports
-    addImportsDir(resolve('./composables/'))
+    if (!nuxt.options.alias.tslib) nuxt.options.alias.tslib = 'tslib'
   },
-}) as any
-
-export interface ModulePublicRuntimeConfig extends MotionPluginOptions {}
-
-export interface ModulePrivateRuntimeConfig extends MotionPluginOptions {}
-
-export default module
+})

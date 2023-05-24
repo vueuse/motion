@@ -1,4 +1,4 @@
-- packages
-  - playgrounds/vite
-  - playgrounds/nuxt
-  - docs
+packages:
+  - 'docs'
+  - 'playgrounds/vite'
+  - 'playgrounds/nuxt'

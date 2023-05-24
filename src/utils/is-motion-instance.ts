@@ -1,4 +1,3 @@
-import { isFunction } from '@vueuse/shared'
 import { isRef } from 'vue'
 import type { MotionInstance } from '../types'
 
@@ -13,5 +12,5 @@ import type { MotionInstance } from '../types'
 export function isMotionInstance(obj: any): obj is MotionInstance {
   const _obj = obj as MotionInstance
 
-  return _obj.apply !== undefined && isFunction(_obj.apply) && _obj.set !== undefined && isFunction(_obj.set) && _obj.target !== undefined && isRef(_obj.target)
+  return _obj.apply !== undefined && typeof _obj.apply === 'function' && _obj.set !== undefined && typeof _obj.set === 'function' && _obj.target !== undefined && isRef(_obj.target)
 }

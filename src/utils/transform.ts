@@ -56,7 +56,9 @@ export function splitValues(variant: Variant) {
   const style = {}
 
   Object.entries(variant).forEach(([key, value]) => {
+    // @ts-expect-error - Fix errors later for typescript 5
     if (isTransformProp(key) || isTransformOriginProp(key)) transform[key] = value
+    // @ts-expect-error - Fix errors later for typescript 5
     else style[key] = value
   })
 
