@@ -3,7 +3,8 @@
   "scripts": {
     "dev:docs": "nuxt dev",
     "build:docs": "nuxt generate",
-    "preview:docs": "nuxt preview"
+    "preview:docs": "nuxt preview",
+    "prepare:docs": "nuxt prepare"
   },
   "dependencies": {
     "@vueuse/motion": "workspace:~"

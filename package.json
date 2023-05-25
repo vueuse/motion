@@ -45,7 +45,7 @@
     "test:unit": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test": "pnpm test:unit && pnpm test:coverage",
-    "prepare": "pnpm prepare:nuxt",
+    "prepare": "pnpm prepare:nuxt && pnpm prepare:docs",
     "__": "__",
     "dev:nuxt": "(cd playgrounds/nuxt && pnpm dev:nuxt)",
     "build:nuxt": "(cd playgrounds/nuxt && pnpm build:nuxt)",
@@ -59,7 +59,8 @@
     "dev:docs": "(cd docs && pnpm dev:docs)",
     "build:docs": "(cd docs && pnpm build:docs)",
     "preview:docs": "(cd docs && pnpm preview:docs)",
-    "prepare:nuxt": "(cd playgrounds/nuxt && pnpm prepare:nuxt)"
+    "prepare:nuxt": "(cd playgrounds/nuxt && pnpm prepare:nuxt)",
+    "prepare:docs": "(cd docs && pnpm prepare:docs)"
   },
   "peerDependencies": {
     "vue": ">=3.0.0"

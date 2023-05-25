@@ -1,130 +1,97 @@
 {
-  "extends": "./playgrounds/nuxt/.nuxt/tsconfig.json",
-
+  "extends": "./docs/.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "preserve",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "skipLibCheck": true,
+    "strict": true,
+    "allowJs": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "types": [
+      "node",
+      "csstype",
+      "vitest",
+      "vitest/globals",
+      "vite/client"
+    ],
+    "baseUrl": ".",
+    "paths": {
+      "@vueuse/motion": [
+        "./src/index"
+      ],
+      "@vueuse/motion/nuxt": [
+        "./src/nuxt/module"
+      ],
+      "#app": [
+        "./node_modules/nuxt/dist/app"
+      ],
+      "#app/*": [
+        "./node_modules/nuxt/dist/app/*"
+      ],
+      "vue-demi": [
+        "./node_modules/nuxt/dist/app/compat/vue-demi"
+      ],
+      "#color-mode-options": [
+        "./docs/.nuxt/color-mode-options"
+      ],
+      "#nuxt-component-meta": [
+        "./docs/.nuxt/component-meta.mjs"
+      ],
+      "#nuxt-component-meta/types": [
+        "./docs/.nuxt/component-meta.d.ts"
+      ],
+      "#vue-router": [
+        "./docs/.nuxt/vue-router"
+      ],
+      "#imports": [
+        "./docs/.nuxt/imports"
+      ],
+      "#build": [
+        "./docs/.nuxt"
+      ],
+      "#build/*": [
+        "./docs/.nuxt/*"
+      ],
+      "@nuxt-themes/tokens/config": [
+        "./node_modules/@nuxt-themes/tokens/dist/tokens.config.ts"
+      ],
+      "#pinceau/utils": [
+        "./docs/.nuxt/pinceau/utils.ts"
+      ],
+      "#pinceau/theme": [
+        "./docs/.nuxt/pinceau/index.ts"
+      ],
+      "#pinceau/schema": [
+        "./docs/.nuxt/pinceau/schema.ts"
+      ],
+      "#pinceau/definitions": [
+        "./docs/.nuxt/pinceau/definitions.ts"
+      ],
+      "#components": [
+        ".nuxt/components"
+      ]
+    }
+  },
   "include": [
-    "env.d.ts",
+    "./env.d.ts",
+    "docs/**/*",
     "src/**/*",
     "tests/**/*",
     "docs/**/*",
     "playgrounds/**/*"
   ],
-
-  "exclude": ["dist", "node_modules"],
-
-  "compilerOptions": {
-    "types": ["node", "vite/client", "vitest/globals"],
-    "lib": ["esnext", "dom"],
-    "paths": {
-      "@vueuse/motion/*": [
-        "./src/*"
-      ],
-      "csstype": [
-        "node_modules/csstype"
-      ],
-      "~~": [
-        "."
-      ],
-      "~~/*": [
-        "./*"
-      ],
-      "@@": [
-        "."
-      ],
-      "@@/*": [
-        "./*"
-      ],
-      "~": [
-        "."
-      ],
-      "~/*": [
-        "./*"
-      ],
-      "@": [
-        "."
-      ],
-      "@/*": [
-        "./*"
-      ],
-      "assets": [
-        "assets"
-      ],
-      "public": [
-        "public"
-      ],
-      "public/*": [
-        "public/*"
-      ],
-      "#app": [
-        "node_modules/nuxt/dist/app"
-      ],
-      "#app/*": [
-        "node_modules/nuxt/dist/app/*"
-      ],
-      "vue-demi": [
-        "node_modules/nuxt/dist/app/compat/vue-demi"
-      ],
-      "tslib": [
-        "tslib/tslib.es6"
-      ],
-      "#design-tokens": [
-        "docs/.nuxt/tokens/index"
-      ],
-      "#design-tokens/style": [
-        "docs/.nuxt/tokens/tokens"
-      ],
-      "#design-tokens/types": [
-        "docs/.nuxt/tokens/types"
-      ],
-      "#color-mode-options": [
-        "docs/.nuxt/color-mode-options"
-      ],
-      "#head": [
-        "node_modules/nuxt/dist/head/runtime"
-      ],
-      "#head/*": [
-        "node_modules/nuxt/dist/head/runtime/*"
-      ],
-      "#imports": [
-        "docs/.nuxt/imports"
-      ],
-      "#build": [
-        "docs/.nuxt"
-      ],
-      "#build/*": [
-        "docs/.nuxt/*"
-      ],
-      "#components": [
-        "docs/.nuxt/components"
-      ],
-      "@vueuse/motion": [
-        "./src/index.ts"
-      ]
-    },
-
-    "baseUrl": ".",
-    "rootDir": ".",
-    "outDir": "dist",
-    "sourceMap": false,
-    "noEmit": true,
-
-    "target": "esnext",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "skipLibCheck": true,
-
-    "noUnusedLocals": true,
-    "strictNullChecks": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "noImplicitReturns": true,
-    "strict": true,
-    "isolatedModules": false,
-
-    "experimentalDecorators": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "removeComments": false,
-    "strictPropertyInitialization": false,
-    "jsx": "preserve"
+  "exclude": [
+    "../dist",
+    "../.output"
+  ],
+  "vueCompilerOptions": {
+    "plugins": [
+      "pinceau/volar"
+    ]
   }
 }

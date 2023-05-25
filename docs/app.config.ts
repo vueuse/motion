@@ -7,10 +7,8 @@ export default defineAppConfig({
       twitter: 'yaeeelglx',
       github: 'vueuse/motion',
     },
-    github: true,
     aside: {
       level: 1,
-      filter: [],
     },
     header: {
       title: '@vueuse/motion',
@@ -21,7 +19,6 @@ export default defineAppConfig({
         text: 'Powered by Docus',
         href: 'https://docus.dev',
       },
-      icons: [],
     },
   },
 })
