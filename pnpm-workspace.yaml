@@ -1,0 +1,5 @@
+packages:
+  - 'docs'
+  - 'playgrounds/vite'
+  - 'playgrounds/nuxt'
+  - 'playgrounds/vite-ssg'

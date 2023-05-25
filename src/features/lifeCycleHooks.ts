@@ -1,15 +1,10 @@
-import { unref, watch } from 'vue-demi'
+import { unref, watch } from 'vue'
 import type { MotionInstance, MotionVariants } from '../types'
 
-export function registerLifeCycleHooks<T extends MotionVariants>({
-  set,
-  target,
-  variants,
-  variant,
-}: MotionInstance<T>) {
+export function registerLifeCycleHooks<T extends MotionVariants>({ set, target, variants, variant }: MotionInstance<T>) {
   const _variants = unref(variants)
 
-  const stop = watch(
+  watch(
     () => target,
     () => {
       // Cancel cycle if no variants
@@ -26,6 +21,4 @@ export function registerLifeCycleHooks<T extends MotionVariants>({
       flush: 'pre',
     },
   )
-
-  return { stop }
 }

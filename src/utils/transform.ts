@@ -56,8 +56,9 @@ export function splitValues(variant: Variant) {
   const style = {}
 
   Object.entries(variant).forEach(([key, value]) => {
-    if (isTransformProp(key) || isTransformOriginProp(key))
-      transform[key] = value
+    // @ts-expect-error - Fix errors later for typescript 5
+    if (isTransformProp(key) || isTransformOriginProp(key)) transform[key] = value
+    // @ts-expect-error - Fix errors later for typescript 5
     else style[key] = value
   })
 
@@ -75,8 +76,7 @@ export function variantToStyle(variant: Variant) {
   const { style } = reactiveStyle(_style)
 
   // @ts-expect-error - Set transform from style
-  if (transform.value)
-    style.value.transform = transform.value
+  if (transform.value) style.value.transform = transform.value
 
   return style.value
 }

@@ -1,9 +1,4 @@
-import { set as __set } from 'vue-demi'
-import type {
-  MotionProperties,
-  ResolvedValueTarget,
-  TransformProperties,
-} from '../types'
+import type { MotionProperties, ResolvedValueTarget, TransformProperties } from '../types'
 
 /**
  * Return an object from a transform string.
@@ -57,53 +52,46 @@ export function parseTransform(transform: string): Partial<MotionProperties> {
  * @param state
  * @param transform
  */
-export function stateFromTransform(
-  state: TransformProperties,
-  transform: string,
-) {
+export function stateFromTransform(state: TransformProperties, transform: string) {
   Object.entries(parseTransform(transform)).forEach(([key, value]) => {
-    // Get value w/o unit, as unit is applied later on
-    value = parseFloat(value)
-
     // Axes reference for loops
     const axes = ['x', 'y', 'z']
 
     // Handle translate3d and scale3d
     if (key === 'translate3d') {
       if (value === 0) {
-        axes.forEach((axis) => {
-          __set(state, axis, 0)
-        })
+        axes.forEach((axis) => (state[axis] = 0))
         return
       }
 
       // Loop on parsed scale / translate definition
-      value.forEach((axisValue: ResolvedValueTarget, index: number) => {
-        __set(state, axes[index], axisValue)
-      })
+      value.forEach((axisValue: ResolvedValueTarget, index: number) => (state[axes[index]] = axisValue))
 
       return
     }
 
+    // Get value w/o unit, as unit is applied later on
+    value = parseFloat(value)
+
     // Sync translateX on X
     if (key === 'translateX') {
-      __set(state, 'x', value)
+      state.x = value
       return
     }
 
     // Sync translateY on Y
     if (key === 'translateY') {
-      __set(state, 'y', value)
+      state.y = value
       return
     }
 
     // Sync translateZ on Z
     if (key === 'translateZ') {
-      __set(state, 'z', value)
+      state.z = value
       return
     }
 
     // Set raw value
-    __set(state, key, value)
+    state[key] = value
   })
 }

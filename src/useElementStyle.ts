@@ -1,8 +1,8 @@
 import type { MaybeRef } from '@vueuse/core'
-import { unrefElement } from '@vueuse/core'
-import { set as __set, watch } from 'vue-demi'
+import { watch } from 'vue'
 import { reactiveStyle } from './reactiveStyle'
 import type { MotionTarget, PermissiveTarget, StyleProperties } from './types'
+import { usePermissiveTarget } from './usePermissiveTarget'
 import { valueTypes } from './utils/style'
 import { isTransformOriginProp, isTransformProp } from './utils/transform'
 
@@ -11,10 +11,7 @@ import { isTransformOriginProp, isTransformProp } from './utils/transform'
  *
  * @param target
  */
-export function useElementStyle(
-  target: MaybeRef<PermissiveTarget>,
-  onInit?: (initData: Partial<StyleProperties>) => void,
-) {
+export function useElementStyle(target: MaybeRef<PermissiveTarget>, onInit?: (initData: Partial<StyleProperties>) => void) {
   // Transform cache available before the element is mounted
   let _cache: StyleProperties | undefined
   // Local target cache as we need to resolve the element from PermissiveTarget
@@ -22,44 +19,30 @@ export function useElementStyle(
   // Create a reactive style object
   const { state, style } = reactiveStyle()
 
-  // Sync existing style from supplied element
-  const stopInitWatch = watch(
-    () => unrefElement(target),
-    (el) => {
-      if (!el) return
+  usePermissiveTarget(target, (el) => {
+    _target = el
 
-      _target = el
+    // Loop on style keys
+    for (const key of Object.keys(valueTypes)) {
+      // @ts-expect-error - Fix errors later for typescript 5
+      if (el.style[key] === null || el.style[key] === '' || isTransformProp(key) || isTransformOriginProp(key)) continue
 
-      // Loop on style keys
-      for (const key of Object.keys(valueTypes)) {
-        if (
-          el.style[key] === null
-          || el.style[key] === ''
-          || isTransformProp(key)
-          || isTransformOriginProp(key)
-        )
-          continue
+      // Append a defined key to the local StyleProperties state object
+      // @ts-expect-error - Fix errors later for typescript 5
+      state[key] = el.style[key]
+    }
 
-        // Append a defined key to the local StyleProperties state object
-        __set(state, key, el.style[key])
-      }
+    // If cache is present, init the target with the current cached value
+    if (_cache) {
+      // @ts-expect-error - Fix errors later for typescript 5
+      Object.entries(_cache).forEach(([key, value]) => (el.style[key] = value))
+    }
 
-      // If cache is present, init the target with the current cached value
-      if (_cache) {
-        Object.entries(_cache).forEach(([key, value]) =>
-          __set(el.style, key, value),
-        )
-      }
-
-      if (onInit) onInit(state)
-    },
-    {
-      immediate: true,
-    },
-  )
+    if (onInit) onInit(state)
+  })
 
   // Sync reactive style to element
-  const stopSyncWatch = watch(
+  watch(
     style,
     (newVal) => {
       // Add the current value to the cache so it is set on target creation
@@ -69,23 +52,15 @@ export function useElementStyle(
       }
 
       // Append the state object to the target style properties
-      for (const key in newVal) __set(_target.style, key, newVal[key])
+      // @ts-expect-error - Fix errors later for typescript 5
+      for (const key in newVal) _target.style[key] = newVal[key]
     },
     {
       immediate: true,
     },
   )
 
-  // Stop watchers
-  const stop = () => {
-    _target = undefined
-    _cache = undefined
-    stopInitWatch()
-    stopSyncWatch()
-  }
-
   return {
     style: state,
-    stop,
   }
 }

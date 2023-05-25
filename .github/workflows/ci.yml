@@ -1,4 +1,4 @@
-name: Test package
+name: Build and tests
 
 on:
   push:
@@ -29,10 +29,10 @@ jobs:
         with:
           version: 6.24.3
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: ${{ matrix.node }}
           registry-url: https://registry.npmjs.org/
           cache: "pnpm"
 

@@ -1,0 +1,20 @@
+{
+  "private": "true",
+  "scripts": {
+    "dev:vite": "vite",
+    "build:vite": "vite build",
+    "preview:vite": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.3.4",
+    "@vueuse/motion": "workspace:~",
+    "prism-theme-vars": "^0.2.4",
+    "prismjs": "^1.29.0"
+  },
+  "devDependencies": {
+    "vite": "4.3.8",
+    "vite-plugin-windicss": "^1.9.0",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@types/prismjs": "^1.26.0"
+  }
+}

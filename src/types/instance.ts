@@ -1,5 +1,5 @@
-import type { Fn, MaybeRef, VueInstance } from '@vueuse/core'
-import type { Ref, UnwrapRef } from 'vue-demi'
+import type { MaybeRef, VueInstance } from '@vueuse/core'
+import type { Ref, UnwrapRef } from 'vue'
 import type { MotionProperties, MotionVariants, Variant } from './variants'
 
 export type PermissiveTarget = VueInstance | MotionTarget
@@ -12,7 +12,6 @@ export interface MotionInstance<T = MotionVariants> extends MotionControls {
   variant: Ref<keyof T>
   state: Ref<Variant | undefined>
   motionProperties: UnwrapRef<MotionProperties>
-  stop: (force?: boolean) => void
 }
 
 export interface UseMotionOptions {
@@ -39,7 +38,7 @@ export interface MotionControls {
   /**
    * Stop all the ongoing transitions for the current element.
    */
-  stopTransitions: Fn
+  stop: (keys?: string | string[]) => void
   /**
    * Helper to be passed to <transition> leave event.
    *

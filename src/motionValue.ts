@@ -4,7 +4,7 @@ import { velocityPerSecond } from 'popmotion'
 import type { StartAnimation, Subscriber } from './types'
 import { SubscriptionManager } from './utils/subscription-manager'
 
-const isFloat = (value: any): value is string => {
+function isFloat(value: any): value is string {
   return !isNaN(parseFloat(value))
 }
 
@@ -132,12 +132,7 @@ export class MotionValue<V = any> {
   getVelocity() {
     // This could be isFloat(this.prev) && isFloat(this.current), but that would be wasteful
     // These casts could be avoided if parseFloat would be typed better
-    return this.canTrackVelocity
-      ? velocityPerSecond(
-        parseFloat(this.current as any) - parseFloat(this.prev as any),
-        this.timeDelta,
-      )
-      : 0
+    return this.canTrackVelocity ? velocityPerSecond(parseFloat(this.current as any) - parseFloat(this.prev as any), this.timeDelta) : 0
   }
 
   /**

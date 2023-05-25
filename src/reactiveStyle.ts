@@ -1,5 +1,5 @@
-import type { Ref } from 'vue-demi'
-import { reactive, ref, watch } from 'vue-demi'
+import type { Ref } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import type { StyleProperties } from './types'
 import { getValueAsType, getValueType } from './utils/style'
 
@@ -29,6 +29,7 @@ export function reactiveStyle(props: StyleProperties = {}) {
         // Get value as type for key
         const valueAsType = getValueAsType(value, valueType)
         // Append the computed style to result object
+        // @ts-expect-error - Fix errors later for typescript 5
         result[key] = valueAsType
       }
 

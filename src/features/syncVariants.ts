@@ -1,12 +1,9 @@
-import { watch } from 'vue-demi'
+import { watch } from 'vue'
 import type { MotionInstance, MotionVariants } from '../types'
 
-export function registerVariantsSync<T extends MotionVariants>({
-  state,
-  apply,
-}: MotionInstance<T>) {
+export function registerVariantsSync<T extends MotionVariants>({ state, apply }: MotionInstance<T>) {
   // Watch for variant changes and apply the new one
-  const stop = watch(
+  watch(
     state,
     (newVal) => {
       if (newVal) apply(newVal)
@@ -15,6 +12,4 @@ export function registerVariantsSync<T extends MotionVariants>({
       immediate: true,
     },
   )
-
-  return { stop }
 }

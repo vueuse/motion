@@ -1,63 +1,103 @@
 {
+  "extends": "./playgrounds/nuxt/.nuxt/tsconfig.json",
+
   "include": [
     "env.d.ts",
-    "src/**/*.ts",
-    "tests/**/*.ts",
-
-    "docs/**/*.ts",
-    "docs/**/*.d.ts",
-    "docs/**/*.tsx",
-    "docs/**/*.vue",
-
-    "demo/**/*.ts",
-    "demo/**/*.d.ts",
-    "demo/**/*.tsx",
-    "demo/**/*.vue"
+    "src/**/*",
+    "tests/**/*",
+    "docs/**/*",
+    "playgrounds/**/*"
   ],
+
   "exclude": ["dist", "node_modules"],
+
   "compilerOptions": {
-    "types": ["node", "vite/client"],
+    "types": ["node", "vite/client", "vitest/globals"],
     "lib": ["esnext", "dom"],
-    "plugins": [
-      {
-        "name": "@vuedx/typescript-plugin-vue"
-      }
-    ],
     "paths": {
-      "@vueuse/motion": ["./src/index.ts"],
-      "@vueuse/motion/*": ["./src/*"],
+      "@vueuse/motion/*": [
+        "./src/*"
+      ],
+      "csstype": [
+        "node_modules/csstype"
+      ],
+      "~~": [
+        "."
+      ],
+      "~~/*": [
+        "./*"
+      ],
+      "@@": [
+        "."
+      ],
+      "@@/*": [
+        "./*"
+      ],
+      "~": [
+        "."
+      ],
+      "~/*": [
+        "./*"
+      ],
+      "@": [
+        "."
+      ],
+      "@/*": [
+        "./*"
+      ],
+      "assets": [
+        "assets"
+      ],
+      "public": [
+        "public"
+      ],
+      "public/*": [
+        "public/*"
+      ],
       "#app": [
-        "./node_modules/.pnpm/nuxt3@3.0.0-27467464.a0c4d6e_vite@2.8.6/node_modules/nuxt3/dist/app"
+        "node_modules/nuxt/dist/app"
       ],
       "#app/*": [
-        "./node_modules/.pnpm/nuxt3@3.0.0-27467464.a0c4d6e_vite@2.8.6/node_modules/nuxt3/dist/app/*"
+        "node_modules/nuxt/dist/app/*"
       ],
       "vue-demi": [
-        "./node_modules/.pnpm/nuxt3@3.0.0-27467464.a0c4d6e_vite@2.8.6/node_modules/nuxt3/dist/app/compat/vue-demi"
+        "node_modules/nuxt/dist/app/compat/vue-demi"
       ],
-      "#meta": [
-        "./node_modules/.pnpm/nuxt3@3.0.0-27467464.a0c4d6e_vite@2.8.6/node_modules/nuxt3/dist/meta/runtime"
+      "tslib": [
+        "tslib/tslib.es6"
       ],
-      "#meta/*": [
-        "./node_modules/.pnpm/nuxt3@3.0.0-27467464.a0c4d6e_vite@2.8.6/node_modules/nuxt3/dist/meta/runtime/*"
+      "#design-tokens": [
+        "docs/.nuxt/tokens/index"
+      ],
+      "#design-tokens/style": [
+        "docs/.nuxt/tokens/tokens"
+      ],
+      "#design-tokens/types": [
+        "docs/.nuxt/tokens/types"
+      ],
+      "#color-mode-options": [
+        "docs/.nuxt/color-mode-options"
+      ],
+      "#head": [
+        "node_modules/nuxt/dist/head/runtime"
+      ],
+      "#head/*": [
+        "node_modules/nuxt/dist/head/runtime/*"
       ],
       "#imports": [
-        "./nuxt-playground/.nuxt/imports"
+        "docs/.nuxt/imports"
       ],
       "#build": [
-        "./nuxt-playground/.nuxt"
+        "docs/.nuxt"
       ],
       "#build/*": [
-        "./nuxt-playground/.nuxt/*"
+        "docs/.nuxt/*"
       ],
-      "#config": [
-        "@nuxt/nitro"
+      "#components": [
+        "docs/.nuxt/components"
       ],
-      "#storage": [
-        "@nuxt/nitro"
-      ],
-      "#assets": [
-        "@nuxt/nitro"
+      "@vueuse/motion": [
+        "./src/index.ts"
       ]
     },
 
@@ -77,7 +117,6 @@
     "noImplicitAny": true,
     "noImplicitThis": true,
     "noImplicitReturns": true,
-    "suppressImplicitAnyIndexErrors": true,
     "strict": true,
     "isolatedModules": false,
 

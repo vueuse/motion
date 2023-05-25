@@ -1,6 +1,3 @@
-import type { Fn } from '@vueuse/core'
-import { tryOnUnmounted } from '@vueuse/core'
-import { ref } from 'vue-demi'
 import { registerEventListeners } from './features/eventListeners'
 import { registerLifeCycleHooks } from './features/lifeCycleHooks'
 import { registerVariantsSync } from './features/syncVariants'
@@ -26,41 +23,14 @@ export function useMotionFeatures<T extends MotionVariants>(
     eventListeners: true,
   },
 ) {
-  // Features stop callback to enforce it
-  const toStop = ref<Fn[]>([])
-
   // Lifecycle hooks bindings
-  if (options.lifeCycleHooks) {
-    const { stop: stopLifeCycleHooks } = registerLifeCycleHooks(instance)
+  if (options.lifeCycleHooks) registerLifeCycleHooks(instance)
 
-    toStop.value.push(stopLifeCycleHooks)
-  }
-
-  if (options.syncVariants) {
-    const { stop: stopVariantSync } = registerVariantsSync(instance)
-
-    toStop.value.push(stopVariantSync)
-  }
+  if (options.syncVariants) registerVariantsSync(instance)
 
   // Visibility hooks
-  if (options.visibilityHooks) {
-    const { stop: stopVisibilityHooks } = registerVisibilityHooks(instance)
-
-    toStop.value.push(stopVisibilityHooks)
-  }
+  if (options.visibilityHooks) registerVisibilityHooks(instance)
 
   // Event listeners
-  if (options.eventListeners) {
-    const { stop: stopEventListeners } = registerEventListeners(instance)
-
-    toStop.value.push(stopEventListeners)
-  }
-
-  // Stop all the registered features
-  const stop = () => toStop.value.forEach(_stop => _stop())
-
-  // Enforce cleanup on unmounted
-  tryOnUnmounted(stop)
-
-  return { stop }
+  if (options.eventListeners) registerEventListeners(instance)
 }

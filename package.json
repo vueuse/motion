@@ -1,14 +1,15 @@
 {
   "name": "@vueuse/motion",
-  "version": "2.0.0-beta.18",
+  "type": "module",
+  "version": "2.0.0-beta.29",
   "description": "🤹 Vue Composables putting your components in motion",
+  "author": "Yaël GUILLOUX <yael.guilloux@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://github.com/vueuse/motion#readme",
   "repository": "https://github.com/vueuse/motion",
   "bugs": {
     "url": "https://github.com/vueuse/motion/issues"
   },
-  "homepage": "https://github.com/vueuse/motion#readme",
-  "author": "Yaël GUILLOUX <yael.guilloux@gmail.com>",
-  "license": "MIT",
   "keywords": [
     "vue",
     "hook",
@@ -17,96 +18,105 @@
     "v-motion",
     "popmotion-vue"
   ],
-  "type": "module",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    },
+    "./nuxt": {
+      "require": "./dist/nuxt.cjs",
+      "import": "./dist/nuxt.mjs"
+    }
+  },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    },
-    "./nuxt": {
-      "import": "./dist/nuxt.mjs",
-      "require": "./dist/nuxt.cjs"
-    }
-  },
-  "scripts": {
-    "build": "unbuild",
-    "dev": "jiti scripts/watch.ts --cache",
-    "lint": "eslint --ext .js,.vue,.ts,.tsx .",
-    "lint:fix": "eslint --ext .js,.vue,.ts,.tsx . --fix",
-    "test:types": "tsc --build tsconfig.json",
-    "test:unit": "vitest run",
-    "test:coverage": "vitest run --coverage",
-    "test": "pnpm test:types && pnpm test:unit && pnpm test:coverage",
-    "dev:docs": "vitepress dev docs",
-    "build:docs": "vitepress build docs",
-    "serve:docs": "vitepress serve docs",
-    "publish:ci": "jiti scripts/publish.ts",
-    "release": "jiti scripts/release.ts && git push --follow-tags",
-    "dev:demo": "vite",
-    "build:demo": "vite build",
-    "serve:demo": "vite serve demo/dist",
-    "prepare:nuxt": "nuxt-module-build --stub && nuxi prepare playground",
-    "build:nuxt": "nuxt-module-build",
-    "dev:nuxt": "nuxi dev nuxt-playground",
-    "build:nuxt:playground": "nuxi build playground"
-  },
   "files": [
     "dist/**/*",
     "LICENSE",
     "README.md"
   ],
-  "dependencies": {
-    "@vueuse/core": "^8.2.3",
-    "@vueuse/shared": "^8.2.3",
-    "csstype": "^3.0.11",
-    "framesync": "^6.1.0",
-    "popmotion": "^11.0.3",
-    "style-value-types": "^5.1.0",
-    "vue-demi": "*"
+  "scripts": {
+    "build": "unbuild",
+    "dev": "pnpm dev:vite",
+    "release": "release-it",
+    "lint": "eslint --ext .js,.vue,.ts,.tsx .",
+    "lint:fix": "eslint --ext .js,.vue,.ts,.tsx . --fix",
+    "test:unit": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test": "pnpm test:unit && pnpm test:coverage",
+    "prepare": "pnpm prepare:nuxt",
+    "__": "__",
+    "dev:nuxt": "(cd playgrounds/nuxt && pnpm dev:nuxt)",
+    "build:nuxt": "(cd playgrounds/nuxt && pnpm build:nuxt)",
+    "generate:nuxt": "(cd playgrounds/nuxt && pnpm preview:nuxt)",
+    "dev:ssg": "(cd playgrounds/vite-ssg && pnpm dev:ssg)",
+    "build:ssg": "(cd playgrounds/vite-ssg && pnpm build:ssg)",
+    "preview:ssg": "(cd playgrounds/vite-ssg && pnpm preview:ssg)",
+    "dev:vite": "(cd playgrounds/vite && pnpm dev:vite)",
+    "build:vite": "(cd playgrounds/vite && pnpm build:vite)",
+    "preview:vite": "(cd playgrounds/vite && pnpm preview:vite)",
+    "dev:docs": "(cd docs && pnpm dev:docs)",
+    "build:docs": "(cd docs && pnpm build:docs)",
+    "preview:docs": "(cd docs && pnpm preview:docs)",
+    "prepare:nuxt": "(cd playgrounds/nuxt && pnpm prepare:nuxt)"
   },
   "peerDependencies": {
-    "@nuxt/kit": "npm:@nuxt/kit-edge@latest",
-    "@vue/composition-api": "^1.4.1",
-    "vue": "^2.0.0 || >=3.0.0-rc.0"
+    "vue": ">=3.0.0"
   },
-  "peerDependenciesMeta": {
-    "@vue/composition-api": {
-      "optional": true
-    }
+  "dependencies": {
+    "@vueuse/core": "^10.1.2",
+    "@vueuse/shared": "^10.1.2",
+    "csstype": "^3.1.2",
+    "framesync": "^6.1.2",
+    "popmotion": "^11.0.5",
+    "style-value-types": "^5.1.2"
+  },
+  "optionalDependencies": {
+    "@nuxt/kit": "^3.5.1"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.19.2",
-    "@nuxt/module-builder": "latest",
-    "@types/prismjs": "^1.26.0",
-    "@vitejs/plugin-vue": "^2.3.1",
-    "@vue/server-renderer": "^3.2.31",
-    "@vue/test-utils": "^2.0.0-rc.17",
-    "@vuedx/typecheck": "^0.7.4",
-    "@vuedx/typescript-plugin-vue": "^0.7.4",
-    "bumpp": "^7.1.1",
-    "c8": "^7.11.0",
+    "@antfu/eslint-config": "^0.39.3",
+    "@nuxt/kit": "^3.5.1",
+    "@nuxtjs/eslint-config-typescript": "^12.0.0",
+    "@vitest/coverage-c8": "^0.31.1",
+    "@vue/test-utils": "^2.3.2",
     "chokidar": "^3.5.3",
-    "eslint": "^8.12.0",
-    "happy-dom": "^2.55.0",
-    "lint-staged": "^12.3.7",
-    "nuxt3": "latest",
-    "prism-theme-vars": "^0.2.2",
-    "prismjs": "^1.27.0",
-    "typescript": "^4.6.3",
-    "unbuild": "^0.7.2",
-    "upath": "^2.0.1",
-    "vite": "2.9.1",
-    "vite-plugin-windicss": "^1.8.3",
-    "vitepress": "^0.22.3",
-    "vitest": "^0.8.2",
-    "vue": "^3.2.31",
+    "eslint": "^8.41.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-prettier-vue": "^4.2.0",
+    "happy-dom": "^9.20.3",
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
+    "typescript": "^5.0.4",
+    "unbuild": "^1.2.1",
+    "vite": "4.3.8",
+    "vitest": "^0.31.1",
+    "vue": "^3.3.4",
     "yorkie": "^2.0.0"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@algolia/client-search",
+        "@types/react",
+        "react",
+        "react-dom",
+        "webpack",
+        "postcss",
+        "tailwindcss",
+        "vue",
+        "axios"
+      ],
+      "allowedVersions": {
+        "axios": "^0.25.0",
+        "vite": "^4.0.0"
+      }
+    }
   },
   "lint-staged": {
     "*.js": [
@@ -116,11 +126,21 @@
       "eslint --fix"
     ]
   },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "vitepress"
+  "release-it": {
+    "hooks": {
+      "before:init": [
+        "pnpm build"
       ]
+    },
+    "npm": {
+      "access": "public"
+    },
+    "git": {
+      "commitMessage": "chore(release): release v${version}"
+    },
+    "github": {
+      "release": true,
+      "releaseName": "v${version}"
     }
   }
 }

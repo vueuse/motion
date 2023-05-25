@@ -7,7 +7,7 @@ const TestComponent = {
   template: '<div>Hello world</div>',
 }
 
-const getElementRef = () => {
+function getElementRef() {
   const c = mount(TestComponent)
 
   return ref<HTMLElement>(c.element as HTMLElement)

@@ -1,9 +1,10 @@
 import { tryOnUnmounted } from '@vueuse/shared'
-import type { Ref } from 'vue-demi'
-import { del as __del, set as __set, ref } from 'vue-demi'
+import { ref } from 'vue'
+import type { Ref } from 'vue'
 import type { MotionValue } from './motionValue'
 import { getMotionValue } from './motionValue'
 import type { MotionProperties, MotionValuesMap } from './types'
+
 const { isArray } = Array
 
 export function useMotionValues() {
@@ -16,7 +17,8 @@ export function useMotionValues() {
 
       motionValues.value[key].stop()
       motionValues.value[key].destroy()
-      __del(motionValues.value, key)
+
+      delete motionValues.value[key]
     }
 
     // Check if keys argument is defined
@@ -24,35 +26,27 @@ export function useMotionValues() {
       if (isArray(keys)) {
         // If `keys` are an array, loop on specified keys and destroy them
         keys.forEach(destroyKey)
-      }
-      else {
+      } else {
         // If `keys` is a string, destroy the specified one
         destroyKey(keys)
       }
-    }
-    else {
+    } else {
       // No keys specified, destroy all animations
       Object.keys(motionValues.value).forEach(destroyKey)
     }
   }
 
-  const get = (
-    key: string,
-    from: any,
-    target: MotionProperties,
-  ): MotionValue => {
+  const get = (key: string, from: any, target: MotionProperties): MotionValue => {
     if (motionValues.value[key]) return motionValues.value[key] as MotionValue
 
     // Create motion value
     const motionValue = getMotionValue(from)
 
     // Set motion properties mapping
-    motionValue.onChange((v) => {
-      __set(target, key, v)
-    })
+    motionValue.onChange((v) => (target[key] = v))
 
     // Set instance motion value
-    __set(motionValues.value, key, motionValue)
+    motionValues.value[key] = motionValue
 
     return motionValue
   }

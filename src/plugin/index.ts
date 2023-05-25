@@ -1,4 +1,4 @@
-import type { Plugin } from 'vue-demi'
+import type { Plugin } from 'vue'
 import component from '../components/Motion'
 import { directive } from '../directive'
 import * as presets from '../presets'
@@ -17,7 +17,7 @@ export const MotionPlugin: Plugin = {
     if (!options || (options && !options.excludePresets)) {
       for (const key in presets) {
         // Get preset variants
-        // eslint-disable-next-line import/namespace
+        // @ts-expect-error - Fix errors later for typescript 5
         const preset = presets[key]
 
         // Register the preset `v-motion-${key}` directive
@@ -34,9 +34,7 @@ export const MotionPlugin: Plugin = {
 
         // Development warning, showing definitions missing `initial` key
         if (!variants.initial && __DEV__) {
-          console.warn(
-            `Your directive v-motion-${key} is missing initial variant!`,
-          )
+          console.warn(`Your directive v-motion-${key} is missing initial variant!`)
         }
 
         // Register the custom `v-motion-${key}` directive
