@@ -12,29 +12,21 @@ export default defineNuxtModule<ModuleOptions>({
   defaults: {},
   setup(options, nuxt) {
     const { resolve } = createResolver(import.meta.url)
-    const resolveRuntimeModule = (path: string) => resolve('./runtime', path)
 
     // Push options and merge to runtimeConfig
     nuxt.options.runtimeConfig.motion = defu(nuxt.options.runtimeConfig?.motion || {}, options)
 
     // Add templates (options and directives)
-    addPlugin(resolveRuntimeModule('./templates/motion'))
+    addPlugin(resolve('./runtime/templates/motion'))
 
     // Add auto imports
     addImportsDir(resolve('./runtime/composables'))
 
-    // Transpile necessary packages at build time
+    // Transpile necessary packages
     if (!nuxt.options.build.transpile) nuxt.options.build.transpile = []
     const transpileList = ['defu', '@vueuse/motion', '@vueuse/shared', '@vueuse/core']
     transpileList.forEach((pkgName) => {
       if (!nuxt.options.build.transpile.includes(pkgName)) nuxt.options.build.transpile.push(pkgName)
     })
-
-    /**
-     * Workaround for TSLib issue on @nuxt/bridge and nuxt3
-     * # fix: https://github.com/nuxt/nuxt/issues/19265#issuecomment-1443803783
-     */
-    if (!nuxt.options.alias) nuxt.options.alias = {}
-    if (!nuxt.options.alias.tslib) nuxt.options.alias.tslib = 'tslib'
   },
 })
