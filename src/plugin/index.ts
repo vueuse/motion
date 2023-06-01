@@ -6,7 +6,7 @@ import type { MotionPluginOptions, MotionVariants } from '../types'
 import { slugify } from '../utils/slugify'
 
 export const MotionPlugin: Plugin = {
-  install(app, options: MotionPluginOptions) {
+  install(app, options: MotionPluginOptions<string>) {
     // Register default `v-motion` directive
     app.directive('motion', directive())
 
@@ -30,7 +30,7 @@ export const MotionPlugin: Plugin = {
       // Loop on options, create a custom directive for each definition
       for (const key in options.directives) {
         // Get directive variants
-        const variants = options.directives[key] as MotionVariants
+        const variants = options.directives[key] as MotionVariants<any>
 
         // Development warning, showing definitions missing `initial` key
         if (!variants.initial && __DEV__) {

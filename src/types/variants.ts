@@ -69,7 +69,7 @@ export type Variant = {
 /**
  * Motion variants object
  */
-export interface MotionVariants {
+export type MotionVariants<T extends string> = {
   // Initial variant
   initial?: Variant
   // Lifecycle hooks variants
@@ -82,6 +82,7 @@ export interface MotionVariants {
   hovered?: Variant
   tapped?: Variant
   focused?: Variant
-  // Custom variants
-  [key: string]: Variant | undefined
-}
+} & {
+    // Custom variants
+    [key in T]?: Variant
+  }

@@ -4,15 +4,15 @@ import type { MotionVariants } from '../types'
 
 const directivePropsKeys = ['initial', 'enter', 'leave', 'visible', 'visible-once', 'hovered', 'tapped', 'focused', 'delay']
 
-export function resolveVariants(node: VNode<any, HTMLElement | SVGElement, Record<string, any>>, variantsRef: Ref<MotionVariants>) {
+export function resolveVariants<T extends string>(node: VNode<any, HTMLElement | SVGElement, Record<string, any>>, variantsRef: Ref<MotionVariants<T>>) {
   // This is done to achieve compat with Vue 2 & 3
   // node.props = Vue 3 element props location
   // node.data.attrs = Vue 2 element props location
   const target = node.props
     ? node.props // @ts-expect-error - Compatibility (Vue 3)
     : node.data && node.data.attrs // @ts-expect-error - Compatibility (Vue 2)
-    ? node.data.attrs
-    : {}
+      ? node.data.attrs
+      : {}
 
   if (target) {
     if (target.variants && isObject(target.variants)) {
@@ -64,6 +64,7 @@ export function resolveVariants(node: VNode<any, HTMLElement | SVGElement, Recor
 
       if (key === 'visible-once') key = 'visibleOnce'
 
+      // @ts-expect-error - Fix errors later for typescript 5
       if (target && target[key] && isObject(target[key])) variantsRef.value[key] = target[key]
     })
   }

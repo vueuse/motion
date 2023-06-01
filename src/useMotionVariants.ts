@@ -10,12 +10,12 @@ import type { MotionVariants, Variant } from './types'
  * @param initial
  * @param options
  */
-export function useMotionVariants<T extends MotionVariants>(variants: MaybeRef<T> = {} as MaybeRef<T>) {
+export function useMotionVariants<T extends string, V extends MotionVariants<T>>(variants: MaybeRef<V> = {} as MaybeRef<V>) {
   // Unref variants
-  const _variants = unref(variants) as T
+  const _variants = unref(variants)
 
   // Current variant string
-  const variant = ref() as Ref<keyof T>
+  const variant = ref() as Ref<keyof V>
 
   // Current variant state
   const state = computed<Variant | undefined>(() => {

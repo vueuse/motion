@@ -43,6 +43,7 @@ export function useMotionValues() {
     const motionValue = getMotionValue(from)
 
     // Set motion properties mapping
+    // @ts-expect-error - Fix errors later for typescript 5
     motionValue.onChange((v) => (target[key] = v))
 
     // Set instance motion value

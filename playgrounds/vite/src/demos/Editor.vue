@@ -1,5 +1,5 @@
 <script setup="props" lang="ts">
-import { useMotions } from '@vueuse/motion'
+import { useMotions, useMotion } from '@vueuse/motion'
 import { computed, ref, watch } from 'vue'
 import DemoBox from '../components/DemoBox.vue'
 import basic from '../examples/basic'
@@ -7,6 +7,18 @@ import basic from '../examples/basic'
 const motions = useMotions()
 
 const input = ref<string>('0')
+const el = ref<HTMLDivElement>()
+
+const { apply } = useMotion(el, {
+  start: {
+    scale: 0
+  },
+  end: {
+    scale: 1
+  }
+})
+
+apply('end')
 
 const codeText = computed(() => basic(input.value))
 

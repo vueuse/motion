@@ -14,8 +14,8 @@ import type { MotionInstance, MotionVariants, UseMotionOptions } from './types'
  * @param variants
  * @param options
  */
-export function useMotionFeatures<T extends MotionVariants>(
-  instance: MotionInstance<T>,
+export function useMotionFeatures<T extends string, V extends MotionVariants<T>>(
+  instance: MotionInstance<T, V>,
   options: UseMotionOptions = {
     syncVariants: true,
     lifeCycleHooks: true,

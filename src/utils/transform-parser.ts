@@ -60,11 +60,13 @@ export function stateFromTransform(state: TransformProperties, transform: string
     // Handle translate3d and scale3d
     if (key === 'translate3d') {
       if (value === 0) {
+        // @ts-expect-error - Fix errors later for typescript 5
         axes.forEach((axis) => (state[axis] = 0))
         return
       }
 
       // Loop on parsed scale / translate definition
+      // @ts-expect-error - Fix errors later for typescript 5
       value.forEach((axisValue: ResolvedValueTarget, index: number) => (state[axes[index]] = axisValue))
 
       return
@@ -92,6 +94,7 @@ export function stateFromTransform(state: TransformProperties, transform: string
     }
 
     // Set raw value
+    // @ts-expect-error - Fix errors later for typescript 5
     state[key] = value
   })
 }

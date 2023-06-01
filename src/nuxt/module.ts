@@ -2,7 +2,7 @@ import { defu } from 'defu'
 import { addImportsDir, addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
 import type { ModuleOptions as MotionModuleOpts } from '../types'
 
-export interface ModuleOptions extends MotionModuleOpts {}
+export interface ModuleOptions extends MotionModuleOpts<string> { }
 
 export default defineNuxtModule<ModuleOptions>({
   meta: {

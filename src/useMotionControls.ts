@@ -12,13 +12,13 @@ import { getDefaultTransition } from './utils/defaults'
  * @param style
  * @param currentVariant
  */
-export function useMotionControls<T extends MotionVariants>(
+export function useMotionControls<T extends string, V extends MotionVariants<T>>(
   motionProperties: MotionProperties,
-  variants: MaybeRef<T> = {} as MaybeRef<T>,
+  variants: MaybeRef<V> = {} as MaybeRef<V>,
   { motionValues, push, stop }: MotionTransitions = useMotionTransitions(),
-): MotionControls {
+): MotionControls<T, V> {
   // Variants as ref
-  const _variants = unref(variants) as T
+  const _variants = unref(variants)
 
   // Is the current instance animated ref
   const isAnimating = ref(false)
@@ -36,13 +36,13 @@ export function useMotionControls<T extends MotionVariants>(
     },
   )
 
-  const getVariantFromKey = (variant: keyof T): Variant => {
+  const getVariantFromKey = (variant: keyof V): Variant => {
     if (!_variants || !_variants[variant]) throw new Error(`The variant ${variant as string} does not exist.`)
 
     return _variants[variant] as Variant
   }
 
-  const apply = (variant: Variant | keyof T): Promise<void[]> | undefined => {
+  const apply = (variant: Variant | keyof V): Promise<void[]> | undefined => {
     // If variant is a key, try to resolve it
     if (typeof variant === 'string') variant = getVariantFromKey(variant)
 
@@ -62,7 +62,7 @@ export function useMotionControls<T extends MotionVariants>(
     )
   }
 
-  const set = (variant: Variant | keyof T) => {
+  const set = (variant: Variant | keyof V) => {
     // Get variant data from parameter
     const variantData = isObject(variant) ? variant : getVariantFromKey(variant)
 
