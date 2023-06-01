@@ -83,6 +83,6 @@ export type MotionVariants<T extends string> = {
   tapped?: Variant
   focused?: Variant
 } & {
-    // Custom variants
-    [key in T]?: Variant
-  }
+  // Custom variants
+  [key in T]?: Variant
+}
