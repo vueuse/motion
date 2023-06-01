@@ -17,7 +17,7 @@ import { useMotionVariants } from './useMotionVariants'
 export function useMotion<T extends string, V extends MotionVariants<T>>(
   target: MaybeRef<PermissiveTarget>,
   variants: MaybeRef<V> = {} as MaybeRef<V>,
-  options?: UseMotionOptions
+  options?: UseMotionOptions,
 ) {
   // Reactive styling and transform
   const { motionProperties } = useMotionProperties(target)
