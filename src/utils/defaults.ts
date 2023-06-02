@@ -75,6 +75,7 @@ export function getDefaultTransition(valueKey: string, to: ValueTarget): Popmoti
   if (isKeyframesTarget(to)) {
     transitionFactory = keyframes as TransitionFactory
   } else {
+    // @ts-expect-error - Fix errors later for typescript 5
     transitionFactory = defaultTransitions[valueKey] || defaultTransitions.default
   }
 

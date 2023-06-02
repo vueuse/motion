@@ -6,10 +6,10 @@ export type PermissiveTarget = VueInstance | MotionTarget
 
 export type MotionTarget = HTMLElement | SVGElement | null | undefined
 
-export interface MotionInstance<T = MotionVariants> extends MotionControls {
+export interface MotionInstance<T extends string, V extends MotionVariants<T>> extends MotionControls<T, V> {
   target: MaybeRef<PermissiveTarget>
-  variants: MaybeRef<T>
-  variant: Ref<keyof T>
+  variants: MaybeRef<V>
+  variant: Ref<keyof V>
   state: Ref<Variant | undefined>
   motionProperties: UnwrapRef<MotionProperties>
 }
@@ -21,20 +21,20 @@ export interface UseMotionOptions {
   eventListeners?: boolean
 }
 
-export interface MotionControls {
+export interface MotionControls<T extends string, V extends MotionVariants<T>> {
   /**
    * Apply a variant declaration and execute the resolved transitions.
    *
    * @param variant
    * @returns Promise<void[]>
    */
-  apply: (variant: Variant | string) => Promise<void[]> | undefined
+  apply: (variant: Variant | keyof V) => Promise<void[]> | undefined
   /**
    * Apply a variant declaration without transitions.
    *
    * @param variant
    */
-  set: (variant: Variant | string) => void
+  set: (variant: Variant | keyof V) => void
   /**
    * Stop all the ongoing transitions for the current element.
    */
@@ -72,17 +72,17 @@ export interface SpringControls {
   values: MotionProperties
 }
 
-export type MotionInstanceBindings<T> = Record<string, MotionInstance<T>>
+export type MotionInstanceBindings<T extends string, V extends MotionVariants<T>> = Record<string, MotionInstance<T, V>>
 
 declare module '@vue/runtime-core' {
   export interface ComponentCustomProperties {
-    $motions?: MotionInstanceBindings<any>
+    $motions?: MotionInstanceBindings<any, any>
   }
 }
 
 declare module '@vue/runtime-dom' {
   interface HTMLAttributes {
-    variants?: MotionVariants
+    variants?: MotionVariants<any>
     // Initial variant
     initial?: Variant
     // Lifecycle hooks variants

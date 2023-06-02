@@ -1,4 +1,4 @@
-import type { Directive, DirectiveBinding, VNode } from 'vue'
+import type { Directive, DirectiveBinding, Ref, VNode } from 'vue'
 import defu from 'defu'
 import { ref, unref } from 'vue'
 import { motionState } from '../features/state'
@@ -7,7 +7,7 @@ import { useMotion } from '../useMotion'
 import { resolveVariants } from '../utils/directive'
 import { variantToStyle } from '../utils/transform'
 
-export function directive(variants?: MotionVariants): Directive<HTMLElement | SVGElement> {
+export function directive<T extends string>(variants: MotionVariants<T> = {}): Directive<HTMLElement | SVGElement> {
   const register = (el: HTMLElement | SVGElement, binding: DirectiveBinding, node: VNode<any, HTMLElement | SVGElement, Record<string, any>>) => {
     // Get instance key if possible (binding value or element key in case of v-for's)
     const key = (binding.value && typeof binding.value === 'string' ? binding.value : node.key) as string
@@ -16,13 +16,13 @@ export function directive(variants?: MotionVariants): Directive<HTMLElement | SV
     if (key && motionState[key]) motionState[key].stop()
 
     // Initialize variants with argument
-    const variantsRef = ref<MotionVariants>(variants || {})
+    const variantsRef = ref(variants) as Ref<MotionVariants<T>>
 
     // Set variants from v-motion binding
     if (typeof binding.value === 'object') variantsRef.value = binding.value
 
     // Resolve variants from node props
-    resolveVariants(node, variantsRef)
+    resolveVariants<T>(node, variantsRef)
 
     // Create motion instance
     const motionInstance = useMotion(el, variantsRef)
