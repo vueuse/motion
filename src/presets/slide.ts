@@ -2,7 +2,7 @@ import type { MotionVariants } from '../types'
 
 // Slide from left
 
-export const slideLeft: MotionVariants = {
+export const slideLeft: MotionVariants<never> = {
   initial: {
     x: -100,
     opacity: 0,
@@ -13,7 +13,7 @@ export const slideLeft: MotionVariants = {
   },
 }
 
-export const slideVisibleLeft: MotionVariants = {
+export const slideVisibleLeft: MotionVariants<never> = {
   initial: {
     x: -100,
     opacity: 0,
@@ -24,7 +24,7 @@ export const slideVisibleLeft: MotionVariants = {
   },
 }
 
-export const slideVisibleOnceLeft: MotionVariants = {
+export const slideVisibleOnceLeft: MotionVariants<never> = {
   initial: {
     x: -100,
     opacity: 0,
@@ -37,7 +37,7 @@ export const slideVisibleOnceLeft: MotionVariants = {
 
 // Slide from right
 
-export const slideRight: MotionVariants = {
+export const slideRight: MotionVariants<never> = {
   initial: {
     x: 100,
     opacity: 0,
@@ -48,7 +48,7 @@ export const slideRight: MotionVariants = {
   },
 }
 
-export const slideVisibleRight: MotionVariants = {
+export const slideVisibleRight: MotionVariants<never> = {
   initial: {
     x: 100,
     opacity: 0,
@@ -59,7 +59,7 @@ export const slideVisibleRight: MotionVariants = {
   },
 }
 
-export const slideVisibleOnceRight: MotionVariants = {
+export const slideVisibleOnceRight: MotionVariants<never> = {
   initial: {
     x: 100,
     opacity: 0,
@@ -72,7 +72,7 @@ export const slideVisibleOnceRight: MotionVariants = {
 
 // Slide from top
 
-export const slideTop: MotionVariants = {
+export const slideTop: MotionVariants<never> = {
   initial: {
     y: -100,
     opacity: 0,
@@ -83,7 +83,7 @@ export const slideTop: MotionVariants = {
   },
 }
 
-export const slideVisibleTop: MotionVariants = {
+export const slideVisibleTop: MotionVariants<never> = {
   initial: {
     y: -100,
     opacity: 0,
@@ -94,7 +94,7 @@ export const slideVisibleTop: MotionVariants = {
   },
 }
 
-export const slideVisibleOnceTop: MotionVariants = {
+export const slideVisibleOnceTop: MotionVariants<never> = {
   initial: {
     y: -100,
     opacity: 0,
@@ -107,7 +107,7 @@ export const slideVisibleOnceTop: MotionVariants = {
 
 // Slide from bottom
 
-export const slideBottom: MotionVariants = {
+export const slideBottom: MotionVariants<never> = {
   initial: {
     y: 100,
     opacity: 0,
@@ -118,7 +118,7 @@ export const slideBottom: MotionVariants = {
   },
 }
 
-export const slideVisibleBottom: MotionVariants = {
+export const slideVisibleBottom: MotionVariants<never> = {
   initial: {
     y: 100,
     opacity: 0,
@@ -129,7 +129,7 @@ export const slideVisibleBottom: MotionVariants = {
   },
 }
 
-export const slideVisibleOnceBottom: MotionVariants = {
+export const slideVisibleOnceBottom: MotionVariants<never> = {
   initial: {
     y: 100,
     opacity: 0,

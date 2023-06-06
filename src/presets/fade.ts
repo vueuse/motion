@@ -1,6 +1,6 @@
 import type { MotionVariants } from '../types'
 
-export const fade: MotionVariants = {
+export const fade: MotionVariants<never> = {
   initial: {
     opacity: 0,
   },
@@ -9,7 +9,7 @@ export const fade: MotionVariants = {
   },
 }
 
-export const fadeVisible: MotionVariants = {
+export const fadeVisible: MotionVariants<never> = {
   initial: {
     opacity: 0,
   },
@@ -18,7 +18,7 @@ export const fadeVisible: MotionVariants = {
   },
 }
 
-export const fadeVisibleOnce: MotionVariants = {
+export const fadeVisibleOnce: MotionVariants<never> = {
   initial: {
     opacity: 0,
   },

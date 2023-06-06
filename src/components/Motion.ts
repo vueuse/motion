@@ -20,12 +20,12 @@ export default defineComponent({
     },
     // Instance
     instance: {
-      type: Object as PropType<MotionInstance>,
+      type: Object as PropType<MotionInstance<string, MotionVariants<string>>>,
       required: false,
     },
     // Variants
     variants: {
-      type: Object as PropType<MotionVariants>,
+      type: Object as PropType<MotionVariants<string>>,
       required: false,
     },
     // Initial variant
@@ -74,7 +74,7 @@ export default defineComponent({
     const slots = useSlots()
 
     // Instance map from component content
-    const instances = reactive<{ [key: number]: MotionInstance<any> }>({})
+    const instances = reactive<{ [key: number]: MotionInstance<string, MotionVariants<string>> }>({})
 
     // Return empty component is `is` is absent
     if (!props.is && !slots.default) return () => h('div', {})
@@ -128,7 +128,7 @@ export default defineComponent({
 
     // Replay animations on component update Vue
     if (process?.env?.NODE_ENV === 'development' || (process as any)?.dev) {
-      const replayAnimation = (instance: MotionInstance<any>) => {
+      const replayAnimation = (instance: MotionInstance<any, any>) => {
         if (instance.variants?.initial) instance.set('initial')
         setTimeout(() => {
           if (instance.variants?.enter) instance.apply('enter')

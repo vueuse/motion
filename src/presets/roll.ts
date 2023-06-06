@@ -2,7 +2,7 @@ import type { MotionVariants } from '../types'
 
 // Roll from left
 
-export const rollLeft: MotionVariants = {
+export const rollLeft: MotionVariants<never> = {
   initial: {
     x: -100,
     rotate: 90,
@@ -15,7 +15,7 @@ export const rollLeft: MotionVariants = {
   },
 }
 
-export const rollVisibleLeft: MotionVariants = {
+export const rollVisibleLeft: MotionVariants<never> = {
   initial: {
     x: -100,
     rotate: 90,
@@ -28,7 +28,7 @@ export const rollVisibleLeft: MotionVariants = {
   },
 }
 
-export const rollVisibleOnceLeft: MotionVariants = {
+export const rollVisibleOnceLeft: MotionVariants<never> = {
   initial: {
     x: -100,
     rotate: 90,
@@ -43,7 +43,7 @@ export const rollVisibleOnceLeft: MotionVariants = {
 
 // Roll from right
 
-export const rollRight: MotionVariants = {
+export const rollRight: MotionVariants<never> = {
   initial: {
     x: 100,
     rotate: -90,
@@ -56,7 +56,7 @@ export const rollRight: MotionVariants = {
   },
 }
 
-export const rollVisibleRight: MotionVariants = {
+export const rollVisibleRight: MotionVariants<never> = {
   initial: {
     x: 100,
     rotate: -90,
@@ -69,7 +69,7 @@ export const rollVisibleRight: MotionVariants = {
   },
 }
 
-export const rollVisibleOnceRight: MotionVariants = {
+export const rollVisibleOnceRight: MotionVariants<never> = {
   initial: {
     x: 100,
     rotate: -90,
@@ -84,7 +84,7 @@ export const rollVisibleOnceRight: MotionVariants = {
 
 // Roll from top
 
-export const rollTop: MotionVariants = {
+export const rollTop: MotionVariants<never> = {
   initial: {
     y: -100,
     rotate: -90,
@@ -97,7 +97,7 @@ export const rollTop: MotionVariants = {
   },
 }
 
-export const rollVisibleTop: MotionVariants = {
+export const rollVisibleTop: MotionVariants<never> = {
   initial: {
     y: -100,
     rotate: -90,
@@ -110,7 +110,7 @@ export const rollVisibleTop: MotionVariants = {
   },
 }
 
-export const rollVisibleOnceTop: MotionVariants = {
+export const rollVisibleOnceTop: MotionVariants<never> = {
   initial: {
     y: -100,
     rotate: -90,
@@ -125,7 +125,7 @@ export const rollVisibleOnceTop: MotionVariants = {
 
 // Roll from bottom
 
-export const rollBottom: MotionVariants = {
+export const rollBottom: MotionVariants<never> = {
   initial: {
     y: 100,
     rotate: 90,
@@ -138,7 +138,7 @@ export const rollBottom: MotionVariants = {
   },
 }
 
-export const rollVisibleBottom: MotionVariants = {
+export const rollVisibleBottom: MotionVariants<never> = {
   initial: {
     y: 100,
     rotate: 90,
@@ -151,7 +151,7 @@ export const rollVisibleBottom: MotionVariants = {
   },
 }
 
-export const rollVisibleOnceBottom: MotionVariants = {
+export const rollVisibleOnceBottom: MotionVariants<never> = {
   initial: {
     y: 100,
     rotate: 90,

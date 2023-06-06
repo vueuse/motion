@@ -3,7 +3,7 @@ import { computed, ref, unref, watch } from 'vue'
 import type { MotionInstance, MotionVariants } from '../types'
 import { supportsMouseEvents, supportsPointerEvents, supportsTouchEvents } from '../utils/events'
 
-export function registerEventListeners<T extends MotionVariants>({ target, state, variants, apply }: MotionInstance<T>) {
+export function registerEventListeners<T extends string, V extends MotionVariants<T>>({ target, state, variants, apply }: MotionInstance<T, V>) {
   const _variants = unref(variants)
 
   // State
@@ -37,6 +37,7 @@ export function registerEventListeners<T extends MotionVariants>({ target, state
     if (focused.value && _variants.focused) Object.assign(result, _variants.focused)
 
     for (const key in result) {
+      // @ts-expect-error - Fix errors later for typescript 5
       if (!mutableKeys.value.includes(key)) delete result[key]
     }
 

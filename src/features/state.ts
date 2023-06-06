@@ -1,3 +1,3 @@
-import type { MotionInstanceBindings } from '../types'
+import type { MotionInstanceBindings, MotionVariants } from '../types'
 
-export const motionState: MotionInstanceBindings<any> = {}
+export const motionState: MotionInstanceBindings<string, MotionVariants<never>> = {}

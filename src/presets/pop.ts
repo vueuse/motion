@@ -1,6 +1,6 @@
 import type { MotionVariants } from '../types'
 
-export const pop: MotionVariants = {
+export const pop: MotionVariants<never> = {
   initial: {
     scale: 0,
     opacity: 0,
@@ -11,7 +11,7 @@ export const pop: MotionVariants = {
   },
 }
 
-export const popVisible: MotionVariants = {
+export const popVisible: MotionVariants<never> = {
   initial: {
     scale: 0,
     opacity: 0,
@@ -22,7 +22,7 @@ export const popVisible: MotionVariants = {
   },
 }
 
-export const popVisibleOnce: MotionVariants = {
+export const popVisibleOnce: MotionVariants<never> = {
   initial: {
     scale: 0,
     opacity: 0,

@@ -1,5 +1,5 @@
 import { isRef } from 'vue'
-import type { MotionInstance } from '../types'
+import type { MotionInstance, MotionVariants } from '../types'
 
 /**
  * Check whether an object is a Motion Instance or not.
@@ -9,8 +9,8 @@ import type { MotionInstance } from '../types'
  * @param obj
  * @returns bool
  */
-export function isMotionInstance(obj: any): obj is MotionInstance {
-  const _obj = obj as MotionInstance
+export function isMotionInstance<T extends string, V extends MotionVariants<T>>(obj: any): obj is MotionInstance<T, V> {
+  const _obj = obj as MotionInstance<T, V>
 
   return _obj.apply !== undefined && typeof _obj.apply === 'function' && _obj.set !== undefined && typeof _obj.set === 'function' && _obj.target !== undefined && isRef(_obj.target)
 }
