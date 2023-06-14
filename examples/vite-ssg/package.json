@@ -1,0 +1,18 @@
+{
+  "name": "motion-vite-sgg-example",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite-ssg build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@vueuse/motion": "workspace:*"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "vite": "4.3.8",
+    "vite-ssg": "latest"
+  }
+}
