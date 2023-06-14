@@ -2,7 +2,7 @@ import { isHTMLTag } from '@vue/shared'
 import type { Component, PropType, VNode } from 'vue'
 import { computed, defineComponent, h, onUpdated, reactive, resolveComponent, useSlots } from 'vue'
 import type { MotionVariants, Variant } from '../types/variants'
-import { useMotion } from '../useMotion'
+import { useMotion } from '../composables/useMotion'
 import { variantToStyle } from '../utils/transform'
 import * as presets from '../presets'
 import type { MotionInstance } from './../types/instance'
@@ -108,7 +108,7 @@ export default defineComponent({
 
       if (props.delay) {
         config.enter.transition = { ...config.enter.transition } || {}
-        config.enter.transition.delay = parseInt(props.delay as string)
+        config.enter.transition.delay = Number.parseInt(props.delay as string)
       }
       return config
     })

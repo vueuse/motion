@@ -1,6 +1,6 @@
 import { nextTick } from 'vue'
 import { describe, expect, it } from 'vitest'
-import { reactiveStyle } from '../src/reactiveStyle'
+import { reactiveStyle } from '../src'
 
 describe('reactiveStyle', () => {
   it('create a style object from props', () => {

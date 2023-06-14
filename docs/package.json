@@ -1,16 +1,17 @@
 {
-  "private": "true",
+  "name": "motion-docs",
+  "private": true,
   "scripts": {
-    "dev:docs": "nuxt dev",
-    "build:docs": "nuxt generate",
-    "preview:docs": "nuxt preview",
-    "prepare:docs": "nuxt prepare"
+    "dev": "nuxt dev",
+    "build": "nuxt generate",
+    "preview": "nuxt preview",
+    "stub": "nuxt prepare"
   },
   "dependencies": {
-    "@vueuse/motion": "workspace:~"
+    "@vueuse/motion": "workspace:*"
   },
   "devDependencies": {
-    "@nuxt-themes/docus": "^1.12.0",
-    "nuxt": "^3.5.1"
+    "@nuxt-themes/docus": "^1.12.3",
+    "nuxt": "^3.5.3"
   }
 }

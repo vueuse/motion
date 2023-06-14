@@ -1,11 +1,10 @@
 import { resolve } from 'node:path'
 
 export default defineNuxtConfig({
-  theme: '@nuxt-themes/docus',
   alias: {
-    '@vueuse/motion': resolve(__dirname, '../src/index.ts'),
-    '@vueuse/motion/nuxt': resolve(__dirname, '../src/nuxt/module.ts'),
+    '@vueuse/motion/plugin': resolve(__dirname, '../../src/plugin/index.ts'),
   },
+  theme: '@nuxt-themes/docus',
   modules: ['@vueuse/motion/nuxt'],
   typescript: {
     includeWorkspace: true,

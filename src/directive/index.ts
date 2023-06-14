@@ -3,7 +3,7 @@ import defu from 'defu'
 import { ref, unref } from 'vue'
 import { motionState } from '../features/state'
 import type { MotionVariants } from '../types'
-import { useMotion } from '../useMotion'
+import { useMotion } from '../composables/useMotion'
 import { resolveVariants } from '../utils/directive'
 import { variantToStyle } from '../utils/transform'
 

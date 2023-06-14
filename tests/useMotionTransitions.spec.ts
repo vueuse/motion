@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { useMotionTransitions } from '../src'
-import type { Transition } from '../src/types/transitions'
+import type { Transition } from '../src'
 
 const defaultTransition: Transition = {
   type: 'spring',

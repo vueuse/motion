@@ -1,5 +1,5 @@
 import type { Ref } from 'vue'
-import type { MotionValue } from '../motionValue'
+import type { MotionValue } from '../composables/useMotionValues'
 import type { MotionProperties, PermissiveMotionProperties } from './variants'
 
 export type ResolvedKeyframesTarget = [null, ...number[]] | number[] | [null, ...string[]] | string[]
@@ -45,7 +45,7 @@ export interface Orchestration {
   onComplete?: () => void
 
   /**
-   * Should the value be set imediately
+   * Should the value be set immediately
    */
   immediate?: boolean
 }
@@ -65,7 +65,7 @@ export interface Repeat {
    *
    * "reverse": Alternates between forward and backwards playback
    *
-   * "mirror": Switchs `from` and `to` alternately
+   * "mirror": switch's `from` and `to` alternately
    */
   repeatType?: 'loop' | 'reverse' | 'mirror'
 

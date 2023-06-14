@@ -6,59 +6,14 @@ export default defineBuildConfig({
   },
   declaration: true,
   entries: [
+    // Core
+    'src/index',
     // Plugin
-    {
-      input: 'src/index.ts',
-      outDir: 'dist',
-      name: 'index',
-      format: 'esm',
-      ext: 'mjs',
-    },
-    {
-      input: 'src/index.ts',
-      outDir: 'dist',
-      name: 'index',
-      format: 'cjs',
-      ext: 'cjs',
-    },
+    { input: 'src/plugin/index', name: 'plugin' },
+    // Presets
+    { input: 'src/presets/index', name: 'presets' },
     // Nuxt
-    {
-      input: 'src/nuxt/module.ts',
-      outDir: 'dist',
-      name: 'nuxt',
-      format: 'esm',
-      ext: 'mjs',
-    },
-    {
-      input: 'src/nuxt/module.ts',
-      outDir: 'dist',
-      name: 'nuxt',
-      format: 'cjs',
-      ext: 'cjs',
-    },
-    // Copy runtime folder with mkdist
-    {
-      builder: 'mkdist',
-      input: 'src/nuxt/runtime',
-      outDir: 'dist/runtime',
-      declaration: false,
-    },
+    { input: 'src/nuxt/module', name: 'nuxt' },
   ],
-  externals: [
-    '@nuxt/kit',
-    '@nuxt/schema',
-    'nuxt3',
-    'nuxt',
-    'vue',
-    'defu',
-    '@vueuse/motion',
-    'csstype',
-    '@vueuse/shared',
-    'framesync',
-    'style-value-types',
-    '@vue/compiler-core',
-    '@babel/parser',
-    '@vue/shared',
-    '@vueuse/core',
-  ],
+  externals: ['@nuxt/kit', '@nuxt/schema', '@vueuse/core', '@vueuse/shared', 'nuxt', 'vue', 'defu', 'csstype', 'framesync', 'style-value-types', '@vue/shared'],
 })

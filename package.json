@@ -20,10 +20,22 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs"
     },
+    "./plugin": {
+      "types": "./dist/plugin.d.ts",
+      "require": "./dist/plugin.cjs",
+      "import": "./dist/plugin.mjs"
+    },
+    "./presets": {
+      "types": "./dist/presets.d.ts",
+      "require": "./dist/presets.cjs",
+      "import": "./dist/presets.mjs"
+    },
     "./nuxt": {
+      "types": "./dist/nuxt.d.ts",
       "require": "./dist/nuxt.cjs",
       "import": "./dist/nuxt.mjs"
     }
@@ -32,12 +44,13 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist/**/*",
+    "dist/",
     "LICENSE",
     "README.md"
   ],
   "scripts": {
     "build": "unbuild",
+    "stub": "unbuild --stub",
     "dev": "pnpm dev:vite",
     "release": "release-it",
     "lint": "eslint --ext .js,.vue,.ts,.tsx .",
@@ -45,22 +58,9 @@
     "test:unit": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test": "pnpm test:unit && pnpm test:coverage",
-    "prepare": "pnpm prepare:nuxt && pnpm prepare:docs",
+    "prepare": "pnpm run stub && pnpm -r --filter motion-* run stub",
     "__": "__",
-    "dev:nuxt": "(cd playgrounds/nuxt && pnpm dev:nuxt)",
-    "build:nuxt": "(cd playgrounds/nuxt && pnpm build:nuxt)",
-    "generate:nuxt": "(cd playgrounds/nuxt && pnpm preview:nuxt)",
-    "dev:ssg": "(cd playgrounds/vite-ssg && pnpm dev:ssg)",
-    "build:ssg": "(cd playgrounds/vite-ssg && pnpm build:ssg)",
-    "preview:ssg": "(cd playgrounds/vite-ssg && pnpm preview:ssg)",
-    "dev:vite": "(cd playgrounds/vite && pnpm dev:vite)",
-    "build:vite": "(cd playgrounds/vite && pnpm build:vite)",
-    "preview:vite": "(cd playgrounds/vite && pnpm preview:vite)",
-    "dev:docs": "(cd docs && pnpm dev:docs)",
-    "build:docs": "(cd docs && pnpm build:docs)",
-    "preview:docs": "(cd docs && pnpm preview:docs)",
-    "prepare:nuxt": "(cd playgrounds/nuxt && pnpm prepare:nuxt)",
-    "prepare:docs": "(cd docs && pnpm prepare:docs)"
+    "dev:nuxt": "pnpm --filter motion-nuxt-example dev"
   },
   "peerDependencies": {
     "vue": ">=3.0.0"
@@ -73,58 +73,31 @@
     "popmotion": "^11.0.5",
     "style-value-types": "^5.1.2"
   },
-  "optionalDependencies": {
-    "@nuxt/kit": "^3.5.1"
-  },
   "devDependencies": {
-    "@antfu/eslint-config": "^0.39.3",
-    "@nuxt/kit": "^3.5.1",
+    "@antfu/eslint-config": "^0.39.5",
+    "@nuxt/kit": "^3.5.3",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
-    "@vitest/coverage-c8": "^0.31.1",
+    "@vitest/coverage-c8": "^0.32.0",
     "@vue/test-utils": "^2.3.2",
-    "chokidar": "^3.5.3",
-    "eslint": "^8.41.0",
+    "eslint": "^8.42.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-prettier-vue": "^4.2.0",
     "happy-dom": "^9.20.3",
-    "lint-staged": "^13.2.2",
     "prettier": "^2.8.8",
-    "typescript": "^5.0.4",
+    "simple-git-hooks": "^2.8.1",
+    "typescript": "^5.1.3",
     "unbuild": "^1.2.1",
-    "vite": "4.3.8",
-    "vitest": "^0.31.1",
-    "vue": "^3.3.4",
-    "yorkie": "^2.0.0"
+    "vite": "^4.3.9",
+    "vitest": "^0.32.0",
+    "vue": "^3.3.4"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "@algolia/client-search",
-        "@types/react",
-        "react",
-        "react-dom",
-        "webpack",
-        "postcss",
-        "tailwindcss",
-        "vue",
-        "axios"
-      ],
-      "allowedVersions": {
-        "axios": "^0.25.0",
-        "vite": "^4.0.0"
-      }
-    }
+  "simple-git-hooks": {
+    "pre-commit": "npx lint-staged"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix"
-    ],
-    "*.ts?(x)": [
-      "eslint --fix"
+    "*.{js,ts,tsx,vue}": [
+      "eslint --cache --fix"
     ]
   },
   "release-it": {

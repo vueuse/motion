@@ -19,7 +19,7 @@ import {
   linear,
 } from 'popmotion'
 import { complex } from 'style-value-types'
-import type { MotionValue } from '../motionValue'
+import type { MotionValue } from '../composables/useMotionValues'
 import type { PermissiveTransitionDefinition, ResolvedValueTarget, StartAnimation, StopAnimation, Transition } from '../types'
 import { getDefaultTransition } from './defaults'
 import { getAnimatableNone } from './style'

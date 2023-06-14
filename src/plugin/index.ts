@@ -5,7 +5,7 @@ import * as presets from '../presets'
 import type { MotionPluginOptions, MotionVariants } from '../types'
 import { slugify } from '../utils/slugify'
 
-export const MotionPlugin: Plugin = {
+const MotionPlugin: Plugin = {
   install(app, options: MotionPluginOptions<string>) {
     // Register default `v-motion` directive
     app.directive('motion', directive())

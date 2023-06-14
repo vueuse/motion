@@ -14,10 +14,10 @@ export function parseTransform(transform: string): Partial<MotionProperties> {
 
   const parseValues = (value: string): string | number => {
     // If value is ending with px or deg, return it as a number
-    if (value.endsWith('px') || value.endsWith('deg')) return parseFloat(value)
+    if (value.endsWith('px') || value.endsWith('deg')) return Number.parseFloat(value)
 
     // Return as number
-    if (isNaN(Number(value))) return Number(value)
+    if (Number.isNaN(Number(value))) return Number(value)
 
     // Parsing impossible, return as string
     return value
@@ -73,7 +73,7 @@ export function stateFromTransform(state: TransformProperties, transform: string
     }
 
     // Get value w/o unit, as unit is applied later on
-    value = parseFloat(value)
+    value = Number.parseFloat(value)
 
     // Sync translateX on X
     if (key === 'translateX') {
