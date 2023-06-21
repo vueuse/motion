@@ -19,7 +19,7 @@ const emit = defineEmits<{
         <path fill="currentColor" d="M8 5v14l11-7z"/>
       </svg>
       <span>
-        Play
+        Reset
       </span>
     </button>
 

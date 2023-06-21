@@ -19,6 +19,7 @@
       "vitest/globals",
       "vite/client"
     ],
+    "declaration": true,
     "baseUrl": ".",
     "paths": {
       "@vueuse/motion": [
@@ -93,5 +94,5 @@
     "plugins": [
       "pinceau/volar"
     ]
-  }
+  },
 }
