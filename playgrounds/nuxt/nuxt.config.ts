@@ -21,18 +21,22 @@ export default defineNuxtConfig({
       },
     ],
   },
-  motion: {
-    directives: {
-      'slide-rotate-top': {
-        initial: {
-          y: -400,
-          opacity: 0,
-          rotate: 90,
-        },
-        enter: {
-          y: 0,
-          opacity: 1,
-          rotate: 0,
+  runtimeConfig: {
+    public: {
+      motion: {
+        directives: {
+          'pop-bottom': {
+            initial: {
+              scale: 0,
+              opacity: 0,
+              y: 100,
+            },
+            visible: {
+              scale: 1,
+              opacity: 1,
+              y: 0,
+            },
+          },
         },
       },
     },
