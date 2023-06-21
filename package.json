@@ -20,10 +20,12 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs"
     },
     "./nuxt": {
+      "types": "./dist/nuxt.d.ts",
       "require": "./dist/nuxt.cjs",
       "import": "./dist/nuxt.mjs"
     }
