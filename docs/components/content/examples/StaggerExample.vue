@@ -1,9 +1,12 @@
 <script setup lang="ts">
+import { useWindowSize } from "@vueuse/core"
 import AnimationActions from '../../generic/AnimationActions.vue';
 
-const blocks = ref<HTMLDivElement[]>()
+const { width } = useWindowSize()
+const amount = computed(() => Math.min(36, Math.floor(width.value / 36)))
+const blocks = ref<HTMLDivElement[]>([])
 
-const applyFuncs = computed(() => blocks.value?.map(block => useMotion(block, {
+const applyFuncs = computed(() => blocks.value.map(block => useMotion(block, {
   initial: {
     scale: 1,
     transition: { type: 'tween', duration: 300 }
@@ -11,7 +14,7 @@ const applyFuncs = computed(() => blocks.value?.map(block => useMotion(block, {
 })) ?? [])
 
 function calculateDelays(index: number) {
-  return blocks.value?.map((_, idx) => 100 * Math.abs(index - idx)) ?? []
+  return blocks.value.map((_, idx) => 100 * Math.abs(index - idx)) ?? []
 }
 
 function startStagger (index: number) {
@@ -24,11 +27,11 @@ function startStagger (index: number) {
 
 <template>
   <AnimationActions
-    @replay="() => applyFuncs?.forEach(({ apply }) => apply('initial'))"
+    @replay="() => applyFuncs.forEach(({ apply }) => apply('initial'))"
   >
     <ul>
       <li
-        v-for="_, index in Array(16)"
+        v-for="_, index in Array(amount)"
         ref="blocks"
         class="block"
         @click="startStagger(index)"
@@ -42,7 +45,8 @@ function startStagger (index: number) {
 <style scoped>
 ul {
   display: flex;
-  gap: 0.5rem
+  justify-content: space-evenly;
+  gap: 0.5rem;
 }
 
 .block {
