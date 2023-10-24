@@ -1,5 +1,5 @@
 ---
-title: @vueuse/motion
+title: '@vueuse/motion'
 navigation: false
 layout: page
 main:
