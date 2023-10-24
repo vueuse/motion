@@ -1,5 +1,5 @@
 ---
-title: Home
+title: @vueuse/motion
 navigation: false
 layout: page
 main:
