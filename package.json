@@ -20,12 +20,10 @@
   ],
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
       "require": "./dist/index.cjs",
       "import": "./dist/index.mjs"
     },
     "./nuxt": {
-      "types": "./dist/nuxt.d.ts",
       "require": "./dist/nuxt.cjs",
       "import": "./dist/nuxt.mjs"
     }
@@ -93,7 +91,7 @@
     "lint-staged": "^13.2.2",
     "prettier": "^2.8.8",
     "typescript": "^5.0.4",
-    "unbuild": "^1.2.1",
+    "unbuild": "^2.0.0",
     "vite": "4.3.8",
     "vitest": "^0.31.1",
     "vue": "^3.3.4",
