@@ -25,17 +25,13 @@ function preRender(codeContent: string) {
 async function render() {
   if (!Prism.languages[props.language]) await import(/* @vite-ignore */ `prismjs/components/prism-${props.language}`)
 
-  nextTick(() => {
-    if (!(code?.value as any).value) return
+  await nextTick()
+  if (!code.value) return
 
-    const codeContent = props.text || code?.value?.innerText || ''
+  const codeContent = props.text || code?.value?.innerText || ''
 
-    if (code.value) {
-      code.value.textContent = preRender(codeContent)
-
-      Prism.highlightElement(code.value)
-    }
-  })
+  code.value.textContent = preRender(codeContent)
+  Prism.highlightElement(code.value)
 }
 
 watch(
