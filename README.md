@@ -72,7 +72,7 @@ To see more about how to control your declared variants, check out [Motion Insta
 
 ## Credits
 
-This package is heavily inspired by [Framer Motion](https://www.framer.com/motion/) by https://twitter.com/.
+This package is heavily inspired by [Framer Motion](https://www.framer.com/motion/) by [@mattgperry](https://twitter.com/mattgperry).
 
 If you are interested in using [WAAPI](https://developer.mozilla.org/fr/docs/Web/API/Web_Animations_API), check out [Motion.dev](https://motion.dev/)!
 
