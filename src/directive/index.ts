@@ -2,12 +2,13 @@ import type { Directive, DirectiveBinding, Ref, VNode } from 'vue'
 import defu from 'defu'
 import { ref, unref } from 'vue'
 import { motionState } from '../features/state'
-import type { MotionVariants } from '../types'
+import type { MotionInstance, MotionVariants } from '../types'
 import { useMotion } from '../useMotion'
 import { resolveVariants } from '../utils/directive'
 import { variantToStyle } from '../utils/transform'
+import { registerVisibilityHooks } from '../features/visibilityHooks'
 
-export function directive<T extends string>(variants: MotionVariants<T> = {}): Directive<HTMLElement | SVGElement> {
+export function directive<T extends string>(variants?: MotionVariants<T>): Directive<HTMLElement | SVGElement> {
   const register = (el: HTMLElement | SVGElement, binding: DirectiveBinding, node: VNode<any, HTMLElement | SVGElement, Record<string, any>>) => {
     // Get instance key if possible (binding value or element key in case of v-for's)
     const key = (binding.value && typeof binding.value === 'string' ? binding.value : node.key) as string
@@ -16,7 +17,7 @@ export function directive<T extends string>(variants: MotionVariants<T> = {}): D
     if (key && motionState[key]) motionState[key].stop()
 
     // Initialize variants with argument
-    const variantsRef = ref(variants) as Ref<MotionVariants<T>>
+    const variantsRef = ref(variants || {}) as Ref<MotionVariants<T>>
 
     // Set variants from v-motion binding
     if (typeof binding.value === 'object') variantsRef.value = binding.value
@@ -24,8 +25,11 @@ export function directive<T extends string>(variants: MotionVariants<T> = {}): D
     // Resolve variants from node props
     resolveVariants<T>(node, variantsRef)
 
+    // Disable visibilityHooks, these will be registered in `mounted`
+    const motionOptions = { eventListeners: true, lifeCycleHooks: true, syncVariants: true, visibilityHooks: false }
+
     // Create motion instance
-    const motionInstance = useMotion(el, variantsRef)
+    const motionInstance = useMotion(el, variantsRef, motionOptions)
 
     // Pass the motion instance via the local element
     // @ts-expect-error - we know that the element is a HTMLElement
@@ -35,8 +39,18 @@ export function directive<T extends string>(variants: MotionVariants<T> = {}): D
     if (key) motionState[key] = motionInstance
   }
 
+  const mounted = (
+    el: (HTMLElement | SVGElement) & { motionInstance?: MotionInstance<string, MotionVariants<T>> },
+    binding: DirectiveBinding,
+    node: VNode<any, (HTMLElement | SVGElement) & { motionInstance?: MotionInstance<string, MotionVariants<T>> }, Record<string, any>>,
+  ) => {
+    // Visibility hooks
+    el.motionInstance && registerVisibilityHooks(el.motionInstance)
+  }
+
   return {
     created: register,
+    mounted,
     getSSRProps(binding, node) {
       // Get initial value from binding
       let { initial: bindingInitial } = binding.value || (node && node?.props) || {}

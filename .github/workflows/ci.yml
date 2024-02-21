@@ -15,7 +15,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest] # macos-latest, windows-latest
-        node: [16]
+        node: [18]
 
     steps:
       - name: Checkout
@@ -27,7 +27,7 @@ jobs:
       - name: Install PNPM
         uses: pnpm/action-setup@v2.0.1
         with:
-          version: 6.24.3
+          version: 8.7.0
 
       - name: Use Node.js ${{ matrix.node }}
         uses: actions/setup-node@v2
