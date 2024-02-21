@@ -18,27 +18,35 @@
     "v-motion",
     "popmotion-vue"
   ],
+  "sideEffects": false,
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     },
     "./nuxt": {
-      "require": "./dist/nuxt.cjs",
-      "import": "./dist/nuxt.mjs"
+      "import": "./dist/nuxt.mjs",
+      "require": "./dist/nuxt.cjs"
     }
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist/**/*",
+    "dist",
     "LICENSE",
     "README.md"
   ],
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./*"
+      ]
+    }
+  },
   "scripts": {
-    "build": "unbuild",
+    "build": "unbuild  && node ./scripts/fix-nuxt-build.mjs",
     "dev": "pnpm dev:vite",
     "release": "release-it",
     "lint": "eslint --ext .js,.vue,.ts,.tsx .",
