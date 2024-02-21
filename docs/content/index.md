@@ -26,8 +26,8 @@ Composables putting your components in motion.
 
 #extra
   ::list
-  - 🏎 **Smooth animations** based on [**Popmotion**](https://popmotion.io/)
-  - 🎮 **Declarative** API inspired by [**Framer Motion**](https://www.framer.com/motion/)
+  - 🏎 **Smooth animations** based on [Popmotion](https://popmotion.io/)
+  - 🎮 **Declarative** API inspired by [Framer Motion](https://www.framer.com/motion/)
   - 🚀 **Plug** & **play** with **20+ presets**
   - 🌐 **SSR Ready**
   - 🚚 First-class support for **Nuxt 3**
