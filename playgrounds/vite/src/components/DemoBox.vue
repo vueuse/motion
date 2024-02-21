@@ -11,12 +11,13 @@ const emit = defineEmits(['replay'])
 
 const [visible, toggleVisible] = useToggle(true)
 
-function replay() {
+async function replay() {
   toggleVisible()
 
   emit('replay')
 
-  nextTick(toggleVisible)
+  await nextTick()
+  toggleVisible()
 }
 </script>
 
