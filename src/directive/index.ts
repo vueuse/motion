@@ -7,7 +7,7 @@ import { useMotion } from '../useMotion'
 import { resolveVariants } from '../utils/directive'
 import { variantToStyle } from '../utils/transform'
 
-export function directive<T extends string>(variants: MotionVariants<T> = {}): Directive<HTMLElement | SVGElement> {
+export function directive<T extends string>(variants?: MotionVariants<T>): Directive<HTMLElement | SVGElement> {
   const register = (el: HTMLElement | SVGElement, binding: DirectiveBinding, node: VNode<any, HTMLElement | SVGElement, Record<string, any>>) => {
     // Get instance key if possible (binding value or element key in case of v-for's)
     const key = (binding.value && typeof binding.value === 'string' ? binding.value : node.key) as string
@@ -16,7 +16,7 @@ export function directive<T extends string>(variants: MotionVariants<T> = {}): D
     if (key && motionState[key]) motionState[key].stop()
 
     // Initialize variants with argument
-    const variantsRef = ref(variants) as Ref<MotionVariants<T>>
+    const variantsRef = ref(variants || {}) as Ref<MotionVariants<T>>
 
     // Set variants from v-motion binding
     if (typeof binding.value === 'object') variantsRef.value = binding.value
