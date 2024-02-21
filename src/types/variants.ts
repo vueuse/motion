@@ -18,29 +18,31 @@ export interface SVGPathProperties {
 /**
  * Transform properties
  */
-export interface TransformProperties {
-  x?: string | number
-  y?: string | number
-  z?: string | number
-  translateX?: string | number
-  translateY?: string | number
-  translateZ?: string | number
-  rotate?: string | number
-  rotateX?: string | number
-  rotateY?: string | number
-  rotateZ?: string | number
-  scale?: string | number
-  scaleX?: string | number
-  scaleY?: string | number
-  scaleZ?: string | number
-  skew?: string | number
-  skewX?: string | number
-  skewY?: string | number
-  originX?: string | number
-  originY?: string | number
-  originZ?: string | number
-  perspective?: string | number
-  transformPerspective?: string | number
+type TransformValue = string | number;
+
+interface TransformProperties {
+  x?: TransformValue | TransformValue[];
+  y?: TransformValue | TransformValue[];
+  z?: TransformValue | TransformValue[];
+  translateX?: TransformValue | TransformValue[];
+  translateY?: TransformValue | TransformValue[];
+  translateZ?: TransformValue | TransformValue[];
+  rotate?: TransformValue | TransformValue[];
+  rotateX?: TransformValue | TransformValue[];
+  rotateY?: TransformValue | TransformValue[];
+  rotateZ?: TransformValue | TransformValue[];
+  scale?: TransformValue | TransformValue[];
+  scaleX?: TransformValue | TransformValue[];
+  scaleY?: TransformValue | TransformValue[];
+  scaleZ?: TransformValue | TransformValue[];
+  skew?: TransformValue | TransformValue[];
+  skewX?: TransformValue | TransformValue[];
+  skewY?: TransformValue | TransformValue[];
+  originX?: TransformValue | TransformValue[];
+  originY?: TransformValue | TransformValue[];
+  originZ?: TransformValue | TransformValue[];
+  perspective?: TransformValue | TransformValue[];
+  transformPerspective?: TransformValue | TransformValue[];
 }
 
 /**
