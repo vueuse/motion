@@ -4,7 +4,7 @@
 [![npm](https://img.shields.io/npm/dm/@vueuse/motion.svg)](https://npm-stat.com/charts.html?package=@vueuse/motion)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ab1db459-8420-4bc6-9fac-2bc247fa2385/deploy-status)](https://app.netlify.com/sites/vueuse-motion/deploys)
 
-**Vue Composables** putting your **components** in **motion**
+Vue Composables putting your components in motion
 
 - 🏎 **Smooth animations** based on [**Popmotion**](https://popmotion.io/)
 - 🎮 **Declarative** API inspired by [**Framer Motion**](https://www.framer.com/motion/)
@@ -14,21 +14,21 @@
 - ✨ Written in **TypeScript**
 - 🏋️‍♀️ Lightweight with **<20kb** bundle size
 
-[🌍 **Documentation**](https://motion.vueuse.org)
+[🌍 Documentation](https://motion.vueuse.org)
 
-[👀 **Demos**](https://vueuse-motion-demo.netlify.app)
+[👀 Demos](https://vueuse-motion-demo.netlify.app)
 
 ## Quick Start
 
-Let's **get started** by **installing** the **package** and adding the **plugin**.
+Let's get started by installing the package and adding the plugin.
 
-From your **terminal**:
+From your terminal:
 
 ```bash
 yarn add @vueuse/motion
 ```
 
-In your **Vue** app **entry** file:
+In your Vue app entry file:
 
 ```javascript
 import { createApp } from 'vue'
@@ -42,7 +42,7 @@ app.use(MotionPlugin)
 app.mount('#app')
 ```
 
-You can now **animate** any of your **component**, **HTML** or **SVG** elements using `v-motion`.
+You can now animate any of your component, HTML or SVG elements using `v-motion`.
 
 ```vue
 <template>
@@ -60,24 +60,24 @@ You can now **animate** any of your **component**, **HTML** or **SVG** elements 
 </template>
 ```
 
-To see more about how to use **directives**, check out [**Directive Usage**](https://motion.vueuse.org/features/directive-usage).
+To see more about how to use directives, check out [Directive Usage](https://motion.vueuse.org/features/directive-usage).
 
-To see more about what **properties** you can **animate**, check out [**Motion Properties**](https://motion.vueuse.org/features/motion-properties).
+To see more about what properties you can animate, check out [Motion Properties](https://motion.vueuse.org/features/motion-properties).
 
-To see more about how to **create** your own **animation** styles, check out [**Transition Properties**](https://motion.vueuse.org/features/transition-properties).
+To see more about how to create your own animation styles, check out [Transition Properties](https://motion.vueuse.org/features/transition-properties).
 
-To see more about what are **variants** and how you can **use** them, check out [**Variants**](https://motion.vueuse.org/features/variants).
+To see more about what are variants and how you can use them, check out [Variants](https://motion.vueuse.org/features/variants).
 
-To see more about how to **control** your declared **variants**, check out [**Motion Instance**](https://motion.vueuse.org/features/motion-instance).
+To see more about how to control your declared variants, check out [Motion Instance](https://motion.vueuse.org/features/motion-instance).
 
 ## Credits
 
-This package is **heavily** inspired by [**Framer Motion**](https://www.framer.com/motion/) by [**https://twitter.com/mattgperry**].
+This package is heavily inspired by [Framer Motion](https://www.framer.com/motion/) by https://twitter.com/.
 
 If you are interested in using [WAAPI](https://developer.mozilla.org/fr/docs/Web/API/Web_Animations_API), check out [Motion.dev](https://motion.dev/)!
 
-I would also like to **thank** [**antfu**](https://github.com/antfu), [**patak-dev**](https://github.com/patak-dev) and [**kazupon**](https://github.com/kazupon) for their kind help!
+I would also like to thank [antfu](https://github.com/antfu), [patak-dev](https://github.com/patak-dev) and [kazupon](https://github.com/kazupon) for their kind help!
 
-If you **like** this package, consider **following me** on [**GitHub**](https://github.com/Tahul) and on [**Twitter**](https://twitter.com/yaeeelglx).
+If you like this package, consider following me on [GitHub](https://github.com/Tahul) and on [Twitter](https://twitter.com/yaeeelglx).
 
 👋
