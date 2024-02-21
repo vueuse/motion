@@ -6,7 +6,7 @@ body:
     id: bug-env
     attributes:
       label: System info
-      description: Output of `npx envinfo --system --npmPackages '{vue,@vueuse/*}' --binaries --browsers` or `npx nuxi info` when using nuxt.
+      description: Output of `npx envinfo --system --npmPackages '{vue,vite,@vueuse/*}' --binaries --browsers` or `npx nuxi info` when using nuxt.
       placeholder: System, Binaries, Browsers
     validations:
       required: true
