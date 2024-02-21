@@ -18,31 +18,31 @@ export interface SVGPathProperties {
 /**
  * Transform properties
  */
-type TransformValue = string | number;
+export type TransformValue = string | number
 
-interface TransformProperties {
-  x?: TransformValue | TransformValue[];
-  y?: TransformValue | TransformValue[];
-  z?: TransformValue | TransformValue[];
-  translateX?: TransformValue | TransformValue[];
-  translateY?: TransformValue | TransformValue[];
-  translateZ?: TransformValue | TransformValue[];
-  rotate?: TransformValue | TransformValue[];
-  rotateX?: TransformValue | TransformValue[];
-  rotateY?: TransformValue | TransformValue[];
-  rotateZ?: TransformValue | TransformValue[];
-  scale?: TransformValue | TransformValue[];
-  scaleX?: TransformValue | TransformValue[];
-  scaleY?: TransformValue | TransformValue[];
-  scaleZ?: TransformValue | TransformValue[];
-  skew?: TransformValue | TransformValue[];
-  skewX?: TransformValue | TransformValue[];
-  skewY?: TransformValue | TransformValue[];
-  originX?: TransformValue | TransformValue[];
-  originY?: TransformValue | TransformValue[];
-  originZ?: TransformValue | TransformValue[];
-  perspective?: TransformValue | TransformValue[];
-  transformPerspective?: TransformValue | TransformValue[];
+export interface TransformProperties {
+  x?: TransformValue | TransformValue[]
+  y?: TransformValue | TransformValue[]
+  z?: TransformValue | TransformValue[]
+  translateX?: TransformValue | TransformValue[]
+  translateY?: TransformValue | TransformValue[]
+  translateZ?: TransformValue | TransformValue[]
+  rotate?: TransformValue | TransformValue[]
+  rotateX?: TransformValue | TransformValue[]
+  rotateY?: TransformValue | TransformValue[]
+  rotateZ?: TransformValue | TransformValue[]
+  scale?: TransformValue | TransformValue[]
+  scaleX?: TransformValue | TransformValue[]
+  scaleY?: TransformValue | TransformValue[]
+  scaleZ?: TransformValue | TransformValue[]
+  skew?: TransformValue | TransformValue[]
+  skewX?: TransformValue | TransformValue[]
+  skewY?: TransformValue | TransformValue[]
+  originX?: TransformValue | TransformValue[]
+  originY?: TransformValue | TransformValue[]
+  originZ?: TransformValue | TransformValue[]
+  perspective?: TransformValue | TransformValue[]
+  transformPerspective?: TransformValue | TransformValue[]
 }
 
 /**
