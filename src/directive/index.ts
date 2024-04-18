@@ -8,7 +8,7 @@ import { resolveVariants } from '../utils/directive'
 import { variantToStyle } from '../utils/transform'
 import { registerVisibilityHooks } from '../features/visibilityHooks'
 
-export function directive<T extends string>(variants?: MotionVariants<T>): Directive<HTMLElement | SVGElement> {
+export function directive<T extends string>(variants?: MotionVariants<T>, isPreset = false): Directive<HTMLElement | SVGElement> {
   const register = (el: HTMLElement | SVGElement, binding: DirectiveBinding, node: VNode<any, HTMLElement | SVGElement, Record<string, any>>) => {
     // Get instance key if possible (binding value or element key in case of v-for's)
     const key = (binding.value && typeof binding.value === 'string' ? binding.value : node.key) as string
@@ -16,8 +16,11 @@ export function directive<T extends string>(variants?: MotionVariants<T>): Direc
     // Cleanup previous motion instance if it exists
     if (key && motionState[key]) motionState[key].stop()
 
+    // We deep copy presets to prevent global mutation
+    const variantsObject = isPreset ? structuredClone(variants || {}) : variants || {}
+
     // Initialize variants with argument
-    const variantsRef = ref(variants || {}) as Ref<MotionVariants<T>>
+    const variantsRef = ref(variantsObject) as Ref<MotionVariants<T>>
 
     // Set variants from v-motion binding
     if (typeof binding.value === 'object') variantsRef.value = binding.value
@@ -58,7 +61,7 @@ export function directive<T extends string>(variants?: MotionVariants<T>): Direc
       bindingInitial = unref(bindingInitial)
 
       // Merge it with directive initial variants
-      const initial = defu(variants?.initial || {}, bindingInitial || {})
+      const initial = defu({}, variants?.initial || {}, bindingInitial || {})
 
       // No initial
       if (!initial || Object.keys(initial).length === 0) return
