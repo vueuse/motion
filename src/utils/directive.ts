@@ -25,7 +25,7 @@ export function resolveVariants<T extends string>(node: VNode<any, HTMLElement |
 
     // Loop on directive prop keys, add them to the local variantsRef if defined
     for (let key of directivePropsKeys) {
-      if (!target || !target[key]) return
+      if (!target || !target[key]) continue
 
       if (key === 'delay' && typeof target[key] === 'number') {
         // Apply delay to existing variants where applicable
@@ -38,7 +38,7 @@ export function resolveVariants<T extends string>(node: VNode<any, HTMLElement |
           variantConfig.transition.delay = target[key]
         }
 
-        return
+        continue
       }
 
       // @ts-expect-error - Fix errors later for typescript 5
