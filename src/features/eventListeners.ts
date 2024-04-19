@@ -12,7 +12,7 @@ export function registerEventListeners<T extends string, V extends MotionVariant
   const focused = ref(false)
 
   const mutableKeys = computed(() => {
-    let result: string[] = []
+    let result: string[] = [...Object.keys(state.value || {})]
 
     if (!_variants) return result
 
@@ -26,7 +26,7 @@ export function registerEventListeners<T extends string, V extends MotionVariant
   })
 
   const computedProperties = computed(() => {
-    const result = {}
+    const result: Partial<V> = {}
 
     Object.assign(result, state.value)
 
@@ -37,7 +37,6 @@ export function registerEventListeners<T extends string, V extends MotionVariant
     if (focused.value && _variants.focused) Object.assign(result, _variants.focused)
 
     for (const key in result) {
-      // @ts-expect-error - Fix errors later for typescript 5
       if (!mutableKeys.value.includes(key)) delete result[key]
     }
 

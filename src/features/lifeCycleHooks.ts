@@ -11,7 +11,14 @@ export function registerLifeCycleHooks<T extends string, V extends MotionVariant
       if (!_variants) return
 
       // Set initial before the element is mounted
-      if (_variants.initial) set('initial')
+      if (_variants.initial) {
+        // Set initial variant properties immediately, skipping transitions
+        set('initial')
+
+        // Set variant to sync `state` which is used to undo event variant transitions
+        // NOTE: This triggers an (instant) animation even though properties have already been applied
+        variant.value = 'initial'
+      }
 
       // Lifecycle hooks bindings
       if (_variants.enter) variant.value = 'enter'
