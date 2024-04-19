@@ -24,50 +24,29 @@ export function resolveVariants<T extends string>(node: VNode<any, HTMLElement |
     }
 
     // Loop on directive prop keys, add them to the local variantsRef if defined
-    directivePropsKeys.forEach((key) => {
-      if (key === 'delay') {
-        if (target && target[key] && typeof target[key] === 'number') {
-          const delay = target[key]
+    for (let key of directivePropsKeys) {
+      if (!target || !target[key]) return
 
-          if (variantsRef && variantsRef.value) {
-            if (variantsRef.value.enter) {
-              if (!variantsRef.value.enter.transition) variantsRef.value.enter.transition = {}
+      if (key === 'delay' && typeof target[key] === 'number') {
+        // Apply delay to existing variants where applicable
+        for (const variantKey of ['enter', 'visible', 'visibleOnce'] as const) {
+          const variantConfig = variantsRef.value[variantKey]
 
-              variantsRef.value.enter.transition = {
-                delay,
-                ...variantsRef.value.enter.transition,
-              }
-            }
+          if (variantConfig == null) continue
 
-            if (variantsRef.value.visible) {
-              if (!variantsRef.value.visible.transition) variantsRef.value.visible.transition = {}
-
-              variantsRef.value.visible.transition = {
-                delay,
-                ...variantsRef.value.visible.transition,
-              }
-            }
-
-            if (variantsRef.value.visibleOnce) {
-              if (!variantsRef.value.visibleOnce.transition) variantsRef.value.visibleOnce.transition = {}
-
-              variantsRef.value.visibleOnce.transition = {
-                delay,
-                ...variantsRef.value.visibleOnce.transition,
-              }
-            }
-          }
+          variantConfig.transition ??= {}
+          variantConfig.transition.delay = target[key]
         }
 
         return
       }
 
       // @ts-expect-error - Fix errors later for typescript 5
-      if (target && target[key] && isObject(target[key])) {
+      if (isObject(target[key])) {
         const prop = target[key]
         if (key === 'visible-once') key = 'visibleOnce'
         variantsRef.value[key as keyof MotionVariants<T>] = prop
       }
-    })
+    }
   }
 }

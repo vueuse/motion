@@ -107,9 +107,17 @@ export default defineComponent({
       }
 
       if (props.delay) {
-        config.enter.transition = { ...config.enter.transition } || {}
-        config.enter.transition.delay = parseInt(props.delay as string)
+        const delayNumber = parseInt(props.delay as string)
+
+        // Apply delay to existing variants where applicable
+        for (const configKey of ['enter', 'visible', 'visibleOnce']) {
+          if (!config[configKey]) continue
+
+          config[configKey].transition ??= {}
+          config[configKey].transition.delay = delayNumber
+        }
       }
+
       return config
     })
 
