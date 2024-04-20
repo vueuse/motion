@@ -69,6 +69,10 @@ export default defineComponent({
       type: [Number, String] as PropType<number | string>,
       required: false,
     },
+    duration: {
+      type: [Number, String] as PropType<number | string>,
+      required: false,
+    },
   },
   setup(props) {
     const slots = useSlots()
@@ -106,15 +110,17 @@ export default defineComponent({
         ...(props.variants || {}),
       }
 
-      if (props.delay) {
-        const delayNumber = parseInt(props.delay as string)
+      for (const transitionKey of ['delay', 'duration'] as const) {
+        if (!props[transitionKey]) continue
 
-        // Apply delay to existing variants where applicable
+        const transitionValueParsed = parseInt(props[transitionKey] as string)
+
+        // Apply transition property to existing variants where applicable
         for (const configKey of ['enter', 'visible', 'visibleOnce']) {
           if (!config[configKey]) continue
 
           config[configKey].transition ??= {}
-          config[configKey].transition.delay = delayNumber
+          config[configKey].transition[transitionKey] = transitionValueParsed
         }
       }
 
