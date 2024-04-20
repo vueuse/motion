@@ -2,7 +2,12 @@ import { isObject } from '@vueuse/core'
 import type { Ref, VNode } from 'vue'
 import type { MotionVariants } from '../types'
 
-const directivePropsKeys = ['initial', 'enter', 'leave', 'visible', 'visible-once', 'visibleOnce', 'hovered', 'tapped', 'focused', 'delay']
+const transitionKeys = ['delay', 'duration'] as const
+const directivePropsKeys = ['initial', 'enter', 'leave', 'visible', 'visible-once', 'visibleOnce', 'hovered', 'tapped', 'focused', ...transitionKeys] as const
+
+function isTransitionKey(val: any): val is 'delay' | 'duration' {
+  return transitionKeys.includes(val)
+}
 
 export function resolveVariants<T extends string>(node: VNode<any, HTMLElement | SVGElement, Record<string, any>>, variantsRef: Ref<MotionVariants<T>>) {
   // This is done to achieve compat with Vue 2 & 3
@@ -27,15 +32,16 @@ export function resolveVariants<T extends string>(node: VNode<any, HTMLElement |
     for (let key of directivePropsKeys) {
       if (!target || !target[key]) continue
 
-      if (key === 'delay' && typeof target[key] === 'number') {
-        // Apply delay to existing variants where applicable
+      if (isTransitionKey(key) && typeof target[key] === 'number') {
+        // Apply transition property to existing variants where applicable
         for (const variantKey of ['enter', 'visible', 'visibleOnce'] as const) {
           const variantConfig = variantsRef.value[variantKey]
 
           if (variantConfig == null) continue
 
           variantConfig.transition ??= {}
-          variantConfig.transition.delay = target[key]
+          // @ts-expect-error `duration` does not exist on `inertia` type transitions
+          variantConfig.transition[key] = target[key]
         }
 
         continue
