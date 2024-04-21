@@ -10,7 +10,7 @@
     "@vueuse/motion": "workspace:~"
   },
   "devDependencies": {
-    "@nuxt/content": "^2.6.0",
-    "nuxt": "^3.5.1"
+    "@nuxt/content": "^2.12.1",
+    "nuxt": "^3.11.2"
   }
 }

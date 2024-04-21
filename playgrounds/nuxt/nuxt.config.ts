@@ -1,6 +1,9 @@
 import { resolve } from 'node:path'
 
 export default defineNuxtConfig({
+  features: {
+    devLogs: false,
+  },
   css: ['~/assets/pico.css'],
   alias: {
     '@vueuse/motion': resolve(__dirname, '../../src/index.ts'),
