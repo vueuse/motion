@@ -1,9 +1,10 @@
 import type { Plugin } from 'vue'
-import component from '../components/Motion'
-import { directive } from '../directive'
-import * as presets from '../presets'
 import type { MotionPluginOptions, MotionVariants } from '../types'
+
+import * as presets from '../presets'
+import { directive } from '../directive'
 import { slugify } from '../utils/slugify'
+import { MotionComponent, MotionGroupComponent } from '../components'
 
 export const MotionPlugin: Plugin = {
   install(app, options: MotionPluginOptions<string>) {
@@ -11,7 +12,10 @@ export const MotionPlugin: Plugin = {
     app.directive('motion', directive())
 
     // Register <Motion> component
-    app.component('Motion', component)
+    app.component('Motion', MotionComponent)
+
+    // Register <MotionGroup> component
+    app.component('MotionGroup', MotionGroupComponent)
 
     // Register presets
     if (!options || (options && !options.excludePresets)) {
