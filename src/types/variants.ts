@@ -1,4 +1,4 @@
-import type { CSSProperties, SVGAttributes } from 'vue'
+import type { CSSProperties } from 'vue'
 import type { ResolvedSingleTarget, Transition } from './transitions'
 
 /**
@@ -54,7 +54,7 @@ export type StyleProperties = Omit<CSSProperties, 'transition' | 'rotate' | 'sca
 /**
  * Available properties for useMotion variants
  */
-export type MotionProperties = StyleProperties | SVGAttributes | TransformProperties | SVGPathProperties
+export type MotionProperties = StyleProperties | TransformProperties | SVGPathProperties
 
 /**
  * Permissive properties for useSpring
