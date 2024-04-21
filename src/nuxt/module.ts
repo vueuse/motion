@@ -1,5 +1,6 @@
 import { defu } from 'defu'
 import { addImportsDir, addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
+import type { NuxtModule } from '@nuxt/schema'
 import type { ModuleOptions as MotionModuleOpts } from '../types'
 
 export interface ModuleOptions extends MotionModuleOpts<string> {}
@@ -29,4 +30,4 @@ export default defineNuxtModule<ModuleOptions>({
       if (!nuxt.options.build.transpile.includes(pkgName)) nuxt.options.build.transpile.push(pkgName)
     })
   },
-})
+}) satisfies NuxtModule
