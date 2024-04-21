@@ -20,10 +20,10 @@ export default defineComponent({
 
     return () => {
       const style = variantToStyle(motionConfig.value.initial || {})
-
       const nodes: VNode[] = slots.default?.() || []
+
+      // Set node style on slots and register to `instances` on mount
       for (let i = 0; i < nodes.length; i++) {
-        // Set node style and register to `instances` on mount
         setNodeInstance(nodes[i], i, style)
       }
 
