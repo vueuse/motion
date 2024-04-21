@@ -40,7 +40,7 @@ refs.forEach((ref, index) => {
       y: 20,
       transition: {
         duration: 1500,
-        repeat: Infinity,
+        repeat: Number.POSITIVE_INFINITY,
         ease: 'easeInOut',
         repeatType: 'mirror',
       },

@@ -113,7 +113,7 @@ export default defineComponent({
       for (const transitionKey of ['delay', 'duration'] as const) {
         if (!props[transitionKey]) continue
 
-        const transitionValueParsed = parseInt(props[transitionKey] as string)
+        const transitionValueParsed = Number.parseInt(props[transitionKey] as string)
 
         // Apply transition property to existing variants where applicable
         for (const configKey of ['enter', 'visible', 'visibleOnce']) {
@@ -141,6 +141,7 @@ export default defineComponent({
     })
 
     // Replay animations on component update Vue
+    /* eslint-disable-next-line n/prefer-global/process */
     if (process?.env?.NODE_ENV === 'development' || (process as any)?.dev) {
       const replayAnimation = (instance: MotionInstance<any, any>) => {
         if (instance.variants?.initial) instance.set('initial')
