@@ -13,7 +13,7 @@ const codeText = computed(() => basic(input.value))
 watch(input, (newVal) => {
   if (motions.editor) {
     motions.editor.apply({
-      rotate: parseInt(newVal),
+      rotate: Number.parseInt(newVal),
     })
   }
 })

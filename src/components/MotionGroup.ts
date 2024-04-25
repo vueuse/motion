@@ -1,5 +1,5 @@
+import type { PropType, VNode } from 'vue'
 import type { Component } from '@nuxt/schema'
-import type { PropType } from 'vue'
 
 import { defineComponent, h, useSlots } from 'vue'
 import { variantToStyle } from '../utils/transform'
@@ -10,7 +10,7 @@ export default defineComponent({
     ...MotionComponentProps,
     is: {
       type: [String, Object] as PropType<string | Component>,
-      default: 'div',
+      required: false,
     },
   },
   setup(props) {
@@ -20,11 +20,19 @@ export default defineComponent({
 
     return () => {
       const style = variantToStyle(motionConfig.value.initial || {})
-      const node = h(props.is, undefined, slots)
+      const nodes: VNode[] = slots.default?.() || []
 
-      setNodeInstance(node, 0, style)
+      // Set node style on slots and register to `instances` on mount
+      for (let i = 0; i < nodes.length; i++) {
+        setNodeInstance(nodes[i], i, style)
+      }
 
-      return node
+      // Wrap child nodes in component if `props.is` is passed
+      if (props.is) {
+        return h(props.is, undefined, nodes)
+      }
+
+      return nodes
     }
   },
 })
