@@ -46,20 +46,27 @@ export function useMotionControls<T extends string, V extends MotionVariants<T>>
     // If variant is a key, try to resolve it
     if (typeof variant === 'string') variant = getVariantFromKey(variant)
 
-    // Return Promise chain
-    return Promise.all(
-      Object.entries(variant)
-        .map(([key, value]) => {
-          // Skip transition key
-          if (key === 'transition') return undefined
+    // Create promise chain for each animated property
+    const animations = Object.entries(variant)
+      .map(([key, value]) => {
+        // Skip transition key
+        if (key === 'transition') return undefined
 
-          return new Promise<void>((resolve) =>
-            // @ts-expect-error - Fix errors later for typescript 5
-            push(key as keyof MotionProperties, value, motionProperties, (variant as Variant).transition || getDefaultTransition(key, variant[key]), resolve),
-          )
-        })
-        .filter(Boolean),
-    )
+        return new Promise<void>((resolve) =>
+          // @ts-expect-error - Fix errors later for typescript 5
+          push(key as keyof MotionProperties, value, motionProperties, (variant as Variant).transition || getDefaultTransition(key, variant[key]), resolve),
+        )
+      })
+      .filter(Boolean)
+
+    // Call `onComplete` after all animations have completed
+    async function waitForComplete() {
+      await Promise.all(animations)
+      ;(variant as Variant).transition?.onComplete?.()
+    }
+
+    // Return using `Promise.all` to preserve type compatibility
+    return Promise.all([waitForComplete()])
   }
 
   const set = (variant: Variant | keyof V) => {
