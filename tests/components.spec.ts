@@ -32,7 +32,7 @@ describe.each([
     expect(el.style.opacity).toEqual('0')
     expect(el.style.transform).toEqual('translate3d(-100px,0px,0px)')
 
-    await waitForMockCalls(onComplete, 2)
+    await waitForMockCalls(onComplete)
 
     // Renders enter variant
     expect(el.style.opacity).toEqual('1')
@@ -56,16 +56,16 @@ describe.each([
     expect(el.style.color).toEqual('red')
     expect(el.style.transform).toEqual('translate3d(0px,100px,0px)')
 
-    // trigger mock intersection
+    // Trigger mock intersection
     intersect(el, true)
-    await waitForMockCalls(onComplete, 4)
+    await waitForMockCalls(onComplete)
 
     expect(el.style.color).toEqual('green')
     expect(el.style.transform).toEqual('translateZ(0px)')
 
-    // trigger mock intersection
+    // Trigger mock intersection
     intersect(el, false)
-    await waitForMockCalls(onComplete, 3)
+    await waitForMockCalls(onComplete)
 
     expect(el.style.color).toEqual('red')
     expect(el.style.transform).toEqual('translate3d(0px,100px,0px)')

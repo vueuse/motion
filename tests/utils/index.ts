@@ -20,8 +20,15 @@ export async function waitForMockCalls(fn: Mock, calls = 1, options: Parameters<
   try {
     await vi.waitUntil(() => fn.mock.calls.length === calls, options)
     fn.mockReset()
-  } catch (e) {
-    console.error(`Waited for ${calls} calls but failed at ${fn.mock.calls.length} calls.`)
-    throw e
+  } catch (err) {
+    // This ensures the vitest error log shows where this helper is called instead of the helper internals
+    if (err instanceof Error) {
+      err.message += ` Waited for ${calls} call(s) but failed at ${fn.mock.calls.length} call(s).`
+
+      const arr = err.stack?.split('\n')
+      arr?.splice(0, 3)
+      err.stack = arr?.join('\n') ?? undefined
+    }
+    throw err
   }
 }
