@@ -83,6 +83,8 @@ export function registerEventListeners<T extends string, V extends MotionVariant
     useEventListener(target as any, 'blur', () => (focused.value = false))
   }
 
-  // Watch local computed variant, apply it dynamically
-  watch(computedProperties, apply)
+  // Watch event states, apply it computed properties
+  watch([hovered, tapped, focused], () => {
+    apply(computedProperties.value)
+  })
 }

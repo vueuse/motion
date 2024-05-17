@@ -221,8 +221,6 @@ export function getAnimation(key: string, value: MotionValue, target: ResolvedVa
             if (valueTransition.onUpdate) valueTransition.onUpdate(v)
           },
           onComplete: () => {
-            if (transition.onComplete) transition.onComplete()
-
             if (onComplete) onComplete()
 
             if (complete) complete()
@@ -235,8 +233,6 @@ export function getAnimation(key: string, value: MotionValue, target: ResolvedVa
    */
   function set(complete?: () => void): StopAnimation {
     value.set(target)
-
-    if (transition.onComplete) transition.onComplete()
 
     if (onComplete) onComplete()
 
