@@ -16,8 +16,8 @@ export function resolveVariants<T extends string>(node: VNode<any, HTMLElement |
   const target = node.props
     ? node.props // @ts-expect-error - Compatibility (Vue 3)
     : node.data && node.data.attrs // @ts-expect-error - Compatibility (Vue 2)
-    ? node.data.attrs
-    : {}
+      ? node.data.attrs
+      : {}
 
   if (target) {
     if (target.variants && isObject(target.variants)) {
@@ -30,14 +30,16 @@ export function resolveVariants<T extends string>(node: VNode<any, HTMLElement |
 
     // Loop on directive prop keys, add them to the local variantsRef if defined
     for (let key of directivePropsKeys) {
-      if (!target || !target[key]) continue
+      if (!target || !target[key])
+        continue
 
       if (isTransitionKey(key) && typeof target[key] === 'number') {
         // Apply transition property to existing variants where applicable
         for (const variantKey of ['enter', 'visible', 'visibleOnce'] as const) {
           const variantConfig = variantsRef.value[variantKey]
 
-          if (variantConfig == null) continue
+          if (variantConfig == null)
+            continue
 
           variantConfig.transition ??= {}
           // @ts-expect-error `duration` does not exist on `inertia` type transitions
@@ -50,7 +52,8 @@ export function resolveVariants<T extends string>(node: VNode<any, HTMLElement |
       // @ts-expect-error - Fix errors later for typescript 5
       if (isObject(target[key])) {
         const prop = target[key]
-        if (key === 'visible-once') key = 'visibleOnce'
+        if (key === 'visible-once')
+          key = 'visibleOnce'
         variantsRef.value[key as keyof MotionVariants<T>] = prop
       }
     }

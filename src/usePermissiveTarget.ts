@@ -7,7 +7,8 @@ export function usePermissiveTarget(target: MaybeRef<PermissiveTarget>, onTarget
   watch(
     () => unrefElement(target),
     (el) => {
-      if (!el) return
+      if (!el)
+        return
 
       onTarget(el)
     },

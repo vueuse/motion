@@ -35,7 +35,9 @@ async function replay() {
 
     <div class="absolute top-6 right-8 cursor-pointer select-none">
       <div class="flex flex-row items-center justify-end">
-        <button class="ml-4" @click="replay">🔃</button>
+        <button class="ml-4" @click="replay">
+          🔃
+        </button>
         <slot name="controls" />
       </div>
     </div>

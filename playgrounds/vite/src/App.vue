@@ -10,19 +10,27 @@ const sandbox = false
 <template>
   <div>
     <div class="flex items-center justify-center">
-      <h1 class="m-6 cursor-pointer select-none text-4xl font-bold">🤹&nbsp;@vueuse/motion</h1>
+      <h1 class="m-6 cursor-pointer select-none text-4xl font-bold">
+        🤹&nbsp;@vueuse/motion
+      </h1>
     </div>
 
     <template v-if="!sandbox">
-      <h1 class="flex items-center justify-center text-3xl font-bold">Delay</h1>
+      <h1 class="flex items-center justify-center text-3xl font-bold">
+        Delay
+      </h1>
 
       <Delay class="mt-6 mb-6" />
 
-      <h1 class="flex items-center justify-center text-3xl font-bold">Editor</h1>
+      <h1 class="flex items-center justify-center text-3xl font-bold">
+        Editor
+      </h1>
 
       <Editor class="mt-6 mb-6" />
 
-      <h1 class="flex items-center justify-center text-3xl font-bold">Transitions</h1>
+      <h1 class="flex items-center justify-center text-3xl font-bold">
+        Transitions
+      </h1>
 
       <Transitions class="mt-6 mb-6" />
     </template>

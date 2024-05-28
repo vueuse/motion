@@ -1,25 +1,11 @@
 {
   "extends": "./docs/.nuxt/tsconfig.json",
   "compilerOptions": {
-    "forceConsistentCasingInFileNames": true,
-    "jsx": "preserve",
     "target": "ESNext",
+    "jsx": "preserve",
+    "baseUrl": ".",
     "module": "ESNext",
     "moduleResolution": "Node",
-    "skipLibCheck": true,
-    "strict": true,
-    "allowJs": true,
-    "noEmit": true,
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true,
-    "types": [
-      "node",
-      "csstype",
-      "vitest",
-      "vitest/globals",
-      "vite/client"
-    ],
-    "baseUrl": ".",
     "paths": {
       "@vueuse/motion": [
         "./src/index"
@@ -75,7 +61,21 @@
       "#components": [
         ".nuxt/components"
       ]
-    }
+    },
+    "resolveJsonModule": true,
+    "types": [
+      "node",
+      "csstype",
+      "vitest",
+      "vitest/globals",
+      "vite/client"
+    ],
+    "allowJs": true,
+    "strict": true,
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
   },
   "include": [
     "./env.d.ts",

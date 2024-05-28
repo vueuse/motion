@@ -51,7 +51,8 @@ export function easingDefinitionToFunction(definition: Easing) {
   if (Array.isArray(definition)) {
     const [x1, y1, x2, y2] = definition
     return cubicBezier(x1, y1, x2, y2)
-  } else if (typeof definition === 'string') {
+  }
+  else if (typeof definition === 'string') {
     return easingLookup[definition]
   }
 
@@ -72,25 +73,27 @@ export function isEasingArray(ease: any): ease is Easing[] {
  *
  * ✅: 100, "100px", "#fff"
  * ❌: "block", "url(2.jpg)"
- * @param value
  *
  * @internal
  */
 export function isAnimatable(key: string, value: ResolvedValueTarget) {
   // If the list of keys tat might be non-animatable grows, replace with Set
-  if (key === 'zIndex') return false
+  if (key === 'zIndex')
+    return false
 
   // If it's a number or a keyframes array, we can animate it. We might at some point
   // need to do a deep isAnimatable check of keyframes, or let Popmotion handle this,
   // but for now lets leave it like this for performance reasons
-  if (typeof value === 'number' || Array.isArray(value)) return true
+  if (typeof value === 'number' || Array.isArray(value))
+    return true
 
   if (
-    typeof value === 'string' && // It's animatable if we have a string
-    complex.test(value) && // And it contains numbers and/or colors
-    !value.startsWith('url(') // Unless it starts with "url("
-  )
+    typeof value === 'string' // It's animatable if we have a string
+    && complex.test(value) // And it contains numbers and/or colors
+    && !value.startsWith('url(') // Unless it starts with "url("
+  ) {
     return true
+  }
 
   return false
 }
@@ -115,7 +118,8 @@ export function hydrateKeyframes(options: PermissiveTransitionDefinition) {
 export function convertTransitionToAnimationOptions<T>({ ease, times, delay, ...transition }: PermissiveTransitionDefinition): AnimationOptions<T> {
   const options: AnimationOptions<T> = { ...transition }
 
-  if (times) (options as any).offset = times
+  if (times)
+    (options as any).offset = times
 
   // Map easing names to Popmotion's easing functions
   if (ease) {
@@ -123,7 +127,8 @@ export function convertTransitionToAnimationOptions<T>({ ease, times, delay, ...
   }
 
   // Map delay to elapsed from Popmotion
-  if (delay) options.elapsed = -delay
+  if (delay)
+    options.elapsed = -delay
 
   return options
 }
@@ -137,7 +142,8 @@ export function convertTransitionToAnimationOptions<T>({ ease, times, delay, ...
  */
 export function getPopmotionAnimationOptions(transition: PermissiveTransitionDefinition, options: any, key: string) {
   if (Array.isArray(options.to)) {
-    if (!transition.duration) transition.duration = 800
+    if (!transition.duration)
+      transition.duration = 800
   }
 
   hydrateKeyframes(options)
@@ -161,7 +167,7 @@ export function getPopmotionAnimationOptions(transition: PermissiveTransitionDef
  * This filters out orchestration options and returns true
  * if any options are left.
  */
-// eslint-disable-next-line unused-imports/no-unused-vars
+
 export function isTransitionDefined({ delay, repeat, repeatType, repeatDelay, from, ...transition }: Transition) {
   return !!Object.keys(transition).length
 }
@@ -195,7 +201,8 @@ export function getAnimation(key: string, value: MotionValue, target: ResolvedVa
 
   // If we're trying to animate from "none", try and get an animatable version
   // of the target. This could be improved to work both ways.
-  if (origin === 'none' && isTargetAnimatable && typeof target === 'string') origin = getAnimatableNone(key, target)
+  if (origin === 'none' && isTargetAnimatable && typeof target === 'string')
+    origin = getAnimatableNone(key, target)
 
   // Is origin animatable
   const isOriginAnimatable = isAnimatable(key, origin)
@@ -214,18 +221,21 @@ export function getAnimation(key: string, value: MotionValue, target: ResolvedVa
     return valueTransition.type === 'inertia' || valueTransition.type === 'decay'
       ? inertia({ ...options, ...valueTransition })
       : animate({
-          ...getPopmotionAnimationOptions(valueTransition, options, key),
-          onUpdate: (v: any) => {
-            options.onUpdate(v)
+        ...getPopmotionAnimationOptions(valueTransition, options, key),
+        onUpdate: (v: any) => {
+          options.onUpdate(v)
 
-            if (valueTransition.onUpdate) valueTransition.onUpdate(v)
-          },
-          onComplete: () => {
-            if (onComplete) onComplete()
+          if (valueTransition.onUpdate)
+            valueTransition.onUpdate(v)
+        },
+        onComplete: () => {
+          if (onComplete)
+            onComplete()
 
-            if (complete) complete()
-          },
-        })
+          if (complete)
+            complete()
+        },
+      })
   }
 
   /**
@@ -234,9 +244,11 @@ export function getAnimation(key: string, value: MotionValue, target: ResolvedVa
   function set(complete?: () => void): StopAnimation {
     value.set(target)
 
-    if (onComplete) onComplete()
+    if (onComplete)
+      onComplete()
 
-    if (complete) complete()
+    if (complete)
+      complete()
 
     return { stop: () => {} }
   }

@@ -43,7 +43,8 @@ export function reactiveTransform(props: TransformProperties = {}, enableHardwar
 
       // Loop on defined TransformProperties state keys
       for (const [key, value] of Object.entries(newVal)) {
-        if (enableHardwareAcceleration && (key === 'x' || key === 'y' || key === 'z')) continue
+        if (enableHardwareAcceleration && (key === 'x' || key === 'y' || key === 'z'))
+          continue
 
         // Get value type for key
         const valueType = getValueType(key)
@@ -53,7 +54,8 @@ export function reactiveTransform(props: TransformProperties = {}, enableHardwar
         result += `${translateAlias[key] || key}(${valueAsType}) `
       }
 
-      if (enableHardwareAcceleration && !hasHardwareAcceleration) result += 'translateZ(0px) '
+      if (enableHardwareAcceleration && !hasHardwareAcceleration)
+        result += 'translateZ(0px) '
 
       transform.value = result.trim()
     },

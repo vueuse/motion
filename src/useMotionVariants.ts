@@ -5,10 +5,6 @@ import type { MotionVariants, Variant } from './types'
 
 /**
  * A Composable handling variants selection and features.
- *
- * @param variants
- * @param initial
- * @param options
  */
 export function useMotionVariants<T extends string, V extends MotionVariants<T>>(variants: MaybeRef<V> = {} as MaybeRef<V>) {
   // Unref variants
@@ -19,7 +15,8 @@ export function useMotionVariants<T extends string, V extends MotionVariants<T>>
 
   // Current variant state
   const state = computed<Variant | undefined>(() => {
-    if (!variant.value) return
+    if (!variant.value)
+      return
 
     return _variants[variant.value]
   })

@@ -8,7 +8,8 @@ export function registerLifeCycleHooks<T extends string, V extends MotionVariant
     () => target,
     () => {
       // Cancel cycle if no variants
-      if (!_variants) return
+      if (!_variants)
+        return
 
       // Set initial before the element is mounted
       if (_variants.initial) {
@@ -21,7 +22,8 @@ export function registerLifeCycleHooks<T extends string, V extends MotionVariant
       }
 
       // Lifecycle hooks bindings
-      if (_variants.enter) variant.value = 'enter'
+      if (_variants.enter)
+        variant.value = 'enter'
     },
     {
       immediate: true,

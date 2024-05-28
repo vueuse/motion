@@ -9,10 +9,6 @@ import type { MotionInstance, MotionVariants, UseMotionOptions } from './types'
  *
  * Supports:
  * - lifeCycleHooks: Bind the motion hooks to the component lifecycle hooks.
- *
- * @param variant
- * @param variants
- * @param options
  */
 export function useMotionFeatures<T extends string, V extends MotionVariants<T>>(
   instance: MotionInstance<T, V>,
@@ -24,13 +20,17 @@ export function useMotionFeatures<T extends string, V extends MotionVariants<T>>
   },
 ) {
   // Lifecycle hooks bindings
-  if (options.lifeCycleHooks) registerLifeCycleHooks(instance)
+  if (options.lifeCycleHooks)
+    registerLifeCycleHooks(instance)
 
-  if (options.syncVariants) registerVariantsSync(instance)
+  if (options.syncVariants)
+    registerVariantsSync(instance)
 
   // Visibility hooks
-  if (options.visibilityHooks) registerVisibilityHooks(instance)
+  if (options.visibilityHooks)
+    registerVisibilityHooks(instance)
 
   // Event listeners
-  if (options.eventListeners) registerEventListeners(instance)
+  if (options.eventListeners)
+    registerEventListeners(instance)
 }

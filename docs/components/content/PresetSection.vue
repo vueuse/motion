@@ -26,7 +26,8 @@ const replayInstance = useMotion(replayButton, {
 })
 
 async function replay() {
-  if (isReplaying.value) return
+  if (isReplaying.value)
+    return
 
   isReplaying.value = true
 
@@ -36,11 +37,14 @@ async function replay() {
 
   await apply(props.preset.initial)
 
-  if (props.preset.visible) await apply(props.preset.visible)
+  if (props.preset.visible)
+    await apply(props.preset.visible)
 
-  if (props.preset.visibleOnce) await apply(props.preset.visibleOnce)
+  if (props.preset.visibleOnce)
+    await apply(props.preset.visibleOnce)
 
-  if (props.preset.enter) await apply(props.preset.enter)
+  if (props.preset.enter)
+    await apply(props.preset.enter)
 
   replayInstance.set({ rotate: 0 })
 

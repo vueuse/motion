@@ -24,10 +24,12 @@ export default defineNuxtModule<ModuleOptions>({
     addImportsDir(resolve('./runtime/composables'))
 
     // Transpile necessary packages
-    if (!nuxt.options.build.transpile) nuxt.options.build.transpile = []
+    if (!nuxt.options.build.transpile)
+      nuxt.options.build.transpile = []
     const transpileList = ['defu', '@vueuse/motion', '@vueuse/shared', '@vueuse/core']
     transpileList.forEach((pkgName) => {
-      if (!nuxt.options.build.transpile.includes(pkgName)) nuxt.options.build.transpile.push(pkgName)
+      if (!nuxt.options.build.transpile.includes(pkgName))
+        nuxt.options.build.transpile.push(pkgName)
     })
   },
 }) satisfies NuxtModule

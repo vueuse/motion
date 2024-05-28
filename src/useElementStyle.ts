@@ -25,7 +25,8 @@ export function useElementStyle(target: MaybeRef<PermissiveTarget>, onInit?: (in
     // Loop on style keys
     for (const key of Object.keys(valueTypes)) {
       // @ts-expect-error - Fix errors later for typescript 5
-      if (el.style[key] === null || el.style[key] === '' || isTransformProp(key) || isTransformOriginProp(key)) continue
+      if (el.style[key] === null || el.style[key] === '' || isTransformProp(key) || isTransformOriginProp(key))
+        continue
 
       // Append a defined key to the local StyleProperties state object
       // @ts-expect-error - Fix errors later for typescript 5
@@ -38,7 +39,8 @@ export function useElementStyle(target: MaybeRef<PermissiveTarget>, onInit?: (in
       Object.entries(_cache).forEach(([key, value]) => (el.style[key] = value))
     }
 
-    if (onInit) onInit(state)
+    if (onInit)
+      onInit(state)
   })
 
   // Sync reactive style to element

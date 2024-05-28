@@ -51,7 +51,7 @@ function replay() {
     </template>
 
     <div>
-      <input v-model="input" type="range" max="360" min="0" step="1" />
+      <input v-model="input" type="range" max="360" min="0" step="1">
     </div>
   </DemoBox>
 </template>

@@ -23,12 +23,15 @@ export function useElementTransform(target: MaybeRef<PermissiveTarget>, onInit?:
     _target = el
 
     // Parse transform properties and applies them to the current state
-    if (el.style.transform) stateFromTransform(state, el.style.transform)
+    if (el.style.transform)
+      stateFromTransform(state, el.style.transform)
 
     // If cache is present, init the target with the current cached value
-    if (_cache) el.style.transform = _cache
+    if (_cache)
+      el.style.transform = _cache
 
-    if (onInit) onInit(state)
+    if (onInit)
+      onInit(state)
   })
 
   // Sync reactive transform to element

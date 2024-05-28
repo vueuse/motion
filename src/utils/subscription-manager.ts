@@ -20,7 +20,8 @@ export class SubscriptionManager<Handler extends GenericHandler> {
     b?: Parameters<Handler>[1],
     c?: Parameters<Handler>[2],
   ) {
-    if (!this.subscriptions.size) return
+    if (!this.subscriptions.size)
+      return
     for (const handler of this.subscriptions) handler(a, b, c)
   }
 

@@ -241,7 +241,7 @@ export interface Inertia {
   /**
    * A function that receives the automatically-calculated target and returns a new one. Useful for snapping the target to a grid.
    */
-  modifyTarget?(v: number): number
+  modifyTarget?: (v: number) => number
 
   /**
    * If `min` or `max` is set, this affects the stiffness of the bounce
@@ -413,7 +413,7 @@ export interface MotionTransitions {
   push: (key: string, value: ResolvedValueTarget, target: MotionProperties, transition: Transition, onComplete?: () => void) => void
 
   /**
-   * @internal Local transitions reference
+   * @internal
    */
   motionValues: Ref<MotionValuesMap>
 }

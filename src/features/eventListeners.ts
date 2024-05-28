@@ -14,13 +14,17 @@ export function registerEventListeners<T extends string, V extends MotionVariant
   const mutableKeys = computed(() => {
     let result: string[] = [...Object.keys(state.value || {})]
 
-    if (!_variants) return result
+    if (!_variants)
+      return result
 
-    if (_variants.hovered) result = [...result, ...Object.keys(_variants.hovered)]
+    if (_variants.hovered)
+      result = [...result, ...Object.keys(_variants.hovered)]
 
-    if (_variants.tapped) result = [...result, ...Object.keys(_variants.tapped)]
+    if (_variants.tapped)
+      result = [...result, ...Object.keys(_variants.tapped)]
 
-    if (_variants.focused) result = [...result, ...Object.keys(_variants.focused)]
+    if (_variants.focused)
+      result = [...result, ...Object.keys(_variants.focused)]
 
     return result
   })
@@ -30,14 +34,18 @@ export function registerEventListeners<T extends string, V extends MotionVariant
 
     Object.assign(result, state.value)
 
-    if (hovered.value && _variants.hovered) Object.assign(result, _variants.hovered)
+    if (hovered.value && _variants.hovered)
+      Object.assign(result, _variants.hovered)
 
-    if (tapped.value && _variants.tapped) Object.assign(result, _variants.tapped)
+    if (tapped.value && _variants.tapped)
+      Object.assign(result, _variants.tapped)
 
-    if (focused.value && _variants.focused) Object.assign(result, _variants.focused)
+    if (focused.value && _variants.focused)
+      Object.assign(result, _variants.focused)
 
     for (const key in result) {
-      if (!mutableKeys.value.includes(key)) delete result[key]
+      if (!mutableKeys.value.includes(key))
+        delete result[key]
     }
 
     return result

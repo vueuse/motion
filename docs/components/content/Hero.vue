@@ -82,7 +82,9 @@ useMotion(sources, {
       </div>
 
       <div ref="sources" class="action alt">
-        <NuxtLink to="https://github.com/vueuse/motion">Source</NuxtLink>
+        <NuxtLink to="https://github.com/vueuse/motion">
+          Source
+        </NuxtLink>
       </div>
     </div>
   </header>

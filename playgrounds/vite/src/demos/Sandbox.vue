@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from '@vue/reactivity'
+import { ref } from 'vue'
 import { useMotion } from '@vueuse/motion'
 
 const block = ref()

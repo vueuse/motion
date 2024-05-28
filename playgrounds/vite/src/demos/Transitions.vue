@@ -37,7 +37,9 @@ const motions = useMotions()
     </template>
 
     <div>
-      <button class="rounded-lg bg-indigo-600 px-4 py-2 hover:bg-indigo-400" @click="() => toggleShow()">Toggle</button>
+      <button class="rounded-lg bg-indigo-600 px-4 py-2 hover:bg-indigo-400" @click="() => toggleShow()">
+        Toggle
+      </button>
     </div>
   </DemoBox>
 </template>

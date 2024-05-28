@@ -6,7 +6,8 @@ export function registerVariantsSync<T extends string, V extends MotionVariants<
   watch(
     state,
     (newVal) => {
-      if (newVal) apply(newVal)
+      if (newVal)
+        apply(newVal)
     },
     {
       immediate: true,

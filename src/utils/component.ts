@@ -105,7 +105,8 @@ export function setupMotionComponent(props: LooseRequired<ExtractPropTypes<typeo
     const config = defu({}, propsConfig.value, preset.value, props.variants || {})
 
     for (const transitionKey of ['delay', 'duration'] as const) {
-      if (!props[transitionKey]) continue
+      if (!props[transitionKey])
+        continue
 
       const transitionValueParsed = Number.parseInt(props[transitionKey] as string)
 
@@ -114,7 +115,8 @@ export function setupMotionComponent(props: LooseRequired<ExtractPropTypes<typeo
       for (const variantKey of ['enter', 'visible', 'visibleOnce'] as const) {
         const variantConfig = config[variantKey]
 
-        if (variantConfig == null) continue
+        if (variantConfig == null)
+          continue
 
         variantConfig.transition ??= {}
         // @ts-expect-error `duration` does not exist on `inertia` type transitions
@@ -133,9 +135,12 @@ export function setupMotionComponent(props: LooseRequired<ExtractPropTypes<typeo
       }
 
       nextTick(() => {
-        if (instance.variants?.enter) instance.apply('enter')
-        if (instance.variants?.visible) instance.apply('visible')
-        if (instance.variants?.visibleOnce) instance.apply('visibleOnce')
+        if (instance.variants?.enter)
+          instance.apply('enter')
+        if (instance.variants?.visible)
+          instance.apply('visible')
+        if (instance.variants?.visibleOnce)
+          instance.apply('visibleOnce')
       })
     }
 

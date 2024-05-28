@@ -2,22 +2,23 @@ import type { MotionProperties, ResolvedValueTarget, TransformProperties } from 
 
 /**
  * Return an object from a transform string.
- *
- * @param str
  */
 export function parseTransform(transform: string): Partial<MotionProperties> {
   // Split transform string.
   const transforms = transform.trim().split(/\) |\)/)
 
   // Handle "initial", "inherit", "unset".
-  if (transforms.length === 1) return {}
+  if (transforms.length === 1)
+    return {}
 
   const parseValues = (value: string): string | number => {
     // If value is ending with px or deg, return it as a number
-    if (value.endsWith('px') || value.endsWith('deg')) return Number.parseFloat(value)
+    if (value.endsWith('px') || value.endsWith('deg'))
+      return Number.parseFloat(value)
 
     // Return as number
-    if (Number.isNaN(Number(value))) return Number(value)
+    if (Number.isNaN(Number(value)))
+      return Number(value)
 
     // Parsing impossible, return as string
     return value
@@ -25,7 +26,8 @@ export function parseTransform(transform: string): Partial<MotionProperties> {
 
   // Reduce the result to an object and return it
   return transforms.reduce((acc, transform: string) => {
-    if (!transform) return acc
+    if (!transform)
+      return acc
 
     const [name, transformValue] = transform.split('(')
 
@@ -61,7 +63,7 @@ export function stateFromTransform(state: TransformProperties, transform: string
     if (key === 'translate3d') {
       if (value === 0) {
         // @ts-expect-error - Fix errors later for typescript 5
-        axes.forEach((axis) => (state[axis] = 0))
+        axes.forEach(axis => (state[axis] = 0))
         return
       }
 
@@ -73,7 +75,7 @@ export function stateFromTransform(state: TransformProperties, transform: string
     }
 
     // Get value w/o unit, as unit is applied later on
-    value = Number.parseFloat(value)
+    value = Number.parseFloat(`${value}`)
 
     // Sync translateX on X
     if (key === 'translateX') {

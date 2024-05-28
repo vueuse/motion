@@ -8,7 +8,7 @@ type ValueTypeMap = Record<string, ValueType>
  */
 export const auto: ValueType = {
   test: (v: any) => v === 'auto',
-  parse: (v) => v,
+  parse: v => v,
 }
 
 /**
@@ -130,7 +130,8 @@ export function getValueAsType(value: any, type?: ValueType) {
  */
 export function getAnimatableNone(key: string, value: string): any {
   let defaultValueType = getValueType(key)
-  if (defaultValueType !== filter) defaultValueType = complex
+  if (defaultValueType !== filter)
+    defaultValueType = complex
   // If value is not recognised as animatable, ie "none", create an animatable version origin based on the target
   return defaultValueType.getAnimatableNone ? defaultValueType.getAnimatableNone(value) : undefined
 }

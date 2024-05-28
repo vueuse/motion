@@ -23,12 +23,14 @@ function preRender(codeContent: string) {
 }
 
 async function render() {
-  if (!Prism.languages[props.language]) await import(/* @vite-ignore */ `prismjs/components/prism-${props.language}`)
+  if (!Prism.languages[props.language])
+    await import(/* @vite-ignore */ `prismjs/components/prism-${props.language}`)
 
   await nextTick()
-  if (!code.value) return
+  if (!code.value)
+    return
 
-  const codeContent = props.text || code?.value?.innerText || ''
+  const codeContent = props.text || code?.value?.textContent || ''
 
   code.value.textContent = preRender(codeContent)
   Prism.highlightElement(code.value)

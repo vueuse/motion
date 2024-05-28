@@ -12,7 +12,8 @@ export function resolveElement(target: MaybeRef<PermissiveTarget>): Ref<MotionTa
   watch(
     _targetRef,
     (newVal) => {
-      if (!newVal) return
+      if (!newVal)
+        return
 
       if ((newVal as VueInstance).$el) {
         targetRef.value = (newVal as VueInstance).$el as MotionTarget

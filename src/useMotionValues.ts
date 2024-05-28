@@ -13,7 +13,8 @@ export function useMotionValues() {
   const stop = (keys?: string | string[]) => {
     // Destroy key closure
     const destroyKey = (key: string) => {
-      if (!motionValues.value[key]) return
+      if (!motionValues.value[key])
+        return
 
       motionValues.value[key].stop()
       motionValues.value[key].destroy()
@@ -26,25 +27,28 @@ export function useMotionValues() {
       if (isArray(keys)) {
         // If `keys` are an array, loop on specified keys and destroy them
         keys.forEach(destroyKey)
-      } else {
+      }
+      else {
         // If `keys` is a string, destroy the specified one
         destroyKey(keys)
       }
-    } else {
+    }
+    else {
       // No keys specified, destroy all animations
       Object.keys(motionValues.value).forEach(destroyKey)
     }
   }
 
   const get = (key: string, from: any, target: MotionProperties): MotionValue => {
-    if (motionValues.value[key]) return motionValues.value[key] as MotionValue
+    if (motionValues.value[key])
+      return motionValues.value[key] as MotionValue
 
     // Create motion value
     const motionValue = getMotionValue(from)
 
     // Set motion properties mapping
     // @ts-expect-error - Fix errors later for typescript 5
-    motionValue.onChange((v) => (target[key] = v))
+    motionValue.onChange(v => (target[key] = v))
 
     // Set instance motion value
     motionValues.value[key] = motionValue

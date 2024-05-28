@@ -29,7 +29,7 @@ export function useSpring(values: Partial<PermissiveMotionProperties>, spring?: 
               from: motionValue.get(),
               to: value,
               velocity: motionValue.getVelocity(),
-              onUpdate: (v) => motionValue.set(v),
+              onUpdate: v => motionValue.set(v),
               onComplete,
               ...options,
             })

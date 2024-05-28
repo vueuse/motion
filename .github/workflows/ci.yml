@@ -34,7 +34,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           registry-url: https://registry.npmjs.org/
-          cache: "pnpm"
+          cache: pnpm
 
       - name: Install dependencies
         run: pnpm install

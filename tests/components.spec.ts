@@ -14,7 +14,7 @@ describe.each([
 ])(`$name`, async ({ t }) => {
   const TestComponent = getTestComponent(t)
 
-  it('Lifecycle variants', async () => {
+  it('lifecycle variants', async () => {
     const onComplete = useCompletionFn()
 
     const wrapper = mount(TestComponent, {
@@ -39,7 +39,7 @@ describe.each([
     expect(el.style.transform).toEqual('translateZ(0px)')
   })
 
-  it('Visibility variants', async () => {
+  it('visibility variants', async () => {
     const onComplete = useCompletionFn()
 
     const wrapper = mount(TestComponent, {
@@ -71,7 +71,7 @@ describe.each([
     expect(el.style.transform).toEqual('translate3d(0px,100px,0px)')
   })
 
-  it('Event variants', async () => {
+  it('event variants', async () => {
     const onComplete = useCompletionFn()
 
     const wrapper = mount(TestComponent, {
@@ -124,7 +124,7 @@ describe.each([
     await wrapper.trigger('mouseout')
     // TODO: figure out a better way to test if a variant is not triggered than timeouts
     await nextTick()
-    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await new Promise(resolve => setTimeout(resolve, 1000))
     await waitForMockCalls(onComplete, 0)
 
     // Should return to initial, 'mouseleave' triggers when pointer left element and all descendants

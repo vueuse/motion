@@ -2,9 +2,13 @@
 
 <template>
   <div class="example-wrapper">
-    <div class="example-hint">Scroll down to trigger motion!</div>
+    <div class="example-hint">
+      Scroll down to trigger motion!
+    </div>
     <Motion is="p" preset="slideVisibleLeft">
-      <div class="example-target">Text in Motion!</div>
+      <div class="example-target">
+        Text in Motion!
+      </div>
     </Motion>
   </div>
 </template>

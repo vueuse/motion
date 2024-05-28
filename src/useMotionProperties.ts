@@ -32,7 +32,8 @@ export function useMotionProperties(target: MaybeRef<PermissiveTarget>, defaultV
       Object.entries(newVal).forEach(([key, value]) => {
         const target = isTransformProp(key) ? transform : style
         // @ts-expect-error - Fix errors later for typescript 5
-        if (target[key] && target[key] === value) return
+        if (target[key] && target[key] === value)
+          return
         // @ts-expect-error - Fix errors later for typescript 5
         target[key] = value
       })

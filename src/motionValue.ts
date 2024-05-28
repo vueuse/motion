@@ -48,8 +48,8 @@ export class MotionValue<V = any> {
   private canTrackVelocity = false
 
   /**
-   * @param init - The initiating value
-   * @param config - Optional configuration options
+   * init - The initiating value
+   * config - Optional configuration options
    */
   constructor(init: V) {
     this.prev = this.current = init
@@ -145,9 +145,11 @@ export class MotionValue<V = any> {
    * This ensures velocity calculations return `0`.
    */
   private velocityCheck = ({ timestamp }: FrameData) => {
-    if (!this.canTrackVelocity) this.canTrackVelocity = isFloat(this.current)
+    if (!this.canTrackVelocity)
+      this.canTrackVelocity = isFloat(this.current)
 
-    if (timestamp !== this.lastUpdated) this.prev = this.current
+    if (timestamp !== this.lastUpdated)
+      this.prev = this.current
   }
 
   /**
@@ -168,7 +170,8 @@ export class MotionValue<V = any> {
    * Stop the currently active animation.
    */
   stop() {
-    if (this.stopAnimation) this.stopAnimation()
+    if (this.stopAnimation)
+      this.stopAnimation()
 
     this.clearAnimation()
   }

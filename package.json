@@ -32,11 +32,6 @@
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "files": [
-    "dist",
-    "LICENSE",
-    "README.md"
-  ],
   "typesVersions": {
     "*": {
       "*": [
@@ -45,12 +40,17 @@
       ]
     }
   },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "dist"
+  ],
   "scripts": {
     "build": "unbuild  && node ./scripts/fix-nuxt-build.mjs",
     "dev": "pnpm dev:vite",
     "release": "release-it",
-    "lint": "eslint --ext .js,.vue,.ts,.tsx .",
-    "lint:fix": "eslint --ext .js,.vue,.ts,.tsx . --fix",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test:unit": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test": "pnpm test:unit && pnpm test:coverage",
@@ -89,14 +89,10 @@
     "@antfu/eslint-config": "^2.19.1",
     "@nuxt/kit": "^3.11.2",
     "@nuxt/schema": "^3.11.2",
-    "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@vitest/coverage-v8": "^1.6.0",
     "@vue/test-utils": "^2.4.6",
     "chokidar": "^3.6.0",
     "eslint": "^9.3.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.1.3",
-    "eslint-plugin-prettier-vue": "^5.0.0",
     "happy-dom": "^14.12.0",
     "lint-staged": "^15.2.5",
     "prettier": "^3.2.5",
@@ -106,9 +102,6 @@
     "vitest": "^1.6.0",
     "vue": "^3.4.27",
     "yorkie": "^2.0.0"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
   },
   "pnpm": {
     "peerDependencyRules": {
@@ -128,14 +121,6 @@
         "vite": "^4.0.0"
       }
     }
-  },
-  "lint-staged": {
-    "*.js": [
-      "eslint --fix"
-    ],
-    "*.ts?(x)": [
-      "eslint --fix"
-    ]
   },
   "release-it": {
     "hooks": {
