@@ -124,7 +124,6 @@ export function setupMotionComponent(
 
       const transitionValueParsed = Number.parseInt(values[transitionKey] as string)
 
-      // TODO: extract to utility function
       // Apply transition property to existing variants where applicable
       for (const variantKey of ['enter', 'visible', 'visibleOnce'] as const) {
         const variantConfig = config[variantKey]
@@ -144,25 +143,7 @@ export function setupMotionComponent(
   const motionConfig = computed(() => {
     const config = defu({}, { ...propsConfig.value }, preset.value, props.variants || {})
 
-    // for (const transitionKey of ['delay', 'duration'] as const) {
-    //   if (!props[transitionKey]) continue
-
-    //   const transitionValueParsed = Number.parseInt(props[transitionKey] as string)
-
-    //   // TODO: extract to utility function
-    //   // Apply transition property to existing variants where applicable
-    //   for (const variantKey of ['enter', 'visible', 'visibleOnce'] as const) {
-    //     const variantConfig = config[variantKey]
-
-    //     if (variantConfig == null) continue
-
-    //     variantConfig.transition ??= {}
-    //     // @ts-expect-error `duration` does not exist on `inertia` type transitions
-    //     variantConfig.transition[transitionKey] = transitionValueParsed
-    //   }
-    // }
-
-    return applyTransitionHelpers(structuredClone({ ...config }), props)
+    return applyTransitionHelpers({ ...config }, props)
   })
 
   // Replay animations on component update Vue
