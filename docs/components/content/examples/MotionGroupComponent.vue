@@ -3,7 +3,7 @@
 <template>
   <div class="example-wrapper">
     <div class="example-hint">Scroll down to trigger motion!</div>
-    <MotionGroup preset="slideVisibleLeft" :config-fn="(index) => ({ delay: (index + 1) * 200 })">
+    <MotionGroup preset="slideVisibleLeft" :config-fn="(index) => ({ delay: index * 200 })">
       <section>
         <h3>Product 1</h3>
         <p>Description text</p>
