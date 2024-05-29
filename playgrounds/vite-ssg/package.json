@@ -7,14 +7,14 @@
     "preview:ssg": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.3.4",
+    "vue": "^3.4.27",
     "@vueuse/motion": "workspace:~",
-    "vue-router": "^4.2.1",
-    "@vueuse/head": "^1.1.26"
+    "vue-router": "^4.3.2",
+    "@vueuse/head": "^2.0.0"
   },
   "devDependencies": {
-    "vite": "4.3.8",
-    "@vitejs/plugin-vue": "^4.2.3",
+    "vite": "5.2.12",
+    "@vitejs/plugin-vue": "^5.0.4",
     "vite-ssg": "latest"
   }
 }
