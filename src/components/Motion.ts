@@ -6,6 +6,7 @@ import { variantToStyle } from '../utils/transform'
 import { MotionComponentProps, setupMotionComponent } from '../utils/component'
 
 export default defineComponent({
+  name: 'Motion',
   props: {
     ...MotionComponentProps,
     is: {
