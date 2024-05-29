@@ -120,9 +120,16 @@ describe.each([
 
     expect(el.style.transform).toEqual('scale(1.2) translateZ(0px)')
 
-    // Should return to initial
+    // Should do nothing on 'mouseout'
+    await wrapper.trigger('mouseout')
+    // TODO: figure out a better way to test if a variant is not triggered than timeouts
+    await nextTick()
+    await new Promise((resolve) => setTimeout(resolve, 1000))
+    await waitForMockCalls(onComplete, 0)
+
+    // Should return to initial, 'mouseleave' triggers when pointer left element and all descendants
     await wrapper.trigger('mouseleave')
-    await waitForMockCalls(onComplete)
+    await waitForMockCalls(onComplete, 1)
 
     expect(el.style.transform).toEqual('scale(1) translateZ(0px)')
   })
