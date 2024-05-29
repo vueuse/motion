@@ -50,10 +50,6 @@ export function registerEventListeners<T extends string, V extends MotionVariant
       hovered.value = false
       tapped.value = false
     })
-    useEventListener(target as any, 'mouseout', () => {
-      hovered.value = false
-      tapped.value = false
-    })
   }
 
   // Tapped
