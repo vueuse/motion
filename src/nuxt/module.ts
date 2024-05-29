@@ -1,5 +1,5 @@
 import { defu } from 'defu'
-import { addImportsDir, addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
+import { addComponent, addImportsDir, addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
 import type { NuxtModule } from '@nuxt/schema'
 import type { ModuleOptions as MotionModuleOpts } from '../types'
 
@@ -19,6 +19,18 @@ export default defineNuxtModule<ModuleOptions>({
 
     // Add templates (options and directives)
     addPlugin(resolve('./runtime/templates/motion'))
+
+    addComponent({
+      name: 'Motion',
+      export: 'MotionComponent',
+      filePath: resolve('./runtime/components'),
+    })
+
+    addComponent({
+      name: 'MotionGroup',
+      export: 'MotionGroupComponent',
+      filePath: resolve('./runtime/components'),
+    })
 
     // Add auto imports
     addImportsDir(resolve('./runtime/composables'))

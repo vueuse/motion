@@ -3,15 +3,17 @@ import type { Component } from '@nuxt/schema'
 
 import { defineComponent, h, useSlots } from 'vue'
 import { variantToStyle } from '../utils/transform'
-import { MotionComponentProps, setupMotionComponent } from '../utils/component'
+import { MotionComponentProps, MotionGroupComponentProps, setupMotionComponent } from '../utils/component'
 
 export default defineComponent({
+  name: 'MotionGroup',
   props: {
     ...MotionComponentProps,
     is: {
       type: [String, Object] as PropType<string | Component>,
       required: false,
     },
+    ...MotionGroupComponentProps,
   },
   setup(props) {
     const slots = useSlots()

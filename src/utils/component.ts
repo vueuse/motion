@@ -79,9 +79,27 @@ export const MotionComponentProps = {
 }
 
 /**
+ * Partial `<MotionGroup>` config props
+ */
+export type MotionComponentConfig = Partial<LooseRequired<ExtractPropTypes<typeof MotionComponentProps>>>
+
+/**
+ * Component props specific to <MotionGroup>
+ */
+export const MotionGroupComponentProps = {
+  configFn: {
+    type: Function as PropType<(index: number) => MotionComponentConfig>,
+    required: false,
+  },
+}
+
+/**
  * Shared logic for <Motion> and <MotionGroup>
  */
-export function setupMotionComponent(props: LooseRequired<ExtractPropTypes<typeof MotionComponentProps>>) {
+export function setupMotionComponent(
+  // prettier-ignore
+  props: LooseRequired<ExtractPropTypes<typeof MotionComponentProps & typeof MotionGroupComponentProps>>,
+) {
   // Motion instance map
   const instances = reactive<{ [key: number]: MotionInstance<string, MotionVariants<string>> }>({})
 
@@ -100,16 +118,12 @@ export function setupMotionComponent(props: LooseRequired<ExtractPropTypes<typeo
     focused: props.focused,
   }))
 
-  // Merged motion configuration using `props.preset`, inline prop variants (`:initial` ...), and `props.variants`
-  const motionConfig = computed(() => {
-    const config = defu({}, propsConfig.value, preset.value, props.variants || {})
-
+  function applyTransitionHelpers(config: typeof propsConfig.value, values: Partial<Pick<typeof props, 'delay' | 'duration'>>) {
     for (const transitionKey of ['delay', 'duration'] as const) {
-      if (!props[transitionKey]) continue
+      if (!values[transitionKey]) continue
 
-      const transitionValueParsed = Number.parseInt(props[transitionKey] as string)
+      const transitionValueParsed = Number.parseInt(values[transitionKey] as string)
 
-      // TODO: extract to utility function
       // Apply transition property to existing variants where applicable
       for (const variantKey of ['enter', 'visible', 'visibleOnce'] as const) {
         const variantConfig = config[variantKey]
@@ -123,6 +137,13 @@ export function setupMotionComponent(props: LooseRequired<ExtractPropTypes<typeo
     }
 
     return config
+  }
+
+  // Merged motion configuration using `props.preset`, inline prop variants (`:initial` ...), and `props.variants`
+  const motionConfig = computed(() => {
+    const config = defu({}, { ...propsConfig.value }, preset.value, props.variants || {})
+
+    return applyTransitionHelpers({ ...config }, props)
   })
 
   // Replay animations on component update Vue
@@ -156,7 +177,13 @@ export function setupMotionComponent(props: LooseRequired<ExtractPropTypes<typeo
 
     // Track motion instance locally using `instances`
     node.props.onVnodeMounted = ({ el }) => {
-      instances[index] = useMotion<string, MotionVariants<string>>(el as any, motionConfig.value)
+      if (props.configFn) {
+        const derivedConfig = defu({}, structuredClone({ ...motionConfig.value }), props.configFn?.(index) ?? {})
+        applyTransitionHelpers(derivedConfig, props.configFn(index))
+        instances[index] = useMotion<string, MotionVariants<string>>(el as any, derivedConfig)
+      } else {
+        instances[index] = useMotion<string, MotionVariants<string>>(el as any, motionConfig.value)
+      }
     }
 
     return node
