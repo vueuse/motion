@@ -37,7 +37,7 @@ export function reactiveTransform(props: TransformProperties = {}, enableHardwar
         const str = [newVal.x || 0, newVal.y || 0, newVal.z || 0]
           .map((val) => {
             // Convert plain numbers to `px`
-            if(typeof val === 'number') {
+            if (typeof val === 'number') {
               return px.transform!(val)
             }
 
