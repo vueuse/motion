@@ -113,7 +113,7 @@ export const valueTypes: ValueTypeMap = {
 export const getValueType = (key: string) => valueTypes[key]
 
 /**
- * Transform the value using its value type, or return the value.
+ * Transform the value using its value type if value is a `number`, otherwise return the value.
  *
  * @param value
  * @param type
