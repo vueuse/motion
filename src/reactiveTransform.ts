@@ -34,7 +34,9 @@ export function reactiveTransform(props: TransformProperties = {}, enableHardwar
       // Use translate3d by default has a better GPU optimization
       // And corrects scaling discrete behaviors
       if (enableHardwareAcceleration && (newVal.x || newVal.y || newVal.z)) {
-        const str = [newVal.x || 0, newVal.y || 0, newVal.z || 0].map(px.transform as any).join(',')
+        const str = [newVal.x || 0, newVal.y || 0, newVal.z || 0]
+          .map(val => getValueAsType(val, px))
+          .join(',')
 
         result += `translate3d(${str}) `
 

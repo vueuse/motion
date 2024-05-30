@@ -51,4 +51,15 @@ describe('reactiveTransform', () => {
 
     expect(transform.value).toBe('rotateX(90deg) translateZ(0px)')
   })
+
+  it('accepts relative units when hardware acceleration is enabled', () => {
+    const { transform } = reactiveTransform(
+      {
+        y: '100%',
+      },
+      true,
+    )
+
+    expect(transform.value).toBe('translate3d(0px,100%,0px)')
+  })
 })
