@@ -14,6 +14,9 @@ export * from './presets'
 // Typings
 export * from './types'
 
+// Components
+export * from './components'
+
 // Composables
 export { reactiveStyle } from './reactiveStyle'
 export { reactiveTransform } from './reactiveTransform'
