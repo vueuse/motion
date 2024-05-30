@@ -34,7 +34,17 @@ export function reactiveTransform(props: TransformProperties = {}, enableHardwar
       // Use translate3d by default has a better GPU optimization
       // And corrects scaling discrete behaviors
       if (enableHardwareAcceleration && (newVal.x || newVal.y || newVal.z)) {
-        const str = [newVal.x || 0, newVal.y || 0, newVal.z || 0].map(px.transform as any).join(',')
+        const str = [newVal.x || 0, newVal.y || 0, newVal.z || 0]
+          .map((val) => {
+            // Convert plain numbers to `px`
+            if(typeof val === 'number') {
+              return px.transform!(val)
+            }
+
+            // Use non-number values as is (allows `%`, `em`, ...)
+            return val
+          })
+          .join(',')
 
         result += `translate3d(${str}) `
 
