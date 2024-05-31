@@ -10,7 +10,14 @@
     "@vueuse/motion": "workspace:~"
   },
   "devDependencies": {
-    "@nuxt-themes/docus": "^1.15.0",
-    "nuxt": "^3.11.2"
+    "@iconify-json/heroicons": "^1.1.21",
+    "@iconify-json/simple-icons": "^1.1.103",
+    "@nuxt/content": "^2.12.1",
+    "@nuxt/ui-pro": "^1.2.0",
+    "@nuxtjs/fontaine": "^0.4.2",
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "@nuxtjs/mdc": "^0.7.1",
+    "nuxt": "^3.11.2",
+    "nuxt-og-image": "3.0.0-rc.53"
   }
 }
