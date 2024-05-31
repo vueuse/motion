@@ -1,24 +1,37 @@
 export default defineAppConfig({
-  docus: {
-    title: '@vueuse/motion',
-    description: '🤹 Vue Composables putting your components in motion',
-    image: 'https://motion.vueuse.org/banner.png',
-    socials: {
-      twitter: 'yaeeelglx',
-      github: 'vueuse/motion',
-    },
-    aside: {
-      level: 1,
-    },
-    header: {
-      title: '@vueuse/motion',
-    },
-    footer: {
-      credits: {
-        icon: 'IconDocus',
-        text: 'Powered by Docus',
-        href: 'https://docus.dev',
+  ui: {
+    primary: 'cyan',
+    gray: 'neutral',
+  },
+  header: {
+    search: true,
+    colorMode: true,
+    links: [
+      {
+        'icon': 'i-simple-icons-github',
+        'to': 'https://github.com/vueuse/motion',
+        'target': '_blank',
+        'aria-label': 'VueUse Motion',
       },
+    ],
+  },
+  seo: { siteName: '@vueuse/motion' },
+  footer: {
+    credits: `Copyright © ${new Date().getFullYear()}`,
+    colorMode: false,
+    links: [
+      {
+        'icon': 'i-simple-icons-github',
+        'to': 'https://github.com/vueuse/motion',
+        'target': '_blank',
+        'aria-label': 'VueUse Motion',
+      },
+    ],
+  },
+  toc: {
+    title: 'Table of Contents',
+    bottom: {
+      edit: 'https://github.com/vueuse/motion/docs/edit/main/content',
     },
   },
 })
