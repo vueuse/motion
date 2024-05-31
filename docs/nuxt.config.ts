@@ -8,17 +8,37 @@ export default defineNuxtConfig({
   typescript: {
     includeWorkspace: true,
   },
+  routeRules: { '/api/search.json': { prerender: true } },
+  vite: {
+    $client: {
+      build: {
+        rollupOptions: {
+          output: {
+            chunkFileNames: '_nuxt/[name]-[hash].js',
+            entryFileNames: '_nuxt/[name]-[hash].js',
+          },
+        },
+      },
+    },
+  },
 
   alias: {
     '@vueuse/motion': resolve(__dirname, '../src/index.ts'),
     '@vueuse/motion/nuxt': resolve(__dirname, '../src/nuxt/module.ts'),
   },
-  modules: ['@vueuse/motion/nuxt', '@nuxt/content', '@nuxt/ui', '@nuxtjs/google-fonts', 'nuxt-og-image'],
+  modules: [
+    '@vueuse/motion/nuxt',
+    '@nuxt/content',
+    '@nuxt/ui',
+    '@nuxtjs/google-fonts',
+    'nuxt-og-image',
+    '@nuxt/image',
+  ],
 
   uiPro: { license: 'oss' }, // special license for nuxt & nuxt-modules orgs
 
   // Nuxt Content
-  content: { },
+  content: {},
 
   // Fonts
   googleFonts: {

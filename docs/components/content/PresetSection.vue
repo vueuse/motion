@@ -52,15 +52,16 @@ async function replay() {
   isReplaying.value = false
 }
 
-const { data } = await useAsyncData(`preset-${props.name}`, () => parseMarkdown(
-  [
-    '```vue',
-    '<template>',
-    `  <div v-motion-${slugify(props.name)} />`,
-    '</template>',
-    '```',
-  ].join('\n'),
-))
+const { data } = await useAsyncData(`preset-${props.name}`, () =>
+  parseMarkdown(
+    [
+      `::code-group`,
+      `\`\`\`vue [v-motion]\n<template>\n  <div v-motion-${slugify(props.name)} />\n</template>\n\`\`\``,
+      `\`\`\`vue [<Motion />]\n<template>\n  <Motion preset="${props.name}" />\n</template>\n\`\`\``,
+      `\`\`\`json [Preset]\n${JSON.stringify(props.preset, null, 2)}\n\`\`\``,
+      `::`,
+    ].join('\n'),
+  ))
 </script>
 
 <template>
@@ -70,9 +71,7 @@ const { data } = await useAsyncData(`preset-${props.name}`, () => parseMarkdown(
     </ProseH3>
 
     <div class="content">
-      <!-- <div class="demoCode"> -->
-      <ContentRendererMarkdown class="demoCode" :value="data" />
-      <!-- </div> -->
+      <ContentRendererMarkdown class="demoCode" :value="data ?? {}" />
 
       <div class="demoContainer relative">
         <client-only>
@@ -110,7 +109,7 @@ const { data } = await useAsyncData(`preset-${props.name}`, () => parseMarkdown(
 }
 
 .demoContainer {
-  @apply bg-blue-50/25 dark:bg-blue-900/25;
+  border: 1px solid #282828;
   width: 50%;
   flex: 1;
   display: flex;
