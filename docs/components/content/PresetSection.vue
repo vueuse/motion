@@ -18,7 +18,7 @@ const isReplaying = ref(false)
 const replayButton = ref<SVGElement>()
 const demoElement = ref<HTMLElement>()
 
-const { apply } = useMotion(demoElement, props.preset)
+const { apply, set } = useMotion(demoElement, props.preset)
 
 const replayInstance = useMotion(replayButton, {
   initial: {
@@ -27,16 +27,16 @@ const replayInstance = useMotion(replayButton, {
 })
 
 async function replay() {
-  if (isReplaying.value)
-    return
-
   isReplaying.value = true
 
+  replayInstance.set({
+    rotate: 0,
+  })
   replayInstance.apply({
-    rotate: -360,
+    rotate: -180,
   })
 
-  await apply(props.preset.initial)
+  await set(props.preset.initial)
 
   if (props.preset.visible)
     await apply(props.preset.visible)
@@ -47,8 +47,6 @@ async function replay() {
   if (props.preset.enter)
     await apply(props.preset.enter)
 
-  replayInstance.set({ rotate: 0 })
-
   isReplaying.value = false
 }
 
@@ -56,9 +54,25 @@ const { data } = await useAsyncData(`preset-${props.name}`, () =>
   parseMarkdown(
     [
       `::code-group`,
-      `\`\`\`vue [v-motion]\n<template>\n  <div v-motion-${slugify(props.name)} />\n</template>\n\`\`\``,
-      `\`\`\`vue [<Motion />]\n<template>\n  <Motion preset="${props.name}" />\n</template>\n\`\`\``,
-      `\`\`\`json [Preset]\n${JSON.stringify(props.preset, null, 2)}\n\`\`\``,
+      ...[
+        '```vue [v-motion]',
+        '<template>',
+        `  <div v-motion-${slugify(props.name)} />`,
+        '</template>',
+        '```',
+      ],
+      ...[
+        '```vue [<Motion />]',
+        '<template>',
+        `  <Motion preset="${props.name}" />`,
+        '</template>',
+        '```',
+      ],
+      ...[
+        '```json [Preset]',
+        `${JSON.stringify(props.preset, null, 2)}`,
+        '```',
+      ],
       `::`,
     ].join('\n'),
   ))
@@ -76,12 +90,12 @@ const { data } = await useAsyncData(`preset-${props.name}`, () =>
       <div class="demoContainer relative">
         <client-only>
           <button class="absolute right-4 top-4" @click="replay">
-            <div ref="replayButton">
+            <div ref="replayButton" class="replayButton">
               <Icon name="heroicons-outline:refresh" class="h-6 w-6" />
             </div>
           </button>
           <div ref="demoElement" class="demoElement" @click="replay">
-            <Face />
+            <Face v-once />
           </div>
         </client-only>
       </div>
@@ -118,6 +132,12 @@ const { data } = await useAsyncData(`preset-${props.name}`, () =>
   min-height: 12rem;
   overflow: hidden;
   border-radius: 16px;
+}
+
+.replayButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .demoElement {
