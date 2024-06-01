@@ -1,9 +1,16 @@
 import { NodeTypes, createSimpleExpression } from '@vue/compiler-core'
 import { stringifyStyle } from '@vue/shared'
-
 import type { DirectiveTransform } from '@vue/compiler-core'
 import { variantToStyle } from '../utils/transform'
 
+/**
+ * Transforms elements that use the `v-motion` directive for SSR support.
+ *
+ * If an elements has `v-motion` as well as an `:initial` bind, this transformation
+ * extracts and parses the variant passed to `:initial` and binds its resulting style.
+ *
+ * This is necessary as a directive does not have access to the node during SSR.
+ */
 const motionDirectiveTransform: DirectiveTransform = function (
   dir,
   node,
