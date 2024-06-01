@@ -48,11 +48,7 @@ const links: PageLink[] = [
     <TheFooter />
 
     <ClientOnly>
-      <LazyUContentSearch
-        :files="files"
-        :navigation="navigation"
-        :links="links"
-      />
+      <LazyUContentSearch :files="files" :navigation="navigation ?? undefined" :links="links" />
     </ClientOnly>
 
     <UNotifications />
