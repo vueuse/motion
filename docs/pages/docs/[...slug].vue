@@ -20,7 +20,7 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () =>
 // Page Metadata (SEO & OG)
 const { setPageMeta } = usePageMeta()
 setPageMeta({
-  title: page.value.title,
+  title: page.value.title ?? '',
   description: page.value.description,
   headline: headline.value,
 })

@@ -1,21 +1,22 @@
-import { resolve } from 'node:path'
+import { resolve } from "node:path";
 
 export default defineNuxtConfig({
-  extends: ['@nuxt/ui-pro'],
+  extends: ["@nuxt/ui-pro"],
   features: {
     devLogs: false,
   },
   typescript: {
     includeWorkspace: true,
   },
-  routeRules: { '/api/search.json': { prerender: true } },
+  devtools: { enabled: false },
+  routeRules: { "/api/search.json": { prerender: true } },
   vite: {
     $client: {
       build: {
         rollupOptions: {
           output: {
-            chunkFileNames: '_nuxt/[name]-[hash].js',
-            entryFileNames: '_nuxt/[name]-[hash].js',
+            chunkFileNames: "_nuxt/[name]-[hash].js",
+            entryFileNames: "_nuxt/[name]-[hash].js",
           },
         },
       },
@@ -23,27 +24,31 @@ export default defineNuxtConfig({
   },
 
   alias: {
-    '@vueuse/motion': resolve(__dirname, '../src/index.ts'),
-    '@vueuse/motion/nuxt': resolve(__dirname, '../src/nuxt/module.ts'),
+    "@vueuse/motion": resolve(__dirname, "../src/index.ts"),
+    "@vueuse/motion/nuxt": resolve(__dirname, "../src/nuxt/module.ts"),
   },
   modules: [
-    '@vueuse/motion/nuxt',
-    '@nuxt/content',
-    '@nuxt/ui',
-    '@nuxtjs/google-fonts',
-    'nuxt-og-image',
-    '@nuxt/image',
+    "@vueuse/motion/nuxt",
+    "@nuxt/content",
+    "@nuxt/ui",
+    "@nuxtjs/google-fonts",
+    "nuxt-og-image",
+    "@nuxt/image",
   ],
 
-  uiPro: { license: 'oss' }, // special license for nuxt & nuxt-modules orgs
+  ui: {
+    icons: ["simple-icons"],
+  },
+
+  uiPro: { license: "oss" }, // special license for nuxt & nuxt-modules orgs
 
   // Nuxt Content
   content: {},
 
   // Fonts
   googleFonts: {
-    display: 'swap',
+    display: "swap",
     download: true,
-    families: { 'DM+Sans': [400, 500, 600, 700] },
+    families: { "DM+Sans": [400, 500, 600, 700] },
   },
-})
+});
