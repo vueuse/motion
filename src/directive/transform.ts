@@ -11,7 +11,7 @@ import { variantToStyle } from '../utils/transform'
  *
  * This is necessary as a directive does not have access to the node during SSR.
  */
-const motionDirectiveTransform: DirectiveTransform = function (
+export const directiveTransform: DirectiveTransform = function (
   dir,
   node,
   _context,
@@ -67,5 +67,3 @@ const motionDirectiveTransform: DirectiveTransform = function (
 
   return { props: [], needRuntime: true }
 }
-
-export default motionDirectiveTransform

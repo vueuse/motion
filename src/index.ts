@@ -1,5 +1,6 @@
 // Directive
 export { directive as MotionDirective } from './directive'
+export { directiveTransform as MotionDirectiveTransform } from './directive/transform'
 
 // Plugin
 export { MotionPlugin } from './plugin'

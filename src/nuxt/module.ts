@@ -7,7 +7,7 @@ import {
   defineNuxtModule,
 } from '@nuxt/kit'
 import type { NuxtModule } from '@nuxt/schema'
-import motionDirectiveTransform from '../directive/transform'
+import { MotionDirectiveTransform } from '@vueuse/motion'
 
 import type { ModuleOptions as MotionModuleOpts } from '../types'
 
@@ -49,7 +49,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     nuxt.options.vue.compilerOptions.directiveTransforms ??= {}
     nuxt.options.vue.compilerOptions.directiveTransforms.motion
-      = motionDirectiveTransform
+      = MotionDirectiveTransform
 
     // Transpile necessary packages
     const transpileList = [
