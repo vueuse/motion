@@ -18,7 +18,10 @@ const isReplaying = ref(false)
 const replayButton = ref<SVGElement>()
 const demoElement = ref<HTMLElement>()
 
-const { apply, set } = useMotion(demoElement, props.preset)
+const { apply, set } = useMotion(demoElement, {
+  ...props.preset,
+  duration: 2000,
+})
 
 const replayInstance = useMotion(replayButton, {
   initial: {
@@ -38,14 +41,11 @@ async function replay() {
 
   await set(props.preset.initial)
 
-  if (props.preset.visible)
-    await apply(props.preset.visible)
+  if (props.preset.visible) await apply(props.preset.visible)
 
-  if (props.preset.visibleOnce)
-    await apply(props.preset.visibleOnce)
+  if (props.preset.visibleOnce) await apply(props.preset.visibleOnce)
 
-  if (props.preset.enter)
-    await apply(props.preset.enter)
+  if (props.preset.enter) await apply(props.preset.enter)
 
   isReplaying.value = false
 }
@@ -75,11 +75,16 @@ const { data } = await useAsyncData(`preset-${props.name}`, () =>
       ],
       `::`,
     ].join('\n'),
-  ))
+  ),
+)
 </script>
 
 <template>
-  <div class="presetSection">
+  <Motion
+    class="presetSection"
+    :initial="{ y: 100, opacity: 0 }"
+    :visible-once="{ y: 0, opacity: 1 }"
+  >
     <ProseH3 :id="name" class="capitalize">
       {{ name.replace(/[A-Z]/g, (s: any) => ` ${s}`) }}
     </ProseH3>
@@ -100,7 +105,7 @@ const { data } = await useAsyncData(`preset-${props.name}`, () =>
         </client-only>
       </div>
     </div>
-  </div>
+  </Motion>
 </template>
 
 <style scoped>
