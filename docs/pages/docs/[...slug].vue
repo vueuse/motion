@@ -5,9 +5,15 @@ definePageMeta({ layout: 'docs' })
 const route = useRoute()
 
 // Main page data
-const { data: page } = await useAsyncData(route.path, () => queryContent(route.path).findOne())
+const { data: page } = await useAsyncData(route.path, () =>
+  queryContent(route.path).findOne(),
+)
 if (!page.value)
-  throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
+  throw createError({
+    statusCode: 404,
+    statusMessage: 'Page not found',
+    fatal: true,
+  })
 const headline = computed(() => findPageHeadline(page.value))
 
 // Surrounding pages (Next & Prev)
@@ -15,7 +21,8 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () =>
   queryContent()
     .where({ _extension: 'md', navigation: { $ne: false } })
     .only(['title', 'description', '_path'])
-    .findSurround(withoutTrailingSlash(route.path)))
+    .findSurround(withoutTrailingSlash(route.path)),
+)
 
 // Page Metadata (SEO & OG)
 const { setPageMeta } = usePageMeta()
@@ -37,16 +44,26 @@ const links = computed(() =>
     },
   ].filter(Boolean),
 )
+
+const UPageHeaderComponent = resolveComponent('UPageHeader')
 </script>
 
 <template>
   <UPage>
-    <UPageHeader :title="page.title" :description="page.description" :links="page.links" :headline="headline" />
+    <Motion
+      :is="UPageHeaderComponent"
+      :initial="{ y: 100, opacity: 0 }"
+      :visible-once="{ y: 0, opacity: 1 }"
+      :title="page.title"
+      :description="page.description"
+      :links="page.links"
+      :headline="headline"
+    />
 
     <UPageBody prose>
       <ContentRenderer v-if="page.body" :value="page" />
 
-      <hr v-if="surround?.length">
+      <hr v-if="surround?.length" />
 
       <UContentSurround :surround="surround" />
     </UPageBody>
@@ -54,7 +71,10 @@ const links = computed(() =>
     <template v-if="page.toc !== false" #right>
       <UContentToc :title="toc?.title" :links="page.body?.toc?.links">
         <template v-if="toc?.bottom" #bottom>
-          <div class="hidden lg:block space-y-6" :class="{ '!mt-6': page.body?.toc?.links?.length }">
+          <div
+            class="hidden lg:block space-y-6"
+            :class="{ '!mt-6': page.body?.toc?.links?.length }"
+          >
             <UDivider v-if="page.body?.toc?.links?.length" type="dashed" />
             <UPageLinks :links="links" />
           </div>
