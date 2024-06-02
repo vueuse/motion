@@ -7,9 +7,75 @@ import {
   defineNuxtModule,
 } from '@nuxt/kit'
 import type { NuxtModule } from '@nuxt/schema'
-import { MotionDirectiveTransform } from '@vueuse/motion'
+import {
+  MotionDirectiveTransform,
+  // fade,
+  // fadeVisible,
+  // fadeVisibleOnce,
+  // pop,
+  // popVisible,
+  // popVisibleOnce,
+  // rollBottom,
+  // rollLeft,
+  // rollRight,
+  // rollTop,
+  // rollVisibleBottom,
+  // rollVisibleLeft,
+  // rollVisibleOnceBottom,
+  // rollVisibleOnceLeft,
+  // rollVisibleOnceRight,
+  // rollVisibleOnceTop,
+  // rollVisibleRight,
+  // rollVisibleTop,
+  // slideBottom,
+  // slideLeft,
+  // slideRight,
+  // slideTop,
+  // slideVisibleBottom,
+  // slideVisibleLeft,
+  // slideVisibleOnceBottom,
+  // slideVisibleOnceLeft,
+  // slideVisibleOnceRight,
+  // slideVisibleOnceTop,
+  // slideVisibleRight,
+  // slideVisibleTop,
+  // slugify,
+} from '@vueuse/motion'
 
 import type { ModuleOptions as MotionModuleOpts } from '../types'
+
+// const presets = [
+//   fade,
+//   fadeVisible,
+//   fadeVisibleOnce,
+//   pop,
+//   popVisible,
+//   popVisibleOnce,
+//   rollBottom,
+//   rollLeft,
+//   rollRight,
+//   rollTop,
+//   rollVisibleBottom,
+//   rollVisibleLeft,
+//   rollVisibleRight,
+//   rollVisibleTop,
+//   rollVisibleOnceBottom,
+//   rollVisibleOnceLeft,
+//   rollVisibleOnceRight,
+//   rollVisibleOnceTop,
+//   slideBottom,
+//   slideLeft,
+//   slideRight,
+//   slideTop,
+//   slideVisibleBottom,
+//   slideVisibleLeft,
+//   slideVisibleRight,
+//   slideVisibleTop,
+//   slideVisibleOnceBottom,
+//   slideVisibleOnceLeft,
+//   slideVisibleOnceRight,
+//   slideVisibleOnceTop,
+// ]
 
 export interface ModuleOptions extends MotionModuleOpts<string> {}
 
@@ -50,6 +116,38 @@ export default defineNuxtModule<ModuleOptions>({
     nuxt.options.vue.compilerOptions.directiveTransforms ??= {}
     nuxt.options.vue.compilerOptions.directiveTransforms.motion
       = MotionDirectiveTransform
+
+    // Register presets
+    // if (!options || (options && !options.excludePresets)) {
+    //   for (const key in presets) {
+    //     // Get preset variants
+    //     const preset = presets[key]
+
+    //     // Register the preset `v-motion-${key}` directive
+    //     nuxt.options.vue.compilerOptions.directiveTransforms[
+    //       `motion-${slugify(key)}`
+    //     ] = MotionDirectiveTransform
+    //   }
+    // }
+
+    // // Register plugin-wise directives
+    // if (options && options.directives) {
+    //   // Loop on options, create a custom directive for each definition
+    //   for (const key in options.directives) {
+    //     // Get directive variants
+    //     const variants = options.directives[key] as MotionVariants<any>
+
+    //     // Development warning, showing definitions missing `initial` key
+    //     if (!variants.initial && __DEV__) {
+    //       console.warn(
+    //         `Your directive v-motion-${key} is missing initial variant!`,
+    //       )
+    //     }
+
+    //     // Register the custom `v-motion-${key}` directive
+    //     app.directive(`motion-${key}`, directive(variants, true))
+    //   }
+    // }
 
     // Transpile necessary packages
     const transpileList = [

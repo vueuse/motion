@@ -5,11 +5,15 @@ import * as presets from '../presets'
 import { directive } from '../directive'
 import { slugify } from '../utils/slugify'
 import { MotionComponent, MotionGroupComponent } from '../components'
+import { variantToStyle } from '../utils/transform'
 
 export const MotionPlugin: Plugin = {
   install(app, options: MotionPluginOptions<string>) {
     // Register default `v-motion` directive
     app.directive('motion', directive())
+
+    // app.provide('__motionVariantToStyle', variantToStyle)
+    app.config.globalProperties.__motionVariantToStyle = variantToStyle
 
     // Register <Motion> component
     app.component('Motion', MotionComponent)
@@ -38,7 +42,9 @@ export const MotionPlugin: Plugin = {
 
         // Development warning, showing definitions missing `initial` key
         if (!variants.initial && __DEV__) {
-          console.warn(`Your directive v-motion-${key} is missing initial variant!`)
+          console.warn(
+            `Your directive v-motion-${key} is missing initial variant!`,
+          )
         }
 
         // Register the custom `v-motion-${key}` directive
