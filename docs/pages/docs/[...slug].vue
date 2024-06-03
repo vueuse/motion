@@ -52,8 +52,8 @@ const UPageHeaderComponent = resolveComponent('UPageHeader')
   <UPage>
     <Motion
       :is="UPageHeaderComponent"
-      :initial="{ y: 100, opacity: 0 }"
-      :visible-once="{ y: 0, opacity: 1 }"
+      :initial="{ y: 100, opacity: 0, transition: { mass: .25, damping: 10 } }"
+    :visible-once="{ y: 0, opacity: 1, transition: { mass: .25, damping: 10 } }"
       :title="page.title"
       :description="page.description"
       :links="page.links"
