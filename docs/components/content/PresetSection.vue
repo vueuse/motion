@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import type { PropType } from 'vue'
 import { useMotion } from '@vueuse/motion'
+import defu from 'defu'
 import { slugify } from '../../../src/utils/slugify'
 import Face from './Face.vue'
 
@@ -18,9 +19,38 @@ const isReplaying = ref(false)
 const replayButton = ref<SVGElement>()
 const demoElement = ref<HTMLElement>()
 
+const tweaks: Record<'delay' | 'duration', number> = {
+  duration: 600,
+  delay: 0,
+}
+
+const configWithDuration = computed(() => {
+  const config = defu({}, structuredClone(props.preset || {}))
+
+  for (const transitionKey of ['delay', 'duration'] as const) {
+    if (!tweaks[transitionKey])
+      continue
+
+    const transitionValueParsed = tweaks[transitionKey]
+
+    // TODO: extract to utility function
+    // Apply transition property to existing variants where applicable
+    for (const variantKey of ['enter', 'visible', 'visibleOnce'] as const) {
+      const variantConfig = config[variantKey]
+
+      if (variantConfig == null)
+        continue
+
+      variantConfig.transition ??= {}
+      variantConfig.transition[transitionKey] = transitionValueParsed
+    }
+  }
+
+  return config
+})
+
 const { apply, set } = useMotion(demoElement, {
-  ...props.preset,
-  duration: 2000,
+  ...configWithDuration.value,
 })
 
 const replayInstance = useMotion(replayButton, {
@@ -41,11 +71,14 @@ async function replay() {
 
   await set(props.preset.initial)
 
-  if (props.preset.visible) await apply(props.preset.visible)
+  if (props.preset.visible)
+    await apply(props.preset.visible)
 
-  if (props.preset.visibleOnce) await apply(props.preset.visibleOnce)
+  if (props.preset.visibleOnce)
+    await apply(props.preset.visibleOnce)
 
-  if (props.preset.enter) await apply(props.preset.enter)
+  if (props.preset.enter)
+    await apply(props.preset.enter)
 
   isReplaying.value = false
 }
@@ -55,16 +88,16 @@ const { data } = await useAsyncData(`preset-${props.name}`, () =>
     [
       `::code-group`,
       ...[
-        '```vue [v-motion]',
+        '```vue [<Motion />]',
         '<template>',
-        `  <div v-motion-${slugify(props.name)} />`,
+        `  <Motion preset="${props.name}" :duration="600" />`,
         '</template>',
         '```',
       ],
       ...[
-        '```vue [<Motion />]',
+        '```vue [v-motion]',
         '<template>',
-        `  <Motion preset="${props.name}" />`,
+        `  <div v-motion-${slugify(props.name)} :duration="600" />`,
         '</template>',
         '```',
       ],
@@ -75,8 +108,7 @@ const { data } = await useAsyncData(`preset-${props.name}`, () =>
       ],
       `::`,
     ].join('\n'),
-  ),
-)
+  ))
 </script>
 
 <template>
