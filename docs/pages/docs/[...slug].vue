@@ -6,14 +6,14 @@ const route = useRoute()
 
 // Main page data
 const { data: page } = await useAsyncData(route.path, () =>
-  queryContent(route.path).findOne(),
-)
-if (!page.value)
+  queryContent(route.path).findOne())
+if (!page.value) {
   throw createError({
     statusCode: 404,
     statusMessage: 'Page not found',
     fatal: true,
   })
+}
 const headline = computed(() => findPageHeadline(page.value))
 
 // Surrounding pages (Next & Prev)
@@ -21,8 +21,7 @@ const { data: surround } = await useAsyncData(`${route.path}-surround`, () =>
   queryContent()
     .where({ _extension: 'md', navigation: { $ne: false } })
     .only(['title', 'description', '_path'])
-    .findSurround(withoutTrailingSlash(route.path)),
-)
+    .findSurround(withoutTrailingSlash(route.path)))
 
 // Page Metadata (SEO & OG)
 const { setPageMeta } = usePageMeta()
@@ -53,7 +52,7 @@ const UPageHeaderComponent = resolveComponent('UPageHeader')
     <Motion
       :is="UPageHeaderComponent"
       :initial="{ y: 100, opacity: 0, transition: { mass: .25, damping: 10 } }"
-    :visible-once="{ y: 0, opacity: 1, transition: { mass: .25, damping: 10 } }"
+      :visible-once="{ y: 0, opacity: 1, transition: { mass: .25, damping: 10 } }"
       :title="page.title"
       :description="page.description"
       :links="page.links"
@@ -63,7 +62,7 @@ const UPageHeaderComponent = resolveComponent('UPageHeader')
     <UPageBody prose>
       <ContentRenderer v-if="page.body" :value="page" />
 
-      <hr v-if="surround?.length" />
+      <hr v-if="surround?.length">
 
       <UContentSurround :surround="surround" />
     </UPageBody>
