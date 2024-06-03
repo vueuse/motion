@@ -1,72 +1,87 @@
 import { computed, createSSRApp, ref } from 'vue'
-// import { renderToString } from '@vue/test-utils'
 import { renderToString } from '@vue/server-renderer'
 import { describe, expect, it } from 'vitest'
 import { MotionPlugin } from '../src'
 import { directiveTransform as MotionDirectiveTransform } from '../src/directive/transform'
 
 describe('directiveTransform', () => {
-  // it('renders style provided by `:initial` prop variant during SSR', async () => {
-  //   const template = `<div v-motion :initial="{ opacity: 0, x: 100 }"></div>`
+  const compilerOptions = {
+    directiveTransforms: {
+      'motion': MotionDirectiveTransform,
+      'motion-fade-visible': MotionDirectiveTransform,
+    },
+  }
 
-  //   const Component = defineComponent({
-  //     template,
-  //     directives: { motion: MotionDirective() },
-  //     compilerOptions: {
-  //       // @ts-expect-error does not accept `directiveTransforms`?
-  //       directiveTransforms: { motion: MotionDirectiveTransform },
-  //     },
-  //   })
-
-  //   expect(await renderToString(Component)).toMatchInlineSnapshot(
-  //     `"<div style="opacity:0;transform:translateZ(0px);"></div>"`,
-  //   )
-  // })
-
-  it('renders style provided by `:initial` prop variant during SSR', async () => {
-    // const template = `<div v-motion :initial="{ ...initialState }"></div>`
-
+  it('renders `:initial` variant style during SSR (constant)', async () => {
     const app = createSSRApp({
-      // template: `<div v-motion style="color: red; opacity: 1;" :initial="{...initialState}" ></div>`,
-      // template: `<div v-motion-fade :initial="{ x: 100, scale: 50 }" style="color: red; opacity: 1" ></div>`,
-      template: `<div v-motion style="color: red; opacity: 1;" :initial="{ opacity: 0, x: 100 }" ></div>`,
+      template: `<div v-motion :initial="{ opacity: 0, x: 100 }"></div>`,
+      // @ts-expect-error does not accept `directiveTransforms`?
+      compilerOptions,
+    })
+
+    app.use(MotionPlugin)
+
+    expect(await renderToString(app)).toMatchInlineSnapshot(
+      `"<div style="opacity:0;transform:translate3d(100px,0px,0px);"></div>"`,
+    )
+  })
+
+  it('renders `:initial` variant style during SSR (compound)', async () => {
+    const app = createSSRApp({
+      template: `<div v-motion :initial="{ ...state }"></div>`,
       setup: () => {
         const myValue = ref(100)
+
         return {
-          initialState: computed(() => ({
+          state: computed(() => ({
             opacity: 0,
             x: myValue.value,
             scale: 10,
           })),
         }
       },
-      // directives: { motion: MotionDirective() },
-      // data: () => ({}),
-      compilerOptions: {
-        // @ts-expect-error does not accept `directiveTransforms`?
-        directiveTransforms: {
-          'motion': MotionDirectiveTransform,
-          'motion-fade': MotionDirectiveTransform,
-        },
-      },
+      // @ts-expect-error does not accept `directiveTransforms`?
+      compilerOptions,
     })
 
     app.use(MotionPlugin)
 
-    // const Component = defineComponent({
-    //   template,
-    //   setup() {
-    //     const initialState = computed(() => ({
-    //       opacity: 0,
-    //       x: 100,
-    //     }))
+    expect(await renderToString(app)).toMatchInlineSnapshot(
+      `"<div style="opacity:0;transform:translate3d(100px,0px,0px) scale(10);"></div>"`,
+    )
+  })
 
-    //     return { initialState }
-    //   },
-    // })
+  it('merges and overwrites element style with `:initial` variant style during SSR', async () => {
+    const app = createSSRApp({
+      template: `<div style="opacity: 1; color: red;" v-motion :initial="{ opacity: 0, x: 100 }"></div>`,
+      setup() {
+        return { state: { x: 100, opacity: 50 } }
+      },
+      // @ts-expect-error does not accept `directiveTransforms`?
+      compilerOptions,
+    })
+
+    app.use(MotionPlugin)
 
     expect(await renderToString(app)).toMatchInlineSnapshot(
-      `"<div style="opacity:1;transform:translate3d(100px,0px,0px);color:red;"></div>"`,
+      `"<div style="opacity:0;color:red;transform:translate3d(100px,0px,0px);"></div>"`,
+    )
+  })
+
+  it('merges and overwrites preset variant style with `:initial` variant style during SSR', async () => {
+    const app = createSSRApp({
+      template: `<div v-motion-fade-visible :initial="state"></div>`,
+      setup() {
+        return { state: { x: 100, scale: 50 } }
+      },
+      // @ts-expect-error does not accept `directiveTransforms`?
+      compilerOptions,
+    })
+
+    app.use(MotionPlugin)
+
+    expect(await renderToString(app)).toMatchInlineSnapshot(
+      `"<div style="opacity:0;transform:translate3d(100px,0px,0px) scale(50);"></div>"`,
     )
   })
 })
