@@ -20,7 +20,7 @@ export default defineComponent({
           node.props['visible-once'] ??= {
             x: 0,
             opacity: 1,
-            transition: { delay: 100 * i },
+            transition: { delay: 50 * i },
           }
 
           // @ts-expect-error type conflict but seems to work fine
