@@ -54,7 +54,9 @@ const { apply, set } = useMotion(demoElement, {
 })
 
 const replayInstance = useMotion(replayButton, {
+  ...useAppConfig().motions.codeGroupButton,
   initial: {
+    ...useAppConfig().motions.codeGroupButton.initial,
     rotate: 0,
   },
 })

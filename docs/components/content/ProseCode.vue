@@ -1,13 +1,3 @@
-<!-- <template>
-  <Motion
-    is="code"
-    :initial="{ y: 100, opacity: 0, transition: { mass: .1, damping: 10 } }"
-    :visible-once="{ y: 0, opacity: 1, transition: { mass: .1, damping: 10 } }"
-  >
-    <slot />
-  </Motion>
-</template> -->
-
 <script setup lang="ts">
 import type { PropType } from 'vue'
 
@@ -59,8 +49,7 @@ const { ui } = useUI('content.prose.code', undefined, config, undefined, true)
 
 <template>
   <Motion
-    :initial="{ y: 100, opacity: 0, transition: { mass: .1, damping: 10 } }"
-    :visible-once="{ y: 0, opacity: 1, transition: { mass: .1, damping: 10 } }"
+    v-bind="$nuxt._appConfig.motions.code"
     class="relative prose-code" :class="!!filename && ui.wrapper"
   >
     <div v-if="filename && !hideHeader" :class="ui.header">
