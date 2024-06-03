@@ -40,7 +40,7 @@ import {
   slideVisibleRight,
   slideVisibleTop,
   slugify,
-} from '@vueuse/motion'
+} from '../index'
 
 import type { ModuleOptions as MotionModuleOpts } from '../types'
 
