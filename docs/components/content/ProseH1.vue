@@ -1,8 +1,7 @@
 <template>
   <Motion
     is="h1"
-    :initial="{ y: 100, opacity: 0, transition: { mass: .85, damping: 10 } }"
-    :visible-once="{ y: 0, opacity: 1, transition: { mass: .85, damping: 10 } }"
+    v-bind="$nuxt._appConfig.motions.headers.h1"
   >
     <slot />
   </Motion>
