@@ -30,9 +30,7 @@ defineProps({
 <template>
   <Motion
     is="pre"
-    v-bind="{ ...$attrs, ...$props }"
-    :initial="{ y: 100, opacity: 0, transition: { mass: .1, damping: 10 } }"
-    :visible-once="{ y: 0, opacity: 1, transition: { mass: .1, damping: 10 } }"
+    v-bind="$nuxt._appConfig.motions.pre"
     :class="$props.class"
   >
     <slot />
