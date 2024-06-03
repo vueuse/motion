@@ -2,6 +2,7 @@ export default defineComponent({
   setup() {
     const MotionComponent = resolveComponent('Motion')
     const slots = useSlots()
+    const appConfig = useAppConfig()
 
     return () => {
       const nodes: VNode[] = slots.default?.() || []
@@ -9,23 +10,19 @@ export default defineComponent({
       return h(
         'ul',
         {
-          // is: 'ul',
-          'initial': { y: 100, opacity: 0 },
-          'visible-once': { y: 0, opacity: 1 },
+          ...appConfig.motions.ul,
         },
         nodes.map((node, i) => {
-          node.props ??= {}
-          node.props.is = 'li'
-          node.props.initial ??= { x: 100, opacity: 0 }
-          node.props.hovered ??= {
-            x: 10,
-            opacity: 1,
-            transition: { mass: 0.5, damping: 5, delay: 0 },
-          }
-          node.props['visible-once'] ??= {
-            x: 0,
-            opacity: 1,
-            transition: { delay: 50 * i, mass: 0.5, damping: 5 },
+          node.props = {
+            is: 'li',
+            ...appConfig.motions.li,
+            visibleOnce: {
+              ...appConfig.motions.li.visibleOnce,
+              transition: {
+                ...appConfig.motions.li.visibleOnce.transition,
+                delay: i * 50,
+              },
+            },
           }
 
           // @ts-expect-error type conflict but seems to work fine
