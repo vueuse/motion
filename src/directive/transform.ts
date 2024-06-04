@@ -1,4 +1,5 @@
 import {
+  NodeTypes,
   createArrayExpression,
   createCallExpression,
   createObjectExpression,
@@ -7,6 +8,7 @@ import {
   findProp,
 } from '@vue/compiler-core'
 import type {
+  AttributeNode,
   DirectiveNode,
   DirectiveTransform,
   ElementNode,
@@ -29,13 +31,8 @@ export const directiveTransform: DirectiveTransform = function (
   node,
   _context,
 ) {
-  const result = { props: [], needRuntime: true }
-
   // Find `:initial` prop binding
   const prop = findProp(node, 'initial', true, false)
-  if (prop == null || 'exp' in prop === false || prop.arg == null) {
-    return result
-  }
 
   // Retrieve preset variant style preset directive is used (pattern: motion-[PRESET_KEBAB_CASE])
   let preset: Record<string, any> | undefined
@@ -45,12 +42,16 @@ export const directiveTransform: DirectiveTransform = function (
     if (parts) {
       const presetName
         = parts[0]
-        + parts.slice(1).map(x => x.slice(0, 1).toUpperCase() + x.slice(1))
+        + parts
+          .slice(1)
+          .map(x => x.slice(0, 1).toUpperCase() + x.slice(1))
+          .join('')
 
       if (presetName in presets) {
         // @ts-expect-error fix types
-        preset = variantToStyle(structuredClone(presets[presetName].initial))
+        preset = variantToStyle(presets[presetName].initial)
       }
+      // console.log(dir.name, presetName, preset)
     }
   }
 
@@ -68,7 +69,7 @@ export const directiveTransform: DirectiveTransform = function (
 }
 
 function createStyleObjectExpressionFromDirectiveNode(
-  prop: DirectiveNode,
+  prop: DirectiveNode | AttributeNode | undefined,
   node: ElementNode,
   context: TransformContext,
   preset?: Record<string, any>,
@@ -77,7 +78,14 @@ function createStyleObjectExpressionFromDirectiveNode(
   const prefix = context.prefixIdentifiers ? '_ctx.' : ''
   const variantToStyleFn = `${prefix}__motionVariantToStyle`
 
-  if (prop.exp == null) {
+  if (prop == null || prop.type === NodeTypes.ATTRIBUTE || prop.exp == null) {
+    if (preset) {
+      return createArrayExpression([
+        createCallExpression(variantToStyleFn, [
+          createSimpleExpression(presetSerialized),
+        ]),
+      ])
+    }
     return createObjectExpression([], node.loc)
   }
 
@@ -87,7 +95,9 @@ function createStyleObjectExpressionFromDirectiveNode(
    */
   if (preset) {
     return createArrayExpression([
-      createSimpleExpression(presetSerialized),
+      createCallExpression(variantToStyleFn, [
+        createSimpleExpression(presetSerialized),
+      ]),
       createCallExpression(variantToStyleFn, [prop.exp]),
     ])
   }

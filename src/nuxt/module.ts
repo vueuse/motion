@@ -44,7 +44,7 @@ import {
 
 import type { ModuleOptions as MotionModuleOpts } from '../types'
 
-const presets = [
+const presets = {
   fade,
   fadeVisible,
   fadeVisibleOnce,
@@ -75,7 +75,7 @@ const presets = [
   slideVisibleOnceLeft,
   slideVisibleOnceRight,
   slideVisibleOnceTop,
-]
+}
 
 export interface ModuleOptions extends MotionModuleOpts<string> {}
 
