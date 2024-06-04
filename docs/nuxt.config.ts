@@ -9,6 +9,11 @@ export default defineNuxtConfig({
     includeWorkspace: true,
   },
   devtools: { enabled: false },
+  nitro: {
+    devProxy: {
+      host: '127.0.0.1',
+    },
+  },
   routeRules: { '/api/search.json': { prerender: true } },
   vite: {
     $client: {
