@@ -1,12 +1,15 @@
 <script setup lang="ts">
-// @ts-expect-error This is because we're using Nuxt Content v2.8.2 instead of the new version which includes these types. We're using the old version because the latest has issues with highlighting
 import type { NavItem } from '@nuxt/content/dist/runtime/types'
 
-// Get navigation tree relative to the '/content/docs'
+// Get navigation tree relative to the '/content'
 const navigation = inject<Ref<NavItem[]>>('navigation')
 const { navPageFromPath } = useContentHelpers()
+const route = useRoute()
+
+// console.log('/' + route.path.split('/').at(0))
+
 const allNavigationTree = computed(() =>
-  mapContentNavigation(navPageFromPath('/docs', navigation.value)?.children || []),
+  mapContentNavigation(navPageFromPath('/' + route.path.split('/').at(1), navigation?.value || [])?.children || []),
 )
 </script>
 

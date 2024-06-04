@@ -91,16 +91,16 @@ const { data } = await useAsyncData(`preset-${props.name}`, () =>
       `::code-group`,
       ...[
         '```vue [<Motion />]',
-        '<template>',
-        `  <Motion preset="${props.name}" :duration="600" />`,
-        '</template>',
+        // '<template>',
+        `<Motion preset="${props.name}" :duration="600" />`,
+        // '</template>',
         '```',
       ],
       ...[
         '```vue [v-motion]',
-        '<template>',
-        `  <div v-motion-${slugify(props.name)} :duration="600" />`,
-        '</template>',
+        // '<template>',
+        `<div v-motion-${slugify(props.name)} :duration="600" />`,
+        // '</template>',
         '```',
       ],
       ...[
@@ -148,6 +148,7 @@ const { data } = await useAsyncData(`preset-${props.name}`, () =>
   display: flex;
   flex-direction: column;
 }
+
 
 .content {
   display: flex;

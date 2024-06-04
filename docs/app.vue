@@ -27,14 +27,26 @@ const { data: files } = useLazyFetch<ParsedContent[]>('/api/search.json', {
 
 // Header
 const route = useRoute()
-const links: PageLink[] = [
+const links: PageLink[] = computed(() => [
   {
-    label: 'Docs',
-    to: `/docs/getting-started`,
+    label: 'Getting started',
+    to: `/getting-started`,
     icon: 'i-heroicons-rocket-launch',
-    active: route.path.startsWith('/docs'),
+    active: route.path.startsWith('/getting-started'),
   },
-]
+  {
+    label: 'Features',
+    to: `/features/presets`,
+    icon: 'i-heroicons-rocket-launch',
+    active: route.path.startsWith('/features'),
+  },
+  {
+    label: 'Api',
+    to: `/api/use-motion`,
+    icon: 'i-heroicons-rocket-launch',
+    active: route.path.startsWith('/api'),
+  },
+])
 </script>
 
 <template>
