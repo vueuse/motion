@@ -8,9 +8,9 @@ export default defineAppConfig({
     colorMode: true,
     links: [
       {
-        'icon': 'i-simple-icons-github',
-        'to': 'https://github.com/vueuse/motion',
-        'target': '_blank',
+        icon: 'i-simple-icons-github',
+        to: 'https://github.com/vueuse/motion',
+        target: '_blank',
         'aria-label': 'VueUse Motion',
       },
     ],
@@ -21,9 +21,9 @@ export default defineAppConfig({
     colorMode: false,
     links: [
       {
-        'icon': 'i-simple-icons-github',
-        'to': 'https://github.com/vueuse/motion',
-        'target': '_blank',
+        icon: 'i-simple-icons-github',
+        to: 'https://github.com/vueuse/motion',
+        target: '_blank',
         'aria-label': 'VueUse Motion',
       },
     ],
@@ -31,7 +31,7 @@ export default defineAppConfig({
   toc: {
     title: 'Table of Contents',
     bottom: {
-      edit: 'https://github.com/vueuse/motion/docs/edit/main/content',
+      edit: 'https://github.com/vueuse/motion/edit/main/content',
     },
   },
 
@@ -52,42 +52,45 @@ export default defineAppConfig({
       initial: {
         y: '0em',
         opacity: 1,
-        scaleY: 1.15,
-        scaleX: 0.95,
-        transition: { damping: 5, mass: 1 },
+        scale: 1,
+        transition: { stiffness: 250, mass: 0.5, damping: 5 },
       },
       visibleOnce: {
         y: '0em',
         opacity: 1,
         rotate: 0,
-        scaleY: 1,
-        scaleX: 1,
-        transition: { damping: 5, mass: 1 },
+        scale: 1,
+        transition: { stiffness: 250, mass: 0.5, damping: 5 },
       },
+      // hovered: {
+      //   scale: 1.05,
+      //   rotate: -0.25,
+      //   transition: { damping: 5, mass: 1 },
+      // },
+      // tapped: {
+      //   scale: 0.95,
+      //   rotate: 0.25,
+      //   transition: { damping: 5, mass: 1 },
+      // },
+      // initial: { scale: 1, transition: { stiffness: 250, mass: .5, damping: 5 }, },
       hovered: {
-        scaleY: 1.05,
-        scaleX: 1.05,
-        rotate: -0.25,
-        transition: { damping: 5, mass: 1 },
+        scale: 1.1,
+        transition: { stiffness: 250, mass: 0.5, damping: 5 },
       },
       tapped: {
-        scaleY: 0.95,
-        scaleX: 0.95,
-        rotate: 0.25,
-        transition: { damping: 5, mass: 1 },
+        scale: 0.95,
+        transition: { stiffness: 250, mass: 0.5, damping: 5 },
       },
     },
     codeGroupButton: {
       initial: { scaleY: 1, scaleX: 1, transition: { damping: 5, mass: 0.25 } },
       hovered: {
-        scaleY: 1.15,
-        scaleX: 0.9,
-        transition: { damping: 5, mass: 0.25 },
+        scale: 1.1,
+        transition: { stiffness: 250, mass: 0.5, damping: 5 },
       },
       tapped: {
-        scaleY: 0.5,
-        scaleX: 1.15,
-        transition: { damping: 5, mass: 0.25 },
+        scale: 0.9,
+        transition: { stiffness: 250, mass: 0.5, damping: 5 },
       },
     },
     pre: {
@@ -95,8 +98,16 @@ export default defineAppConfig({
       visibleOnce: { y: 0, opacity: 1, transition: { mass: 0.1, damping: 10 } },
     },
     code: {
-      initial: { y: 100, opacity: 0, transition: { mass: 0.1, damping: 10 } },
-      visibleOnce: { y: 0, opacity: 1, transition: { mass: 0.1, damping: 10 } },
+      initial: {
+        scaleY: 0.5,
+        opacity: 0,
+        transition: { stiffness: 250, mass: 0.5, damping: 10 },
+      },
+      visibleOnce: {
+        scaleY: 1,
+        opacity: 1,
+        transition: { stiffness: 250, mass: 0.5, damping: 10 },
+      },
     },
     ul: {
       initial: { x: 100, opacity: 0 },

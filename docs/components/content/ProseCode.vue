@@ -50,6 +50,7 @@ const { ui } = useUI('content.prose.code', undefined, config, undefined, true)
 <template>
   <Motion
     v-bind="$nuxt._appConfig.motions.code"
+    style="transform-origin: top;"
     class="relative prose-code" :class="!!filename && ui.wrapper"
   >
     <div v-if="filename && !hideHeader" :class="ui.header">
