@@ -9,7 +9,7 @@ const route = useRoute()
 // console.log('/' + route.path.split('/').at(0))
 
 const allNavigationTree = computed(() =>
-  mapContentNavigation(navPageFromPath('/' + route.path.split('/').at(1), navigation?.value || [])?.children || []),
+  mapContentNavigation(navPageFromPath(`/${route.path.split('/').at(1)}`, navigation?.value || [])?.children || []),
 )
 </script>
 

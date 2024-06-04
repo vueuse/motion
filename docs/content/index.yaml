@@ -20,7 +20,7 @@ hero:
     ```
 
 features:
-  title: "Let's put things in motion"
+  title: 'Let''s put things in motion'
 
   items:
     - title: Smooth animations
