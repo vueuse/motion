@@ -149,7 +149,6 @@ const { data } = await useAsyncData(`preset-${props.name}`, () =>
   flex-direction: column;
 }
 
-
 .content {
   display: flex;
   gap: 1em;
