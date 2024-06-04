@@ -58,16 +58,22 @@ const UPageHeaderComponent = resolveComponent('UPageHeader')
       :links="page.links"
       :headline="headline"
     >
-    <template #headline>
-      <Motion v-bind="$nuxt._appConfig.motions.headers.common">{{ headline }}</Motion>
-    </template>
-    <template #title="{props}">
-      <Motion v-bind="$nuxt._appConfig.motions.headers.h1">{{ page.title }}</Motion>
-    </template>
-    <template #description>
-      <Motion v-bind="$nuxt._appConfig.motions.headers.h1">{{ page.description }}</Motion>
-    </template>
-  </Motion>
+      <template #headline>
+        <Motion v-bind="$nuxt._appConfig.motions.headers.common">
+          {{ headline }}
+        </Motion>
+      </template>
+      <template #title>
+        <Motion v-bind="$nuxt._appConfig.motions.headers.h1">
+          {{ page.title }}
+        </Motion>
+      </template>
+      <template #description>
+        <Motion v-bind="$nuxt._appConfig.motions.headers.h1">
+          {{ page.description }}
+        </Motion>
+      </template>
+    </Motion>
 
     <UPageBody prose>
       <ContentRenderer v-if="page.body" :value="page" />

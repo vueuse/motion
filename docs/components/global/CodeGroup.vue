@@ -58,15 +58,15 @@ const selectedTab = computed(() => tabs.value.find((_, index) => index === selec
         is="button"
         v-for="(tab, index) in tabs"
         :key="index"
-        :initial="{ scale: 1, transition: { stiffness: 250, mass: .5, damping: 5 }, }"
+        :initial="{ scale: 1, transition: { stiffness: 250, mass: .5, damping: 5 } }"
         :hovered="{
-        scale: 1.1,
-        transition: { stiffness: 250, mass: .5, damping: 5 },
-      }"
-       :tapped="{
-        scale: .95,
-        transition: { stiffness: 250, mass: .5, damping: 5 },
-      }"
+          scale: 1.1,
+          transition: { stiffness: 250, mass: .5, damping: 5 },
+        }"
+        :tapped="{
+          scale: .95,
+          transition: { stiffness: 250, mass: .5, damping: 5 },
+        }"
         tabindex="-1"
         :class="[ui.tab.base, selectedIndex === index ? ui.tab.active : ui.tab.inactive]"
         @click="selectedIndex = index"
