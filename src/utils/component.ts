@@ -1,9 +1,21 @@
-import { type ExtractPropTypes, type PropType, type VNode, computed, nextTick, onUpdated, reactive } from 'vue'
+import {
+  type ExtractPropTypes,
+  type PropType,
+  type VNode,
+  computed,
+  nextTick,
+  onUpdated,
+  reactive,
+} from 'vue'
 import type { LooseRequired } from '@vue/shared'
 import defu from 'defu'
 import * as presets from '../presets'
 import type { MotionInstance } from '../types/instance'
-import type { MotionVariants, StyleProperties, Variant } from '../types/variants'
+import type {
+  MotionVariants,
+  StyleProperties,
+  Variant,
+} from '../types/variants'
 import { useMotion } from '../useMotion'
 
 /**
@@ -78,15 +90,44 @@ export const MotionComponentProps = {
   },
 }
 
+function isObject(val: unknown): val is Record<any, any> {
+  return Object.prototype.toString.call(val) === '[object Object]'
+}
+
+/**
+ * Deep clone object/array
+ */
+function clone<T>(v: T): any {
+  if (Array.isArray(v)) {
+    return v.map(clone)
+  }
+
+  if (isObject(v)) {
+    const res: any = {}
+    for (const key in v) {
+      res[key] = clone(v[key as keyof typeof v])
+    }
+    return res
+  }
+
+  return v
+}
+
 /**
  * Shared logic for <Motion> and <MotionGroup>
  */
-export function setupMotionComponent(props: LooseRequired<ExtractPropTypes<typeof MotionComponentProps>>) {
+export function setupMotionComponent(
+  props: LooseRequired<ExtractPropTypes<typeof MotionComponentProps>>,
+) {
   // Motion instance map
-  const instances = reactive<{ [key: number]: MotionInstance<string, MotionVariants<string>> }>({})
+  const instances = reactive<{
+    [key: number]: MotionInstance<string, MotionVariants<string>>
+  }>({})
 
   // Preset variant or empty object if none is provided
-  const preset = computed(() => (props.preset ? structuredClone(presets[props.preset]) : {}))
+  const preset = computed(() =>
+    props.preset ? structuredClone(presets[props.preset]) : {},
+  )
 
   // Motion configuration using inline prop variants (`:initial` ...)
   const propsConfig = computed(() => ({
@@ -109,7 +150,9 @@ export function setupMotionComponent(props: LooseRequired<ExtractPropTypes<typeo
       if (values[transitionKey] == null)
         continue
 
-      const transitionValueParsed = Number.parseInt(values[transitionKey] as string)
+      const transitionValueParsed = Number.parseInt(
+        values[transitionKey] as string,
+      )
 
       // Apply transition property to existing variants where applicable
       for (const variantKey of ['enter', 'visible', 'visibleOnce'] as const) {
@@ -129,7 +172,12 @@ export function setupMotionComponent(props: LooseRequired<ExtractPropTypes<typeo
 
   // Merged motion configuration using `props.preset`, inline prop variants (`:initial` ...), and `props.variants`
   const motionConfig = computed(() => {
-    const config = defu({}, propsConfig.value, preset.value, props.variants || {})
+    const config = defu(
+      {},
+      propsConfig.value,
+      preset.value,
+      props.variants || {},
+    )
 
     return applyTransitionHelpers({ ...config }, props)
   })
@@ -168,7 +216,7 @@ export function setupMotionComponent(props: LooseRequired<ExtractPropTypes<typeo
 
     // Apply transition helpers, this may differ if `node` is a child node
     const elementMotionConfig = applyTransitionHelpers(
-      structuredClone(motionConfig.value),
+      clone(motionConfig.value),
       node.props as Partial<Pick<typeof props, 'delay' | 'duration'>>,
     )
 
