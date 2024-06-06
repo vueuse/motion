@@ -110,20 +110,21 @@ export default defineAppConfig({
       },
     },
     ul: {
-      initial: { x: 100, opacity: 0 },
-      visibleOnce: { x: 0, opacity: 1 },
+      initial: { x: 100, y: 100, opacity: 0 },
+      visibleOnce: { x: 0, y: 0, opacity: 1 },
     },
     li: {
-      initial: { x: 100, opacity: 0 },
+      initial: { x: 40, y: 20, opacity: 0 },
       hovered: {
         x: 10,
         opacity: 1,
-        transition: { mass: 0.5, damping: 5, delay: 0 },
+        transition: { mass: 1, delay: 0 },
       },
       visibleOnce: {
         x: 0,
+        y: 0,
         opacity: 1,
-        transition: { mass: 0.5, damping: 5 },
+        transition: { mass: 1 },
       },
     },
     headers: {
