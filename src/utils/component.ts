@@ -100,17 +100,17 @@ export function setupMotionComponent(props: LooseRequired<ExtractPropTypes<typeo
     focused: props.focused,
   }))
 
-  // Merged motion configuration using `props.preset`, inline prop variants (`:initial` ...), and `props.variants`
-  const motionConfig = computed(() => {
-    const config = defu({}, propsConfig.value, preset.value, props.variants || {})
-
+  // Applies transition shorthand helpers to passed config
+  function applyTransitionHelpers(
+    config: typeof propsConfig.value,
+    values: Partial<Pick<typeof props, 'delay' | 'duration'>>,
+  ) {
     for (const transitionKey of ['delay', 'duration'] as const) {
-      if (!props[transitionKey])
+      if (values[transitionKey] == null)
         continue
 
-      const transitionValueParsed = Number.parseInt(props[transitionKey] as string)
+      const transitionValueParsed = Number.parseInt(values[transitionKey] as string)
 
-      // TODO: extract to utility function
       // Apply transition property to existing variants where applicable
       for (const variantKey of ['enter', 'visible', 'visibleOnce'] as const) {
         const variantConfig = config[variantKey]
@@ -125,6 +125,13 @@ export function setupMotionComponent(props: LooseRequired<ExtractPropTypes<typeo
     }
 
     return config
+  }
+
+  // Merged motion configuration using `props.preset`, inline prop variants (`:initial` ...), and `props.variants`
+  const motionConfig = computed(() => {
+    const config = defu({}, propsConfig.value, preset.value, props.variants || {})
+
+    return applyTransitionHelpers({ ...config }, props)
   })
 
   // Replay animations on component update Vue
@@ -159,9 +166,18 @@ export function setupMotionComponent(props: LooseRequired<ExtractPropTypes<typeo
     // Merge node style with variant style
     node.props.style = { ...node.props.style, ...style }
 
+    // Apply transition helpers, this may differ if `node` is a child node
+    const elementMotionConfig = applyTransitionHelpers(
+      structuredClone(motionConfig.value),
+      node.props as Partial<Pick<typeof props, 'delay' | 'duration'>>,
+    )
+
     // Track motion instance locally using `instances`
     node.props.onVnodeMounted = ({ el }) => {
-      instances[index] = useMotion<string, MotionVariants<string>>(el as any, motionConfig.value)
+      instances[index] = useMotion<string, MotionVariants<string>>(
+        el as any,
+        elementMotionConfig,
+      )
     }
 
     return node
