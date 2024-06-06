@@ -1,7 +1,8 @@
 import { config, mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import { nextTick } from 'vue'
+import { h, nextTick } from 'vue'
 import { MotionPlugin } from '../src'
+import MotionGroup from '../src/components/MotionGroup'
 import { intersect } from './utils/intersectionObserver'
 import { getTestComponent, useCompletionFn, waitForMockCalls } from './utils'
 
@@ -132,5 +133,40 @@ describe.each([
     await waitForMockCalls(onComplete, 1)
 
     expect(el.style.transform).toEqual('scale(1) translateZ(0px)')
+  })
+})
+
+describe('`<MotionGroup>` component', async () => {
+  it('child node can overwrite helpers', async () => {
+    const wrapper = mount({
+      render: () =>
+        h(
+          MotionGroup,
+          {
+            initial: { opacity: 0 },
+            enter: {
+              opacity: 0.5,
+              transition: { ease: 'linear', delay: 100000 },
+            },
+          },
+          [
+            h('div', { id: 1, key: 1, delay: 0 }),
+            h('div', { id: 2, key: 2 }),
+            h('div', { id: 3, key: 3 }),
+          ],
+        ),
+    })
+
+    await new Promise(resolve => setTimeout(resolve, 100))
+
+    // First div should have finished `enter` variant
+    expect(
+      (wrapper.find('div#1').element as HTMLDivElement).style?.opacity,
+    ).toEqual('0.5')
+
+    // Second div should not have started yet
+    expect(
+      (wrapper.find('div#2').element as HTMLDivElement).style?.opacity,
+    ).toEqual('0')
   })
 })
