@@ -1,11 +1,12 @@
 import type { PropType, VNode } from 'vue'
 import type { Component } from '@nuxt/schema'
 
-import { defineComponent, h, useSlots } from 'vue'
+import { Fragment, defineComponent, h, useSlots } from 'vue'
 import { variantToStyle } from '../utils/transform'
 import { MotionComponentProps, setupMotionComponent } from '../utils/component'
 
 export default defineComponent({
+  name: 'MotionGroup',
   props: {
     ...MotionComponentProps,
     is: {
@@ -24,7 +25,27 @@ export default defineComponent({
 
       // Set node style on slots and register to `instances` on mount
       for (let i = 0; i < nodes.length; i++) {
-        setNodeInstance(nodes[i], i, style)
+        const n = nodes[i]
+
+        // Recursively assign fragment child nodes
+        if (n.type === Fragment && Array.isArray(n.children)) {
+          n.children.forEach(function setChildInstance(child, index) {
+            if (child == null)
+              return
+
+            if (Array.isArray(child)) {
+              setChildInstance(child, index)
+              return
+            }
+
+            if (typeof child === 'object') {
+              setNodeInstance(child, index, style)
+            }
+          })
+        }
+        else {
+          setNodeInstance(n, i, style)
+        }
       }
 
       // Wrap child nodes in component if `props.is` is passed
