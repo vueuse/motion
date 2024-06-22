@@ -234,7 +234,7 @@ export function setupMotionComponent(
      * To prevent this, reapply the current motion state styles in vnode updated lifecycle
      */
     node.props.onVnodeUpdated = ({ el }) => {
-      const styles = variantToStyle(instances[index].state as Variant);
+      const styles = variantToStyle(instances[index].state as Variant)
 
       for (const [key, val] of Object.entries(styles)) {
         (el as any).style[key] = val
