@@ -17,6 +17,7 @@ import type {
   Variant,
 } from '../types/variants'
 import { useMotion } from '../useMotion'
+import { variantToStyle } from './transform'
 
 /**
  * Type guard, checks if passed string is an existing preset
@@ -226,6 +227,18 @@ export function setupMotionComponent(
         el as any,
         elementMotionConfig,
       )
+    }
+
+    /**
+     * Vue reapplies all styles every render, include style properties and calculated initially styles get reapplied every render.
+     * To prevent this, reapply the current motion state styles in vnode updated lifecycle
+     */
+    node.props.onVnodeUpdated = ({ el }) => {
+      const styles = variantToStyle(instances[index].state as Variant)
+
+      for (const [key, val] of Object.entries(styles)) {
+        (el as any).style[key] = val
+      }
     }
 
     return node
