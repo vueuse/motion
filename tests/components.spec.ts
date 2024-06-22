@@ -1,7 +1,7 @@
 import { config, mount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import { h, nextTick } from 'vue'
-import { MotionPlugin } from '../src'
+import { h, nextTick, ref } from 'vue'
+import { MotionComponent, MotionPlugin } from '../src'
 import MotionGroup from '../src/components/MotionGroup'
 import { intersect } from './utils/intersectionObserver'
 import { getTestComponent, useCompletionFn, waitForMockCalls } from './utils'
@@ -133,6 +133,34 @@ describe.each([
     await waitForMockCalls(onComplete, 1)
 
     expect(el.style.transform).toEqual('scale(1) translateZ(0px)')
+  })
+
+  it('#202 - preserve variant style on rerender', async () => {
+    const counter = ref(0)
+
+    const wrapper = mount(
+      { render: () => h(MotionComponent, null, () => counter.value) },
+      {
+        props: {
+          initial: { scale: 1 },
+          enter: { scale: 2 },
+          duration: 10,
+        },
+      },
+    )
+
+    const el = wrapper.element as HTMLDivElement
+    await nextTick()
+
+    // Renders enter
+    expect(el.style.transform).toEqual('scale(2) translateZ(0px)')
+
+    // Trigger rerender by updating slot variable
+    counter.value++
+    await nextTick()
+
+    // Variant style is preserved after rerender/update
+    expect(el.style.transform).toEqual('scale(2) translateZ(0px)')
   })
 })
 
