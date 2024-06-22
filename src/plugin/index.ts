@@ -39,9 +39,9 @@ export const MotionPlugin: Plugin = {
         // Register the custom `v-motion-${key}` directive
         app.directive(`motion-${key}`, directive(variants, true))
       }
-
-      app.provide(CUSTOM_PRESETS, options.directives)
     }
+
+    app.provide(CUSTOM_PRESETS, options?.directives)
 
     // Register <Motion> component
     app.component('Motion', MotionComponent)
