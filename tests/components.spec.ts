@@ -10,8 +10,8 @@ import { getTestComponent, useCompletionFn, waitForMockCalls } from './utils'
 config.global.plugins.push(MotionPlugin)
 
 describe.each([
-  { t: 'directive', name: '`v-motion` directive' },
-  { t: 'component', name: '`<Motion>` component' },
+  { t: 'directive', name: '`v-motion` directive (shared tests)' },
+  { t: 'component', name: '`<Motion>` component (shared tests)' },
 ])(`$name`, async ({ t }) => {
   const TestComponent = getTestComponent(t)
 
@@ -134,7 +134,9 @@ describe.each([
 
     expect(el.style.transform).toEqual('scale(1) translateZ(0px)')
   })
+})
 
+describe('`<Motion>` component', async () => {
   it('#202 - preserve variant style on rerender', async () => {
     const counter = ref(0)
 
