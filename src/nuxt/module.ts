@@ -15,7 +15,7 @@ export default defineNuxtModule<ModuleOptions>({
     const { resolve } = createResolver(import.meta.url)
 
     // Push options and merge to runtimeConfig
-    nuxt.options.runtimeConfig.motion = defu(nuxt.options.runtimeConfig?.motion || {}, options)
+    nuxt.options.runtimeConfig.public.motion = defu(nuxt.options.runtimeConfig.public.motion || {}, options)
 
     // Add templates (options and directives)
     addPlugin(resolve('./runtime/templates/motion'))
