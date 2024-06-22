@@ -3,9 +3,11 @@ import {
   type PropType,
   type VNode,
   computed,
+  inject,
   nextTick,
   onUpdated,
   reactive,
+  toRaw,
 } from 'vue'
 import type { LooseRequired } from '@vue/shared'
 import defu from 'defu'
@@ -18,11 +20,7 @@ import type {
 } from '../types/variants'
 import { useMotion } from '../useMotion'
 import { variantToStyle } from './transform'
-
-/**
- * Type guard, checks if passed string is an existing preset
- */
-const isPresetKey = (val: string): val is keyof typeof presets => val in presets
+import { CUSTOM_PRESETS } from './keys'
 
 /**
  * Shared component props for <Motion> and <MotionGroup>
@@ -30,8 +28,7 @@ const isPresetKey = (val: string): val is keyof typeof presets => val in presets
 export const MotionComponentProps = {
   // Preset to be loaded
   preset: {
-    type: String as PropType<keyof typeof presets>,
-    validator: (val: string) => isPresetKey(val),
+    type: String as PropType<string>,
     required: false,
   },
   // Instance
@@ -125,10 +122,24 @@ export function setupMotionComponent(
     [key: number]: MotionInstance<string, MotionVariants<string>>
   }>({})
 
+  const customPresets = inject<Record<string, Variant>>(CUSTOM_PRESETS)
+
   // Preset variant or empty object if none is provided
-  const preset = computed(() =>
-    props.preset ? structuredClone(presets[props.preset]) : {},
-  )
+  const preset = computed(() => {
+    if (props.preset == null) {
+      return {}
+    }
+
+    if (customPresets != null && props.preset in customPresets) {
+      return structuredClone(toRaw(customPresets)[props.preset])
+    }
+
+    if (props.preset in presets) {
+      return structuredClone(presets[props.preset as keyof typeof presets])
+    }
+
+    return {}
+  })
 
   // Motion configuration using inline prop variants (`:initial` ...)
   const propsConfig = computed(() => ({
@@ -185,6 +196,15 @@ export function setupMotionComponent(
 
   // Replay animations on component update Vue
   if (import.meta.env.DEV) {
+    // Validate passed preset
+    if (
+      props.preset != null
+      && presets?.[props.preset as keyof typeof presets] == null
+      && customPresets?.[props.preset] == null
+    ) {
+      console.warn(`[@vueuse/motion]: Preset \`${props.preset}\` not found.`)
+    }
+
     const replayAnimation = (instance: MotionInstance<any, any>) => {
       if (instance.variants?.initial) {
         instance.set('initial')
