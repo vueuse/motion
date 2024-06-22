@@ -5,17 +5,12 @@ import * as presets from '../presets'
 import { directive } from '../directive'
 import { slugify } from '../utils/slugify'
 import { MotionComponent, MotionGroupComponent } from '../components'
+import { CUSTOM_PRESETS } from '../utils/keys'
 
 export const MotionPlugin: Plugin = {
   install(app, options: MotionPluginOptions<string>) {
     // Register default `v-motion` directive
     app.directive('motion', directive())
-
-    // Register <Motion> component
-    app.component('Motion', MotionComponent)
-
-    // Register <MotionGroup> component
-    app.component('MotionGroup', MotionGroupComponent)
 
     // Register presets
     if (!options || (options && !options.excludePresets)) {
@@ -44,7 +39,15 @@ export const MotionPlugin: Plugin = {
         // Register the custom `v-motion-${key}` directive
         app.directive(`motion-${key}`, directive(variants, true))
       }
+
+      app.provide(CUSTOM_PRESETS, options.directives)
     }
+
+    // Register <Motion> component
+    app.component('Motion', MotionComponent)
+
+    // Register <MotionGroup> component
+    app.component('MotionGroup', MotionGroupComponent)
   },
 }
 

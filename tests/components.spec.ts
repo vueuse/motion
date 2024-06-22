@@ -7,7 +7,17 @@ import { intersect } from './utils/intersectionObserver'
 import { getTestComponent, useCompletionFn, waitForMockCalls } from './utils'
 
 // Register plugin
-config.global.plugins.push(MotionPlugin)
+config.global.plugins.push([
+  MotionPlugin,
+  {
+    directives: {
+      'custom-preset': {
+        initial: { scale: 1, y: 50 },
+        hovered: { scale: 1.2, y: 0 },
+      },
+    },
+  },
+])
 
 describe.each([
   { t: 'directive', name: '`v-motion` directive (shared tests)' },
@@ -137,6 +147,32 @@ describe.each([
 })
 
 describe('`<Motion>` component', async () => {
+  it('uses and merges custom presets', async () => {
+    const wrapper = mount(
+      { render: () => h(MotionComponent) },
+      {
+        props: {
+          preset: 'custom-preset',
+          hovered: { y: 100 },
+          duration: 10,
+        },
+      },
+    )
+
+    const el = wrapper.element as HTMLDivElement
+    await nextTick()
+
+    // Renders initial
+    expect(el.style.transform).toMatchInlineSnapshot(`"translate3d(0px,50px,0px) scale(1)"`)
+
+    // Trigger hovered
+    await wrapper.trigger('mouseenter')
+    await new Promise(resolve => setTimeout(resolve, 100))
+
+    // `custom-preset` sets scale: 1.2 and `hovered` prop sets y: 100
+    expect(el.style.transform).toMatchInlineSnapshot(`"translate3d(0px,100px,0px) scale(1.2)"`)
+  })
+
   it('#202 - preserve variant style on rerender', async () => {
     const counter = ref(0)
 
