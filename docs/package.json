@@ -19,6 +19,6 @@
     "@nuxtjs/google-fonts": "^3.2.0",
     "@nuxtjs/mdc": "^0.7.1",
     "nuxt": "^3.11.2",
-    "nuxt-og-image": "3.0.0-rc.53"
+    "nuxt-og-image": "3.0.0-rc.54"
   }
 }
