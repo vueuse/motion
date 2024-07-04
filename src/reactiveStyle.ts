@@ -21,7 +21,10 @@ export function reactiveStyle(props: StyleProperties = {}) {
     state,
     () => {
       // Init result object
-      const result: StyleProperties = {}
+      interface Result {
+        [key: string]: any
+      }
+      const result: Result = {}
 
       for (const [key, value] of Object.entries(state)) {
         // Get value type for key
@@ -29,7 +32,6 @@ export function reactiveStyle(props: StyleProperties = {}) {
         // Get value as type for key
         const valueAsType = getValueAsType(value, valueType)
         // Append the computed style to result object
-        // @ts-expect-error - Fix errors later for typescript 5
         result[key] = valueAsType
       }
 
