@@ -5,6 +5,7 @@ import { useElementStyle } from './useElementStyle'
 import { useElementTransform } from './useElementTransform'
 import { usePermissiveTarget } from './usePermissiveTarget'
 import { isTransformProp } from './utils/transform'
+import { objectEntries } from './utils/type-feature'
 
 /**
  * A Composable giving access to both `transform` and `style`objects for a single element.
@@ -29,12 +30,10 @@ export function useMotionProperties(target: MaybeRef<PermissiveTarget>, defaultV
   watch(
     motionProperties,
     (newVal) => {
-      Object.entries(newVal).forEach(([key, value]) => {
+      objectEntries(newVal).forEach(([key, value]) => {
         const target = isTransformProp(key) ? transform : style
-        // @ts-expect-error - Fix errors later for typescript 5
         if (target[key] && target[key] === value)
           return
-        // @ts-expect-error - Fix errors later for typescript 5
         target[key] = value
       })
     },
