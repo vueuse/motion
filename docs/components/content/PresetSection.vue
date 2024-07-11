@@ -71,7 +71,7 @@ async function replay() {
         <button class="absolute right-4 top-4" @click="replay">
           <Icon ref="replayButton" name="heroicons-outline:refresh" class="h-6 w-6" />
         </button>
-        <div ref="demoElement" class="demoElement">
+        <div ref="demoElement" class="demoElement" @click="replay">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
             <path
               class="a"
