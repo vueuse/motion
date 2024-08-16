@@ -80,7 +80,7 @@ declare module 'vue' {
   }
 }
 
-declare module 'vue' {
+declare module '@vue/runtime-dom' {
   interface HTMLAttributes {
     variants?: MotionVariants<any>
     // Initial variant
