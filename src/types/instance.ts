@@ -74,13 +74,13 @@ export interface SpringControls {
 
 export type MotionInstanceBindings<T extends string, V extends MotionVariants<T>> = Record<string, MotionInstance<T, V>>
 
-declare module '@vue/runtime-core' {
+declare module 'vue' {
   export interface ComponentCustomProperties {
     $motions?: MotionInstanceBindings<any, any>
   }
 }
 
-declare module '@vue/runtime-dom' {
+declare module 'vue' {
   interface HTMLAttributes {
     variants?: MotionVariants<any>
     // Initial variant
