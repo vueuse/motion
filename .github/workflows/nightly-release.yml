@@ -5,15 +5,16 @@ on:
       - '**'
     tags:
       - '!**'
-  pull_request_review:
-    types: [submitted]
   pull_request:
-    branches:
-      - main
+    types: [opened, synchronize, labeled, ready_for_review]
+    branches: [main]
+    paths-ignore:
+      - 'docs/**'
+      - 'playgrounds/**'
 
 jobs:
   release:
-    if: github.event.review.state == 'APPROVED'
+    if: ${{ !github.event.pull_request.draft && contains(github.event.pull_request.labels.*.name, 'cr-tracked') }}
     runs-on: ubuntu-latest
 
     steps:
