@@ -1,0 +1,39 @@
+name: nightly release
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '!**'
+  pull_request_review:
+    types: [submitted]
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  release:
+    if: github.event.review.state == 'APPROVED'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.18
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Release with pkg-pr-new
+        run: pnpx pkg-pr-new publish --compact --pnpm
