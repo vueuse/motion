@@ -1,6 +1,6 @@
 import type { Directive, DirectiveBinding, Ref, VNode } from 'vue'
 import defu from 'defu'
-import { ref, unref } from 'vue'
+import { ref, toRaw, unref } from 'vue'
 import { motionState } from '../features/state'
 import type { MotionInstance, MotionVariants } from '../types'
 import { useMotion } from '../useMotion'
@@ -21,7 +21,7 @@ export function directive<T extends string>(
       motionState[key].stop()
 
     // We deep copy presets to prevent global mutation
-    const variantsObject = isPreset ? structuredClone(variants || {}) : variants || {}
+    const variantsObject = isPreset ? structuredClone(toRaw(variants) || {}) : variants || {}
 
     // Initialize variants with argument
     const variantsRef = ref(variantsObject) as Ref<MotionVariants<T>>
