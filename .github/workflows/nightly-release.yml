@@ -1,0 +1,40 @@
+name: nightly release
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '!**'
+  pull_request:
+    types: [opened, synchronize, labeled, ready_for_review]
+    branches: [main]
+    paths-ignore:
+      - 'docs/**'
+      - 'playgrounds/**'
+
+jobs:
+  release:
+    if: ${{ !github.event.pull_request.draft && contains(github.event.pull_request.labels.*.name, 'cr-tracked') }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.18
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      - name: Release with pkg-pr-new
+        run: pnpx pkg-pr-new publish --compact --pnpm
