@@ -5,6 +5,8 @@ export default defineBuildConfig({
     emitCJS: true,
   },
   declaration: true,
+  // warnings triggered by nuxt exports not being built - happens in separate script
+  failOnWarn: false,
   entries: [
     // Plugin
     {
@@ -20,28 +22,6 @@ export default defineBuildConfig({
       name: 'index',
       format: 'cjs',
       ext: 'cjs',
-    },
-    // Nuxt
-    {
-      input: 'src/nuxt/module.ts',
-      outDir: 'dist',
-      name: 'nuxt',
-      format: 'esm',
-      ext: 'mjs',
-    },
-    {
-      input: 'src/nuxt/module.ts',
-      outDir: 'dist',
-      name: 'nuxt',
-      format: 'cjs',
-      ext: 'cjs',
-    },
-    // Copy runtime folder with mkdist
-    {
-      builder: 'mkdist',
-      input: 'src/nuxt/runtime',
-      outDir: 'dist/runtime',
-      declaration: false,
     },
   ],
   externals: [
