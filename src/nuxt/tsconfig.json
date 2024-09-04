@@ -1,0 +1,25 @@
+{
+  "extends": "../../playgrounds/nuxt/tsconfig.json",
+  "compilerOptions": {
+    "target": "ESNext",
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+
+    "resolveJsonModule": true,
+    "types": [
+      "node",
+      "csstype",
+      "vitest",
+      "vitest/globals",
+      "vite/client"
+    ],
+    "allowJs": true,
+    "strict": true,
+    "noEmit": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true
+  }
+}
