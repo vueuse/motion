@@ -1,0 +1,62 @@
+name: Release
+
+# trigger by `git tag` push only via `yarn release`
+on:
+  push:
+    branches-ignore:
+      - '**'
+    tags:
+      - 'v*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout codes
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Setup node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Create github releases
+        run: |
+          npx changelogithub
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Extract version tag
+        if: startsWith( github.ref, 'refs/tags/v' )
+        uses: jungwinter/split@v2
+        id: split
+        with:
+          msg: ${{ github.ref }}
+          separator: /
+
+      - name: Sync changelog from github releases
+        run: |
+          pnpm changelog --tag=${{ steps.split.outputs._2 }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Commit changelog
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          branch: main
+          file_pattern: CHANGELOG.md
+          commit_message: 'chore: generate changelog'
+
+      - name: Publish package
+        run: ./scripts/release.sh
+        env:
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}

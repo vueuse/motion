@@ -1,6 +1,7 @@
 # 🤹 @vueuse/motion
 
 [![npm](https://img.shields.io/npm/v/@vueuse/motion.svg)](https://www.npmjs.com/package/@vueuse/motion)
+[![npm](https://img.shields.io/npm/v/@vueuse/motion-nightly.svg)](https://www.npmjs.com/package/@vueuse/motion-nightly)
 [![npm](https://img.shields.io/npm/dm/@vueuse/motion.svg)](https://npm-stat.com/charts.html?package=@vueuse/motion)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ab1db459-8420-4bc6-9fac-2bc247fa2385/deploy-status)](https://app.netlify.com/sites/vueuse-motion/deploys)
 
@@ -25,7 +26,7 @@ Let's get started by installing the package and adding the plugin.
 From your terminal:
 
 ```bash
-yarn add @vueuse/motion
+npm install @vueuse/motion
 ```
 
 In your Vue app entry file:
@@ -69,6 +70,14 @@ To see more about how to create your own animation styles, check out [Transition
 To see more about what are variants and how you can use them, check out [Variants](https://motion.vueuse.org/features/variants).
 
 To see more about how to control your declared variants, check out [Motion Instance](https://motion.vueuse.org/features/motion-instance).
+
+## Nightly release channel
+
+You can try out the latest changes before a stable release by installing the nightly release channel.
+
+```bash
+npm install @vueuse/motion@npm:@vueuse/motion-nightly
+```
 
 ## Credits
 

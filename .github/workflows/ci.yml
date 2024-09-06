@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  ci:
+  test:
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -47,3 +47,46 @@ jobs:
 
       - name: Build project
         run: pnpm build
+
+      - name: Cache dist
+        uses: actions/cache@v4
+        with:
+          path: dist
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-${{ github.sha }}
+
+  nightly-release:
+    needs:
+      - test
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node: [18]
+        os: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v4
+
+      - run: corepack enable
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Restore dist cache
+        uses: actions/cache@v4
+        with:
+          path: dist
+          key: ${{ matrix.os }}-node-v${{ matrix.node }}-${{ github.sha }}
+
+      - name: Release Nightly
+        if: |
+          github.event_name == 'push' &&
+          !startsWith(github.event.head_commit.message, '[skip-release]') &&
+          !startsWith(github.event.head_commit.message, 'chore') &&
+          !startsWith(github.event.head_commit.message, 'docs')
+        run: ./scripts/release-nightly.sh
+        env:
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}

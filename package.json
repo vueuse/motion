@@ -50,13 +50,15 @@
     "build": "unbuild && pnpm build:nuxt-module",
     "build:nuxt-module": "nuxt-module-build build ./src/nuxt --outDir ../../dist/nuxt",
     "dev": "pnpm dev:vite",
-    "release": "release-it",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test:unit": "vitest run",
     "test:coverage": "vitest run --coverage",
     "test": "pnpm test:unit && pnpm test:coverage",
     "prepare": "pnpm prepare:nuxt && pnpm prepare:docs",
+    "prepack": "pnpm build",
+    "release": "bumpp --commit \"release: v%s\" --push --tag",
+    "changelog": "gh-changelogen --repo=vueuse/motion",
     "__": "__",
     "dev:nuxt": "(cd playgrounds/nuxt && pnpm dev:nuxt)",
     "build:nuxt": "(cd playgrounds/nuxt && pnpm build:nuxt)",
@@ -94,9 +96,13 @@
     "@nuxt/schema": "^3.13.0",
     "@vitest/coverage-v8": "^1.6.0",
     "@vue/test-utils": "^2.4.6",
+    "bumpp": "^9.5.2",
+    "changelogithub": "^0.13.10",
     "chokidar": "^3.6.0",
     "eslint": "^9.3.0",
+    "gh-changelogen": "^0.2.8",
     "happy-dom": "^14.12.0",
+    "jiti": "^1.21.6",
     "lint-staged": "^15.2.5",
     "nuxt": "^3.13.0",
     "pkg-pr-new": "^0.0.20",
@@ -125,23 +131,6 @@
         "axios": "^0.25.0",
         "vite": "^4.0.0"
       }
-    }
-  },
-  "release-it": {
-    "hooks": {
-      "before:init": [
-        "pnpm build"
-      ]
-    },
-    "npm": {
-      "access": "public"
-    },
-    "git": {
-      "commitMessage": "chore(release): release v${version}"
-    },
-    "github": {
-      "release": true,
-      "releaseName": "v${version}"
     }
   }
 }
