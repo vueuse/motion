@@ -1,4 +1,4 @@
-import type { Plugin } from 'vue'
+import type { App } from 'vue'
 import type { MotionPluginOptions, MotionVariants } from '../types'
 
 import * as presets from '../presets'
@@ -7,8 +7,8 @@ import { slugify } from '../utils/slugify'
 import { MotionComponent, MotionGroupComponent } from '../components'
 import { CUSTOM_PRESETS } from '../utils/keys'
 
-export const MotionPlugin: Plugin = {
-  install(app, options: MotionPluginOptions<string>) {
+export const MotionPlugin = {
+  install(app: App, options?: MotionPluginOptions<string>) {
     // Register default `v-motion` directive
     app.directive('motion', directive())
 
