@@ -13,7 +13,7 @@ async function main() {
 
   pkg.version = `${pkg.version}-${date}.${commit}`
 
-  pkg.name = `${pkg.name}-nightly`
+  pkg.name = `vueuse-motion-nightly`
   await fsp.writeFile(pkgPath, `${JSON.stringify(pkg, null, 2)}\n`)
 }
 
