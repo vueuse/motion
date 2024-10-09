@@ -3,9 +3,9 @@ import { resolve } from 'node:path'
 export default defineNuxtConfig({
   extends: ['@nuxt/ui-pro'],
 
-  features: {
-    devLogs: false,
-  },
+  // features: {
+  //   devLogs: false,
+  // },
 
   typescript: {
     includeWorkspace: true,
@@ -17,22 +17,31 @@ export default defineNuxtConfig({
     devProxy: {
       host: '127.0.0.1',
     },
+    prerender: {
+      crawlLinks: true,
+    },
   },
 
-  routeRules: { '/api/search.json': { prerender: true } },
+  routeRules: {
+    '/': { prerender: true },
+    '/getting-started': { prerender: true },
+    '/features': { prerender: true },
+    '/api': { prerender: true },
+    '/api/search.json': { prerender: true },
+  },
 
-  // vite: {
-  //   $client: {
-  //     build: {
-  //       rollupOptions: {
-  //         output: {
-  //           chunkFileNames: '_nuxt/[name]-[hash].js',
-  //           entryFileNames: '_nuxt/[name]-[hash].js',
-  //         },
-  //       },
-  //     },
-  //   },
-  // },
+  vite: {
+    $client: {
+      build: {
+        rollupOptions: {
+          output: {
+            chunkFileNames: '_nuxt/[name]-[hash].js',
+            entryFileNames: '_nuxt/[name]-[hash].js',
+          },
+        },
+      },
+    },
+  },
 
   alias: {
     '@vueuse/motion': resolve(__dirname, '../src/index.ts'),
@@ -43,9 +52,9 @@ export default defineNuxtConfig({
     '@vueuse/motion/nuxt',
     '@nuxt/content',
     '@nuxt/ui',
+    '@nuxtjs/fontaine',
     '@nuxtjs/google-fonts',
     'nuxt-og-image',
-    '@nuxt/image',
   ],
 
   ui: {
@@ -54,6 +63,9 @@ export default defineNuxtConfig({
 
   // special license for nuxt & nuxt-modules orgs
   uiPro: { license: 'oss' },
+
+  // SEO
+  site: { url: 'https://motion.vueuse.org' },
 
   // Nuxt Content
   content: {},
