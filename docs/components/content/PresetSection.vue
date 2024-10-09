@@ -126,14 +126,14 @@ const { data } = await useAsyncData(`preset-${props.name}`, () =>
     <div class="content">
       <ContentRendererMarkdown class="demoCode" :value="data ?? {}" />
 
-      <div class="demoContainer relative">
+      <div class="demoContainer relative" @click="replay">
         <client-only>
-          <button class="absolute right-4 top-4" @click="replay">
+          <button class="absolute right-4 top-4">
             <div ref="replayButton" class="replayButton">
               <Icon name="heroicons-outline:refresh" class="h-6 w-6" />
             </div>
           </button>
-          <div ref="demoElement" class="demoElement" @click="replay">
+          <div ref="demoElement" class="demoElement">
             <Face v-once />
           </div>
         </client-only>
