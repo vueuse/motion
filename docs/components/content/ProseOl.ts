@@ -17,9 +17,9 @@ export default defineComponent({
             is: 'li',
             ...appConfig.motions.li,
             visibleOnce: {
-              ...appConfig.motions.li.visibleOnce,
+              ...(appConfig.motions.li?.visibleOnce ?? {}),
               transition: {
-                ...appConfig.motions.li.visibleOnce.transition,
+                ...(appConfig.motions.li?.visibleOnce?.transition ?? {}),
                 delay: i * 50,
               },
             },

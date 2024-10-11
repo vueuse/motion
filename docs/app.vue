@@ -60,9 +60,19 @@ const links: PageLink[] = computed(() => [
     <TheFooter />
 
     <ClientOnly>
-      <LazyUContentSearch :files="files" :navigation="navigation ?? undefined" :links="links" />
+      <LazyUContentSearch
+        :files="files"
+        :navigation="navigation ?? undefined"
+        :links="links"
+      />
     </ClientOnly>
 
     <UNotifications />
   </div>
 </template>
+
+<style>
+body {
+  font-family: 'Inter var experimental', 'Inter var', 'Inter', sans-serif;
+}
+</style>

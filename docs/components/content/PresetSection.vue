@@ -56,7 +56,7 @@ const { apply, set } = useMotion(demoElement, {
 const replayInstance = useMotion(replayButton, {
   ...useAppConfig().motions.codeGroupButton,
   initial: {
-    ...useAppConfig().motions.codeGroupButton.initial,
+    ...(useAppConfig().motions.codeGroupButton?.initial ?? {}),
     rotate: 0,
   },
 })
@@ -71,7 +71,9 @@ async function replay() {
     rotate: -180,
   })
 
-  await set(props.preset.initial)
+  if (props.preset.initial) {
+    await set(props.preset.initial)
+  }
 
   if (props.preset.visible)
     await apply(props.preset.visible)
@@ -114,11 +116,7 @@ const { data } = await useAsyncData(`preset-${props.name}`, () =>
 </script>
 
 <template>
-  <Motion
-    class="presetSection"
-    :initial="{ y: 100, opacity: 0 }"
-    :visible-once="{ y: 0, opacity: 1 }"
-  >
+  <Motion class="presetSection" v-bind="$nuxt._appConfig.motions.presetSection">
     <ProseH3 :id="name" class="capitalize">
       {{ name.replace(/[A-Z]/g, (s: any) => ` ${s}`) }}
     </ProseH3>
