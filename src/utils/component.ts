@@ -122,7 +122,7 @@ export function setupMotionComponent(
     [key: number]: MotionInstance<string, MotionVariants<string>>
   }>({})
 
-  const customPresets = inject<Record<string, Variant>>(CUSTOM_PRESETS)
+  const customPresets = inject<Record<string, Variant>>(CUSTOM_PRESETS, {})
 
   // Preset variant or empty object if none is provided
   const preset = computed(() => {
@@ -195,7 +195,7 @@ export function setupMotionComponent(
   })
 
   // Replay animations on component update Vue
-  if (import.meta.env.DEV) {
+  if (import.meta.dev) {
     // Validate passed preset
     if (
       props.preset != null
