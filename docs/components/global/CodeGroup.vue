@@ -52,23 +52,14 @@ const selectedTab = computed(() => tabs.value.find((_, index) => index === selec
 
 <template>
   <div :class="ui.wrapper" v-bind="attrs">
-    <!-- v-bind="$nuxt._appConfig.motions.codeGroupButton" -->
     <div :class="ui.header">
       <Motion
         is="button"
         v-for="(tab, index) in tabs"
         :key="index"
-        :initial="{ scale: 1, transition: { stiffness: 250, mass: .5, damping: 5 } }"
-        :hovered="{
-          scale: 1.1,
-          transition: { stiffness: 250, mass: .5, damping: 5 },
-        }"
-        :tapped="{
-          scale: .95,
-          transition: { stiffness: 250, mass: .5, damping: 5 },
-        }"
         tabindex="-1"
         :class="[ui.tab.base, selectedIndex === index ? ui.tab.active : ui.tab.inactive]"
+        v-bind="$nuxt._appConfig.motions.codeGroupButton"
         @click="selectedIndex = index"
       >
         <ProseCodeIcon :icon="tab.icon" :filename="tab.label" :class="ui.tab.icon.base" />

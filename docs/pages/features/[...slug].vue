@@ -50,9 +50,8 @@ const UPageHeaderComponent = resolveComponent('UPageHeader')
 <template>
   <UPage>
     <Motion
+      v-bind="$nuxt._appConfig.motions.pageHeader"
       :is="UPageHeaderComponent"
-      :initial="{ y: 100, opacity: 0, transition: { mass: .25, damping: 10 } }"
-      :visible-once="{ y: 0, opacity: 1, transition: { mass: .25, damping: 10 } }"
       :title="page.title"
       :description="page.description"
       :links="page.links"
