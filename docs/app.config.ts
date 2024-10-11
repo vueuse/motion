@@ -140,9 +140,9 @@ export default defineAppConfig({
     colorMode: true,
     links: [
       {
-        icon: 'i-simple-icons-github',
-        to: 'https://github.com/vueuse/motion',
-        target: '_blank',
+        'icon': 'i-simple-icons-github',
+        'to': 'https://github.com/vueuse/motion',
+        'target': '_blank',
         'aria-label': 'VueUse Motion',
       },
     ],
@@ -153,9 +153,9 @@ export default defineAppConfig({
     colorMode: false,
     links: [
       {
-        icon: 'i-simple-icons-github',
-        to: 'https://github.com/vueuse/motion',
-        target: '_blank',
+        'icon': 'i-simple-icons-github',
+        'to': 'https://github.com/vueuse/motion',
+        'target': '_blank',
         'aria-label': 'VueUse Motion',
       },
     ],
