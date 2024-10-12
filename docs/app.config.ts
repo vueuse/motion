@@ -124,9 +124,16 @@ const motions = {
 
 // disable all documentation motions
 Object.entries(motions).forEach(([_, val]) => {
-  Object.keys(val).forEach((x) => {
-    // @ts-expect-error looping through keys so should be fine
-    val[x] = {}
+  Object.keys(val).forEach((k) => {
+    // nested motion config
+    if (['h1', 'common'].includes(k)) {
+      Object.keys(val).forEach((kNested) => {
+        val[k][kNested] = {}
+      })
+    }
+    else {
+      val[k] = {}
+    }
   })
 })
 
