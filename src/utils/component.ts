@@ -257,11 +257,11 @@ export function setupMotionComponent(
       const styles = variantToStyle(instances[index].state as Variant)
 
       for (const [key, val] of Object.entries(styles)) {
-        (el as any).style[key] = val
+        ;(el as any).style[key] = val
       }
     }
 
-    return node
+    return instances[index]
   }
 
   return {
