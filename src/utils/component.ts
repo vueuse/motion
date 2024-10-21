@@ -261,10 +261,11 @@ export function setupMotionComponent(
       }
     }
 
-    return instances[index]
+    return node
   }
 
   return {
+    instances,
     motionConfig,
     setNodeInstance,
   }

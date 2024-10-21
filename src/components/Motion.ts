@@ -23,14 +23,15 @@ export default defineComponent({
   setup(props) {
     const slots = useSlots()
 
-    const { motionConfig, setNodeInstance } = setupMotionComponent(props)
-    const attrs = useAttrs()
+    const { instances, motionConfig, setNodeInstance }
+      = setupMotionComponent(props)
 
     return () => {
+      const attrs = useAttrs()
       const style = variantToStyle(motionConfig.value.initial || {})
       const node = h(props.is, attrs, slots)
 
-      const instance = setNodeInstance(node, 0, style)
+      setNodeInstance(node, 0, style)
 
       // Wrap component in Transition if leave variant is set
       if (props.leave) {
@@ -38,7 +39,7 @@ export default defineComponent({
           Transition,
           {
             css: false,
-            onLeave: (_: any, done: any) => instance.leave(done),
+            onLeave: (_: any, done: any) => instances[0].leave(done),
           },
           () => [props.present && node],
         )
