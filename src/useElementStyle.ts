@@ -3,7 +3,7 @@ import { watch } from 'vue'
 import { reactiveStyle } from './reactiveStyle'
 import type { MotionTarget, PermissiveTarget, SVGPathProperties, StyleProperties } from './types'
 import { usePermissiveTarget } from './usePermissiveTarget'
-import { getSVGPath, isSVGPathProp, setSVGPath, valueTypes } from './utils/style'
+import { getSVGPath, isSVGElement, isSVGPathProp, setSVGPath, valueTypes } from './utils/style'
 import { isTransformOriginProp, isTransformProp } from './utils/transform'
 
 /**
@@ -22,7 +22,7 @@ export function useElementStyle(target: MaybeRef<PermissiveTarget>, onInit?: (in
   usePermissiveTarget(target, (el) => {
     _target = el
 
-    if ((_target as SVGElement)?.ownerSVGElement) {
+    if (isSVGElement(_target)) {
       const { pathLength, pathSpacing, pathOffset } = getSVGPath(_target as SVGElement)
       if (pathLength !== undefined) {
         (state as SVGPathProperties).pathLength = pathLength;
@@ -44,7 +44,7 @@ export function useElementStyle(target: MaybeRef<PermissiveTarget>, onInit?: (in
 
     // If cache is present, init the target with the current cached value
     if (_cache) {
-      if ((_target as SVGElement)?.ownerSVGElement) {
+      if (isSVGElement(_target)) {
         const { pathLength, pathOffset, pathSpacing } = _cache as SVGPathProperties
         if (pathLength !== undefined) {
           setSVGPath((_target as SVGElement), pathLength, pathSpacing, pathOffset)
@@ -69,7 +69,7 @@ export function useElementStyle(target: MaybeRef<PermissiveTarget>, onInit?: (in
         return
       }
 
-      if ((_target as SVGElement)?.ownerSVGElement) {
+      if (isSVGElement(_target)) {
         const { pathLength, pathOffset, pathSpacing } = newVal as SVGPathProperties
         if (pathLength !== undefined) {
           setSVGPath((_target as SVGElement), pathLength, pathSpacing, pathOffset)

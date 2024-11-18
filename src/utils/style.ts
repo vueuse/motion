@@ -105,9 +105,9 @@ export const valueTypes: ValueTypeMap = {
   numOctaves: int,
 
   // custom SVG properties
-  pathLength: px,
-  pathOffset: px,
-  pathSpacing: px,
+  pathLength: auto,
+  pathOffset: auto,
+  pathSpacing: auto,
 }
 
 /**
@@ -150,6 +150,14 @@ export function isSVGPathProp(key: string): boolean {
 }
 
 /**
+ * Determine whether it is an svg element
+ * @param target
+ */
+export function isSVGElement(target: HTMLElement | SVGElement): boolean {
+  return !!((target as SVGElement)?.ownerSVGElement || target.tagName.toLowerCase() === 'svg')
+}
+
+/**
  * Build SVG path properties from custom properties
  * pathLength always normalize to 1
  * pathOffset to stroke-dashoffset
@@ -166,7 +174,7 @@ export function isSVGPathProp(key: string): boolean {
  * @param spacing
  * @param offset
  */
-export function setSVGPath(target: SVGElement, length: number | string, spacing = 1, offset = 0) {
+export function setSVGPath(target: SVGElement, length: number, spacing = 1, offset = 0) {
   target.setAttribute('pathLength', '1') // normalize to 1
   target.setAttribute('stroke-dashoffset', `${offset}`)
   target.setAttribute('stroke-dasharray', `${length} ${spacing}`)
@@ -180,12 +188,12 @@ export function setSVGPath(target: SVGElement, length: number | string, spacing 
 export function getSVGPath(target: SVGElement) {
   // pathLength is normalize to 1
   const pathLength = target.getAttribute('pathLength') ? 1 : undefined
-  const pathOffset = target.getAttribute('stroke-dashoffset') ? Number.parseFloat(target.getAttribute('stroke-dashoffset')!) : 0
+  const pathOffset = target.getAttribute('stroke-dashoffset') ? Number.parseFloat(target.getAttribute('stroke-dashoffset')!) : undefined
   // TODO need to support odd?
   // sinle: dashes and gaps are same size
   // two: dashes and gaps are different sizes
   // odd: dashes and gaps of various sizes with an odd number of values, [4,1,2] is equivalent to [4,1,2,4,1,2]
-  const pathSpacing = target.getAttribute('stroke-dasharray') ? Number.parseFloat(target.getAttribute('stroke-dasharray')!.split(' ')[1]!) : 1
+  const pathSpacing = target.getAttribute('stroke-dasharray') ? Number.parseFloat(target.getAttribute('stroke-dasharray')!.split(' ')[1]!) : undefined
   return {
     pathLength,
     pathSpacing,

@@ -1,14 +1,18 @@
 <script setup="props" lang="ts">
-import { computed, ref } from 'vue'
-import { MotionComponent as Motion, useMotion } from '@vueuse/motion'
+import { computed, onMounted, ref } from 'vue'
+import {
+  MotionComponent as Motion,
+  useElementStyle,
+  useMotion,
+} from '@vueuse/motion'
 import DemoBox from '../components/DemoBox.vue'
 import svgpath from '../examples/svgpath'
 
 const codeText = computed(() => svgpath())
 const lines = ref([
-  { x1: 5, y1: 25, x2: 11, y2: 9, delay: 0.1 },
-  // { x1: 7, y1: 27, x2: 13, y2: 11, delay: 0.2 },
-  // { x1: 9, y1: 29, x2: 15, y2: 23, delay: 0.3 },
+  { x1: 5, y1: 25, x2: 11, y2: 9 },
+  { x1: 7, y1: 27, x2: 13, y2: 11 },
+  // { x1: 9, y1: 29, x2: 15, y2: 23 },
 ])
 
 const varients = ref([
@@ -38,6 +42,15 @@ const instance = useMotion(target, {
   enter: varients.value[1],
 })
 
+const targetSvg = ref<SVGElement>()
+// @ts-expect-error MaybeRef<PermissiveTarget>
+const { style } = useElementStyle(targetSvg)
+onMounted(() => {
+  style.pathLength = 2
+  style.pathOffset = '3.5'
+  style.pathSpacing = 2
+})
+
 function enter() {
   const varient = varients.value[1]
   instance.apply(varient)
@@ -61,7 +74,9 @@ function leave() {
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
-        class="lucide lucide-loader-circle"
+        pathLength="1"
+        stroke-dashoffset="2px"
+        stroke-dasharray="1px 1px"
         @mouseenter="enter"
         @mouseleave="leave"
       >
@@ -102,6 +117,15 @@ function leave() {
             pathSpacing: 1,
             pathOffset: [2, 1],
           }"
+        />
+
+        <line
+          ref="targetSvg"
+          stroke="green"
+          :x1="lines[1].x1 + 5"
+          :x2="lines[1].x2 + 5"
+          :y1="lines[1].y1 - 5"
+          :y2="lines[1].y2 - 5"
         />
       </svg>
     </template>
