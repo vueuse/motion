@@ -122,20 +122,27 @@ const motions = {
   },
 }
 
-// disable all documentation motions
-Object.entries(motions).forEach(([_, val]) => {
-  Object.keys(val).forEach((k) => {
-    // nested motion config
+/**
+ * This is to disable animations, the animations are a bit much and need tweaking
+ * we should also provide a way for users to disable them when enabled.
+ */
+for (const val of Object.values(motions)) {
+  // set each variant to an empty object
+  for (const k of Object.keys(val)) {
+    // h1,common are nested reset their variants to an empty object
     if (['h1', 'common'].includes(k)) {
-      Object.keys(val).forEach((kNested) => {
-        val[k][kNested] = {}
-      })
+      // @ts-expect-error not specific
+      for (const nestedK of Object.keys(val[k])) {
+        // @ts-expect-error not specific
+        val[k][nestedK] = {}
+      }
     }
     else {
+      // @ts-expect-error not specific
       val[k] = {}
     }
-  })
-})
+  }
+}
 
 export default defineAppConfig({
   ui: {
