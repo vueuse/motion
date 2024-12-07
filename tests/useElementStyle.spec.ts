@@ -138,7 +138,6 @@ describe('useElementStyle Test SVGPath', () => {
     expect(line.getAttribute('stroke-dashoffset')).toBe('3px')
     expect(line.getAttribute('stroke-dasharray')).toBe('3px 2px')
 
-
     // percentage
     lineStyle.pathLength = '3%'
     lineStyle.pathOffset = '3%'
