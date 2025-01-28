@@ -15,11 +15,19 @@ const instance = useMotion(block, {
   },
 })
 
-const replay = () => (instance.variant.value = 'enter')
+function replay() {
+  // set animation state to initial
+  instance.variant.value = 'initial'
+
+  // wait for 200ms and set it back to enter
+  setTimeout(() => {
+    instance.variant.value = 'enter'
+  }, 200)
+}
 </script>
 
 <template>
-  <div class="h-200 rounded-4xl flex w-full items-center justify-center border-4 border-red-400" @click="replay">
+  <div class="h-full rounded-lg flex w-full items-center justify-center border-1 border-gray-200" @click="replay">
     <Block ref="block" />
   </div>
 </template>
