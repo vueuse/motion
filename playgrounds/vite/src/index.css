@@ -3,11 +3,12 @@ html {
 }
 
 body {
-  @apply text-white flex items-center justify-center bg-gradient-to-b from-violet-600 to-violet-900 bg-cover bg-fixed overflow-y-scroll;
+  @apply text-white flex items-center justify-center bg-gradient-to-b from-violet-600 to-violet-900 bg-cover bg-fixed;
 }
 
 #app {
-  @apply w-full md:w-8/12 xl:w-1/2 p-6;
+  @apply w-screen h-screen;
+  font-family: "Inter";
 }
 
 /* PrismJS theme fix */
@@ -39,4 +40,34 @@ pre[class*='language-'] {
   --prism-line-number-gutter: #eeeeee;
   --prism-line-highlight-background: #444444;
   --prism-selection-background: #444444;
+
+  /* Custom */
+  --background: 0 0% 100%;
+  --foreground: 224 71.4% 4.1%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 224 71.4% 4.1%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 224 71.4% 4.1%;
+
+  --primary: 262.1 83.3% 57.8%;
+  --primary-foreground: 210 20% 98%;
+
+  --secondary: 220 14.3% 95.9%;
+  --secondary-foreground: 220.9 39.3% 11%;
+
+  --muted: 220 14.3% 95.9%;
+  --muted-foreground: 220 8.9% 46.1%;
+
+  --accent: 220 14.3% 95.9%;
+  --accent-foreground: 220.9 39.3% 11%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 20% 98%;
+
+  --border: 220 13% 91%;
+  --input: 220 13% 91%;
+  --ring: 262.1 83.3% 57.8%;
+  --radius: 0.5rem;
 }

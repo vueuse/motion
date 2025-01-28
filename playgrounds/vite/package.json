@@ -6,6 +6,7 @@
     "preview:vite": "vite preview"
   },
   "dependencies": {
+    "@tabler/icons-vue": "^3.29.0",
     "@vueuse/motion": "workspace:~",
     "prism-theme-vars": "^0.2.5",
     "prismjs": "^1.29.0",

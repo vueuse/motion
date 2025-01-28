@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite-plugin-windicss'
 
-defineConfig({
+export default defineConfig({
   darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {
