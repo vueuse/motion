@@ -1,6 +1,6 @@
 import type { MaybeRef } from '@vueuse/shared'
-import { animate } from 'popmotion'
 import type { MotionProperties, PermissiveMotionProperties, PermissiveTarget, Spring, SpringControls } from './types'
+import { animate } from 'popmotion'
 import { useMotionValues } from './useMotionValues'
 import { getDefaultTransition } from './utils/defaults'
 

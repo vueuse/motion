@@ -1,25 +1,22 @@
+// Components
+export * from './components'
+
 // Directive
 export { directive as MotionDirective } from './directive'
 
 // Plugin
 export { MotionPlugin } from './plugin'
-
-// Utils
-export { slugify } from './utils/slugify'
-export { isMotionInstance } from './utils/is-motion-instance'
-
 // Presets
 export * from './presets'
+
+// Composables
+export { reactiveStyle } from './reactiveStyle'
+
+export { reactiveTransform } from './reactiveTransform'
 
 // Typings
 export * from './types'
 
-// Components
-export * from './components'
-
-// Composables
-export { reactiveStyle } from './reactiveStyle'
-export { reactiveTransform } from './reactiveTransform'
 export { useElementStyle } from './useElementStyle'
 export { useElementTransform } from './useElementTransform'
 export { useMotion } from './useMotion'
@@ -29,5 +26,8 @@ export { useMotionProperties } from './useMotionProperties'
 export { useMotions } from './useMotions'
 export { useMotionTransitions } from './useMotionTransitions'
 export { useMotionVariants } from './useMotionVariants'
-export { useSpring } from './useSpring'
 export { useReducedMotion } from './useReducedMotion'
+export { useSpring } from './useSpring'
+export { isMotionInstance } from './utils/is-motion-instance'
+// Utils
+export { slugify } from './utils/slugify'

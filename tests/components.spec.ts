@@ -3,8 +3,8 @@ import { describe, expect, it } from 'vitest'
 import { h, nextTick, ref } from 'vue'
 import { MotionComponent, MotionPlugin } from '../src'
 import MotionGroup from '../src/components/MotionGroup'
-import { intersect } from './utils/intersectionObserver'
 import { getTestComponent, useCompletionFn, waitForMockCalls } from './utils'
+import { intersect } from './utils/intersectionObserver'
 
 // Register plugin
 config.global.plugins.push([

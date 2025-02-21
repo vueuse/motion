@@ -1,4 +1,5 @@
-import { type Mock, vi } from 'vitest'
+import type { Mock } from 'vitest'
+import { vi } from 'vitest'
 import { h } from 'vue'
 import { MotionComponent } from '../../src/components'
 

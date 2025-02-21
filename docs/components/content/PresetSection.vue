@@ -1,7 +1,7 @@
 <script setup="props" lang="ts">
-import { ref } from 'vue'
 import type { PropType } from 'vue'
 import { useMotion } from '@vueuse/motion'
+import { ref } from 'vue'
 import { slugify } from '../../../src/utils/slugify'
 
 const props = defineProps({

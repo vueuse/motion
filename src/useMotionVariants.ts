@@ -1,7 +1,7 @@
 import type { MaybeRef } from '@vueuse/core'
 import type { Ref } from 'vue'
-import { computed, ref, unref } from 'vue'
 import type { MotionVariants, Variant } from './types'
+import { computed, ref, unref } from 'vue'
 
 /**
  * A Composable handling variants selection and features.

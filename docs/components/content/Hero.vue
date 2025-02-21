@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useMotion } from '@vueuse/motion'
+import { ref } from 'vue'
 import Illustration from './Illustration.vue'
 
 const header = ref<HTMLElement>()

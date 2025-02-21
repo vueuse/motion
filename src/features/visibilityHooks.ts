@@ -1,6 +1,6 @@
+import type { MotionInstance, MotionVariants } from '../types'
 import { useIntersectionObserver } from '@vueuse/core'
 import { unref } from 'vue'
-import type { MotionInstance, MotionVariants } from '../types'
 
 export function registerVisibilityHooks<T extends string, V extends MotionVariants<T>>({ target, variants, variant }: MotionInstance<T, V>) {
   const _variants = unref(variants)

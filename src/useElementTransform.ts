@@ -1,7 +1,7 @@
 import type { MaybeRef } from '@vueuse/core'
+import type { MotionTarget, PermissiveTarget, TransformProperties } from './types'
 import { watch } from 'vue'
 import { reactiveTransform } from './reactiveTransform'
-import type { MotionTarget, PermissiveTarget, TransformProperties } from './types'
 import { usePermissiveTarget } from './usePermissiveTarget'
 import { stateFromTransform } from './utils/transform-parser'
 

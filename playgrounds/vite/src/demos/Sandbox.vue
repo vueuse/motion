@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useMotion } from '@vueuse/motion'
+import { ref } from 'vue'
 
 const block = ref()
 

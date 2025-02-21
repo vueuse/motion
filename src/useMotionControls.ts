@@ -1,7 +1,7 @@
 import type { MaybeRef } from '@vueuse/core'
+import type { MotionControls, MotionProperties, MotionTransitions, MotionVariants, Variant } from './types'
 import { isObject } from '@vueuse/core'
 import { ref, unref, watch } from 'vue'
-import type { MotionControls, MotionProperties, MotionTransitions, MotionVariants, Variant } from './types'
 import { useMotionTransitions } from './useMotionTransitions'
 import { getDefaultTransition } from './utils/defaults'
 

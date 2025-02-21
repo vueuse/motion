@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
-import { nextTick, ref } from 'vue'
 import { describe, expect, it } from 'vitest'
+import { nextTick, ref } from 'vue'
 import { useElementStyle } from '../src'
 
 const TestComponent = {

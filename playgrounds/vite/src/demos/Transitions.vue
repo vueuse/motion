@@ -1,7 +1,7 @@
 <script setup="props" lang="ts">
-import { computed } from 'vue'
-import { useMotions } from '@vueuse/motion'
 import { useToggle } from '@vueuse/core'
+import { useMotions } from '@vueuse/motion'
+import { computed } from 'vue'
 import DemoBox from '../components/DemoBox.vue'
 import transitions from '../examples/transitions'
 

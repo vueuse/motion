@@ -1,6 +1,6 @@
 import type { Ref } from 'vue'
-import { reactive, ref, watch } from 'vue'
 import type { StyleProperties } from './types'
+import { reactive, ref, watch } from 'vue'
 import { getValueAsType, getValueType } from './utils/style'
 
 /**

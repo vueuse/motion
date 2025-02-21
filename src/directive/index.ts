@@ -1,12 +1,12 @@
 import type { Directive, DirectiveBinding, Ref, VNode } from 'vue'
+import type { MotionInstance, MotionVariants } from '../types'
 import defu from 'defu'
 import { ref, toRaw, unref } from 'vue'
 import { motionState } from '../features/state'
-import type { MotionInstance, MotionVariants } from '../types'
+import { registerVisibilityHooks } from '../features/visibilityHooks'
 import { useMotion } from '../useMotion'
 import { resolveVariants } from '../utils/directive'
 import { variantToStyle } from '../utils/transform'
-import { registerVisibilityHooks } from '../features/visibilityHooks'
 
 export function directive<T extends string>(
   variants?: MotionVariants<T>,

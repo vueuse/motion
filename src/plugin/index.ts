@@ -1,11 +1,11 @@
 import type { App } from 'vue'
 import type { MotionPluginOptions, MotionVariants } from '../types'
 
-import * as presets from '../presets'
-import { directive } from '../directive'
-import { slugify } from '../utils/slugify'
 import { MotionComponent, MotionGroupComponent } from '../components'
+import { directive } from '../directive'
+import * as presets from '../presets'
 import { CUSTOM_PRESETS } from '../utils/keys'
+import { slugify } from '../utils/slugify'
 
 export const MotionPlugin = {
   install(app: App, options?: MotionPluginOptions<string>) {

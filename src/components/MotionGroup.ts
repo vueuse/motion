@@ -1,9 +1,9 @@
-import type { PropType, VNode } from 'vue'
 import type { Component } from '@nuxt/schema'
+import type { PropType, VNode } from 'vue'
 
-import { Fragment, defineComponent, h, useSlots } from 'vue'
-import { variantToStyle } from '../utils/transform'
+import { defineComponent, Fragment, h, useSlots } from 'vue'
 import { MotionComponentProps, setupMotionComponent } from '../utils/component'
+import { variantToStyle } from '../utils/transform'
 
 export default defineComponent({
   name: 'MotionGroup',

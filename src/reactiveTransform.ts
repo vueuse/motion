@@ -1,6 +1,6 @@
+import type { TransformProperties } from './types'
 import { px } from 'style-value-types'
 import { reactive, ref, watch } from 'vue'
-import type { TransformProperties } from './types'
 import { getValueAsType, getValueType } from './utils/style'
 
 /**

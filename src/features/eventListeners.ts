@@ -1,6 +1,6 @@
+import type { MotionInstance, MotionVariants } from '../types'
 import { useEventListener } from '@vueuse/core'
 import { computed, ref, unref, watch } from 'vue'
-import type { MotionInstance, MotionVariants } from '../types'
 import { supportsMouseEvents, supportsPointerEvents, supportsTouchEvents } from '../utils/events'
 
 export function registerEventListeners<T extends string, V extends MotionVariants<T>>({ target, state, variants, apply }: MotionInstance<T, V>) {

@@ -1,6 +1,6 @@
 import type { MaybeRef } from '@vueuse/core'
-import { reactive, watch } from 'vue'
 import type { MotionProperties, PermissiveTarget } from './types'
+import { reactive, watch } from 'vue'
 import { useElementStyle } from './useElementStyle'
 import { useElementTransform } from './useElementTransform'
 import { usePermissiveTarget } from './usePermissiveTarget'

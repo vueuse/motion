@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { nextTick, ref, watch } from 'vue'
 import Prism from 'prismjs'
+import { nextTick, ref, watch } from 'vue'
 
 const props = defineProps({
   language: {

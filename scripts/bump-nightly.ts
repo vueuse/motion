@@ -1,6 +1,6 @@
-import process from 'node:process'
-import { promises as fsp } from 'node:fs'
 import { execSync } from 'node:child_process'
+import { promises as fsp } from 'node:fs'
+import process from 'node:process'
 import { resolve } from 'pathe'
 
 async function main() {

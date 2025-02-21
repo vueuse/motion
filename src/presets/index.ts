@@ -7,12 +7,12 @@ export {
   rollTop,
   rollVisibleBottom,
   rollVisibleLeft,
-  rollVisibleRight,
-  rollVisibleTop,
   rollVisibleOnceBottom,
   rollVisibleOnceLeft,
   rollVisibleOnceRight,
   rollVisibleOnceTop,
+  rollVisibleRight,
+  rollVisibleTop,
 } from './roll'
 export {
   slideBottom,
@@ -21,10 +21,10 @@ export {
   slideTop,
   slideVisibleBottom,
   slideVisibleLeft,
-  slideVisibleRight,
-  slideVisibleTop,
   slideVisibleOnceBottom,
   slideVisibleOnceLeft,
   slideVisibleOnceRight,
   slideVisibleOnceTop,
+  slideVisibleRight,
+  slideVisibleTop,
 } from './slide'

@@ -1,7 +1,7 @@
 import type { FrameData } from 'framesync'
+import type { StartAnimation, Subscriber } from './types'
 import sync, { getFrameData } from 'framesync'
 import { velocityPerSecond } from 'popmotion'
-import type { StartAnimation, Subscriber } from './types'
 import { SubscriptionManager } from './utils/subscription-manager'
 
 function isFloat(value: any): value is string {

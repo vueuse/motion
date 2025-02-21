@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import Delay from './demos/Delay.vue'
 import Editor from './demos/Editor.vue'
-import Transitions from './demos/Transitions.vue'
 import Sandbox from './demos/Sandbox.vue'
+import Transitions from './demos/Transitions.vue'
 
 const sandbox = false
 </script>

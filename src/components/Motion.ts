@@ -2,8 +2,8 @@ import type { Component } from '@nuxt/schema'
 import type { PropType } from 'vue'
 
 import { defineComponent, h, useSlots } from 'vue'
-import { variantToStyle } from '../utils/transform'
 import { MotionComponentProps, setupMotionComponent } from '../utils/component'
+import { variantToStyle } from '../utils/transform'
 
 export default defineComponent({
   name: 'Motion',

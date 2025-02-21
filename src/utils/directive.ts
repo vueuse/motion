@@ -1,6 +1,6 @@
-import { isObject } from '@vueuse/core'
 import type { Ref, VNode } from 'vue'
 import type { MotionVariants } from '../types'
+import { isObject } from '@vueuse/core'
 
 const transitionKeys = ['delay', 'duration'] as const
 const directivePropsKeys = ['initial', 'enter', 'leave', 'visible', 'visible-once', 'visibleOnce', 'hovered', 'tapped', 'focused', ...transitionKeys] as const

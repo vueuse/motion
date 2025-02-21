@@ -1,6 +1,6 @@
+import type { Variant } from './../types/variants'
 import { reactiveStyle } from '../reactiveStyle'
 import { reactiveTransform } from '../reactiveTransform'
-import type { Variant } from './../types/variants'
 
 /**
  * A list of all transformable axes. We'll use this list to generated a version

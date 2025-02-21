@@ -1,9 +1,9 @@
-import { tryOnUnmounted } from '@vueuse/shared'
-import { ref } from 'vue'
 import type { Ref } from 'vue'
 import type { MotionValue } from './motionValue'
-import { getMotionValue } from './motionValue'
 import type { MotionProperties, MotionValuesMap } from './types'
+import { tryOnUnmounted } from '@vueuse/shared'
+import { ref } from 'vue'
+import { getMotionValue } from './motionValue'
 
 const { isArray } = Array
 

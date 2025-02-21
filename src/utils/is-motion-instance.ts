@@ -1,5 +1,5 @@
-import { isRef } from 'vue'
 import type { MotionInstance, MotionVariants } from '../types'
+import { isRef } from 'vue'
 
 /**
  * Check whether an object is a Motion Instance or not.

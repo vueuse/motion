@@ -1,26 +1,27 @@
-import {
-  type ExtractPropTypes,
-  type PropType,
-  type VNode,
-  computed,
-  inject,
-  nextTick,
-  onUpdated,
-  reactive,
-  toRaw,
-} from 'vue'
 import type { LooseRequired } from '@vue/shared'
-import defu from 'defu'
-import * as presets from '../presets'
+import type { ExtractPropTypes, PropType, VNode } from 'vue'
 import type { MotionInstance } from '../types/instance'
 import type {
   MotionVariants,
   StyleProperties,
   Variant,
 } from '../types/variants'
+import defu from 'defu'
+import {
+  computed,
+
+  inject,
+  nextTick,
+  onUpdated,
+
+  reactive,
+  toRaw,
+
+} from 'vue'
+import * as presets from '../presets'
 import { useMotion } from '../useMotion'
-import { variantToStyle } from './transform'
 import { CUSTOM_PRESETS } from './keys'
+import { variantToStyle } from './transform'
 
 /**
  * Shared component props for <Motion> and <MotionGroup>
