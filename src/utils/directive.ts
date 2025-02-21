@@ -49,7 +49,6 @@ export function resolveVariants<T extends string>(node: VNode<any, HTMLElement |
         continue
       }
 
-      // @ts-expect-error - Fix errors later for typescript 5
       if (isObject(target[key])) {
         const prop = target[key]
         if (key === 'visible-once')
