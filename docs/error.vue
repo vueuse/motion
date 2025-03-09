@@ -1,6 +1,20 @@
 <script setup lang="ts">
-import { mapContentNavigation } from '@nuxt/ui-pro/runtime/utils/content.js'
-import type { ContentNavigationItem } from '@nuxt/content'
+import type { NuxtError } from '#app'
+
+defineProps<{
+  error: NuxtError
+}>()
+
+useSeoMeta({
+  title: 'Page not found',
+  description: 'We are sorry but this page could not be found.',
+})
+
+useHead({
+  htmlAttrs: {
+    lang: 'en',
+  },
+})
 
 const appConfig = useAppConfig()
 const radius = computed(
@@ -20,50 +34,46 @@ useSeoMeta({
   twitterCard: 'summary_large_image',
 })
 
-// Navigation Data
-const { data: navigation } = await useAsyncData('navigation', () =>
-  queryCollectionNavigation('docs'))
+const { $currentDocsVersionNavigation } = useNuxtApp()
 
-const nav = computed<ContentNavigationItem[]>(() =>
-  mapContentNavigation(navigation.value),
-)
-provide('navigation', nav)
-
-// Search
+// // Search
 const { data: files } = useAsyncData(
   '/api/search.json',
   () => queryCollectionSearchSections('docs'),
   { server: false },
 )
 
+const { data: navigation } = await useAsyncData('navigation', () =>
+  queryCollectionNavigation('docs'))
+
 // // Header
 const route = useRoute()
 const links = computed<unknown[]>(() => [
   {
-    label: 'Getting started',
+    label: 'Docs',
     to: `/getting-started`,
-    icon: 'i-heroicons-rocket-launch',
+    icon: 'i-heroicons-book-open',
   },
   {
     label: 'Features',
     to: '/features',
-    icon: 'i-heroicons-book-open',
+    icon: 'i-heroicons-map',
   },
   {
     label: 'API',
     to: '/api',
-    icon: 'i-heroicons-code-bracket',
+    icon: 'i-heroicons-map',
   },
 ])
 </script>
 
 <template>
-  <UApp>
+  <div>
     <NuxtLoadingIndicator />
     <Header :links="links" />
 
     <NuxtLayout>
-      <NuxtPage />
+      <UError :error="error" />
     </NuxtLayout>
 
     <Footer />
@@ -73,10 +83,7 @@ const links = computed<unknown[]>(() => [
         :files="files"
         :navigation="navigation"
         :multiple="true"
-        :kbds="['meta', 'K']"
       />
     </ClientOnly>
-  </UApp>
+  </div>
 </template>
-
-<style></style>

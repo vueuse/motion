@@ -1,45 +1,43 @@
 import { resolve } from 'node:path'
+import pkg from '../package.json'
 
 export default defineNuxtConfig({
-  extends: ['@nuxt/ui-pro'],
-
-  // features: {
-  //   devLogs: false,
-  // },
-
-  typescript: {
-    includeWorkspace: true,
+  devtools: { enabled: false },
+  modules: [
+    '@nuxt/ui-pro',
+    '@nuxt/content',
+    '@vueuse/motion/nuxt',
+    'nuxt-og-image',
+  ],
+  routeRules: {
+    '/': { prerender: true },
+    '/features': { redirect: '/features/presets' },
+    '/api': { redirect: '/api/use-motion' },
+    '/api/search.json': { prerender: true },
   },
 
-  devtools: { enabled: false },
+  // SEO
+  site: { url: 'https://motion.vueuse.org' },
 
   nitro: {
-    devProxy: {
-      host: '127.0.0.1',
-    },
     prerender: {
       crawlLinks: true,
     },
   },
 
-  routeRules: {
-    '/': { prerender: true },
-    '/getting-started': { prerender: true },
-    '/features': { prerender: true },
-    '/api': { prerender: true },
-    '/api/search.json': { prerender: true },
+  vite: {
+    optimizeDeps: {
+      include: [
+        '@vueuse/core',
+        '@vueuse/motion',
+        'shiki-transformer-color-highlight',
+      ],
+    },
   },
 
-  vite: {
-    $client: {
-      build: {
-        rollupOptions: {
-          output: {
-            chunkFileNames: '_nuxt/[name]-[hash].js',
-            entryFileNames: '_nuxt/[name]-[hash].js',
-          },
-        },
-      },
+  runtimeConfig: {
+    public: {
+      version: pkg.version,
     },
   },
 
@@ -48,35 +46,43 @@ export default defineNuxtConfig({
     '@vueuse/motion/nuxt': resolve(__dirname, '../src/nuxt/src/module.ts'),
   },
 
-  modules: [
-    '@vueuse/motion/nuxt',
-    '@nuxt/content',
-    '@nuxt/ui',
-    '@nuxtjs/fontaine',
-    '@nuxtjs/google-fonts',
-    'nuxt-og-image',
-    '@nuxt/fonts',
-  ],
-
-  ui: {
-    icons: ['simple-icons'],
-  },
+  // Nuxt UI & UI Pro
+  ui: { icons: ['heroicons', 'simple-icons'] },
 
   // special license for nuxt & nuxt-modules orgs
   uiPro: { license: 'oss' },
 
-  // SEO
-  site: { url: 'https://motion.vueuse.org' },
-
   // Nuxt Content
-  content: {},
-
-  // Fonts
-  googleFonts: {
-    display: 'swap',
-    download: true,
-    families: { 'DM+Sans': [400, 500, 600, 700] },
+  content: {
+    build: {
+      markdown: {
+        highlight: {
+          langs: [
+            'bash',
+            'js',
+            'ts',
+            'typescript',
+            'diff',
+            'vue',
+            'json',
+            'jsonc',
+            'yml',
+            'css',
+            'mdc',
+          ],
+        },
+      },
+    },
   },
 
-  compatibilityDate: '2024-10-09',
+  mdc: {
+    highlight: {
+      noApiRoute: false,
+    },
+  },
+
+  css: ['~/assets/css/main.css'],
+
+  typescript: { strict: false },
+  compatibilityDate: '2024-09-26',
 })

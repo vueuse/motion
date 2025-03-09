@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 defineOptions({
   inheritAttrs: false,
-})
+});
 
 defineProps({
   title: {
@@ -14,9 +14,9 @@ defineProps({
   },
   headline: {
     type: String,
-    default: '',
+    default: "",
   },
-})
+});
 </script>
 
 <template>
@@ -78,7 +78,7 @@ defineProps({
     </div>
 
     <div class="absolute top-[192px] right-[128px]">
-      <img src="/logo.svg" style="width: 256px; height: 256px">
+      <img src="/logo.svg" style="width: 256px; height: 256px" />
     </div>
     <svg
       class="absolute top-[160px] right-[90px]"

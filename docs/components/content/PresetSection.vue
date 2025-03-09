@@ -1,10 +1,30 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import type { PropType } from 'vue'
-import { useMotion } from '@vueuse/motion'
-import defu from 'defu'
-import { slugify } from '../../../src/utils/slugify'
-import Face from './Face.vue'
+import { ref } from "vue";
+import type { PropType } from "vue";
+import { useMotion } from "@vueuse/motion";
+import defu from "defu";
+
+import Face from "./Face.vue";
+
+function slugify(str: string) {
+  const a =
+    "àáâäæãåāăąçćčđďèéêëēėęěğǵḧîïíīįìłḿñńǹňôöòóœøōõőṕŕřßśšşșťțûüùúūǘůűųẃẍÿýžźż·/_,:;";
+  const b =
+    "aaaaaaaaaacccddeeeeeeeegghiiiiiilmnnnnoooooooooprrsssssttuuuuuuuuuwxyyzzz------";
+  const p = new RegExp(a.split("").join("|"), "g");
+
+  return str
+    .toString()
+    .replace(/[A-Z]/g, (s) => `-${s}`) // Camel to slug
+    .toLowerCase()
+    .replace(/\s+/g, "-") // Replace spaces with -
+    .replace(p, (c) => b.charAt(a.indexOf(c))) // Replace special characters
+    .replace(/&/g, "-and-") // Replace & with 'and'
+    .replace(/[^\w\-]+/g, "") // Remove all non-word characters
+    .replace(/-{2,}/g, "-") // Replace multiple - with single -
+    .replace(/^-+/, "") // Trim - from start of text
+    .replace(/-+$/, ""); // Trim - from end of text
+}
 
 const props = defineProps({
   name: {
@@ -13,45 +33,43 @@ const props = defineProps({
   preset: {
     type: Object as PropType<any>,
   },
-})
+});
 
-const isReplaying = ref(false)
-const replayButton = ref<SVGElement>()
-const demoElement = ref<HTMLElement>()
+const isReplaying = ref(false);
+const replayButton = ref<SVGElement>();
+const demoElement = ref<HTMLElement>();
 
-const tweaks: Record<'delay' | 'duration', number> = {
+const tweaks: Record<"delay" | "duration", number> = {
   duration: 600,
   delay: 0,
-}
+};
 
 const configWithDuration = computed(() => {
-  const config = defu({}, structuredClone(props.preset || {}))
+  const config = defu({}, structuredClone(props.preset || {}));
 
-  for (const transitionKey of ['delay', 'duration'] as const) {
-    if (!tweaks[transitionKey])
-      continue
+  for (const transitionKey of ["delay", "duration"] as const) {
+    if (!tweaks[transitionKey]) continue;
 
-    const transitionValueParsed = tweaks[transitionKey]
+    const transitionValueParsed = tweaks[transitionKey];
 
     // TODO: extract to utility function
     // Apply transition property to existing variants where applicable
-    for (const variantKey of ['enter', 'visible', 'visibleOnce'] as const) {
-      const variantConfig = config[variantKey]
+    for (const variantKey of ["enter", "visible", "visibleOnce"] as const) {
+      const variantConfig = config[variantKey];
 
-      if (variantConfig == null)
-        continue
+      if (variantConfig == null) continue;
 
-      variantConfig.transition ??= {}
-      variantConfig.transition[transitionKey] = transitionValueParsed
+      variantConfig.transition ??= {};
+      variantConfig.transition[transitionKey] = transitionValueParsed;
     }
   }
 
-  return config
-})
+  return config;
+});
 
 const { apply, set } = useMotion(demoElement, {
   ...configWithDuration.value,
-})
+});
 
 const replayInstance = useMotion(replayButton, {
   ...useAppConfig().motions.codeGroupButton,
@@ -59,32 +77,29 @@ const replayInstance = useMotion(replayButton, {
     ...(useAppConfig().motions.codeGroupButton?.initial ?? {}),
     rotate: 0,
   },
-})
+});
 
 async function replay() {
-  isReplaying.value = true
+  isReplaying.value = true;
 
   replayInstance.set({
     rotate: 0,
-  })
+  });
   replayInstance.apply({
     rotate: -180,
-  })
+  });
 
   if (props.preset.initial) {
-    await set(props.preset.initial)
+    await set(props.preset.initial);
   }
 
-  if (props.preset.visible)
-    await apply(props.preset.visible)
+  if (props.preset.visible) await apply(props.preset.visible);
 
-  if (props.preset.visibleOnce)
-    await apply(props.preset.visibleOnce)
+  if (props.preset.visibleOnce) await apply(props.preset.visibleOnce);
 
-  if (props.preset.enter)
-    await apply(props.preset.enter)
+  if (props.preset.enter) await apply(props.preset.enter);
 
-  isReplaying.value = false
+  isReplaying.value = false;
 }
 
 const { data } = await useAsyncData(`preset-${props.name}`, () =>
@@ -92,27 +107,28 @@ const { data } = await useAsyncData(`preset-${props.name}`, () =>
     [
       `::code-group`,
       ...[
-        '```vue [<Motion />]',
+        "```vue [<Motion />]",
         // '<template>',
         `<Motion preset="${props.name}" :duration="600" />`,
         // '</template>',
-        '```',
+        "```",
       ],
       ...[
-        '```vue [v-motion]',
+        "```vue [v-motion]",
         // '<template>',
         `<div v-motion-${slugify(props.name)} :duration="600" />`,
         // '</template>',
-        '```',
+        "```",
       ],
       ...[
-        '```json [Preset]',
+        "```json [Preset]",
         `${JSON.stringify(props.preset, null, 2)}`,
-        '```',
+        "```",
       ],
       `::`,
-    ].join('\n'),
-  ))
+    ].join("\n")
+  )
+);
 </script>
 
 <template>
@@ -122,7 +138,7 @@ const { data } = await useAsyncData(`preset-${props.name}`, () =>
     </ProseH3>
 
     <div class="content">
-      <ContentRendererMarkdown class="demoCode" :value="data ?? {}" />
+      <ContentRenderer class="demoCode" :value="data ?? {}" />
 
       <div class="demoContainer relative" @click="replay">
         <client-only>

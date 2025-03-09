@@ -4,11 +4,19 @@ interface PageMeta {
   headline: string
 }
 
-export default function () {
-  function setPageMeta(newPageMeta: PageMeta) {
-    const { title = '', description = '', headline = '' } = newPageMeta
-    useSeoMeta({ title, ogTitle: title, description, ogDescription: description })
-    defineOgImage({ component: 'Docs', title, description, headline })
+export default function usePageMeta() {
+  function setPageMeta({
+    title = '',
+    description = '',
+    headline = '',
+  }: PageMeta) {
+    useSeoMeta({
+      title,
+      ogTitle: title,
+      description,
+      ogDescription: description,
+    })
+    defineOgImageComponent('Docs', { title, description, headline })
   }
 
   return { setPageMeta }

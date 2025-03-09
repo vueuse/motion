@@ -136,8 +136,7 @@ for (const val of Object.values(motions)) {
         // @ts-expect-error not specific
         val[k][nestedK] = {}
       }
-    }
-    else {
+    } else {
       // @ts-expect-error not specific
       val[k] = {}
     }
@@ -145,37 +144,68 @@ for (const val of Object.values(motions)) {
 }
 
 export default defineAppConfig({
-  ui: {
-    primary: 'cyan',
-    gray: 'neutral',
+  legacy: {
+    ui: {
+      primary: 'cyan',
+      neutral: 'slate',
+    },
   },
+  default: {
+    ui: {
+      primary: 'cyan',
+      neutral: 'zinc',
+    },
+  },
+  theme: {
+    radius: 0.25,
+  },
+  ui: {
+    colors: {
+      primary: 'cyan',
+      neutral: 'zinc',
+    },
+  },
+  uiPro: {
+    footer: {
+      bottom: {
+        left: 'text-sm text-gray-500 dark:text-gray-400',
+        wrapper: 'border-t border-gray-200 dark:border-gray-800',
+      },
+    },
+  },
+  seo: { siteName: '@vueuse/motion' },
   header: {
     search: true,
     colorMode: true,
     links: [
       {
-        'icon': 'i-simple-icons-github',
-        'to': 'https://github.com/vueuse/motion',
-        'target': '_blank',
+        icon: 'i-simple-icons-github',
+        to: 'https://github.com/vueuse/motion',
+        target: '_blank',
         'aria-label': 'VueUse Motion',
       },
     ],
   },
-  seo: { siteName: '@vueuse/motion' },
   footer: {
     credits: `Copyright © ${new Date().getFullYear()}`,
     colorMode: false,
     links: [
       {
-        'icon': 'i-simple-icons-github',
-        'to': 'https://github.com/vueuse/motion',
-        'target': '_blank',
+        icon: 'i-simple-icons-nuxtdotjs',
+        to: 'https://nuxt.com',
+        target: '_blank',
+        'aria-label': 'Nuxt Website',
+      },
+      {
+        icon: 'i-simple-icons-github',
+        to: 'https://github.com/vueuse/motion',
+        target: '_blank',
         'aria-label': 'VueUse Motion',
       },
     ],
   },
   toc: {
-    title: 'Table of Contents',
+    title: 'On this page',
     bottom: {
       edit: 'https://github.com/vueuse/motion/edit/main/content',
     },
