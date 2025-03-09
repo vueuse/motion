@@ -1,4 +1,4 @@
-import type { Directive, DirectiveBinding, Ref, VNode } from 'vue'
+import type { Directive, DirectiveBinding, MaybeRef, Ref, VNode } from 'vue'
 import defu from 'defu'
 import { ref, toRaw, unref } from 'vue'
 import { motionState } from '../features/state'
@@ -37,7 +37,11 @@ export function directive<T extends string>(
     const motionOptions = { eventListeners: true, lifeCycleHooks: true, syncVariants: true, visibilityHooks: false }
 
     // Create motion instance
-    const motionInstance = useMotion(el, variantsRef, motionOptions)
+    const motionInstance = useMotion(
+      el,
+      variantsRef as MotionVariants<T>,
+      motionOptions,
+    )
 
     // Pass the motion instance via the local element
     // @ts-expect-error - we know that the element is a HTMLElement
