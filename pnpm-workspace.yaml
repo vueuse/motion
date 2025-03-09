@@ -3,3 +3,8 @@ packages:
   - playgrounds/vite
   - playgrounds/nuxt
   - playgrounds/vite-ssg
+
+catalog:
+  nuxt: 3.15.4
+  '@nuxt/schema': 3.15.4
+  '@nuxt/kit': 3.15.4
