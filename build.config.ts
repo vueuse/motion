@@ -1,10 +1,7 @@
 import { defineBuildConfig } from 'unbuild'
 
 export default defineBuildConfig({
-  rollup: {
-    emitCJS: false,
-  },
-  declaration: true,
+  declaration: 'node16',
   // warnings triggered by nuxt exports not being built - happens in separate script
   failOnWarn: false,
   entries: [
