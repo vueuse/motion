@@ -1,7 +1,8 @@
 import { defu } from 'defu'
 import { addComponent, addImportsDir, addPlugin, createResolver, defineNuxtModule } from '@nuxt/kit'
 import type { NuxtModule } from '@nuxt/schema'
-import type { ModuleOptions as MotionModuleOpts } from '../../types'
+// @ts-expect-error types exist after build
+import type { ModuleOptions as MotionModuleOpts } from '@vueuse/motion'
 
 export interface ModuleOptions extends MotionModuleOpts<string> {}
 
