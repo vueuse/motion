@@ -1,7 +1,7 @@
 {
   "name": "@vueuse/motion",
   "type": "module",
-  "version": "2.2.6",
+  "version": "3.0.0",
   "packageManager": "pnpm@10.6.2",
   "description": "🤹 Vue Composables putting your components in motion",
   "author": "Yaël GUILLOUX <yael.guilloux@gmail.com>",
