@@ -1,3 +1,3 @@
 export const CUSTOM_PRESETS = Symbol(
-  import.meta.env.MODE === 'development' ? 'motionCustomPresets' : '',
+  import.meta.env?.MODE === 'development' ? 'motionCustomPresets' : '',
 )
