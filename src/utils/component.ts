@@ -195,7 +195,7 @@ export function setupMotionComponent(
   })
 
   // Replay animations on component update Vue
-  if (import.meta.env.MODE === 'development') {
+  if (import.meta.env?.MODE === 'development') {
     // Validate passed preset
     if (
       props.preset != null
