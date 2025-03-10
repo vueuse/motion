@@ -82,6 +82,7 @@
   "dependencies": {
     "@vueuse/core": "^13.0.0",
     "@vueuse/shared": "^13.0.0",
+    "defu": "^6.1.4",
     "framesync": "^6.1.2",
     "popmotion": "^11.0.5",
     "style-value-types": "^5.1.2"
