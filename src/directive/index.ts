@@ -1,4 +1,4 @@
-import type { Directive, DirectiveBinding, MaybeRef, Ref, VNode } from 'vue'
+import type { Directive, DirectiveBinding, Ref, VNode } from 'vue'
 import defu from 'defu'
 import { ref, toRaw, unref } from 'vue'
 import { motionState } from '../features/state'
