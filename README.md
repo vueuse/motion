@@ -3,6 +3,7 @@
 [![npm](https://img.shields.io/npm/v/@vueuse/motion.svg)](https://www.npmjs.com/package/@vueuse/motion)
 [![npm](https://img.shields.io/npm/v/vueuse-motion-nightly.svg)](https://www.npmjs.com/package/vueuse-motion-nightly)
 [![npm](https://img.shields.io/npm/dm/@vueuse/motion.svg)](https://npm-stat.com/charts.html?package=@vueuse/motion)
+[![minzip size](https://img.shields.io/bundlephobia/minzip/%40vueuse%2Fmotion/3)](https://www.npmjs.com/package/@vueuse/motion)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ab1db459-8420-4bc6-9fac-2bc247fa2385/deploy-status)](https://app.netlify.com/sites/vueuse-motion/deploys)
 
 Vue Composables putting your components in motion
@@ -13,7 +14,7 @@ Vue Composables putting your components in motion
 - 🌐 **SSR Ready**
 - 🚚 First-class support for **Nuxt 3**
 - ✨ Written in **TypeScript**
-- 🏋️‍♀️ Lightweight with **<20kb** bundle size
+- 🏋️‍♀️ Lightweight with **<25kb** bundle size
 
 [🌍 Documentation](https://motion.vueuse.org)
 
@@ -32,15 +33,15 @@ npm install @vueuse/motion
 In your Vue app entry file:
 
 ```javascript
-import { createApp } from 'vue'
-import { MotionPlugin } from '@vueuse/motion'
-import App from './App.vue'
+import { createApp } from "vue";
+import { MotionPlugin } from "@vueuse/motion";
+import App from "./App.vue";
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.use(MotionPlugin)
+app.use(MotionPlugin);
 
-app.mount('#app')
+app.mount("#app");
 ```
 
 You can now animate any of your component, HTML or SVG elements using `v-motion`.
