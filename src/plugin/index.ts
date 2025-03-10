@@ -32,7 +32,7 @@ export const MotionPlugin = {
         const variants = options.directives[key] as MotionVariants<any>
 
         // Development warning, showing definitions missing `initial` key
-        if (!variants.initial && import.meta.dev) {
+        if (!variants.initial && import.meta.env.DEV) {
           console.warn(
             `Your directive v-motion-${key} is missing initial variant!`,
           )
