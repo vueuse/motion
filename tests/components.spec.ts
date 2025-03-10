@@ -190,6 +190,9 @@ describe('`<Motion>` component', async () => {
     const el = wrapper.element as HTMLDivElement
     await nextTick()
 
+    // Wait for enter duration
+    await new Promise(res => setTimeout(res, 10))
+
     // Renders enter
     expect(el.style.transform).toEqual('scale(2) translateZ(0px)')
 
