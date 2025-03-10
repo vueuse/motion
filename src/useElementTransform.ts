@@ -1,5 +1,6 @@
 import type { MaybeRef } from '@vueuse/core'
 import { watch } from 'vue'
+import type { Reactive } from 'vue'
 import { reactiveTransform } from './reactiveTransform'
 import type { MotionTarget, PermissiveTarget, TransformProperties } from './types'
 import { usePermissiveTarget } from './usePermissiveTarget'
@@ -10,7 +11,7 @@ import { stateFromTransform } from './utils/transform-parser'
  *
  * @param target
  */
-export function useElementTransform(target: MaybeRef<PermissiveTarget>, onInit?: (initData: Partial<TransformProperties>) => void) {
+export function useElementTransform(target: MaybeRef<PermissiveTarget>, onInit?: (initData: Partial<TransformProperties>) => void): { transform: Reactive<TransformProperties> } {
   // Transform cache available before the element is mounted
   let _cache: string | undefined
   // Local target cache as we need to resolve the element from PermissiveTarget

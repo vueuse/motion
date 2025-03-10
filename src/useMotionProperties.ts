@@ -1,6 +1,7 @@
 import type { MaybeRef } from '@vueuse/core'
 import { reactive, watch } from 'vue'
-import type { MotionProperties, PermissiveTarget } from './types'
+import type { Reactive } from 'vue'
+import type { MotionProperties, PermissiveTarget, StyleProperties, TransformProperties } from './types'
 import { useElementStyle } from './useElementStyle'
 import { useElementTransform } from './useElementTransform'
 import { usePermissiveTarget } from './usePermissiveTarget'
@@ -12,7 +13,7 @@ import { objectEntries } from './utils/type-feature'
  *
  * @param target
  */
-export function useMotionProperties(target: MaybeRef<PermissiveTarget>, defaultValues?: Partial<MotionProperties>) {
+export function useMotionProperties(target: MaybeRef<PermissiveTarget>, defaultValues?: Partial<MotionProperties>): { motionProperties: Reactive<MotionProperties>, style: Reactive<StyleProperties>, transform: Reactive<TransformProperties> } {
   // Local motion properties
   const motionProperties = reactive<MotionProperties>({})
 

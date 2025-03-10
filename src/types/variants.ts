@@ -48,7 +48,6 @@ export interface TransformProperties {
 /**
  * Relevant styling properties
  */
-export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 export type StyleProperties = Omit<CSSProperties, 'transition' | 'rotate' | 'scale' | 'perspective' | 'transform' | 'transformBox' | 'transformOrigin' | 'transformStyle'>
 
 /**
