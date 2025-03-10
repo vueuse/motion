@@ -1,5 +1,6 @@
 import { px } from 'style-value-types'
 import { reactive, ref, watch } from 'vue'
+import type { Reactive, Ref } from 'vue'
 import type { TransformProperties } from './types'
 import { getValueAsType, getValueType } from './utils/style'
 
@@ -18,7 +19,7 @@ const translateAlias: Record<string, string> = {
  * @param props
  * @param enableHardwareAcceleration
  */
-export function reactiveTransform(props: TransformProperties = {}, enableHardwareAcceleration = true) {
+export function reactiveTransform(props: TransformProperties = {}, enableHardwareAcceleration = true): { state: Reactive<TransformProperties>, transform: Ref<string> } {
   // Reactive TransformProperties object
   const state = reactive<TransformProperties>({ ...props })
 

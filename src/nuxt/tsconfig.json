@@ -8,13 +8,7 @@
     "moduleResolution": "Node",
 
     "resolveJsonModule": true,
-    "types": [
-      "node",
-      "csstype",
-      "vitest",
-      "vitest/globals",
-      "vite/client"
-    ],
+    "types": ["node", "vitest", "vitest/globals", "vite/client"],
     "allowJs": true,
     "strict": true,
     "noEmit": true,

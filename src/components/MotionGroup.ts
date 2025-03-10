@@ -1,5 +1,4 @@
-import type { PropType, VNode } from 'vue'
-import type { Component } from '@nuxt/schema'
+import type { Component, PropType, VNode } from 'vue'
 
 import { Fragment, defineComponent, h, useSlots } from 'vue'
 import { variantToStyle } from '../utils/transform'

@@ -29,7 +29,7 @@
       "#components": [".nuxt/components"]
     },
     "resolveJsonModule": true,
-    "types": ["node", "csstype", "vitest", "vitest/globals", "vite/client"],
+    "types": ["node", "vitest/globals", "vite/client"],
     "allowJs": true,
     "strict": true,
     "noEmit": true,

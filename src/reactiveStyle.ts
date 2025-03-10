@@ -1,4 +1,4 @@
-import type { Ref } from 'vue'
+import type { Reactive, Ref } from 'vue'
 import { reactive, ref, watch } from 'vue'
 import type { StyleProperties } from './types'
 import { getValueAsType, getValueType } from './utils/style'
@@ -8,13 +8,13 @@ import { getValueAsType, getValueType } from './utils/style'
  *
  * @param props
  */
-export function reactiveStyle(props: StyleProperties = {}) {
+export function reactiveStyle(props: StyleProperties = {}): { state: Reactive<StyleProperties>, style: Ref<StyleProperties> } {
   // Reactive StyleProperties object
   const state = reactive<StyleProperties>({
     ...props,
   })
 
-  const style = ref({}) as Ref<StyleProperties>
+  const style = ref<StyleProperties>({})
 
   // Reactive DOM Element compatible `style` object bound to state
   watch(
