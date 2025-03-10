@@ -5,6 +5,14 @@
   "packageManager": "pnpm@10.6.2",
   "description": "🤹 Vue Composables putting your components in motion",
   "author": "Yaël GUILLOUX <yael.guilloux@gmail.com>",
+  "contributors": [
+    {
+      "name": "Yaël Guilloux (@Tahul)"
+    },
+    {
+      "name": "Bobbie Goede (@BobbieGoede)"
+    }
+  ],
   "license": "MIT",
   "homepage": "https://github.com/vueuse/motion#readme",
   "repository": "https://github.com/vueuse/motion",
