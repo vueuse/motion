@@ -10,7 +10,13 @@ on:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [20]
+        os: [ubuntu-latest]
+
+    runs-on: ${{ matrix.os }}
+
     steps:
       - name: Checkout codes
         uses: actions/checkout@v4
@@ -18,12 +24,12 @@ jobs:
           fetch-depth: 0
 
       - name: Enable corepack
-        run: corepack enable
+        run: npm i -fg corepack && corepack enable
 
       - name: Setup node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: ${{ matrix.os }}
           cache: pnpm
 
       - name: Install dependencies

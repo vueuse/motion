@@ -1,10 +1,7 @@
 import { defineBuildConfig } from 'unbuild'
 
 export default defineBuildConfig({
-  rollup: {
-    emitCJS: true,
-  },
-  declaration: true,
+  declaration: 'node16',
   // warnings triggered by nuxt exports not being built - happens in separate script
   failOnWarn: false,
   entries: [
@@ -15,13 +12,6 @@ export default defineBuildConfig({
       name: 'index',
       format: 'esm',
       ext: 'mjs',
-    },
-    {
-      input: 'src/index.ts',
-      outDir: 'dist',
-      name: 'index',
-      format: 'cjs',
-      ext: 'cjs',
     },
   ],
   externals: [

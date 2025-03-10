@@ -3,73 +3,33 @@
   "compilerOptions": {
     "target": "ESNext",
     "jsx": "preserve",
+    "moduleDetection": "force",
     "baseUrl": ".",
-    "module": "ESNext",
-    "moduleResolution": "Node",
+    "module": "preserve",
+    "moduleResolution": "bundler",
     "paths": {
-      "@vueuse/motion": [
-        "./src/index"
-      ],
-      "@vueuse/motion/nuxt": [
-        "./src/nuxt/module"
-      ],
-      "#app": [
-        "./node_modules/nuxt/dist/app"
-      ],
-      "#app/*": [
-        "./node_modules/nuxt/dist/app/*"
-      ],
-      "vue-demi": [
-        "./node_modules/nuxt/dist/app/compat/vue-demi"
-      ],
-      "#color-mode-options": [
-        "./docs/.nuxt/color-mode-options"
-      ],
-      "#nuxt-component-meta": [
-        "./docs/.nuxt/component-meta.mjs"
-      ],
-      "#nuxt-component-meta/types": [
-        "./docs/.nuxt/component-meta.d.ts"
-      ],
-      "#vue-router": [
-        "./docs/.nuxt/vue-router"
-      ],
-      "#imports": [
-        "./docs/.nuxt/imports"
-      ],
-      "#build": [
-        "./docs/.nuxt"
-      ],
-      "#build/*": [
-        "./docs/.nuxt/*"
-      ],
+      "@vueuse/motion": ["./src/index"],
+      "@vueuse/motion/nuxt": ["./src/nuxt/module"],
+      "#app": ["./node_modules/nuxt/dist/app"],
+      "#app/*": ["./node_modules/nuxt/dist/app/*"],
+      "#color-mode-options": ["./docs/.nuxt/color-mode-options"],
+      "#nuxt-component-meta": ["./docs/.nuxt/component-meta.mjs"],
+      "#nuxt-component-meta/types": ["./docs/.nuxt/component-meta.d.ts"],
+      "#vue-router": ["./docs/.nuxt/vue-router"],
+      "#imports": ["./docs/.nuxt/imports"],
+      "#build": ["./docs/.nuxt"],
+      "#build/*": ["./docs/.nuxt/*"],
       "@nuxt-themes/tokens/config": [
         "./node_modules/@nuxt-themes/tokens/dist/tokens.config.ts"
       ],
-      "#pinceau/utils": [
-        "./docs/.nuxt/pinceau/utils.ts"
-      ],
-      "#pinceau/theme": [
-        "./docs/.nuxt/pinceau/index.ts"
-      ],
-      "#pinceau/schema": [
-        "./docs/.nuxt/pinceau/schema.ts"
-      ],
-      "#pinceau/definitions": [
-        "./docs/.nuxt/pinceau/definitions.ts"
-      ],
-      "#components": [
-        ".nuxt/components"
-      ]
+      "#pinceau/utils": ["./docs/.nuxt/pinceau/utils.ts"],
+      "#pinceau/theme": ["./docs/.nuxt/pinceau/index.ts"],
+      "#pinceau/schema": ["./docs/.nuxt/pinceau/schema.ts"],
+      "#pinceau/definitions": ["./docs/.nuxt/pinceau/definitions.ts"],
+      "#components": [".nuxt/components"]
     },
     "resolveJsonModule": true,
-    "types": [
-      "node",
-      "csstype",
-      "vitest",
-      "vitest/globals",
-      "vite/client"
-    ],
+    "types": ["node", "csstype", "vitest", "vitest/globals", "vite/client"],
     "allowJs": true,
     "strict": true,
     "noEmit": true,
@@ -85,13 +45,8 @@
     "docs/**/*",
     "playgrounds/**/*"
   ],
-  "exclude": [
-    "../dist",
-    "../.output"
-  ],
+  "exclude": ["../dist", "../.output"],
   "vueCompilerOptions": {
-    "plugins": [
-      "pinceau/volar"
-    ]
+    "plugins": ["pinceau/volar"]
   }
 }

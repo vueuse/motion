@@ -10,7 +10,6 @@ export default defineConfig({
   ],
   ssgOptions: {
     script: 'async',
-    formatting: 'prettify',
   },
   resolve: {
     alias: [

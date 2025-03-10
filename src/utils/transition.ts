@@ -221,21 +221,21 @@ export function getAnimation(key: string, value: MotionValue, target: ResolvedVa
     return valueTransition.type === 'inertia' || valueTransition.type === 'decay'
       ? inertia({ ...options, ...valueTransition })
       : animate({
-        ...getPopmotionAnimationOptions(valueTransition, options, key),
-        onUpdate: (v: any) => {
-          options.onUpdate(v)
+          ...getPopmotionAnimationOptions(valueTransition, options, key),
+          onUpdate: (v: any) => {
+            options.onUpdate(v)
 
-          if (valueTransition.onUpdate)
-            valueTransition.onUpdate(v)
-        },
-        onComplete: () => {
-          if (onComplete)
-            onComplete()
+            if (valueTransition.onUpdate)
+              valueTransition.onUpdate(v)
+          },
+          onComplete: () => {
+            if (onComplete)
+              onComplete()
 
-          if (complete)
-            complete()
-        },
-      })
+            if (complete)
+              complete()
+          },
+        })
   }
 
   /**
