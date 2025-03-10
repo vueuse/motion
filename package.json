@@ -21,20 +21,19 @@
   ],
   "sideEffects": false,
   "exports": {
-    ".": {
-      "import": "./dist/index.mjs"
-    },
-    "./nuxt": {
-      "import": "./dist/nuxt/module.mjs"
-    }
+    ".": "./dist/index.mjs",
+    "./nuxt": "./dist/nuxt/module.mjs"
   },
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "types": "./dist/index.d.mts",
   "typesVersions": {
     "*": {
       "*": [
         "./dist/*",
         "./*"
+      ],
+      "nuxt": [
+        "./dist/nuxt/module.d.mts"
       ]
     }
   },
