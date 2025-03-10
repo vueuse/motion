@@ -28,10 +28,6 @@
   "types": "./dist/index.d.mts",
   "typesVersions": {
     "*": {
-      "*": [
-        "./dist/*",
-        "./*"
-      ],
       "nuxt": [
         "./dist/nuxt/module.d.mts"
       ]
@@ -102,8 +98,8 @@
     "lint-staged": "^15.2.5",
     "nuxt": "^3.13.0",
     "pkg-pr-new": "^0.0.20",
-    "typescript": "^5.4.5",
-    "unbuild": "^2.0.0",
+    "typescript": "^5.8.2",
+    "unbuild": "^3.5.0",
     "vite": "5.2.12",
     "vitest": "^1.6.0",
     "vue": "^3.4.38",
