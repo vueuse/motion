@@ -15,7 +15,13 @@ on:
 jobs:
   release:
     if: ${{ !github.event.pull_request.draft && contains(github.event.pull_request.labels.*.name, 'cr-tracked') }}
-    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node: [20]
+        os: [ubuntu-latest]
+
+    runs-on: ${{ matrix.os }}
 
     steps:
       - name: Checkout code
@@ -27,7 +33,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 18.18
+          node-version: ${{ matrix.node }}
           cache: pnpm
 
       - name: Install dependencies
