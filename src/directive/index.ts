@@ -58,6 +58,7 @@ export function directive<T extends string>(
     _node: VNode<any, (HTMLElement | SVGElement) & { motionInstance?: MotionInstance<string, MotionVariants<T>> }, Record<string, any>>,
   ) => {
     // Visibility hooks
+    // eslint-disable-next-line ts/no-unused-expressions
     el.motionInstance && registerVisibilityHooks(el.motionInstance)
   }
 
