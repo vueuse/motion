@@ -1,8 +1,6 @@
-import type { Ref } from '@vue/reactivity'
-import { ref } from '@vue/reactivity'
-import { watch } from '@vue/runtime-core'
+import { ref, watch } from 'vue'
 import type { VueInstance } from '@vueuse/core'
-import type { MaybeRef } from '@vueuse/shared'
+import type { MaybeRef, Ref } from 'vue'
 import type { MotionTarget, PermissiveTarget } from '../types'
 
 export function resolveElement(target: MaybeRef<PermissiveTarget>): Ref<MotionTarget> {
