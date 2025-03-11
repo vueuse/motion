@@ -1,4 +1,4 @@
-import type { MaybeRef } from '@vueuse/shared'
+import type { MaybeRef } from 'vue'
 import { animate } from 'popmotion'
 import type { MotionProperties, PermissiveMotionProperties, PermissiveTarget, Spring, SpringControls } from './types'
 import { useMotionValues } from './useMotionValues'

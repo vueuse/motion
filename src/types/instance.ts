@@ -1,5 +1,5 @@
-import type { MaybeRef, VueInstance } from '@vueuse/core'
-import type { Ref, UnwrapRef } from 'vue'
+import type { VueInstance } from '@vueuse/core'
+import type { MaybeRef, Ref, UnwrapRef } from 'vue'
 import type { MotionProperties, MotionVariants, Variant } from './variants'
 
 export type PermissiveTarget = VueInstance | MotionTarget

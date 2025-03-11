@@ -1,4 +1,4 @@
-import type { MaybeRef } from '@vueuse/core'
+import type { MaybeRef } from 'vue'
 import { isObject } from '@vueuse/core'
 import { ref, unref, watch } from 'vue'
 import type { MotionControls, MotionProperties, MotionTransitions, MotionVariants, Variant } from './types'
